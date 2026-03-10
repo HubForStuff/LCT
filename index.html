@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LATAMChina Tech - Ponte de Inovação</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        .hero {
+            background: linear-gradient(135deg, #0066CC 0%, #FF6B35 100%);
+            color: white;
+            padding: 120px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        .hero h1 span { color: #FFD700; }
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            opacity: 0.95;
+        }
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #0066CC;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .features {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: #1a1a1a;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        .feature-card {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+        .feature-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        footer p {
+            opacity: 0.8;
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.1rem; }
+            .features h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <h1>LATAM<span>China</span> Tech</h1>
+        <p>A ponte de inovação entre América Latina e China. Conectando startups, investidores e oportunidades de negócio.</p>
+        <a href="#features" class="cta-button">Explore Oportunidades</a>
+    </section>
+
+    <section class="features" id="features">
+        <h2>Nossos Programas</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🚀</div>
+                <h3>Aceleração de Startups</h3>
+                <p>Programa de aceleração para startups LATAM que buscam entrar no mercado chinês. Mentoria, networking e acesso a investidores.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3>Matchmaking Empresarial</h3>
+                <p>Conectamos empresas chinesas com oportunidades na América Latina e vice-versa. Facilitamos parcerias estratégicas e joint ventures.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💡</div>
+                <h3>Inovação Aberta</h3>
+                <p>Programas de inovação aberta conectando corporações chinesas com startups e tecnologias inovadoras da América Latina.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📚</div>
+                <h3>Capacitação</h3>
+                <p>Workshops, treinamentos e programas educacionais sobre cultura de negócios China-LATAM, regulamentação e melhores práticas.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌐</div>
+                <h3>Eventos & Networking</h3>
+                <p>Organização de conferências, roadshows e eventos de networking presenciais e virtuais entre ecossistemas de inovação.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3>Acesso a Capital</h3>
+                <p>Facilitamos o acesso a investidores chineses, fundos de venture capital e private equity interessados em oportunidades LATAM.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 LATAMChina Tech. Todos os direitos reservados.</p>
+        <p style="margin-top: 10px; opacity: 0.6;">Conectando América Latina e China através da inovação.</p>
+    </footer>
+</body>
+</html>
