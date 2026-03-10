@@ -1,6 +1,10 @@
-# Inovação Hub 🚀
+# LATAMChina Tech 🚀
 
-Website de hub de inovação construído com Astro e Keystatic.
+Ponte de inovação entre América Latina e China. Website construído com Astro e Keystatic.
+
+## Sobre
+
+LATAMChina Tech conecta empresas, startups e investidores da América Latina com o ecossistema de tecnologia e inovação da China.
 
 ## Tecnologias
 
@@ -26,6 +30,8 @@ npm run build
 
 O site é automaticamente deployado para GitHub Pages via GitHub Actions quando há push para a branch `main`.
 
+URL: https://bruehstdio.github.io/latamchina-tech/
+
 ## Estrutura
 
 - `/src/pages` - Páginas do site
@@ -36,4 +42,4 @@ O site é automaticamente deployado para GitHub Pages via GitHub Actions quando 
 
 ## Licença
 
-MIT - Criado por Ash para Daniel
+MIT
