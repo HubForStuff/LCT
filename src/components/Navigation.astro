@@ -1,0 +1,64 @@
+---
+const navItems = [
+  { label: 'Programas', href: '#programas' },
+  { label: 'Competições', href: '#competicoes' },
+  { label: 'Eventos', href: '#eventos' },
+  { label: 'Parcerias', href: '#parcerias' },
+];
+---
+
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <a href="/" class="flex items-center space-x-2">
+        <div class="w-8 h-8 bg-gradient-to-br from-primary-500 to-accent-500 rounded-lg flex items-center justify-center">
+          <span class="text-white font-bold text-sm">IH</span>
+        </div>
+        <span class="font-bold text-xl text-gray-900">Inovação<span class="text-primary-500">Hub</span></span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center space-x-8">
+        {navItems.map(item => (
+          <a href={item.href} class="text-gray-600 hover:text-primary-500 font-medium transition-colors">
+            {item.label}
+          </a>
+        ))}
+        <a href="#contact" class="bg-primary-500 hover:bg-primary-600 text-white px-5 py-2.5 rounded-full font-medium transition-colors">
+          Contato
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-600 hover:text-gray-900">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+    <div class="px-4 py-3 space-y-1">
+      {navItems.map(item => (
+        <a href={item.href} class="block px-3 py-2 text-gray-600 hover:text-primary-500 hover:bg-gray-50 rounded-md">
+          {item.label}
+        </a>
+      ))}
+      <a href="#contact" class="block px-3 py-2 text-primary-500 font-medium">
+        Entre em Contato →
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  
+  btn?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+  });
+</script>
