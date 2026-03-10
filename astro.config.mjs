@@ -4,7 +4,7 @@ import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
   site: 'https://bruehstdio.github.io',
-  base: '/inovacao-hub',
+  base: '/latamchina-tech',
   integrations: [
     mdx(),
     tailwind()
