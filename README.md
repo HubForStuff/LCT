@@ -1,4 +1,4 @@
-# LATAMChina Tech 🚀
+# LATAM China Tech 🚀
 
 Ponte de inovação entre América Latina e China. Website construído com Astro e Keystatic.
 
