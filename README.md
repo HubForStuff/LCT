@@ -24,7 +24,12 @@ npm run dev
 
 # Build para produção
 npm run build
+
+# Visualizar o build de produção localmente
+npm run preview
 ```
+
+Se preferir outro servidor estático, sirva a pasta `dist/` como raiz do site. O arquivo `standalone-preview.html` é apenas um snapshot antigo e não faz parte do deploy do Astro.
 
 ## Deploy
 
