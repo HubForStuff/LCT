@@ -50,6 +50,11 @@ test("homepage build matches the supplied design structure", () => {
 
   const html = readFileSync(distIndexPath, "utf8");
 
+  assert.match(
+    html,
+    /<img[^>]+alt="LATAM China Tech"/i,
+    "expected the homepage to render the LATAM China Tech logo image",
+  );
   assert.match(html, /Accelerating/i, "expected the new hero heading from the design");
   assert.match(
     html,

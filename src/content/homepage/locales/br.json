@@ -1,0 +1,338 @@
+{
+  "meta": {
+    "htmlLang": "pt-BR",
+    "title": "LATAM China Tech",
+    "description": "Aceleramos conexoes de tecnologia entre a America Latina e a China."
+  },
+  "ui": {
+    "chooseLanguage": "Escolher idioma",
+    "language": "Idioma",
+    "menu": "Menu",
+    "newsletterEmail": "E-mail da newsletter",
+    "newsletterPlaceholder": "Seu e-mail",
+    "close": "Fechar",
+    "learnMore": "Saiba mais",
+    "contact": "Contato",
+    "insights": "Insights",
+    "programs": "Programas",
+    "followWechat": "Siga-nos no WeChat",
+    "wechatCopy": "Escaneie o QR code abaixo para acompanhar a LATAM China Tech no WeChat.",
+    "scanWechat": "Escaneie no WeChat",
+    "homeLabel": "Pagina inicial da LATAM China Tech"
+  },
+  "hero": {
+    "desktopTitleHtml": "Acelerando<br><em>Inovacao</em>",
+    "mobileTitleHtml": "Acelerando<br><span>Inovacao</span>",
+    "subtitle": "Aceleramos tecnologia entre a America Latina e a China",
+    "ctas": [
+      "Explorar Programas",
+      "Seja Parceiro",
+      "Ler Insights"
+    ]
+  },
+  "navExploreLabel": "Explorar",
+  "desktopMenuSections": [
+    {
+      "label": "Assessoria",
+      "links": [
+        {
+          "title": "Investimento",
+          "subtitle": "Prontidao para capital e apresentacoes a parceiros"
+        },
+        {
+          "title": "Transferencia de Tecnologia",
+          "subtitle": "Suporte de comercializacao nos dois mercados"
+        }
+      ],
+      "note": "Precisa de um escopo sob medida?",
+      "noteLink": "Fale conosco",
+      "description": "Assessoria estrategica para investidores, operadores e instituicoes que atuam entre a China e a America Latina. Transformamos a complexidade do corredor em proximos passos concretos, listas de parceiros e planos de execucao.",
+      "card": {
+        "title": "Sprint de Prontidao para Investidores",
+        "body": "Um programa acelerado para fundadores que estao se preparando para captar e negociar parcerias internacionais.",
+        "cta": "Agendar Assessoria"
+      }
+    },
+    {
+      "label": "Competicoes e Desafios",
+      "links": [
+        {
+          "title": "Competicoes de Startups",
+          "subtitle": "Pitch para captar recursos e entrar em programas"
+        },
+        {
+          "title": "Desafios Corporativos",
+          "subtitle": "Briefings de inovacao aberta com demanda real do mercado"
+        }
+      ],
+      "note": "Quer lancar um desafio?",
+      "noteLink": "Converse com a equipe",
+      "description": "Formatos desenhados para revelar fundadores de alto potencial, novas solucoes e oportunidades investiveis entre China e America Latina. Criamos competicoes que geram resultado muito alem do demo day.",
+      "card": {
+        "title": "Premios de ate US$ 150 mil",
+        "body": "Finalistas selecionados ganham exposicao direta a corporates, investidores e programas de expansao.",
+        "cta": "Ver chamadas abertas"
+      }
+    },
+    {
+      "label": "Eventos",
+      "links": [
+        {
+          "title": "Feiras e Exposicoes",
+          "subtitle": "Vitrines de mercado e delegacoes curadas"
+        },
+        {
+          "title": "Summits",
+          "subtitle": "Conversas de alto sinal ao longo do corredor"
+        }
+      ],
+      "note": "Precisa de uma delegacao curada?",
+      "noteLink": "Planejar evento",
+      "description": "Paineis, keynotes, summits e experiencias comerciais pensadas para gerar inteligencia pratica de mercado. Cada formato e desenhado para facilitar apresentacoes e acelerar decisoes.",
+      "card": {
+        "title": "Summit Trimestral do Corredor",
+        "body": "Briefings ao vivo e matchmaking executivo focados em setores de crescimento na America Latina e na China.",
+        "cta": "Ver calendario"
+      }
+    },
+    {
+      "label": "Programas",
+      "links": [
+        {
+          "title": "Entrada em Mercado",
+          "subtitle": "Imersao em campo e descoberta de parceiros"
+        },
+        {
+          "title": "Missoes de Negocios",
+          "subtitle": "Delegacoes e visitas comerciais de alto contexto"
+        }
+      ],
+      "note": "Precisa de um formato de coorte personalizado?",
+      "noteLink": "Solicitar programa",
+      "description": "Da exploracao online a missoes presenciais, nossos programas levam empresas do interesse inicial a uma presenca real de mercado com apoio pratico em cada etapa.",
+      "card": {
+        "title": "Cohort 8 com inscricoes abertas",
+        "body": "As inscricoes se encerram em 30 de abril. O limite e de 40 empresas por turma nas duas regioes.",
+        "cta": "Inscreva-se"
+      }
+    },
+    {
+      "label": "Rede",
+      "links": [
+        {
+          "title": "Parcerias entre Cidades",
+          "subtitle": "Intercambio tecnologico e diplomacia de ecossistemas"
+        },
+        {
+          "title": "Palestrantes em Destaque",
+          "subtitle": "Operadores e fundadores curados para palcos principais"
+        }
+      ],
+      "note": "Quer fortalecer sua ponte de ecossistema?",
+      "noteLink": "Torne-se parceiro",
+      "description": "Conectamos instituicoes, startups e atores civicos ao longo do corredor China-LATAM, criando redes duradouras em vez de introducoes pontuais.",
+      "card": {
+        "title": "Mais de 120 parceiros ativos",
+        "body": "Em 22 setores, com cada conexao avaliada por compatibilidade estrategica e potencial de execucao.",
+        "cta": "Explorar rede"
+      }
+    }
+  ],
+  "categoryCards": [
+    {
+      "eyebrow": "Programas de Expansao",
+      "title": "Da exploracao a entrada em mercado",
+      "description": "Levamos empresas da curiosidade a presenca de mercado com exploracao online, entrada presencial e missoes estruturadas na China e na America Latina.",
+      "cta": "Explorar Programas",
+      "theme": "dark"
+    },
+    {
+      "eyebrow": "Rede",
+      "title": "Parcerias entre Cidades e Palestrantes",
+      "description": "Conectamos ecossistemas por meio de programas entre cidades, redes de palestrantes e mais de 120 parceiros ativos espalhados por China e America Latina.",
+      "cta": "Explorar Rede",
+      "theme": "light"
+    },
+    {
+      "eyebrow": "Servicos de Assessoria",
+      "title": "Orientacao estrategica para executar",
+      "description": "De estrategia de entrada a transferencia de tecnologia e matchmaking com investidores, oferecemos assessoria que transforma ambicao em tracao.",
+      "cta": "Explorar Assessoria",
+      "theme": "dark"
+    }
+  ],
+  "competitionsSection": {
+    "eye": "Competir e Construir",
+    "desktopTitle": "Competicoes e Desafios Corporativos",
+    "mobileTitleHtml": "Competicoes e<br>Desafios",
+    "allLink": "Todos os desafios"
+  },
+  "competitionCards": [
+    {
+      "label": "Competicoes",
+      "titleHtml": "Compita.<br>Venca.<br>Capte recursos.",
+      "description": "Apresente seu pitch para captar, entrar em programas e acessar parceiros corporativos e investidores do eixo China-LATAM. Premios de ate US$ 150 mil.",
+      "status": "Inscricoes abertas",
+      "cta": "Registrar agora",
+      "watermark": "VENCA",
+      "theme": "blue"
+    },
+    {
+      "label": "Desafios",
+      "titleHtml": "O melhor da inovacao aberta",
+      "description": "Lance seu desafio corporativo e acesse talentos globais para gerar breakthroughs, reduzir custos de P&D e ampliar sua rede.",
+      "status": "Ao vivo",
+      "cta": "Quero participar",
+      "watermark": "AGORA",
+      "theme": "red"
+    }
+  ],
+  "newsSection": {
+    "eye": "Destaques",
+    "title": "Noticias e Insights",
+    "allLink": "Todos os insights"
+  },
+  "newsItems": [
+    {
+      "tag": "Analise",
+      "title": "Por que gigantes chinesas precisam mais do que nunca das startups LATAM",
+      "image": "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "altImage": "https://images.pexels.com/photos/2747449/pexels-photo-2747449.jpeg?auto=compress&cs=tinysrgb&w=800"
+    },
+    {
+      "tag": "Relatorio",
+      "title": "Investimento tech China-LATAM: panorama de 2025",
+      "image": "https://images.pexels.com/photos/3109807/pexels-photo-3109807.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "altImage": "https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=800"
+    },
+    {
+      "tag": "Fintech",
+      "title": "Fintech entre China e Brasil: novos caminhos regulatorios",
+      "image": "https://images.pexels.com/photos/1762851/pexels-photo-1762851.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "altImage": "https://images.pexels.com/photos/3342740/pexels-photo-3342740.jpeg?auto=compress&cs=tinysrgb&w=800"
+    },
+    {
+      "tag": "Pesquisa",
+      "title": "Por que 73% das startups fracassam na entrada cross-border",
+      "image": "https://images.pexels.com/photos/2156881/pexels-photo-2156881.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "altImage": "https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&cs=tinysrgb&w=800"
+    },
+    {
+      "tag": "AgriTech",
+      "title": "A ascensao dos corredores de AgriTech entre China e Brasil",
+      "image": "https://images.pexels.com/photos/924824/pexels-photo-924824.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "altImage": "https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?auto=compress&cs=tinysrgb&w=800"
+    }
+  ],
+  "footerCta": {
+    "eye": "Impulsione seu crescimento.",
+    "titleHtml": "Receba investimento, conecte-se<br>e cresca entre LatAm e China",
+    "button": "Ver Programas"
+  },
+  "footerColumns": [
+    {
+      "title": "Assessoria",
+      "links": [
+        "Investimento",
+        "Transferencia de Tecnologia"
+      ]
+    },
+    {
+      "title": "Competicoes",
+      "links": [
+        "Competicoes de Startups",
+        "Desafios Corporativos"
+      ]
+    },
+    {
+      "title": "Eventos",
+      "links": [
+        "Feiras e Exposicoes",
+        "Summits"
+      ]
+    },
+    {
+      "title": "Programas",
+      "links": [
+        "Entrada em Mercado",
+        "Missoes de Negocios"
+      ]
+    }
+  ],
+  "mobileMenuSections": [
+    {
+      "label": "Assessoria",
+      "cards": [
+        {
+          "title": "Assessoria Estrategica",
+          "description": "Matchmaking com investidores, consultoria em transferencia de tecnologia e estrategia de entrada entre China e LATAM.",
+          "cta": "Saiba mais",
+          "theme": "red"
+        }
+      ]
+    },
+    {
+      "label": "Competicoes",
+      "cards": [
+        {
+          "title": "Desafios Corporativos",
+          "description": "Desafios de inovacao aberta que conectam corporates a solucoes de ponta vindas da LATAM e da China.",
+          "cta": "Saiba mais",
+          "theme": "white"
+        },
+        {
+          "title": "Competicoes de Startups",
+          "description": "Apresente seu pitch, dispute premios de ate US$ 150 mil e fale direto com investidores e parceiros.",
+          "cta": "Saiba mais",
+          "theme": "white"
+        }
+      ]
+    },
+    {
+      "label": "Eventos",
+      "cards": [
+        {
+          "title": "Feiras, Exposicoes e Summits",
+          "description": "Eventos curados para conectar ecossistemas de tecnologia da LATAM e da China presencialmente.",
+          "cta": "Saiba mais",
+          "theme": "red"
+        }
+      ]
+    },
+    {
+      "label": "Rede",
+      "cards": [
+        {
+          "title": "Parcerias entre Cidades e Palestrantes",
+          "description": "Mais de 120 parceiros ativos em 22 industrias e uma rede curada de vozes de alto impacto.",
+          "cta": "Saiba mais",
+          "theme": "red"
+        }
+      ]
+    },
+    {
+      "label": "Programas",
+      "cards": [
+        {
+          "title": "Entrada em Mercado e Missoes",
+          "description": "Programas estruturados que levam empresas da exploracao online a operacoes presenciais no novo mercado.",
+          "cta": "Saiba mais",
+          "theme": "red"
+        }
+      ]
+    }
+  ],
+  "mobileBottomLinks": [
+    "Contato",
+    "Insights",
+    "Programas"
+  ],
+  "footer": {
+    "newsletterTitle": "Newsletter",
+    "desktopSubscribe": "Assinar no Substack",
+    "mobileSubscribe": "Assinar",
+    "scanWechat": "Escaneie no WeChat",
+    "followWechat": "Siga-nos no WeChat",
+    "wechatCopy": "Escaneie o QR code abaixo para acompanhar a LATAM China Tech no WeChat."
+  }
+}

@@ -1,0 +1,338 @@
+{
+  "meta": {
+    "htmlLang": "en",
+    "title": "LATAM China Tech",
+    "description": "We accelerate Latin American and Chinese tech."
+  },
+  "ui": {
+    "chooseLanguage": "Choose language",
+    "language": "Language",
+    "menu": "Menu",
+    "newsletterEmail": "Newsletter email",
+    "newsletterPlaceholder": "Your email",
+    "close": "Close",
+    "learnMore": "Learn More",
+    "contact": "Contact",
+    "insights": "Insights",
+    "programs": "Programs",
+    "followWechat": "Follow us on WeChat",
+    "wechatCopy": "Scan the QR code below to follow LATAM China Tech on WeChat.",
+    "scanWechat": "Scan on WeChat",
+    "homeLabel": "LATAM China Tech home"
+  },
+  "hero": {
+    "desktopTitleHtml": "Accelerating<br><em>Innovation</em>",
+    "mobileTitleHtml": "Accelerating<br><span>Innovation</span>",
+    "subtitle": "We Accelerate Latin American and Chinese Tech",
+    "ctas": [
+      "Explore Programs",
+      "Partner With Us",
+      "Read Insights"
+    ]
+  },
+  "navExploreLabel": "Explore",
+  "desktopMenuSections": [
+    {
+      "label": "Advisory",
+      "links": [
+        {
+          "title": "Investment",
+          "subtitle": "Capital readiness and partner introductions"
+        },
+        {
+          "title": "Tech Transfer",
+          "subtitle": "Commercialization support across both regions"
+        }
+      ],
+      "note": "Need a custom advisory scope?",
+      "noteLink": "Contact us",
+      "description": "Strategic advisory for investors, operators, and institutions moving between China and Latin America. We translate corridor complexity into concrete next steps, partner shortlists, and execution plans.",
+      "card": {
+        "title": "Investor Readiness Sprint",
+        "body": "A fast-track program for founders preparing cross-border fundraising and partner conversations.",
+        "cta": "Book Advisory"
+      }
+    },
+    {
+      "label": "Competitions & Challenges",
+      "links": [
+        {
+          "title": "Startup Competitions",
+          "subtitle": "Pitch for funding and program access"
+        },
+        {
+          "title": "Corporate Challenges",
+          "subtitle": "Open innovation briefs for real industry demand"
+        }
+      ],
+      "note": "Looking to launch a brief?",
+      "noteLink": "Talk to our team",
+      "description": "Designed to surface high-potential founders, fresh solutions, and investable cross-border opportunities. We run competition formats that create momentum beyond demo day.",
+      "card": {
+        "title": "Prize Pools Up To $150K",
+        "body": "Select finalists gain direct exposure to corporate partners, investors, and expansion programs.",
+        "cta": "See Open Calls"
+      }
+    },
+    {
+      "label": "Events",
+      "links": [
+        {
+          "title": "Trade Fairs & Expos",
+          "subtitle": "Market-facing showcases and curated delegations"
+        },
+        {
+          "title": "Summits",
+          "subtitle": "High-signal conversations across the corridor"
+        }
+      ],
+      "note": "Need a curated delegation?",
+      "noteLink": "Plan an event",
+      "description": "Panels, keynotes, summits, and trade experiences built for tactical market insight. Every format is designed to make introductions easier and decisions faster.",
+      "card": {
+        "title": "Quarterly Corridor Summit",
+        "body": "Live briefings and executive matchmaking sessions focused on growth sectors in LatAm and China.",
+        "cta": "View Calendar"
+      }
+    },
+    {
+      "label": "Programs",
+      "links": [
+        {
+          "title": "Market Entry",
+          "subtitle": "Hands-on in-market immersion and partner discovery"
+        },
+        {
+          "title": "Business Mission",
+          "subtitle": "Delegations and high-context trade visits"
+        }
+      ],
+      "note": "Need a custom cohort format?",
+      "noteLink": "Request a program",
+      "description": "From online exploration to boots-on-the-ground business missions, our programs move companies from initial interest to real market presence with hands-on support.",
+      "card": {
+        "title": "Cohort 8 Now Open",
+        "body": "Applications close April 30. Limited to 40 companies per cohort across both regions.",
+        "cta": "Apply Now"
+      }
+    },
+    {
+      "label": "Network",
+      "links": [
+        {
+          "title": "City Partnerships",
+          "subtitle": "City-to-city tech exchange and ecosystem diplomacy"
+        },
+        {
+          "title": "Featured Speakers",
+          "subtitle": "Curated operators and founders for flagship stages"
+        }
+      ],
+      "note": "Want a stronger ecosystem bridge?",
+      "noteLink": "Partner with us",
+      "description": "We broker ecosystem relationships between institutions, startups, and civic actors across the China-LATAM corridor, creating durable networks instead of one-off introductions.",
+      "card": {
+        "title": "120+ Active Partners",
+        "body": "Across 22 industries, with every match assessed for strategic compatibility and execution potential.",
+        "cta": "Explore Network"
+      }
+    }
+  ],
+  "categoryCards": [
+    {
+      "eyebrow": "Expansion Programs",
+      "title": "From Exploration to Market Entry",
+      "description": "We take companies from curiosity to market presence - online exploration, boots-on-the-ground entry, and structured business missions in China and LATAM.",
+      "cta": "Explore Programs",
+      "theme": "dark"
+    },
+    {
+      "eyebrow": "Network",
+      "title": "City Partnerships & Featured Speakers",
+      "description": "We connect ecosystems across borders through city-to-city tech exchange, speaker networks, and 120+ active partners spanning China and Latin America.",
+      "cta": "Explore Network",
+      "theme": "light"
+    },
+    {
+      "eyebrow": "Advisory Services",
+      "title": "Strategic Guidance, Built to Execute",
+      "description": "From market entry strategy to tech transfer and investment matchmaking - expert advisory that turns ambition into traction across China and Latin America.",
+      "cta": "Explore Advisory",
+      "theme": "dark"
+    }
+  ],
+  "competitionsSection": {
+    "eye": "Compete & Build",
+    "desktopTitle": "Competitions & Corporate Challenges",
+    "mobileTitleHtml": "Competitions &<br>Challenges",
+    "allLink": "All Challenges"
+  },
+  "competitionCards": [
+    {
+      "label": "Competitions",
+      "titleHtml": "Compete.<br>Win.<br>Get Funded.",
+      "description": "Pitch for funding, program entry, and direct access to China-LATAM corporate partners and investors. Prize pools up to $150K.",
+      "status": "Open Now",
+      "cta": "Register Now",
+      "watermark": "WIN",
+      "theme": "blue"
+    },
+    {
+      "label": "Challenges",
+      "titleHtml": "The Best in Open Innovation",
+      "description": "Launch your corporate challenge and access diverse global talent for the fresh breakthroughs you need while expanding your network.",
+      "status": "Live Now",
+      "cta": "Apply Now",
+      "watermark": "NOW",
+      "theme": "red"
+    }
+  ],
+  "newsSection": {
+    "eye": "Latest",
+    "title": "News & Insights",
+    "allLink": "All Insights"
+  },
+  "newsItems": [
+    {
+      "tag": "Analysis",
+      "title": "Why Chinese Giants Need LATAM Startups More Than Ever",
+      "image": "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "altImage": "https://images.pexels.com/photos/2747449/pexels-photo-2747449.jpeg?auto=compress&cs=tinysrgb&w=800"
+    },
+    {
+      "tag": "Report",
+      "title": "China-LATAM Tech Investment: 2025 Outlook",
+      "image": "https://images.pexels.com/photos/3109807/pexels-photo-3109807.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "altImage": "https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=800"
+    },
+    {
+      "tag": "Fintech",
+      "title": "Fintech Between China and Brazil: New Regulatory Pathways",
+      "image": "https://images.pexels.com/photos/1762851/pexels-photo-1762851.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "altImage": "https://images.pexels.com/photos/3342740/pexels-photo-3342740.jpeg?auto=compress&cs=tinysrgb&w=800"
+    },
+    {
+      "tag": "Research",
+      "title": "Why 73% of Startups Fail in Cross-Border Market Entry",
+      "image": "https://images.pexels.com/photos/2156881/pexels-photo-2156881.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "altImage": "https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&cs=tinysrgb&w=800"
+    },
+    {
+      "tag": "AgriTech",
+      "title": "The Rise of AgriTech Corridors Between China and Brazil",
+      "image": "https://images.pexels.com/photos/924824/pexels-photo-924824.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "altImage": "https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?auto=compress&cs=tinysrgb&w=800"
+    }
+  ],
+  "footerCta": {
+    "eye": "Fuel your growth.",
+    "titleHtml": "Get funded, connected,<br>and scale across LatAm & China",
+    "button": "View Programs"
+  },
+  "footerColumns": [
+    {
+      "title": "Advisory",
+      "links": [
+        "Investment",
+        "Tech Transfer"
+      ]
+    },
+    {
+      "title": "Competitions",
+      "links": [
+        "Startup Competitions",
+        "Corporate Challenges"
+      ]
+    },
+    {
+      "title": "Events",
+      "links": [
+        "Trade Fairs & Expos",
+        "Summits"
+      ]
+    },
+    {
+      "title": "Programs",
+      "links": [
+        "Market Entry",
+        "Business Mission"
+      ]
+    }
+  ],
+  "mobileMenuSections": [
+    {
+      "label": "Advisory",
+      "cards": [
+        {
+          "title": "Strategic Advisory",
+          "description": "Investment matchmaking, tech transfer consulting, and market entry strategy across China and LATAM.",
+          "cta": "Learn More",
+          "theme": "red"
+        }
+      ]
+    },
+    {
+      "label": "Competitions",
+      "cards": [
+        {
+          "title": "Corporate Challenges",
+          "description": "Open innovation challenges connecting corporates with cutting-edge solutions from LATAM and China.",
+          "cta": "Learn More",
+          "theme": "white"
+        },
+        {
+          "title": "Startup Competitions",
+          "description": "Pitch for funding, win prizes up to $150K, and get direct access to investors and partners.",
+          "cta": "Learn More",
+          "theme": "white"
+        }
+      ]
+    },
+    {
+      "label": "Events",
+      "cards": [
+        {
+          "title": "Trade Fairs, Expos & Summits",
+          "description": "Curated events connecting LATAM and Chinese tech ecosystems face-to-face.",
+          "cta": "Learn More",
+          "theme": "red"
+        }
+      ]
+    },
+    {
+      "label": "Network",
+      "cards": [
+        {
+          "title": "City Partnerships & Speakers",
+          "description": "120+ active partners across 22 industries and a curated network of high-signal speakers.",
+          "cta": "Learn More",
+          "theme": "red"
+        }
+      ]
+    },
+    {
+      "label": "Programs",
+      "cards": [
+        {
+          "title": "Market Entry & Business Missions",
+          "description": "Structured programs from online exploration to boots-on-the-ground market entry.",
+          "cta": "Learn More",
+          "theme": "red"
+        }
+      ]
+    }
+  ],
+  "mobileBottomLinks": [
+    "Contact",
+    "Insights",
+    "Programs"
+  ],
+  "footer": {
+    "newsletterTitle": "Newsletter",
+    "desktopSubscribe": "Subscribe on Substack",
+    "mobileSubscribe": "Subscribe",
+    "scanWechat": "Scan on WeChat",
+    "followWechat": "Follow us on WeChat",
+    "wechatCopy": "Scan the QR code below to follow LATAM China Tech on WeChat."
+  }
+}

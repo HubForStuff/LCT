@@ -1,0 +1,194 @@
+---
+import type {
+  HomepageLocaleContent,
+  LanguageOption,
+  SiteSettings,
+} from "../../lib/homepage/types";
+
+interface Props {
+  locale: HomepageLocaleContent;
+  languages: LanguageOption[];
+  siteSettings: SiteSettings;
+}
+
+const { locale, languages, siteSettings } = Astro.props;
+---
+
+<footer class="desk-footer" id="desktop-footer">
+  <div class="desk-footer-stripe"></div>
+
+  <div class="desk-footer-cta">
+    <div class="desk-wrap desk-footer-cta-inner">
+      <div>
+        <div class="desk-footer-eye" data-i18n="footerCta.eye">{locale.footerCta.eye}</div>
+        <h2
+          class="desk-footer-title"
+          data-i18n-html="footerCta.titleHtml"
+          set:html={locale.footerCta.titleHtml}
+        ></h2>
+      </div>
+      <a
+        href="#desktop-categories"
+        class="desk-btn desk-btn--red desk-btn--large"
+        data-i18n="footerCta.button"
+      >
+        {locale.footerCta.button}
+      </a>
+    </div>
+  </div>
+
+  <div class="desk-wrap desk-footer-main">
+    <div class="desk-footer-row">
+      <div class="desk-footer-groups">
+        {locale.footerColumns.map((column, columnIndex) => (
+          <div class="desk-footer-group">
+            <div class="desk-footer-group-title" data-i18n={`footerColumns.${columnIndex}.title`}>
+              {column.title}
+            </div>
+            <div class="desk-footer-group-links">
+              {column.links.map((link, linkIndex) => (
+                <a href="#desktop-footer" data-i18n={`footerColumns.${columnIndex}.links.${linkIndex}`}>
+                  {link}
+                </a>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="desk-footer-newsletter">
+        <div class="desk-footer-group-title" data-i18n="footer.newsletterTitle">
+          {locale.footer.newsletterTitle}
+        </div>
+        <div class="desk-footer-newsletter-row">
+          <input
+            type="email"
+            placeholder={locale.ui.newsletterPlaceholder}
+            aria-label={locale.ui.newsletterEmail}
+            data-i18n-placeholder="ui.newsletterPlaceholder"
+            data-i18n-aria-label="ui.newsletterEmail"
+          />
+          <a
+            href={siteSettings.newsletterUrl}
+            target="_blank"
+            rel="noreferrer"
+            class="desk-footer-subscribe"
+            data-i18n="footer.desktopSubscribe"
+          >
+            {locale.footer.desktopSubscribe}
+          </a>
+        </div>
+
+        <div class="desk-footer-socials">
+          <div class="desk-wechat">
+            <button type="button" class="desk-social-btn" aria-label="WeChat">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8.5 2C4.36 2 1 5.03 1 8.78c0 1.99.98 3.77 2.53 4.97L2.5 16l2.7-1.35C6.1 14.87 7.27 15 8.5 15c.28 0 .56-.01.83-.04A5.54 5.54 0 0 1 9 13.22C9 10.33 11.91 8 15.5 8c.28 0 .56.01.83.03C15.62 4.6 12.4 2 8.5 2zm-2 4.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm4 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm5 3.5c-3.04 0-5.5 2.01-5.5 4.5S12.46 19 15.5 19c.7 0 1.37-.12 1.98-.33L20 20l-1.12-2.34C19.56 16.73 21 15.19 21 13.5 21 11.01 18.54 9 15.5 9zm-1.5 2.75a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5zm3 0a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5z"></path>
+              </svg>
+            </button>
+            <div class="desk-wechat-popup">
+              <div class="desk-wechat-title" data-i18n="footer.scanWechat">
+                {locale.footer.scanWechat}
+              </div>
+              <div class="desk-wechat-qr">
+                <svg viewBox="0 0 96 96" fill="none" aria-hidden="true">
+                  <rect width="96" height="96" fill="white"></rect>
+                  <rect x="8" y="8" width="32" height="32" rx="2" fill="#111"></rect>
+                  <rect x="12" y="12" width="24" height="24" rx="1" fill="white"></rect>
+                  <rect x="16" y="16" width="16" height="16" rx="1" fill="#111"></rect>
+                  <rect x="56" y="8" width="32" height="32" rx="2" fill="#111"></rect>
+                  <rect x="60" y="12" width="24" height="24" rx="1" fill="white"></rect>
+                  <rect x="64" y="16" width="16" height="16" rx="1" fill="#111"></rect>
+                  <rect x="8" y="56" width="32" height="32" rx="2" fill="#111"></rect>
+                  <rect x="12" y="60" width="24" height="24" rx="1" fill="white"></rect>
+                  <rect x="16" y="64" width="16" height="16" rx="1" fill="#111"></rect>
+                  <rect x="48" y="48" width="8" height="8" fill="#111"></rect>
+                  <rect x="60" y="48" width="8" height="8" fill="#111"></rect>
+                  <rect x="72" y="48" width="8" height="8" fill="#111"></rect>
+                  <rect x="48" y="60" width="8" height="8" fill="#111"></rect>
+                  <rect x="72" y="60" width="8" height="8" fill="#111"></rect>
+                  <rect x="48" y="72" width="8" height="8" fill="#111"></rect>
+                  <rect x="60" y="72" width="8" height="8" fill="#111"></rect>
+                  <rect x="72" y="72" width="8" height="8" fill="#111"></rect>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <a
+            href={siteSettings.socialLinks.instagram}
+            target="_blank"
+            rel="noreferrer"
+            class="desk-social-btn"
+            aria-label="Instagram"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
+
+          <a
+            href={siteSettings.socialLinks.linkedin}
+            target="_blank"
+            rel="noreferrer"
+            class="desk-social-btn"
+            aria-label="LinkedIn"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+          </a>
+
+          <a
+            href={siteSettings.socialLinks.whatsapp}
+            target="_blank"
+            rel="noreferrer"
+            class="desk-social-btn"
+            aria-label="WhatsApp"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"></path>
+              <path d="M12.051 21.785h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="desk-footer-lang">
+        <button
+          type="button"
+          class="desk-lang-btn desk-lang-btn--footer"
+          data-lang-toggle
+          aria-haspopup="true"
+          aria-expanded="false"
+          aria-label={locale.ui.chooseLanguage}
+          data-i18n-aria-label="ui.chooseLanguage"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+        </button>
+        <div class="desk-lang-menu desk-lang-menu--footer" data-lang-menu>
+          {languages.map((language, index) => (
+            <button
+              type="button"
+              class={`desk-lang-option ${index === 0 ? "is-active" : ""}`}
+              data-lang-option={language.code}
+            >
+              <span>{language.code}</span>
+              <small>{language.label}</small>
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="desk-footer-bottom-stripe"></div>
+</footer>

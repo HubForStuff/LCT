@@ -1,0 +1,27 @@
+{
+  "siteName": "LATAM China Tech",
+  "brandLead": "LATAM",
+  "brandMain": "CHINA",
+  "brandFoot": "TECH",
+  "defaultLanguage": "EN",
+  "languages": [
+    {
+      "code": "EN",
+      "label": "English"
+    },
+    {
+      "code": "CN",
+      "label": "中文"
+    },
+    {
+      "code": "BR",
+      "label": "Português"
+    }
+  ],
+  "newsletterUrl": "https://substack.com",
+  "socialLinks": {
+    "instagram": "https://instagram.com",
+    "linkedin": "https://linkedin.com",
+    "whatsapp": "https://wa.me/"
+  }
+}

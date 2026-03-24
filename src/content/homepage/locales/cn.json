@@ -1,0 +1,338 @@
+{
+  "meta": {
+    "htmlLang": "zh-CN",
+    "title": "LATAM China Tech",
+    "description": "我们正在加速拉丁美洲与中国之间的科技合作。"
+  },
+  "ui": {
+    "chooseLanguage": "选择语言",
+    "language": "语言",
+    "menu": "菜单",
+    "newsletterEmail": "新闻简报邮箱",
+    "newsletterPlaceholder": "请输入邮箱",
+    "close": "关闭",
+    "learnMore": "了解更多",
+    "contact": "联系我们",
+    "insights": "洞察",
+    "programs": "项目",
+    "followWechat": "关注我们的微信",
+    "wechatCopy": "扫描下方二维码，在微信上关注 LATAM China Tech。",
+    "scanWechat": "微信扫码",
+    "homeLabel": "LATAM China Tech 首页"
+  },
+  "hero": {
+    "desktopTitleHtml": "加速<br><em>创新</em>",
+    "mobileTitleHtml": "加速<br><span>创新</span>",
+    "subtitle": "我们正在加速拉丁美洲与中国之间的科技合作",
+    "ctas": [
+      "探索项目",
+      "成为合作伙伴",
+      "阅读洞察"
+    ]
+  },
+  "navExploreLabel": "探索",
+  "desktopMenuSections": [
+    {
+      "label": "咨询",
+      "links": [
+        {
+          "title": "投资",
+          "subtitle": "融资准备与合作伙伴引荐"
+        },
+        {
+          "title": "技术转移",
+          "subtitle": "覆盖两大区域的商业化支持"
+        }
+      ],
+      "note": "需要定制化咨询范围？",
+      "noteLink": "联系我们",
+      "description": "我们为往来于中国与拉丁美洲之间的投资者、运营者与机构提供战略咨询，把跨境走廊的复杂性转化为明确的下一步、合作清单与执行路径。",
+      "card": {
+        "title": "投资人准备冲刺营",
+        "body": "帮助创始人在跨境融资与伙伴沟通前快速完成准备工作的加速项目。",
+        "cta": "预约咨询"
+      }
+    },
+    {
+      "label": "竞赛与挑战",
+      "links": [
+        {
+          "title": "创业竞赛",
+          "subtitle": "通过路演获取资金与项目席位"
+        },
+        {
+          "title": "企业挑战赛",
+          "subtitle": "围绕真实市场需求的开放创新命题"
+        }
+      ],
+      "note": "想发起一个挑战赛？",
+      "noteLink": "联系团队",
+      "description": "我们的竞赛机制专为发掘高潜力创业者、全新解决方案与可投资的中拉跨境机会而设计，让动能延续到 Demo Day 之后。",
+      "card": {
+        "title": "奖金池最高达 15 万美元",
+        "body": "入围团队将直接接触企业伙伴、投资人以及跨境扩张项目。",
+        "cta": "查看开放报名"
+      }
+    },
+    {
+      "label": "活动",
+      "links": [
+        {
+          "title": "展会与博览会",
+          "subtitle": "面向市场的展示与精选代表团"
+        },
+        {
+          "title": "峰会",
+          "subtitle": "围绕走廊机会的高密度对话"
+        }
+      ],
+      "note": "需要定制代表团？",
+      "noteLink": "策划活动",
+      "description": "我们打造面向实操的论坛、主旨演讲、峰会与商贸体验，让市场洞察更具体、引荐更顺畅、决策更快速。",
+      "card": {
+        "title": "季度走廊峰会",
+        "body": "围绕中拉高增长行业开展实时简报与高层匹配会议。",
+        "cta": "查看日历"
+      }
+    },
+    {
+      "label": "项目",
+      "links": [
+        {
+          "title": "市场进入",
+          "subtitle": "实地沉浸与合作伙伴发现"
+        },
+        {
+          "title": "商务考察",
+          "subtitle": "代表团出访与深度贸易访问"
+        }
+      ],
+      "note": "需要定制化 cohort 形式？",
+      "noteLink": "申请项目",
+      "description": "从线上探索到落地商务考察，我们的项目帮助企业从最初兴趣快速走向真实市场存在，并在每一步都提供实操支持。",
+      "card": {
+        "title": "第 8 期项目开放申请",
+        "body": "报名截止至 4 月 30 日，每期两大区域合计仅招收 40 家企业。",
+        "cta": "立即申请"
+      }
+    },
+    {
+      "label": "网络",
+      "links": [
+        {
+          "title": "城市合作",
+          "subtitle": "城市间科技交流与生态外交"
+        },
+        {
+          "title": "重点演讲者",
+          "subtitle": "为旗舰舞台精选运营者与创始人"
+        }
+      ],
+      "note": "想加强你的生态桥梁？",
+      "noteLink": "成为伙伴",
+      "description": "我们连接机构、创业公司与公共生态参与者，构建长期有效的中拉网络，而不是一次性的介绍关系。",
+      "card": {
+        "title": "120+ 活跃合作伙伴",
+        "body": "覆盖 22 个行业，每一次连接都会从战略契合度与执行潜力两方面进行评估。",
+        "cta": "探索网络"
+      }
+    }
+  ],
+  "categoryCards": [
+    {
+      "eyebrow": "扩张项目",
+      "title": "从探索走向市场进入",
+      "description": "我们通过线上探索、实地进入与结构化商务考察，帮助企业从好奇走向在中国与拉美的真实市场存在。",
+      "cta": "探索项目",
+      "theme": "dark"
+    },
+    {
+      "eyebrow": "网络",
+      "title": "城市合作与精选演讲者",
+      "description": "通过城市级交流、演讲者网络以及覆盖 22 个行业的 120 多个活跃伙伴，我们把跨境生态真正连接起来。",
+      "cta": "探索网络",
+      "theme": "light"
+    },
+    {
+      "eyebrow": "咨询服务",
+      "title": "以执行为导向的战略支持",
+      "description": "从市场进入战略到技术转移与投融资对接，我们的咨询服务帮助企业把雄心转化为跨境增长。",
+      "cta": "探索咨询",
+      "theme": "dark"
+    }
+  ],
+  "competitionsSection": {
+    "eye": "竞赛与共创",
+    "desktopTitle": "竞赛与企业挑战",
+    "mobileTitleHtml": "竞赛与<br>挑战",
+    "allLink": "查看全部挑战"
+  },
+  "competitionCards": [
+    {
+      "label": "竞赛",
+      "titleHtml": "参赛。<br>获胜。<br>拿到资金。",
+      "description": "通过路演获得资金、项目席位以及中国与拉美企业伙伴和投资人的直接接触机会。奖金池最高可达 15 万美元。",
+      "status": "正在报名",
+      "cta": "立即报名",
+      "watermark": "赢",
+      "theme": "blue"
+    },
+    {
+      "label": "挑战",
+      "titleHtml": "开放创新的最佳舞台",
+      "description": "发布你的企业挑战赛，接触全球多元人才，获得新突破、降低研发成本并拓展合作网络。",
+      "status": "进行中",
+      "cta": "立即申请",
+      "watermark": "现在",
+      "theme": "red"
+    }
+  ],
+  "newsSection": {
+    "eye": "最新内容",
+    "title": "新闻与洞察",
+    "allLink": "查看全部洞察"
+  },
+  "newsItems": [
+    {
+      "tag": "分析",
+      "title": "为什么中国科技巨头比以往任何时候都更需要拉美创业公司",
+      "image": "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "altImage": "https://images.pexels.com/photos/2747449/pexels-photo-2747449.jpeg?auto=compress&cs=tinysrgb&w=800"
+    },
+    {
+      "tag": "报告",
+      "title": "中国与拉美科技投资：2025 年展望",
+      "image": "https://images.pexels.com/photos/3109807/pexels-photo-3109807.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "altImage": "https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=800"
+    },
+    {
+      "tag": "金融科技",
+      "title": "中国与巴西之间的金融科技：新的监管路径",
+      "image": "https://images.pexels.com/photos/1762851/pexels-photo-1762851.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "altImage": "https://images.pexels.com/photos/3342740/pexels-photo-3342740.jpeg?auto=compress&cs=tinysrgb&w=800"
+    },
+    {
+      "tag": "研究",
+      "title": "为什么 73% 的创业公司会在跨境市场进入中失败",
+      "image": "https://images.pexels.com/photos/2156881/pexels-photo-2156881.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "altImage": "https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&cs=tinysrgb&w=800"
+    },
+    {
+      "tag": "农业科技",
+      "title": "中国与巴西之间农业科技走廊的崛起",
+      "image": "https://images.pexels.com/photos/924824/pexels-photo-924824.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "altImage": "https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?auto=compress&cs=tinysrgb&w=800"
+    }
+  ],
+  "footerCta": {
+    "eye": "为你的增长加速。",
+    "titleHtml": "获得资金、建立连接，<br>并在拉美与中国之间扩张",
+    "button": "查看项目"
+  },
+  "footerColumns": [
+    {
+      "title": "咨询",
+      "links": [
+        "投资",
+        "技术转移"
+      ]
+    },
+    {
+      "title": "竞赛",
+      "links": [
+        "创业竞赛",
+        "企业挑战赛"
+      ]
+    },
+    {
+      "title": "活动",
+      "links": [
+        "展会与博览会",
+        "峰会"
+      ]
+    },
+    {
+      "title": "项目",
+      "links": [
+        "市场进入",
+        "商务考察"
+      ]
+    }
+  ],
+  "mobileMenuSections": [
+    {
+      "label": "咨询",
+      "cards": [
+        {
+          "title": "战略咨询",
+          "description": "覆盖投融资对接、技术转移咨询以及中国与拉美之间的市场进入战略。",
+          "cta": "了解更多",
+          "theme": "red"
+        }
+      ]
+    },
+    {
+      "label": "竞赛",
+      "cards": [
+        {
+          "title": "企业挑战赛",
+          "description": "将企业与来自拉美和中国的前沿解决方案连接起来的开放创新挑战机制。",
+          "cta": "了解更多",
+          "theme": "white"
+        },
+        {
+          "title": "创业竞赛",
+          "description": "展示项目、争夺最高 15 万美元奖金，并与投资人与伙伴直接对接。",
+          "cta": "了解更多",
+          "theme": "white"
+        }
+      ]
+    },
+    {
+      "label": "活动",
+      "cards": [
+        {
+          "title": "展会、博览会与峰会",
+          "description": "精选活动让拉美与中国的科技生态在线下真正相遇。",
+          "cta": "了解更多",
+          "theme": "red"
+        }
+      ]
+    },
+    {
+      "label": "网络",
+      "cards": [
+        {
+          "title": "城市合作与演讲者网络",
+          "description": "覆盖 22 个行业的 120 多个活跃伙伴，以及高信号的精选演讲者网络。",
+          "cta": "了解更多",
+          "theme": "red"
+        }
+      ]
+    },
+    {
+      "label": "项目",
+      "cards": [
+        {
+          "title": "市场进入与商务考察",
+          "description": "结构化项目帮助企业从线上探索走向在新市场中的真实落地。",
+          "cta": "了解更多",
+          "theme": "red"
+        }
+      ]
+    }
+  ],
+  "mobileBottomLinks": [
+    "联系我们",
+    "洞察",
+    "项目"
+  ],
+  "footer": {
+    "newsletterTitle": "新闻简报",
+    "desktopSubscribe": "在 Substack 订阅",
+    "mobileSubscribe": "订阅",
+    "scanWechat": "微信扫码",
+    "followWechat": "关注我们的微信",
+    "wechatCopy": "扫描下方二维码，在微信上关注 LATAM China Tech。"
+  }
+}

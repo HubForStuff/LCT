@@ -1,0 +1,126 @@
+---
+import BrandLogo from "./BrandLogo.astro";
+
+import type {
+  HomepageLocaleContent,
+  LanguageOption,
+  SiteSettings,
+} from "../../lib/homepage/types";
+
+interface Props {
+  locale: HomepageLocaleContent;
+  languages: LanguageOption[];
+  siteSettings: SiteSettings;
+}
+
+const { locale, languages, siteSettings } = Astro.props;
+---
+
+<header class="desk-nav">
+  <div class="desk-wrap desk-nav-inner">
+    <a
+      href="#"
+      class="desk-brand"
+      aria-label={locale.ui.homeLabel}
+      data-i18n-aria-label="ui.homeLabel"
+    >
+      <BrandLogo alt={siteSettings.siteName} className="desk-brand-image" />
+    </a>
+
+    <nav aria-label="Desktop navigation">
+      <ul class="desk-nav-list">
+        {locale.desktopMenuSections.map((section, sectionIndex) => (
+          <li class="desk-nav-item">
+            <a href="#" class="desk-nav-link" data-i18n={`desktopMenuSections.${sectionIndex}.label`}>
+              {section.label}
+            </a>
+            <div class="desk-mega">
+              <div class="desk-mega-grid">
+                <div>
+                  <div class="desk-mega-label" data-i18n="navExploreLabel">{locale.navExploreLabel}</div>
+                  <div class="desk-mega-links">
+                    {section.links.map((link, linkIndex) => (
+                      <a href="#" class="desk-mega-link">
+                        <span
+                          class="desk-mega-link-title"
+                          data-i18n={`desktopMenuSections.${sectionIndex}.links.${linkIndex}.title`}
+                        >
+                          {link.title}
+                        </span>
+                        <span
+                          class="desk-mega-link-subtitle"
+                          data-i18n={`desktopMenuSections.${sectionIndex}.links.${linkIndex}.subtitle`}
+                        >
+                          {link.subtitle}
+                        </span>
+                      </a>
+                    ))}
+                  </div>
+                  <div class="desk-mega-note">
+                    <span data-i18n={`desktopMenuSections.${sectionIndex}.note`}>{section.note}</span>
+                    <a
+                      href="#desktop-footer"
+                      data-i18n={`desktopMenuSections.${sectionIndex}.noteLink`}
+                    >
+                      {section.noteLink}
+                    </a>
+                  </div>
+                </div>
+                <div class="desk-mega-copy">
+                  <p data-i18n={`desktopMenuSections.${sectionIndex}.description`}>
+                    {section.description}
+                  </p>
+                </div>
+                <div class="desk-mega-card">
+                  <h3 data-i18n={`desktopMenuSections.${sectionIndex}.card.title`}>
+                    {section.card.title}
+                  </h3>
+                  <p data-i18n={`desktopMenuSections.${sectionIndex}.card.body`}>
+                    {section.card.body}
+                  </p>
+                  <a
+                    href="#"
+                    class="desk-btn desk-btn--red desk-btn--compact"
+                    data-i18n={`desktopMenuSections.${sectionIndex}.card.cta`}
+                  >
+                    {section.card.cta}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="desk-lang">
+      <button
+        type="button"
+        class="desk-lang-btn"
+        data-lang-toggle
+        aria-haspopup="true"
+        aria-expanded="false"
+        aria-label={locale.ui.chooseLanguage}
+        data-i18n-aria-label="ui.chooseLanguage"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="2" y1="12" x2="22" y2="12"></line>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+        </svg>
+      </button>
+      <div class="desk-lang-menu" data-lang-menu>
+        {languages.map((language, index) => (
+          <button
+            type="button"
+            class={`desk-lang-option ${index === 0 ? "is-active" : ""}`}
+            data-lang-option={language.code}
+          >
+            <span>{language.code}</span>
+            <small>{language.label}</small>
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+</header>

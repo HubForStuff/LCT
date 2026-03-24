@@ -1,0 +1,342 @@
+---
+import BrandLogo from "./BrandLogo.astro";
+
+import type { HomepageLocaleContent, LanguageOption, SiteSettings } from "../../lib/homepage/types";
+
+interface Props {
+  locale: HomepageLocaleContent;
+  languages: LanguageOption[];
+  siteSettings: SiteSettings;
+}
+
+const { locale, languages, siteSettings } = Astro.props;
+---
+
+<section class="mobile-home" aria-label="Mobile homepage">
+  <header class="mob-nav">
+    <a href="#" class="mob-brand" aria-label={locale.ui.homeLabel} data-i18n-aria-label="ui.homeLabel">
+      <BrandLogo alt={siteSettings.siteName} className="mob-brand-image" />
+    </a>
+
+    <div class="mob-nav-actions">
+      <button
+        type="button"
+        class="mob-icon-btn"
+        id="mobileLangBtn"
+        aria-label={locale.ui.chooseLanguage}
+        data-i18n-aria-label="ui.chooseLanguage"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="2" y1="12" x2="22" y2="12"></line>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+        </svg>
+      </button>
+      <button
+        type="button"
+        class="mob-menu-btn"
+        id="mobileMenuBtn"
+        aria-label={locale.ui.menu}
+        data-i18n-aria-label="ui.menu"
+      >
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mob-overlay" id="mobileLangOverlay"></div>
+  <div class="mob-lang-sheet" id="mobileLangSheet">
+    <div class="mob-lang-title" data-i18n="ui.language">{locale.ui.language}</div>
+    {languages.map((language, index) => (
+      <button
+        type="button"
+        class={`mob-lang-option ${index === 0 ? "is-active" : ""}`}
+        data-lang-option={language.code}
+      >
+        <span>
+          <strong>{language.code}</strong> {language.label}
+        </span>
+        <span>✓</span>
+      </button>
+    ))}
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mob-menu-list">
+      {locale.mobileMenuSections.map((section, sectionIndex) => (
+        <div class="mob-menu-item">
+          <button type="button" class="mob-menu-link" data-mobile-accordion>
+            <span data-i18n={`mobileMenuSections.${sectionIndex}.label`}>{section.label}</span>
+            <span class="mob-menu-arrow">›</span>
+          </button>
+          <div class={`mob-menu-panel ${section.cards.length > 1 ? "mob-menu-panel--stack" : ""}`}>
+            {section.cards.map((card, cardIndex) => (
+              <div class={`mob-menu-card ${card.theme === "white" ? "mob-menu-card--white" : ""}`}>
+                <div
+                  class="mob-menu-card-title"
+                  data-i18n={`mobileMenuSections.${sectionIndex}.cards.${cardIndex}.title`}
+                >
+                  {card.title}
+                </div>
+                <p data-i18n={`mobileMenuSections.${sectionIndex}.cards.${cardIndex}.description`}>
+                  {card.description}
+                </p>
+                <a
+                  href="#mobile-footer"
+                  class="mob-menu-card-btn"
+                  data-i18n={`mobileMenuSections.${sectionIndex}.cards.${cardIndex}.cta`}
+                >
+                  {card.cta}
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="mob-menu-bottom">
+      <a href="#mobile-footer" class="mob-menu-bottom-link" data-i18n="mobileBottomLinks.0">
+        {locale.mobileBottomLinks[0]}
+      </a>
+      <a href="#mobile-news" class="mob-menu-bottom-link" data-i18n="mobileBottomLinks.1">
+        {locale.mobileBottomLinks[1]}
+      </a>
+      <a href="#mobile-categories" class="mob-menu-bottom-link" data-i18n="mobileBottomLinks.2">
+        {locale.mobileBottomLinks[2]}
+      </a>
+    </div>
+  </div>
+
+  <section class="mob-hero">
+    <h1
+      class="mob-reveal"
+      data-i18n-html="hero.mobileTitleHtml"
+      set:html={locale.hero.mobileTitleHtml}
+    ></h1>
+    <p class="mob-hero-sub mob-reveal" data-i18n="hero.subtitle">
+      {locale.hero.subtitle}
+    </p>
+    <div class="mob-hero-actions mob-reveal">
+      <a href="#mobile-categories" class="mob-btn mob-btn--primary" data-i18n="hero.ctas.0">
+        {locale.hero.ctas[0]}
+      </a>
+      <a href="#mobile-footer" class="mob-btn mob-btn--outline" data-i18n="hero.ctas.1">
+        {locale.hero.ctas[1]}
+      </a>
+      <a href="#mobile-news" class="mob-btn mob-btn--glass" data-i18n="hero.ctas.2">
+        {locale.hero.ctas[2]}
+      </a>
+    </div>
+  </section>
+
+  <div class="mob-divider"></div>
+
+  <section class="mob-section" id="mobile-categories">
+    {locale.categoryCards.map((card, index) => (
+      <a
+        href="#mobile-footer"
+        class={`mob-cat-card mob-reveal ${card.theme === "light" ? "mob-cat-card--white" : ""}`}
+      >
+        <div class="mob-cat-eye" data-i18n={`categoryCards.${index}.eyebrow`}>{card.eyebrow}</div>
+        <h2 data-i18n={`categoryCards.${index}.title`}>{card.title}</h2>
+        <p data-i18n={`categoryCards.${index}.description`}>{card.description}</p>
+        <div class="mob-cat-cta" data-i18n={`categoryCards.${index}.cta`}>{card.cta}</div>
+      </a>
+    ))}
+  </section>
+
+  <section class="mob-section mob-section--tight" id="mobile-competitions">
+    <div class="mob-section-eye" data-i18n="competitionsSection.eye">{locale.competitionsSection.eye}</div>
+    <h2
+      class="mob-section-title"
+      data-i18n-html="competitionsSection.mobileTitleHtml"
+      set:html={locale.competitionsSection.mobileTitleHtml}
+    ></h2>
+
+    <div class="mob-comp-grid">
+      {locale.competitionCards.map((card, index) => (
+        <a href="#mobile-footer" class={`mob-comp-card mob-comp-card--${card.theme} mob-reveal`}>
+          <div class="mob-comp-label" data-i18n={`competitionCards.${index}.label`}>{card.label}</div>
+          <div
+            class="mob-comp-title"
+            data-i18n-html={`competitionCards.${index}.titleHtml`}
+            set:html={card.titleHtml}
+          ></div>
+          <p class="mob-comp-desc" data-i18n={`competitionCards.${index}.description`}>
+            {card.description}
+          </p>
+          <div class="mob-comp-badge" data-i18n={`competitionCards.${index}.status`}>{card.status}</div>
+          <div class="mob-comp-cta" data-i18n={`competitionCards.${index}.cta`}>{card.cta}</div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="mob-section" id="mobile-news">
+    <div class="mob-section-eye" data-i18n="newsSection.eye">{locale.newsSection.eye}</div>
+    <h2 class="mob-section-title" data-i18n="newsSection.title">{locale.newsSection.title}</h2>
+    <div class="mob-news-scroll">
+      {locale.newsItems.map((item, index) => (
+        <a href="#" class="mob-news-card">
+          <div class="mob-news-image" style={`background-image:url('${item.image}')`}></div>
+          <div class="mob-news-body">
+            <div class="mob-news-tag" data-i18n={`newsItems.${index}.tag`}>{item.tag}</div>
+            <div class="mob-news-title" data-i18n={`newsItems.${index}.title`}>{item.title}</div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="mob-cta">
+    <div class="mob-section-eye mob-section-eye--light" data-i18n="footerCta.eye">
+      {locale.footerCta.eye}
+    </div>
+    <h2 data-i18n-html="footerCta.titleHtml" set:html={locale.footerCta.titleHtml}></h2>
+    <a href="#mobile-categories" class="mob-btn mob-btn--primary" data-i18n="footerCta.button">
+      {locale.footerCta.button}
+    </a>
+  </section>
+
+  <footer class="mob-footer" id="mobile-footer">
+    <div class="mob-footer-columns">
+      {locale.footerColumns.map((column, columnIndex) => (
+        <div>
+          <div class="mob-footer-heading" data-i18n={`footerColumns.${columnIndex}.title`}>
+            {column.title}
+          </div>
+          <div class="mob-footer-links">
+            {column.links.map((link, linkIndex) => (
+              <a href="#mobile-footer" data-i18n={`footerColumns.${columnIndex}.links.${linkIndex}`}>
+                {link}
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="mob-footer-newsletter">
+      <div class="mob-footer-heading" data-i18n="footer.newsletterTitle">{locale.footer.newsletterTitle}</div>
+      <div class="mob-footer-newsletter-row">
+        <input
+          type="email"
+          placeholder={locale.ui.newsletterPlaceholder}
+          aria-label={locale.ui.newsletterEmail}
+          data-i18n-placeholder="ui.newsletterPlaceholder"
+          data-i18n-aria-label="ui.newsletterEmail"
+        />
+        <a
+          href={siteSettings.newsletterUrl}
+          target="_blank"
+          rel="noreferrer"
+          class="mob-footer-subscribe"
+          data-i18n="footer.mobileSubscribe"
+        >
+          {locale.footer.mobileSubscribe}
+        </a>
+      </div>
+    </div>
+
+    <div class="mob-footer-socials">
+      <button type="button" class="mob-social-btn" id="mobileWechatBtn" aria-label="WeChat">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M8.5 2C4.36 2 1 5.03 1 8.78c0 1.99.98 3.77 2.53 4.97L2.5 16l2.7-1.35C6.1 14.87 7.27 15 8.5 15c.28 0 .56-.01.83-.04A5.54 5.54 0 0 1 9 13.22C9 10.33 11.91 8 15.5 8c.28 0 .56.01.83.03C15.62 4.6 12.4 2 8.5 2zm-2 4.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm4 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm5 3.5c-3.04 0-5.5 2.01-5.5 4.5S12.46 19 15.5 19c.7 0 1.37-.12 1.98-.33L20 20l-1.12-2.34C19.56 16.73 21 15.19 21 13.5 21 11.01 18.54 9 15.5 9zm-1.5 2.75a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5zm3 0a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5z"></path>
+        </svg>
+      </button>
+
+      <a
+        href={siteSettings.socialLinks.instagram}
+        target="_blank"
+        rel="noreferrer"
+        class="mob-social-btn"
+        aria-label="Instagram"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="2" width="20" height="20" rx="5"></rect>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+        </svg>
+      </a>
+
+      <a
+        href={siteSettings.socialLinks.linkedin}
+        target="_blank"
+        rel="noreferrer"
+        class="mob-social-btn"
+        aria-label="LinkedIn"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+          <rect x="2" y="9" width="4" height="12"></rect>
+          <circle cx="4" cy="4" r="2"></circle>
+        </svg>
+      </a>
+
+      <a
+        href={siteSettings.socialLinks.whatsapp}
+        target="_blank"
+        rel="noreferrer"
+        class="mob-social-btn"
+        aria-label="WhatsApp"
+      >
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"></path>
+          <path d="M12.051 21.785h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"></path>
+        </svg>
+      </a>
+    </div>
+  </footer>
+
+  <div class="mob-wechat-overlay" id="mobileWechatOverlay">
+    <div class="mob-wechat-modal">
+      <button
+        type="button"
+        class="mob-wechat-close"
+        id="mobileWechatClose"
+        aria-label={locale.ui.close}
+        data-i18n-aria-label="ui.close"
+      >
+        ×
+      </button>
+      <div class="mob-wechat-title" data-i18n="footer.followWechat">{locale.footer.followWechat}</div>
+      <p class="mob-wechat-copy" data-i18n="footer.wechatCopy">
+        {locale.footer.wechatCopy}
+      </p>
+      <div class="mob-wechat-qr">
+        <svg viewBox="0 0 100 100" aria-hidden="true">
+          <rect width="100" height="100" fill="white"></rect>
+          <rect x="2" y="2" width="22" height="22" fill="#000" rx="2"></rect>
+          <rect x="5" y="5" width="16" height="16" fill="#fff" rx="1"></rect>
+          <rect x="8" y="8" width="10" height="10" fill="#000" rx="1"></rect>
+          <rect x="76" y="2" width="22" height="22" fill="#000" rx="2"></rect>
+          <rect x="79" y="5" width="16" height="16" fill="#fff" rx="1"></rect>
+          <rect x="82" y="8" width="10" height="10" fill="#000" rx="1"></rect>
+          <rect x="2" y="76" width="22" height="22" fill="#000" rx="2"></rect>
+          <rect x="5" y="79" width="16" height="16" fill="#fff" rx="1"></rect>
+          <rect x="8" y="82" width="10" height="10" fill="#000" rx="1"></rect>
+          <rect x="30" y="8" width="6" height="6" fill="#000"></rect>
+          <rect x="42" y="8" width="6" height="6" fill="#000"></rect>
+          <rect x="54" y="8" width="6" height="6" fill="#000"></rect>
+          <rect x="30" y="20" width="6" height="6" fill="#000"></rect>
+          <rect x="42" y="20" width="6" height="6" fill="#000"></rect>
+          <rect x="54" y="20" width="6" height="6" fill="#000"></rect>
+          <rect x="30" y="44" width="6" height="6" fill="#000"></rect>
+          <rect x="42" y="44" width="6" height="6" fill="#000"></rect>
+          <rect x="54" y="44" width="6" height="6" fill="#000"></rect>
+          <rect x="66" y="44" width="6" height="6" fill="#000"></rect>
+          <rect x="78" y="44" width="6" height="6" fill="#000"></rect>
+          <rect x="30" y="56" width="6" height="6" fill="#000"></rect>
+          <rect x="54" y="56" width="6" height="6" fill="#000"></rect>
+          <rect x="78" y="56" width="6" height="6" fill="#000"></rect>
+          <rect x="30" y="68" width="6" height="6" fill="#000"></rect>
+          <rect x="42" y="68" width="6" height="6" fill="#000"></rect>
+          <rect x="54" y="68" width="6" height="6" fill="#000"></rect>
+          <rect x="66" y="68" width="6" height="6" fill="#000"></rect>
+          <rect x="78" y="68" width="6" height="6" fill="#000"></rect>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
