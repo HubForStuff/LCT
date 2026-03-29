@@ -182,3 +182,87 @@ test("language switching localizes the homepage on desktop and mobile", async ()
     }
   }
 });
+
+test("desktop mega menus stay within the viewport at narrow desktop widths", async () => {
+  buildSite();
+
+  const port = 4174;
+  const session = `homepage-nav-${Date.now()}`;
+  const server = spawn("python3", ["-m", "http.server", String(port), "-d", resolve(projectRoot, "dist")], {
+    cwd: projectRoot,
+    stdio: "ignore",
+  });
+
+  const getMenuBox = (selector) =>
+    (() => {
+      const rawResult = runAgentBrowser([
+        "--session",
+        session,
+        "eval",
+        `(() => {
+          const el = document.querySelector(${JSON.stringify(selector)});
+          if (!el) {
+            throw new Error("Mega menu element not found");
+          }
+
+          const rect = el.getBoundingClientRect();
+          return JSON.stringify({
+            left: rect.left,
+            right: rect.right,
+            width: rect.width,
+            viewport: window.innerWidth,
+          });
+        })()`,
+      ]);
+      const parsedResult = JSON.parse(rawResult);
+      return typeof parsedResult === "string" ? JSON.parse(parsedResult) : parsedResult;
+    })();
+
+  try {
+    await waitForServer(port);
+
+    try {
+      runAgentBrowser(["--session", session, "close"]);
+    } catch {
+      // Session may not exist yet.
+    }
+
+    runAgentBrowser(["--session", session, "set", "viewport", "1266", "768"]);
+    runAgentBrowser(["--session", session, "open", `http://127.0.0.1:${port}/`]);
+    runAgentBrowser(["--session", session, "wait", "1000"]);
+
+    runAgentBrowser(["--session", session, "hover", ".desk-nav-item:first-child"]);
+    runAgentBrowser(["--session", session, "wait", "150"]);
+
+    const leftMenuBox = getMenuBox(".desk-nav-item:first-child .desk-mega");
+    assert.ok(
+      leftMenuBox.left >= 0,
+      `expected the first mega menu to stay within the left viewport edge, received ${JSON.stringify(leftMenuBox)}`,
+    );
+    assert.ok(
+      leftMenuBox.right <= leftMenuBox.viewport,
+      `expected the first mega menu to stay within the right viewport edge, received ${JSON.stringify(leftMenuBox)}`,
+    );
+
+    runAgentBrowser(["--session", session, "hover", ".desk-nav-item:last-child"]);
+    runAgentBrowser(["--session", session, "wait", "150"]);
+
+    const rightMenuBox = getMenuBox(".desk-nav-item:last-child .desk-mega");
+    assert.ok(
+      rightMenuBox.left >= 0,
+      `expected the last mega menu to stay within the left viewport edge, received ${JSON.stringify(rightMenuBox)}`,
+    );
+    assert.ok(
+      rightMenuBox.right <= rightMenuBox.viewport,
+      `expected the last mega menu to stay within the right viewport edge, received ${JSON.stringify(rightMenuBox)}`,
+    );
+  } finally {
+    server.kill("SIGTERM");
+
+    try {
+      runAgentBrowser(["--session", session, "close"]);
+    } catch {
+      // Ignore cleanup failures.
+    }
+  }
+});

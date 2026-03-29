@@ -140,8 +140,8 @@
   }
 
   .desktop-home .desk-mega {
-    position: absolute;
-    top: 100%;
+    position: fixed;
+    top: 100px;
     left: 50%;
     width: min(1180px, calc(100vw - 116px));
     transform: translateX(-50%) translateY(14px);
