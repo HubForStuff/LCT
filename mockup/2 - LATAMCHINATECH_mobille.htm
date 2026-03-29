@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>LATAM China Tech</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --red:#FF2D00;
+  --red-glow:rgba(255,45,0,.35);
+  --blue:#0022FF;
+  --blue-glow:rgba(0,34,255,.3);
+  --bg:#050507;
+  --surface:#0c0c10;
+  --ink:#FFFFFF;
+  --muted:rgba(255,255,255,.85);
+  --rule:rgba(255,255,255,.07);
+  --safe-top:env(safe-area-inset-top);
+  --safe-bottom:env(safe-area-inset-bottom);
+  --radius:20px;
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:#fff;-webkit-font-smoothing:antialiased;overflow-x:hidden;padding-top:var(--safe-top)}
+a{text-decoration:none;color:inherit}
+
+/* ═══ ANIMATIONS ═══ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.7)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes stripe-slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes glow-pulse{0%,100%{opacity:.6}50%{opacity:1}}
+@keyframes rotate-slow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+.anim-up{animation:fadeUp .7s cubic-bezier(.19,1,.22,1) both}
+.anim-up-d1{animation-delay:.1s}
+.anim-up-d2{animation-delay:.2s}
+.anim-up-d3{animation-delay:.3s}
+.anim-up-d4{animation-delay:.4s}
+
+/* ═══ BUTTONS ═══ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  font-family:'Outfit',sans-serif;font-size:14px;font-weight:600;letter-spacing:.02em;
+  padding:14px 28px;border-radius:99px;border:none;cursor:pointer;
+  transition:all .25s cubic-bezier(.19,1,.22,1);
+  -webkit-tap-highlight-color:transparent;
+  position:relative;overflow:hidden;
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--red),#FF6B35);
+  color:#fff;
+  box-shadow:0 4px 24px var(--red-glow);
+}
+.btn-primary:active{transform:scale(.96);box-shadow:0 2px 12px var(--red-glow)}
+.btn-outline{
+  background:transparent;color:#fff;
+  border:1.5px solid rgba(255,255,255,.2);
+}
+.btn-outline:active{background:rgba(255,255,255,.08);transform:scale(.96)}
+.btn-glass{
+  background:rgba(255,255,255,.06);color:#fff;
+  border:1px solid rgba(255,255,255,.1);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+}
+.btn-glass:active{background:rgba(255,255,255,.12);transform:scale(.96)}
+
+/* ═══ NAV ═══ */
+nav{
+  position:sticky;top:0;z-index:900;
+  background:rgba(5,5,7,.7);backdrop-filter:blur(32px) saturate(180%);-webkit-backdrop-filter:blur(32px) saturate(180%);
+  border-bottom:1px solid var(--rule);
+  padding:0 20px;
+  height:60px;display:flex;align-items:center;justify-content:space-between;
+}
+.nav-logo{display:flex;align-items:center}
+.nav-right{display:flex;align-items:center;gap:6px}
+
+/* Hamburger */
+.hamburger{width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:none;border:none;cursor:pointer;-webkit-tap-highlight-color:transparent;padding:0;transition:all .25s}
+.hamburger span{display:block;width:18px;height:1.5px;background:#333;position:relative;transition:all .55s cubic-bezier(.19,1,.22,1)}
+.hamburger span::before,.hamburger span::after{content:'';position:absolute;left:0;width:18px;height:1.5px;background:#333;transition:all .55s cubic-bezier(.19,1,.22,1)}
+.hamburger span::before{top:-5px}
+.hamburger span::after{top:5px}
+.hamburger.open span{background:transparent}
+.hamburger.open span::before{transform:rotate(45deg);top:0;background:#333}
+.hamburger.open span::after{transform:rotate(-45deg);top:0;background:#333}
+
+/* Language btn */
+.lang-btn-m{width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:none;border:none;color:#333;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:all .2s}
+.lang-btn-m:active{color:#555}
+
+/* Mobile menu */
+.mobile-menu{
+  position:fixed;top:60px;left:0;right:0;bottom:0;
+  background:var(--bg);
+  z-index:899;
+  transform:translateX(100%);transition:transform .4s cubic-bezier(.19,1,.22,1);
+  overflow-y:auto;-webkit-overflow-scrolling:touch;
+  padding:0 0 calc(32px + var(--safe-bottom));
+  display:flex;flex-direction:column;
+}
+.mobile-menu.open{transform:translateX(0)}
+
+/* Menu nav links */
+.mm-nav{padding:8px 0}
+.mm-link{
+  display:block;
+  padding:0 24px;
+  font-family:'Outfit',sans-serif;
+  font-size:19px;font-weight:600;letter-spacing:-.01em;color:#fff;
+  -webkit-tap-highlight-color:transparent;
+  transition:background .3s ease, color .2s;
+  border:none;cursor:pointer;
+  border-radius:0;
+}
+.mm-link:hover{background:var(--surface);color:#fff}
+.mm-link.expanded{background:var(--surface);color:#fff}
+.mm-link-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 0;
+  position:relative;
+}
+.mm-link-header::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:var(--red);
+  transform:scaleX(0);
+  transform-origin:left center;
+  transition:transform .4s cubic-bezier(.19,1,.22,1);
+}
+.mm-link:hover .mm-link-header::after,
+.mm-link.expanded .mm-link-header::after,
+.mm-link.touch-active .mm-link-header::after{transform:scaleX(1)}
+.mm-link-arrow{
+  color:rgba(255,255,255,.5);font-size:18px;
+  transition:all .25s cubic-bezier(.19,1,.22,1);
+}
+.mm-link:hover .mm-link-arrow{color:rgba(255,255,255,.7)}
+.mm-link.expanded .mm-link-arrow{transform:rotate(90deg);color:#fff}
+.mm-sub{display:none}
+
+/* Expandable card */
+.mm-card{
+  max-height:0;overflow:hidden;
+  transition:max-height .35s cubic-bezier(.19,1,.22,1),opacity .25s,padding .35s;
+  opacity:0;padding:0 0;
+}
+.mm-link.expanded .mm-card{
+  max-height:300px;opacity:1;padding:8px 0 16px;
+}
+.mm-link.expanded .mm-card.mm-card-dual{
+  max-height:600px;
+}
+.mm-card-dual .mm-card-stack{
+  display:flex;flex-direction:column;gap:10px;
+}
+.mm-card-dual .mm-card-stack .mm-card-inner{
+  min-height:170px;
+}
+.mm-card-inner{
+  background:linear-gradient(135deg,var(--red) 0%,#D42600 100%);
+  border:none;
+  border-radius:20px;padding:28px 24px;
+  display:flex;flex-direction:column;gap:6px;align-items:flex-start;
+  position:relative;overflow:hidden;
+}
+.mm-card-inner::before{
+  content:'';position:absolute;top:-30px;right:-30px;width:100px;height:100px;
+  background:rgba(255,255,255,.08);border-radius:50%;pointer-events:none;
+}
+.mm-card-inner::after{
+  content:'';position:absolute;bottom:-20px;left:-14px;width:65px;height:65px;
+  background:rgba(255,255,255,.05);border-radius:50%;pointer-events:none;
+}
+.mm-card-icon{display:none}
+.mm-card-icon svg{width:18px;height:18px}
+.mm-card-icon.red{background:rgba(255,255,255,.15);color:#fff}
+.mm-card-icon.blue{background:rgba(255,255,255,.15);color:#fff}
+.mm-card-icon.mix{background:rgba(255,255,255,.15);color:#fff}
+.mm-card-text{position:relative;z-index:1}
+.mm-card-text h4{
+  font-family:'Outfit',sans-serif;font-size:20px;font-weight:700;color:#fff;
+  margin-bottom:6px;letter-spacing:-.01em;
+}
+.mm-card-text p{
+  font-family:'DM Sans',sans-serif;font-size:13px;line-height:1.5;
+  color:rgba(255,255,255,.85);margin-bottom:14px;
+}
+.mm-card-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:#fff;color:#CC2200;
+  font-family:'Outfit',sans-serif;font-size:14px;font-weight:700;
+  padding:12px 24px;border-radius:99px;border:none;cursor:pointer;
+  position:relative;z-index:1;
+  -webkit-tap-highlight-color:transparent;transition:all .2s;
+}
+.mm-card-btn:active{transform:scale(.96);opacity:.9}
+.mm-card-btn svg{width:14px;height:14px}
+
+/* White card variant for menu */
+.mm-card-inner.white{
+  background:#fff;border:1.5px solid rgba(0,0,0,.15);
+}
+.mm-card-inner.white::before{background:rgba(0,0,0,.04)}
+.mm-card-inner.white::after{background:rgba(0,0,0,.03)}
+.mm-card-inner.white .mm-card-text h4{color:#000}
+.mm-card-inner.white .mm-card-text p{color:rgba(0,0,0,.7)}
+.mm-card-inner.white .mm-card-btn{
+  background:var(--red);color:#fff;
+}
+
+/* Menu CTA section */
+.mm-cta-section{
+  margin:8px 20px 0;padding:28px 24px;
+  background:linear-gradient(135deg,var(--red) 0%,#D42600 100%);
+  border-radius:20px;
+  position:relative;overflow:hidden;
+}
+.mm-cta-section::before{
+  content:'';position:absolute;top:-40px;right:-40px;width:120px;height:120px;
+  background:rgba(255,255,255,.08);border-radius:50%;pointer-events:none;
+}
+.mm-cta-section::after{
+  content:'';position:absolute;bottom:-30px;left:-20px;width:80px;height:80px;
+  background:rgba(255,255,255,.05);border-radius:50%;pointer-events:none;
+}
+.mm-cta-title{
+  font-family:'Outfit',sans-serif;font-size:20px;font-weight:700;color:#fff;
+  margin-bottom:6px;position:relative;z-index:1;letter-spacing:-.01em;
+}
+.mm-cta-desc{
+  font-family:'DM Sans',sans-serif;font-size:13px;color:rgba(255,255,255,.85);
+  line-height:1.5;margin-bottom:18px;position:relative;z-index:1;
+}
+.mm-cta-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:#fff;color:#CC2200;
+  font-family:'Outfit',sans-serif;font-size:14px;font-weight:700;
+  padding:12px 24px;border-radius:99px;border:none;cursor:pointer;
+  position:relative;z-index:1;
+  -webkit-tap-highlight-color:transparent;transition:all .2s;
+}
+.mm-cta-btn:active{transform:scale(.96);opacity:.9}
+.mm-cta-btn svg{width:14px;height:14px}
+
+/* Menu bottom links */
+.mm-bottom{
+  margin-top:28px;padding:16px 24px 0;
+}
+.mm-bottom-row{display:flex;gap:8px;margin-bottom:12px}
+.mm-bottom-link{
+  flex:1;display:flex;flex-direction:row;align-items:center;justify-content:center;gap:6px;
+  padding:10px 0;border-radius:10px;
+  background:var(--surface);border:1px solid rgba(255,255,255,.06);
+  font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;color:rgba(255,255,255,.85);
+  -webkit-tap-highlight-color:transparent;transition:all .15s;
+}
+.mm-bottom-link:hover{background:rgba(255,255,255,.06);color:#fff}
+.mm-bottom-link:active{background:rgba(255,255,255,.08);color:#fff}
+.mm-bottom-link svg{width:13px;height:13px;opacity:.85}
+.mm-section-h{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.mm-lang{display:flex;gap:10px;margin-top:24px}
+.mm-lang-opt{
+  padding:9px 20px;border-radius:99px;font-size:13px;font-weight:600;
+  border:1px solid rgba(255,255,255,.1);color:var(--red);cursor:pointer;
+  -webkit-tap-highlight-color:transparent;transition:all .15s;background:transparent;
+}
+.mm-lang-opt.active{background:rgba(255,45,0,.1);border-color:rgba(255,45,0,.3)}
+
+/* ═══ HERO ═══ */
+.hero{
+  padding:72px 24px 48px;
+  min-height:calc(100vh - 60px);
+  display:flex;flex-direction:column;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;top:-20%;right:-40%;width:300px;height:300px;
+  background:radial-gradient(circle,var(--red-glow) 0%,transparent 70%);
+  filter:blur(80px);pointer-events:none;
+  animation:glow-pulse 5s ease infinite;
+}
+.hero::after{
+  content:'';position:absolute;bottom:-10%;left:-30%;width:250px;height:250px;
+  background:radial-gradient(circle,var(--blue-glow) 0%,transparent 70%);
+  filter:blur(80px);pointer-events:none;
+  animation:glow-pulse 5s ease 2.5s infinite;
+}
+.hero-eyebrow{
+  font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--red);margin-bottom:16px;position:relative;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.hero-eyebrow::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--red);animation:pulse-dot 2s ease infinite}
+.hero h1{
+  font-family:'Outfit',sans-serif;
+  font-size:56px;font-weight:800;line-height:.88;letter-spacing:-.04em;
+  margin-bottom:20px;position:relative;
+}
+.hero h1 .gradient-text{
+  background:linear-gradient(135deg,var(--red) 0%,#FF6B35 40%,#FF9E6B 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero-sub{
+  font-size:20px;font-weight:400;color:#fff;line-height:1.5;
+  margin-bottom:36px;max-width:320px;position:relative;
+}
+.hero-ctas{display:flex;flex-direction:column;gap:12px;position:relative}
+.hero-ctas .btn{width:100%;font-size:15px;padding:16px 28px}
+
+/* ═══ DIVIDER ═══ */
+.divider{
+  height:1px;position:relative;overflow:hidden;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);
+}
+.divider.gradient{height:2px;background:none}
+.divider.gradient::after{
+  content:'';position:absolute;top:0;left:0;width:200%;height:100%;
+  background:linear-gradient(90deg,var(--red) 0%,var(--blue) 25%,var(--red) 50%,var(--blue) 75%,var(--red) 100%);
+  animation:stripe-slide 4s linear infinite;
+}
+
+/* ═══ SECTIONS ═══ */
+.sec{padding:56px 24px}
+.sec-eye{
+  font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:12px;
+  display:flex;align-items:center;gap:8px;
+}
+.sec-eye::before{content:'';width:20px;height:1px;background:rgba(255,255,255,.2)}
+.sec h2{
+  font-family:'Outfit',sans-serif;
+  font-size:34px;font-weight:800;letter-spacing:-.03em;line-height:.92;margin-bottom:28px;
+}
+
+/* ═══ CATEGORY CARDS ═══ */
+.cat-card{
+  background:var(--surface);
+  border:1.5px solid rgba(255,255,255,.12);border-radius:var(--radius);
+  padding:32px 24px;margin-bottom:14px;
+  position:relative;overflow:hidden;
+  -webkit-tap-highlight-color:transparent;
+  display:block;
+  transition:all .35s cubic-bezier(.19,1,.22,1);
+  cursor:pointer;
+}
+.cat-card:hover{
+  transform:translateY(-6px) scale(1.015);
+  border-color:rgba(255,255,255,.22);
+  box-shadow:0 12px 40px rgba(0,0,0,.5),0 0 20px rgba(255,45,0,.08);
+}
+.cat-card:hover .cat-card-glow{opacity:.55}
+.cat-card:hover .cat-card-cta{gap:10px}
+.cat-card:hover .cat-card-cta svg{transform:translateX(3px)}
+.cat-card:active{transform:translateY(-3px) scale(.99)}
+.cat-card-glow{
+  position:absolute;top:-30px;right:-30px;width:140px;height:140px;
+  border-radius:50%;filter:blur(50px);opacity:.35;pointer-events:none;
+  transition:opacity .3s;
+}
+.cat-card:nth-child(1) .cat-card-glow{background:var(--red)}
+.cat-card:nth-child(2) .cat-card-glow{background:var(--blue)}
+.cat-card:nth-child(3) .cat-card-glow{background:linear-gradient(135deg,var(--red),var(--blue))}
+.cat-card-eye{
+  font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--red);margin-bottom:12px;position:relative;z-index:1;
+}
+.cat-card h3{
+  font-family:'Outfit',sans-serif;
+  font-size:22px;font-weight:700;letter-spacing:-.015em;line-height:1.05;
+  color:#fff;margin-bottom:10px;position:relative;z-index:1;max-width:80%;
+}
+.cat-card p{
+  font-size:14px;line-height:1.6;color:rgba(255,255,255,.85);
+  position:relative;z-index:1;max-width:85%;margin-bottom:16px;
+}
+.cat-card-cta{
+  font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;
+  color:var(--red);position:relative;z-index:1;
+  display:inline-flex;align-items:center;gap:6px;
+  transition:gap .2s;
+}
+.cat-card-cta svg{width:14px;height:14px;transition:transform .2s}
+
+/* White card variant */
+.cat-card.white{background:#fff;border:1.5px solid rgba(0,0,0,.15)}
+.cat-card.white:hover{
+  border-color:rgba(0,0,0,.25);
+  box-shadow:0 12px 40px rgba(0,0,0,.15),0 0 20px rgba(255,45,0,.06);
+}
+.cat-card.white .cat-card-eye{color:rgba(0,0,0,.7)}
+.cat-card.white h3{color:#000}
+.cat-card.white p{color:rgba(0,0,0,.75)}
+.cat-card.white .cat-card-cta{color:var(--red)}
+
+/* ═══ COMPETITIONS ═══ */
+.comp-grid{
+  display:flex;flex-direction:column;gap:14px;
+}
+.comp-card{
+  border-radius:var(--radius);padding:36px 24px;
+  position:relative;overflow:hidden;display:flex;flex-direction:column;
+  -webkit-tap-highlight-color:transparent;
+  transition:transform .25s cubic-bezier(.19,1,.22,1);
+}
+.comp-card-inner{flex:1}
+.comp-card-bottom{margin-top:auto;padding-top:4px}
+.comp-card:active{transform:scale(.98)}
+.comp-card.blue{
+  background:linear-gradient(155deg,#090b14 0%,#0c1225 40%,#101a3a 100%);
+  border:1px solid rgba(0,34,255,.18);
+}
+.comp-card.red{
+  background:linear-gradient(155deg,#0e0908 0%,#1a0e0a 40%,#241210 100%);
+  border:1px solid rgba(255,45,0,.14);
+}
+.comp-label{
+  font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(255,255,255,.85);margin-bottom:18px;
+}
+.comp-title{
+  font-family:'Outfit',sans-serif;
+  font-size:36px;font-weight:800;letter-spacing:-.03em;line-height:.88;
+  color:#fff;margin-bottom:16px;
+}
+.comp-desc{font-size:14px;line-height:1.6;color:rgba(255,255,255,.85);margin-bottom:22px}
+.comp-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);
+  border-radius:99px;padding:7px 16px;margin-bottom:18px;
+  font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.85);
+}
+.comp-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:#4AFF6F;animation:pulse-dot 2s ease infinite}
+.comp-cta{
+  font-family:'Outfit',sans-serif;font-size:14px;font-weight:700;color:#fff;
+  display:inline-flex;align-items:center;gap:8px;
+}
+
+/* ═══ NEWS ═══ */
+.news-scroll{
+  display:flex;gap:14px;overflow-x:auto;-webkit-overflow-scrolling:touch;
+  padding:0 24px 16px;margin:0 -24px;
+  scrollbar-width:none;
+}
+.news-scroll::-webkit-scrollbar{display:none}
+.news-card{
+  flex-shrink:0;width:240px;
+  background:var(--surface);border:1px solid rgba(255,255,255,.06);
+  border-radius:16px;overflow:hidden;
+  display:block;-webkit-tap-highlight-color:transparent;
+  transition:all .25s;
+}
+.news-card:active{transform:scale(.97)}
+.news-img{height:140px;background-size:cover;background-position:center;position:relative}
+.news-img::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,var(--surface) 0%,transparent 40%)}
+.news-body{padding:14px 16px 18px}
+.news-tag{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:6px}
+.news-title{
+  font-family:'Outfit',sans-serif;
+  font-size:15px;font-weight:700;letter-spacing:-.01em;line-height:1.2;color:#fff;
+}
+
+/* ═══ CTA BAR ═══ */
+.cta-bar{
+  padding:56px 24px;
+  position:relative;overflow:hidden;
+}
+.cta-bar::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 20% 50%,rgba(255,45,0,.1) 0%,transparent 60%),
+             radial-gradient(ellipse at 80% 50%,rgba(0,34,255,.08) 0%,transparent 60%);
+  pointer-events:none;
+}
+.cta-eyebrow{
+  font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(255,255,255,.85);margin-bottom:14px;position:relative;
+}
+.cta-h{
+  font-family:'Outfit',sans-serif;
+  font-size:30px;font-weight:800;letter-spacing:-.025em;line-height:.92;
+  color:#fff;margin-bottom:28px;position:relative;
+}
+.cta-bar .btn{position:relative;width:100%;font-size:15px;padding:16px 28px}
+
+/* ═══ FOOTER ═══ */
+footer{
+  padding-bottom:calc(60px + var(--safe-bottom));position:relative;overflow:visible;
+  background:#000;
+}
+footer::before{
+  content:'';position:absolute;inset:0;
+  background:#000;
+}
+footer>*{position:relative;z-index:1}
+.ft-cols{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:32px 20px;padding:44px 24px 36px;
+}
+.ft-col-h{
+  font-family:'Outfit',sans-serif;font-size:10px;font-weight:700;letter-spacing:.15em;
+  color:#fff;margin-bottom:14px;text-transform:uppercase;
+}
+.ft-col a{
+  display:block;font-size:16px;color:#fff;
+  margin-bottom:10px;-webkit-tap-highlight-color:transparent;
+  opacity:1;transition:opacity .2s;
+}
+.ft-col a:active{opacity:1}
+
+/* Newsletter */
+.ft-nl{padding:0 24px 36px}
+.ft-nl-label{font-family:'Outfit',sans-serif;font-size:10px;font-weight:700;color:#fff;margin-bottom:12px;text-transform:uppercase;letter-spacing:.15em}
+.ft-nl-row{display:flex;gap:8px}
+.ft-nl-input{
+  flex:1;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);
+  border-radius:14px;color:#fff;padding:0 16px;font-family:'DM Sans',sans-serif;
+  font-size:14px;outline:none;height:48px;box-sizing:border-box;
+  transition:border-color .2s;
+}
+.ft-nl-input::placeholder{color:rgba(255,255,255,.5)}
+.ft-nl-input:focus{border-color:#fff}
+.ft-nl-submit{
+  background:#fff;border:none;color:#000;border-radius:14px;
+  padding:0 22px;font-family:'Outfit',sans-serif;font-size:14px;font-weight:600;height:48px;
+  cursor:pointer;white-space:nowrap;-webkit-tap-highlight-color:transparent;
+  transition:all .2s;
+}
+.ft-nl-submit:active{transform:scale(.96);opacity:.9}
+
+/* Social icons */
+.ft-socials-m{display:flex;gap:10px;padding:0 24px 48px}
+.ft-soc-m{
+  width:42px;height:42px;border-radius:12px;
+  background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.25);
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,.85);-webkit-tap-highlight-color:transparent;
+  transition:all .2s;cursor:pointer;
+}
+.ft-soc-m:active{border-color:#fff;color:#fff;background:rgba(255,255,255,.25)}
+
+/* Bottom gradient bar - not needed with gradient footer */
+
+/* Lang dropdown mobile */
+.lang-dropdown-m{
+  position:fixed;top:60px;left:0;right:0;
+  background:rgba(12,12,16,0.96);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  border-radius:0 0 24px 24px;
+  padding:28px 24px 28px;
+  z-index:1000;
+  transform:translateY(-100%);transition:transform .35s cubic-bezier(.19,1,.22,1), opacity .35s ease, visibility 0s .35s;
+  pointer-events:none;
+  opacity:0;
+  visibility:hidden;
+}
+.lang-dropdown-m.open{transform:translateY(0);pointer-events:auto;opacity:1;visibility:visible;transition:transform .35s cubic-bezier(.19,1,.22,1), opacity .35s ease, visibility 0s 0s}
+.lang-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:999;
+  opacity:0;pointer-events:none;visibility:hidden;transition:opacity .3s, visibility 0s .3s;
+}
+.lang-overlay.open{opacity:1;pointer-events:auto;visibility:visible;transition:opacity .3s, visibility 0s 0s}
+.ld-title{
+  font-family:'Outfit',sans-serif;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:18px;text-align:center;
+}
+.ld-opt{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:15px 0;border-bottom:1px solid var(--rule);
+  font-family:'Outfit',sans-serif;font-size:17px;font-weight:600;color:#fff;
+  cursor:pointer;-webkit-tap-highlight-color:transparent;
+}
+.ld-opt:last-child{border-bottom:none}
+.ld-opt .code{color:var(--red);font-weight:700}
+.ld-opt .check{color:var(--red);font-size:18px;opacity:0;transition:opacity .2s}
+.ld-opt.active .check{opacity:1}
+
+/* ═══ WeChat QR Modal ═══ */
+.wechat-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1100;
+  opacity:0;pointer-events:none;transition:opacity .3s;
+  display:flex;align-items:center;justify-content:center;
+  padding:24px;
+}
+.wechat-overlay.open{opacity:1;pointer-events:auto}
+.wechat-modal{
+  background:rgba(12,12,16,0.92);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:14px;padding:24px 24px 20px;
+  text-align:center;max-width:280px;width:100%;
+  transform:scale(.9) translateY(20px);transition:transform .35s cubic-bezier(.19,1,.22,1);
+}
+.wechat-overlay.open .wechat-modal{transform:scale(1) translateY(0)}
+.wechat-modal-icon{display:none}
+.wechat-modal-title{
+  font-family:'Outfit',sans-serif;font-size:17px;font-weight:700;
+  color:#fff;margin-bottom:4px;letter-spacing:-.01em;
+}
+.wechat-modal-desc{font-size:12px;color:rgba(255,255,255,.85);margin-bottom:16px;line-height:1.5}
+.wechat-qr{
+  width:160px;height:160px;border-radius:10px;
+  background:#fff;margin:0 auto 16px;
+  display:flex;align-items:center;justify-content:center;
+  padding:10px;
+}
+.wechat-qr svg{width:100%;height:100%}
+.wechat-close{
+  font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;
+  color:rgba(255,255,255,.85);background:none;border:none;cursor:pointer;
+  padding:8px 16px;-webkit-tap-highlight-color:transparent;
+  transition:color .2s;
+}
+.wechat-close:active{color:#fff}
+
+/* ═══ LIGHTER BLACK SECTION MODIFIER ═══ */
+.sec.sec-white{
+  background:linear-gradient(180deg,#0e0e12 0%,#141418 40%,#111115 100%);
+  margin:0;padding:56px 24px;
+  border-top:1px solid rgba(255,255,255,.05);
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+.sec.sec-white .sec-eye{color:rgba(255,255,255,.85)}
+.sec.sec-white .sec-eye::before{background:rgba(255,255,255,.3)}
+.sec.sec-white h2{color:#fff}
+.sec.sec-white .news-card{
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 4px 20px rgba(0,0,0,.4);
+}
+.sec.sec-white .news-card .news-img::after{
+  background:linear-gradient(0deg,rgba(14,14,18,1) 0%,transparent 50%);
+}
+.sec.sec-white .news-card .news-body{background:transparent}
+.sec.sec-white .news-card .news-tag{color:var(--red)}
+.sec.sec-white .news-card .news-title{color:#fff}
+
+/* ═══ SCROLL REVEAL ═══ */
+.reveal{opacity:0;transform:translateY(30px);transition:all .6s cubic-bezier(.19,1,.22,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ═══ TOUCH INTERACTIONS ═══ */
+.cat-card.touch-hover{
+  transform:translateY(-6px) scale(1.015);
+  border-color:rgba(255,255,255,.22);
+  box-shadow:0 12px 40px rgba(0,0,0,.5),0 0 20px rgba(255,45,0,.08);
+}
+.cat-card.white.touch-hover{
+  border-color:rgba(0,0,0,.25);
+  box-shadow:0 12px 40px rgba(0,0,0,.15),0 0 20px rgba(255,45,0,.06);
+}
+.cat-card.touch-hover .cat-card-glow{opacity:.55}
+.cat-card.touch-hover .cat-card-cta{gap:10px}
+.cat-card.touch-hover .cat-card-cta svg{transform:translateX(3px)}
+.mm-link.touch-active{background:var(--surface)}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <a href="#" class="nav-logo">
+    <svg width="140" height="28" viewBox="0 0 140 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <text x="0" y="14" font-family="Outfit,sans-serif" font-weight="800" font-size="11" fill="#FF2D00" letter-spacing="0.06em">LATAM</text>
+      <text x="46" y="14" font-family="Outfit,sans-serif" font-weight="800" font-size="11" fill="#FFFFFF" letter-spacing="0.06em">CHINA</text>
+      <text x="0" y="26" font-family="Outfit,sans-serif" font-weight="400" font-size="11" fill="rgba(255,255,255,0.85)" letter-spacing="0.18em">TECH</text>
+    </svg>
+  </a>
+  <div class="nav-right">
+    <button class="lang-btn-m" id="langBtn" aria-label="Language">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+    </button>
+    <button class="hamburger" id="menuBtn" aria-label="Menu">
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Language sheet -->
+<div class="lang-overlay" id="langOverlay"></div>
+<div class="lang-dropdown-m" id="langSheet">
+  <div class="ld-title">Language</div>
+  <div class="ld-opt active" onclick="pickLang(this,'EN')">
+    <span><span class="code">EN</span> &nbsp;English</span>
+    <span class="check">✓</span>
+  </div>
+  <div class="ld-opt" onclick="pickLang(this,'CN')">
+    <span><span class="code">中文</span> &nbsp;Chinese</span>
+    <span class="check">✓</span>
+  </div>
+  <div class="ld-opt" onclick="pickLang(this,'BR')">
+    <span><span class="code">BR</span> &nbsp;Portuguese</span>
+    <span class="check">✓</span>
+  </div>
+</div>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mm-nav">
+    <div class="mm-link" onclick="toggleMmLink(this)">
+      <div class="mm-link-header">Advisory <span class="mm-link-arrow">›</span></div>
+      <div class="mm-card">
+        <div class="mm-card-inner">
+          <div class="mm-card-icon red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg></div>
+          <div class="mm-card-text">
+            <h4>Strategic Advisory</h4>
+            <p>Investment matchmaking, tech transfer consulting, and market entry strategy across China &amp; LATAM.</p>
+            <button class="mm-card-btn">Learn More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mm-link" onclick="toggleMmLink(this)">
+      <div class="mm-link-header">Competitions <span class="mm-link-arrow">›</span></div>
+      <div class="mm-card mm-card-dual">
+        <div class="mm-card-stack">
+          <div class="mm-card-inner white">
+            <div class="mm-card-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 7V5a4 4 0 0 0-8 0v2"/><line x1="12" y1="11" x2="12" y2="15"/></svg></div>
+            <div class="mm-card-text">
+              <h4>Corporate Challenges</h4>
+              <p>Open innovation challenges connecting corporates with cutting-edge solutions from LATAM &amp; China.</p>
+              <button class="mm-card-btn">Learn More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+            </div>
+          </div>
+          <div class="mm-card-inner white">
+            <div class="mm-card-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div>
+            <div class="mm-card-text">
+              <h4>Startup Competitions</h4>
+              <p>Pitch for funding, win prizes up to $150K, and get direct access to investors &amp; partners.</p>
+              <button class="mm-card-btn">Learn More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mm-link" onclick="toggleMmLink(this)">
+      <div class="mm-link-header">Events <span class="mm-link-arrow">›</span></div>
+      <div class="mm-card">
+        <div class="mm-card-inner">
+          <div class="mm-card-icon mix"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+          <div class="mm-card-text">
+            <h4>Trade Fairs, Expos &amp; Summits</h4>
+            <p>Curated events connecting LATAM and Chinese tech ecosystems face-to-face.</p>
+            <button class="mm-card-btn">Learn More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mm-link" onclick="toggleMmLink(this)">
+      <div class="mm-link-header">Network <span class="mm-link-arrow">›</span></div>
+      <div class="mm-card">
+        <div class="mm-card-inner">
+          <div class="mm-card-icon red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div class="mm-card-text">
+            <h4>City Partnerships &amp; Speakers</h4>
+            <p>120+ active partners across 22 industries and curated speaker networks.</p>
+            <button class="mm-card-btn">Learn More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mm-link" onclick="toggleMmLink(this)">
+      <div class="mm-link-header">Programs <span class="mm-link-arrow">›</span></div>
+      <div class="mm-card">
+        <div class="mm-card-inner">
+          <div class="mm-card-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+          <div class="mm-card-text">
+            <h4>Market Entry &amp; Business Missions</h4>
+            <p>Structured programs from online exploration to boots-on-the-ground market entry.</p>
+            <button class="mm-card-btn">Learn More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mm-bottom">
+    <div class="mm-bottom-row">
+      <a href="#" class="mm-bottom-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Contact
+      </a>
+      <a href="#" class="mm-bottom-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Insights
+      </a>
+      <a href="#" class="mm-bottom-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Network
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <h1 class="anim-up">Accelerating<br><span class="gradient-text">Innovation</span></h1>
+  <p class="hero-sub anim-up anim-up-d1">We Accelerate Latin American and Chinese Tech</p>
+  <div class="hero-ctas anim-up anim-up-d2">
+    <a href="#" class="btn btn-primary">Explore Programs</a>
+    <a href="#" class="btn btn-outline">Partner With Us</a>
+    <a href="#" class="btn btn-glass">Read Insights</a>
+  </div>
+</section>
+
+<div class="divider gradient" style="margin-top:-120px;position:relative;z-index:2"></div>
+
+<!-- ═══ CATEGORIES ═══ -->
+<section class="sec" style="padding-top:48px">
+  <a href="#" class="cat-card reveal">
+    <div class="cat-card-glow"></div>
+    <div class="cat-card-eye">Expansion Programs</div>
+    <h3>From Exploration to Market Entry</h3>
+    <p>Online exploration, boots-on-the-ground entry, and structured business missions in China and LATAM.</p>
+    <div class="cat-card-cta">Explore Programs <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></div>
+  </a>
+  <a href="#" class="cat-card white reveal">
+    <div class="cat-card-glow"></div>
+    <div class="cat-card-eye">Network</div>
+    <h3>City Partnerships &amp; Featured Speakers</h3>
+    <p>Cross-border ecosystem connections, curated speaker networks, and 120+ active partners across 22 industries.</p>
+    <div class="cat-card-cta">Explore Network <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></div>
+  </a>
+  <a href="#" class="cat-card reveal">
+    <div class="cat-card-glow"></div>
+    <div class="cat-card-eye">Advisory Services</div>
+    <h3>Strategic Guidance, Built to Execute</h3>
+    <p>Market entry strategy, tech transfer and investment matchmaking across China and Latin America.</p>
+    <div class="cat-card-cta">Explore Advisory <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></div>
+  </a>
+</section>
+
+<!-- ═══ COMPETITIONS ═══ -->
+<section class="sec" style="padding-top:0">
+  <div class="sec-eye">Compete & Build</div>
+  <h2>Competitions &amp;<br>Challenges</h2>
+  <div class="comp-grid">
+    <a href="#" class="comp-card blue reveal">
+      <div class="comp-card-inner">
+        <div class="comp-label">Competitions</div>
+        <div class="comp-title">Compete.<br>Win.<br>Get Funded.</div>
+        <p class="comp-desc">Pitch for funding and direct access to China–LATAM corporate partners. Prize pools up to $150K.</p>
+      </div>
+      <div class="comp-card-bottom">
+        <div class="comp-badge">Open Now</div>
+        <div class="comp-cta">Register Now <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></div>
+      </div>
+    </a>
+    <a href="#" class="comp-card red reveal">
+      <div class="comp-card-inner">
+        <div class="comp-label">Challenges</div>
+        <div class="comp-title">The Best in Open Innovation</div>
+        <p class="comp-desc">Launch your corporate challenge and access diverse global talent for fresh breakthroughs.</p>
+      </div>
+      <div class="comp-card-bottom">
+        <div class="comp-badge">Live Now</div>
+        <div class="comp-cta">Apply Now <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ═══ NEWS ═══ -->
+<section class="sec sec-white" style="padding-top:56px">
+  <div class="sec-eye">Latest</div>
+  <h2>News &amp; Insights</h2>
+  <div class="news-scroll">
+    <a href="#" class="news-card">
+      <div class="news-img" style="background-image:url('https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=400')"></div>
+      <div class="news-body"><div class="news-tag">Analysis</div><div class="news-title">Why Chinese Giants Need LATAM Startups More Than Ever</div></div>
+    </a>
+    <a href="#" class="news-card">
+      <div class="news-img" style="background-image:url('https://images.pexels.com/photos/3109807/pexels-photo-3109807.jpeg?auto=compress&cs=tinysrgb&w=400')"></div>
+      <div class="news-body"><div class="news-tag">Report</div><div class="news-title">China–LATAM Tech Investment: 2025 Outlook</div></div>
+    </a>
+    <a href="#" class="news-card">
+      <div class="news-img" style="background-image:url('https://images.pexels.com/photos/1762851/pexels-photo-1762851.jpeg?auto=compress&cs=tinysrgb&w=400')"></div>
+      <div class="news-body"><div class="news-tag">Fintech</div><div class="news-title">Fintech Between China and Brazil: New Pathways</div></div>
+    </a>
+    <a href="#" class="news-card">
+      <div class="news-img" style="background-image:url('https://images.pexels.com/photos/2156881/pexels-photo-2156881.jpeg?auto=compress&cs=tinysrgb&w=400')"></div>
+      <div class="news-body"><div class="news-tag">Research</div><div class="news-title">Why 73% of Startups Fail in Cross-Border Entry</div></div>
+    </a>
+    <a href="#" class="news-card">
+      <div class="news-img" style="background-image:url('https://images.pexels.com/photos/924824/pexels-photo-924824.jpeg?auto=compress&cs=tinysrgb&w=400')"></div>
+      <div class="news-body"><div class="news-tag">AgriTech</div><div class="news-title">The Rise of AgriTech Corridors Between China and Brazil</div></div>
+    </a>
+  </div>
+</section>
+
+<!-- ═══ CTA BAR ═══ -->
+<section class="cta-bar">
+  <div class="cta-eyebrow">Fuel your growth</div>
+  <h2 class="cta-h">Get funded, connected, and scale across LatAm &amp; China</h2>
+  <a href="#" class="btn btn-primary">View Programs</a>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="ft-cols">
+    <div class="ft-col">
+      <div class="ft-col-h">Advisory</div>
+      <a href="#">Investment</a>
+      <a href="#">Tech Transfer</a>
+    </div>
+    <div class="ft-col">
+      <div class="ft-col-h">Competitions</div>
+      <a href="#">Startup Competitions</a>
+      <a href="#">Corporate Challenges</a>
+    </div>
+    <div class="ft-col">
+      <div class="ft-col-h">Events</div>
+      <a href="#">Trade Fairs & Expos</a>
+      <a href="#">Summits</a>
+    </div>
+    <div class="ft-col">
+      <div class="ft-col-h">Programs</div>
+      <a href="#">Market Entry</a>
+      <a href="#">Business Mission</a>
+    </div>
+  </div>
+
+  <div class="ft-nl">
+    <div class="ft-nl-label">Newsletter</div>
+    <div class="ft-nl-row">
+      <input class="ft-nl-input" type="email" placeholder="Your email" id="nlEmailM">
+      <button class="ft-nl-submit" onclick="subscribeMobile()">Subscribe</button>
+    </div>
+  </div>
+
+  <div class="ft-socials-m">
+    <!-- WeChat -->
+    <div class="ft-soc-m" title="WeChat" id="wechatBtn" onclick="openWeChat()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8.5 2C4.36 2 1 5.03 1 8.78c0 1.99.98 3.77 2.53 4.97L2.5 16l2.7-1.35C6.1 14.87 7.27 15 8.5 15c.28 0 .56-.01.83-.04A5.54 5.54 0 0 1 9 13.22C9 10.33 11.91 8 15.5 8c.28 0 .56.01.83.03C15.62 4.6 12.4 2 8.5 2zm-2 4.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm4 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm5 3.5c-3.04 0-5.5 2.01-5.5 4.5S12.46 19 15.5 19c.7 0 1.37-.12 1.98-.33L20 20l-1.12-2.34C19.56 16.73 21 15.19 21 13.5 21 11.01 18.54 9 15.5 9zm-1.5 2.75a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5zm3 0a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5z"/></svg>
+    </div>
+    <!-- Instagram -->
+    <a href="https://instagram.com" target="_blank" class="ft-soc-m" title="Instagram">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+    </a>
+    <!-- LinkedIn -->
+    <a href="https://linkedin.com" target="_blank" class="ft-soc-m" title="LinkedIn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+    </a>
+    <!-- WhatsApp -->
+    <a href="https://wa.me/" target="_blank" class="ft-soc-m" title="WhatsApp">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+  </div>
+</footer>
+
+<!-- ═══ WeChat QR Modal ═══ -->
+<div class="wechat-overlay" id="wechatOverlay" onclick="closeWeChat(event)">
+  <div class="wechat-modal" onclick="event.stopPropagation()">
+    <div class="wechat-modal-icon">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M8.5 2C4.36 2 1 5.03 1 8.78c0 1.99.98 3.77 2.53 4.97L2.5 16l2.7-1.35C6.1 14.87 7.27 15 8.5 15c.28 0 .56-.01.83-.04A5.54 5.54 0 0 1 9 13.22C9 10.33 11.91 8 15.5 8c.28 0 .56.01.83.03C15.62 4.6 12.4 2 8.5 2zm-2 4.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm4 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm5 3.5c-3.04 0-5.5 2.01-5.5 4.5S12.46 19 15.5 19c.7 0 1.37-.12 1.98-.33L20 20l-1.12-2.34C19.56 16.73 21 15.19 21 13.5 21 11.01 18.54 9 15.5 9zm-1.5 2.75a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5zm3 0a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5z"/></svg>
+    </div>
+    <div class="wechat-modal-title">Follow us on WeChat</div>
+    <div class="wechat-modal-desc">Scan the QR code below to follow LATAM China Tech on WeChat</div>
+    <div class="wechat-qr">
+      <!-- Placeholder QR code pattern -->
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Corner markers -->
+        <rect x="2" y="2" width="22" height="22" fill="#000" rx="2"/>
+        <rect x="5" y="5" width="16" height="16" fill="#fff" rx="1"/>
+        <rect x="8" y="8" width="10" height="10" fill="#000" rx="1"/>
+        <rect x="76" y="2" width="22" height="22" fill="#000" rx="2"/>
+        <rect x="79" y="5" width="16" height="16" fill="#fff" rx="1"/>
+        <rect x="82" y="8" width="10" height="10" fill="#000" rx="1"/>
+        <rect x="2" y="76" width="22" height="22" fill="#000" rx="2"/>
+        <rect x="5" y="79" width="16" height="16" fill="#fff" rx="1"/>
+        <rect x="8" y="82" width="10" height="10" fill="#000" rx="1"/>
+        <!-- Data pattern rows -->
+        <rect x="28" y="4" width="4" height="4" fill="#000"/><rect x="36" y="4" width="4" height="4" fill="#000"/>
+        <rect x="44" y="4" width="4" height="4" fill="#000"/><rect x="52" y="4" width="4" height="4" fill="#000"/>
+        <rect x="60" y="4" width="4" height="4" fill="#000"/><rect x="68" y="4" width="4" height="4" fill="#000"/>
+        <rect x="28" y="10" width="4" height="4" fill="#000"/><rect x="40" y="10" width="4" height="4" fill="#000"/>
+        <rect x="48" y="10" width="4" height="4" fill="#000"/><rect x="60" y="10" width="4" height="4" fill="#000"/>
+        <rect x="68" y="10" width="4" height="4" fill="#000"/>
+        <rect x="28" y="16" width="4" height="4" fill="#000"/><rect x="36" y="16" width="4" height="4" fill="#000"/>
+        <rect x="48" y="16" width="4" height="4" fill="#000"/><rect x="56" y="16" width="4" height="4" fill="#000"/>
+        <rect x="64" y="16" width="4" height="4" fill="#000"/>
+        <!-- Middle rows -->
+        <rect x="4" y="28" width="4" height="4" fill="#000"/><rect x="12" y="28" width="4" height="4" fill="#000"/>
+        <rect x="20" y="28" width="4" height="4" fill="#000"/><rect x="28" y="28" width="4" height="4" fill="#000"/>
+        <rect x="36" y="28" width="4" height="4" fill="#000"/><rect x="44" y="28" width="4" height="4" fill="#000"/>
+        <rect x="52" y="28" width="4" height="4" fill="#000"/><rect x="60" y="28" width="4" height="4" fill="#000"/>
+        <rect x="68" y="28" width="4" height="4" fill="#000"/><rect x="80" y="28" width="4" height="4" fill="#000"/>
+        <rect x="88" y="28" width="4" height="4" fill="#000"/><rect x="92" y="28" width="4" height="4" fill="#000"/>
+        <rect x="4" y="34" width="4" height="4" fill="#000"/><rect x="16" y="34" width="4" height="4" fill="#000"/>
+        <rect x="28" y="34" width="4" height="4" fill="#000"/><rect x="40" y="34" width="4" height="4" fill="#000"/>
+        <rect x="48" y="34" width="4" height="4" fill="#000"/><rect x="56" y="34" width="4" height="4" fill="#000"/>
+        <rect x="68" y="34" width="4" height="4" fill="#000"/><rect x="76" y="34" width="4" height="4" fill="#000"/>
+        <rect x="84" y="34" width="4" height="4" fill="#000"/><rect x="92" y="34" width="4" height="4" fill="#000"/>
+        <!-- More data rows -->
+        <rect x="4" y="40" width="4" height="4" fill="#000"/><rect x="12" y="40" width="4" height="4" fill="#000"/>
+        <rect x="24" y="40" width="4" height="4" fill="#000"/><rect x="32" y="40" width="4" height="4" fill="#000"/>
+        <rect x="44" y="40" width="4" height="4" fill="#000"/><rect x="52" y="40" width="4" height="4" fill="#000"/>
+        <rect x="64" y="40" width="4" height="4" fill="#000"/><rect x="76" y="40" width="4" height="4" fill="#000"/>
+        <rect x="88" y="40" width="4" height="4" fill="#000"/>
+        <rect x="8" y="46" width="4" height="4" fill="#000"/><rect x="16" y="46" width="4" height="4" fill="#000"/>
+        <rect x="28" y="46" width="4" height="4" fill="#000"/><rect x="36" y="46" width="4" height="4" fill="#000"/>
+        <rect x="48" y="46" width="4" height="4" fill="#000"/><rect x="60" y="46" width="4" height="4" fill="#000"/>
+        <rect x="68" y="46" width="4" height="4" fill="#000"/><rect x="80" y="46" width="4" height="4" fill="#000"/>
+        <rect x="92" y="46" width="4" height="4" fill="#000"/>
+        <rect x="4" y="52" width="4" height="4" fill="#000"/><rect x="20" y="52" width="4" height="4" fill="#000"/>
+        <rect x="32" y="52" width="4" height="4" fill="#000"/><rect x="44" y="52" width="4" height="4" fill="#000"/>
+        <rect x="56" y="52" width="4" height="4" fill="#000"/><rect x="64" y="52" width="4" height="4" fill="#000"/>
+        <rect x="76" y="52" width="4" height="4" fill="#000"/><rect x="84" y="52" width="4" height="4" fill="#000"/>
+        <!-- More scattered data -->
+        <rect x="4" y="58" width="4" height="4" fill="#000"/><rect x="12" y="58" width="4" height="4" fill="#000"/>
+        <rect x="24" y="58" width="4" height="4" fill="#000"/><rect x="36" y="58" width="4" height="4" fill="#000"/>
+        <rect x="48" y="58" width="4" height="4" fill="#000"/><rect x="60" y="58" width="4" height="4" fill="#000"/>
+        <rect x="72" y="58" width="4" height="4" fill="#000"/><rect x="80" y="58" width="4" height="4" fill="#000"/>
+        <rect x="92" y="58" width="4" height="4" fill="#000"/>
+        <rect x="8" y="64" width="4" height="4" fill="#000"/><rect x="16" y="64" width="4" height="4" fill="#000"/>
+        <rect x="28" y="64" width="4" height="4" fill="#000"/><rect x="40" y="64" width="4" height="4" fill="#000"/>
+        <rect x="52" y="64" width="4" height="4" fill="#000"/><rect x="64" y="64" width="4" height="4" fill="#000"/>
+        <rect x="76" y="64" width="4" height="4" fill="#000"/><rect x="88" y="64" width="4" height="4" fill="#000"/>
+        <rect x="4" y="70" width="4" height="4" fill="#000"/><rect x="12" y="70" width="4" height="4" fill="#000"/>
+        <rect x="20" y="70" width="4" height="4" fill="#000"/><rect x="28" y="70" width="4" height="4" fill="#000"/>
+        <rect x="36" y="70" width="4" height="4" fill="#000"/><rect x="44" y="70" width="4" height="4" fill="#000"/>
+        <rect x="52" y="70" width="4" height="4" fill="#000"/><rect x="60" y="70" width="4" height="4" fill="#000"/>
+        <rect x="68" y="70" width="4" height="4" fill="#000"/><rect x="80" y="70" width="4" height="4" fill="#000"/>
+        <rect x="92" y="70" width="4" height="4" fill="#000"/>
+        <!-- Bottom area -->
+        <rect x="28" y="78" width="4" height="4" fill="#000"/><rect x="36" y="78" width="4" height="4" fill="#000"/>
+        <rect x="48" y="78" width="4" height="4" fill="#000"/><rect x="56" y="78" width="4" height="4" fill="#000"/>
+        <rect x="68" y="78" width="4" height="4" fill="#000"/><rect x="76" y="78" width="4" height="4" fill="#000"/>
+        <rect x="84" y="78" width="4" height="4" fill="#000"/><rect x="92" y="78" width="4" height="4" fill="#000"/>
+        <rect x="28" y="84" width="4" height="4" fill="#000"/><rect x="40" y="84" width="4" height="4" fill="#000"/>
+        <rect x="52" y="84" width="4" height="4" fill="#000"/><rect x="60" y="84" width="4" height="4" fill="#000"/>
+        <rect x="72" y="84" width="4" height="4" fill="#000"/><rect x="80" y="84" width="4" height="4" fill="#000"/>
+        <rect x="92" y="84" width="4" height="4" fill="#000"/>
+        <rect x="28" y="90" width="4" height="4" fill="#000"/><rect x="36" y="90" width="4" height="4" fill="#000"/>
+        <rect x="44" y="90" width="4" height="4" fill="#000"/><rect x="56" y="90" width="4" height="4" fill="#000"/>
+        <rect x="68" y="90" width="4" height="4" fill="#000"/><rect x="76" y="90" width="4" height="4" fill="#000"/>
+        <rect x="84" y="90" width="4" height="4" fill="#000"/><rect x="92" y="90" width="4" height="4" fill="#000"/>
+        <!-- LCT text in center -->
+        <text x="50" y="54" text-anchor="middle" font-family="sans-serif" font-weight="800" font-size="9" fill="#FF2D00">LCT</text>
+      </svg>
+    </div>
+    <button class="wechat-close" onclick="closeWeChat()">Close</button>
+  </div>
+</div>
+
+<script>
+// Hamburger menu
+const menuBtn = document.getElementById('menuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+menuBtn.addEventListener('click', () => {
+  menuBtn.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+  document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  // Collapse all cards when closing menu
+  if(!mobileMenu.classList.contains('open')){
+    document.querySelectorAll('.mm-link.expanded').forEach(l => l.classList.remove('expanded'));
+  }
+});
+
+// Expandable menu links
+function toggleMmLink(el){
+  const wasExpanded = el.classList.contains('expanded');
+  // Close all others
+  document.querySelectorAll('.mm-link.expanded').forEach(l => l.classList.remove('expanded'));
+  // Toggle this one
+  if(!wasExpanded) el.classList.add('expanded');
+}
+
+// Language sheet
+const langBtn = document.getElementById('langBtn');
+const langSheet = document.getElementById('langSheet');
+const langOverlay = document.getElementById('langOverlay');
+function openLang(){langSheet.classList.add('open');langOverlay.classList.add('open')}
+function closeLang(){langSheet.classList.remove('open');langOverlay.classList.remove('open')}
+langBtn.addEventListener('click', openLang);
+langOverlay.addEventListener('click', closeLang);
+function pickLang(el, code){
+  document.querySelectorAll('.ld-opt').forEach(o => o.classList.remove('active'));
+  el.classList.add('active');
+  setTimeout(closeLang, 200);
+}
+
+// WeChat QR popup
+function openWeChat(){
+  document.getElementById('wechatOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeWeChat(e){
+  if(e && e.target !== e.currentTarget) return;
+  document.getElementById('wechatOverlay').classList.remove('open');
+  if(!mobileMenu.classList.contains('open')) document.body.style.overflow = '';
+}
+
+// Newsletter
+function subscribeMobile(){
+  const email = document.getElementById('nlEmailM').value;
+  if(email){window.open('https://latamchinatech.substack.com/subscribe?email='+encodeURIComponent(email),'_blank')}
+}
+
+// Scroll reveal
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, {threshold: 0.15, rootMargin: '0px 0px -40px 0px'});
+revealEls.forEach(el => revealObserver.observe(el));
+
+// Cat-card sticky hover on touch
+document.querySelectorAll('.cat-card').forEach(card => {
+  card.addEventListener('touchstart', function(e){
+    document.querySelectorAll('.cat-card.touch-hover').forEach(c => c.classList.remove('touch-hover'));
+    this.classList.add('touch-hover');
+  }, {passive:true});
+  card.addEventListener('touchend', function(){
+    const el = this;
+    setTimeout(() => el.classList.remove('touch-hover'), 400);
+  }, {passive:true});
+});
+
+// Menu link hover highlight on touch
+document.querySelectorAll('.mm-link').forEach(link => {
+  link.addEventListener('touchstart', function(){
+    this.classList.add('touch-active');
+  }, {passive:true});
+  link.addEventListener('touchend', function(){
+    const el = this;
+    setTimeout(() => el.classList.remove('touch-active'), 200);
+  }, {passive:true});
+});
+</script>
+</body>
+</html>

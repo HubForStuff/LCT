@@ -73,6 +73,33 @@ test("homepage build matches the supplied design structure", () => {
     competitionCardCount >= 2,
     `expected at least 2 competition cards, found ${competitionCardCount}`,
   );
+
+  assert.match(
+    html,
+    /desk-comp-square--light-shell/,
+    "expected the desktop competitions cards to use the bordered light-shell treatment from the mockup",
+  );
+  assert.match(
+    html,
+    /mob-section--contrast/,
+    "expected the mobile news section to include the higher-contrast treatment from the mockup",
+  );
+  assert.match(
+    html,
+    /desk-news-card--shell/,
+    "expected the desktop news cards to expose the bordered shell treatment from the mockup",
+  );
+  assert.match(
+    html,
+    /mob-lang-sheet--top/,
+    "expected the mobile language sheet to expose the top-anchored treatment from the mockup",
+  );
+
+  const mobileGlowCount = (html.match(/mob-cat-glow/g) ?? []).length;
+  assert.ok(
+    mobileGlowCount >= 3,
+    `expected at least 3 mobile category glow layers, found ${mobileGlowCount}`,
+  );
 });
 
 test("language switching localizes the homepage on desktop and mobile", async () => {

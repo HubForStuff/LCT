@@ -45,7 +45,7 @@ const { locale, languages, siteSettings } = Astro.props;
   </header>
 
   <div class="mob-overlay" id="mobileLangOverlay"></div>
-  <div class="mob-lang-sheet" id="mobileLangSheet">
+  <div class="mob-lang-sheet mob-lang-sheet--top" id="mobileLangSheet">
     <div class="mob-lang-title" data-i18n="ui.language">{locale.ui.language}</div>
     {languages.map((language, index) => (
       <button
@@ -138,6 +138,7 @@ const { locale, languages, siteSettings } = Astro.props;
         href="#mobile-footer"
         class={`mob-cat-card mob-reveal ${card.theme === "light" ? "mob-cat-card--white" : ""}`}
       >
+        <div class="mob-cat-glow"></div>
         <div class="mob-cat-eye" data-i18n={`categoryCards.${index}.eyebrow`}>{card.eyebrow}</div>
         <h2 data-i18n={`categoryCards.${index}.title`}>{card.title}</h2>
         <p data-i18n={`categoryCards.${index}.description`}>{card.description}</p>
@@ -173,7 +174,7 @@ const { locale, languages, siteSettings } = Astro.props;
     </div>
   </section>
 
-  <section class="mob-section" id="mobile-news">
+  <section class="mob-section mob-section--contrast" id="mobile-news">
     <div class="mob-section-eye" data-i18n="newsSection.eye">{locale.newsSection.eye}</div>
     <h2 class="mob-section-title" data-i18n="newsSection.title">{locale.newsSection.title}</h2>
     <div class="mob-news-scroll">

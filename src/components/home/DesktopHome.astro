@@ -18,7 +18,7 @@ const { locale, languages, siteSettings } = Astro.props;
 
   <section class="desk-hero">
     <div class="desk-wrap">
-      <div class="desk-hero-copy">
+      <div class="desk-hero-copy desk-hero-pane">
         <h1 data-i18n-html="hero.desktopTitleHtml" set:html={locale.hero.desktopTitleHtml}></h1>
         <p class="desk-hero-sub" data-i18n="hero.subtitle">
           {locale.hero.subtitle}
@@ -78,22 +78,27 @@ const { locale, languages, siteSettings } = Astro.props;
 
     <div class="desk-comp-grid">
       {locale.competitionCards.map((card, index) => (
-        <a href="#desktop-footer" class={`desk-comp-square desk-comp-square--${card.theme}`}>
-          <div class="desk-comp-content">
-            <div class="desk-comp-label" data-i18n={`competitionCards.${index}.label`}>{card.label}</div>
-            <div
-              class="desk-comp-title"
-              data-i18n-html={`competitionCards.${index}.titleHtml`}
-              set:html={card.titleHtml}
-            ></div>
-            <p class="desk-comp-desc" data-i18n={`competitionCards.${index}.description`}>
-              {card.description}
-            </p>
-            <div class="desk-comp-badge" data-i18n={`competitionCards.${index}.status`}>{card.status}</div>
-            <div class="desk-comp-cta" data-i18n={`competitionCards.${index}.cta`}>{card.cta}</div>
-          </div>
-          <div class="desk-comp-watermark" data-i18n={`competitionCards.${index}.watermark`}>
-            {card.watermark}
+        <a
+          href="#desktop-footer"
+          class={`desk-comp-square desk-comp-square--${card.theme} desk-comp-square--light-shell`}
+        >
+          <div class="desk-comp-square-surface">
+            <div class="desk-comp-content">
+              <div class="desk-comp-label" data-i18n={`competitionCards.${index}.label`}>{card.label}</div>
+              <div
+                class="desk-comp-title"
+                data-i18n-html={`competitionCards.${index}.titleHtml`}
+                set:html={card.titleHtml}
+              ></div>
+              <p class="desk-comp-desc" data-i18n={`competitionCards.${index}.description`}>
+                {card.description}
+              </p>
+              <div class="desk-comp-badge" data-i18n={`competitionCards.${index}.status`}>{card.status}</div>
+              <div class="desk-comp-cta" data-i18n={`competitionCards.${index}.cta`}>{card.cta}</div>
+            </div>
+            <div class="desk-comp-watermark" data-i18n={`competitionCards.${index}.watermark`}>
+              {card.watermark}
+            </div>
           </div>
         </a>
       ))}
@@ -114,16 +119,18 @@ const { locale, languages, siteSettings } = Astro.props;
 
       <div class="desk-news-grid">
         {locale.newsItems.map((item, index) => (
-          <a href="#" class="desk-news-card nuc">
-            <div class="desk-news-media">
-              <div class="desk-news-image" style={`background-image:url('${item.image}')`}></div>
-              <div
-                class="desk-news-image desk-news-image--alt"
-                style={`background-image:url('${item.altImage}')`}
-              ></div>
-            </div>
-            <div class="desk-news-body">
-              <div class="desk-news-title" data-i18n={`newsItems.${index}.title`}>{item.title}</div>
+          <a href="#" class="desk-news-card desk-news-card--shell">
+            <div class="desk-news-card-inner">
+              <div class="desk-news-body">
+                <div class="desk-news-title" data-i18n={`newsItems.${index}.title`}>{item.title}</div>
+              </div>
+              <div class="desk-news-media">
+                <div class="desk-news-image" style={`background-image:url('${item.image}')`}></div>
+                <div
+                  class="desk-news-image desk-news-image--alt"
+                  style={`background-image:url('${item.altImage}')`}
+                ></div>
+              </div>
             </div>
           </a>
         ))}
