@@ -43,6 +43,7 @@ export type CompetitionFilter = {
   label: string;
   tone: "neutral" | "open" | "future" | "closed" | "blue" | "green" | "orange" | "violet" | "teal";
   active?: boolean;
+  value?: string;
 };
 
 export type CompetitionCard = {

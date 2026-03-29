@@ -117,10 +117,16 @@ export type CompetitionFormRouteLocale = InteriorPageRouteLocale<PreRegistration
 
 export type CompetitionListCard = CompetitionCard & {
   href: string;
+  slug: string;
+  statusTone: CompetitionStatusTone;
+  focusKeys: string[];
 };
 
 export type CompetitionListFeaturedCard = CompetitionFeaturedCard & {
   href: string;
+  slug: string;
+  statusTone: CompetitionStatusTone;
+  focusKeys: string[];
 };
 
 export type CompetitionListingTab = Omit<CompetitionTab, "featured" | "cards"> & {

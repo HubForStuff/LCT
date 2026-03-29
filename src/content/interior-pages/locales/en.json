@@ -322,12 +322,12 @@
     "subtitle": "Use the standard form below to apply to a competition and our team will guide you through the next steps of your submission.",
     "formProgressLabel": "Form progress",
     "banner": {
-      "badge": "Application Support",
-      "title": "One Standard Form for Every Competition",
-      "descriptionHtml": "Submit this form and <strong>LATAM CHINA TECH</strong> will help route your application to the right competition flow, review your positioning, and prepare the next submission steps with you.",
+      "badge": "Pre-Registration",
+      "title": "This is a Pre-Registration",
+      "descriptionHtml": "Submit this form and <strong>LATAM CHINA TECH</strong> will personally guide you through your full HICOOL application: reviewing your submission, strengthening your pitch, and maximizing your chances of winning.",
       "supportLabel": "Supported by",
       "supportName": "LATAM CHINA TECH",
-      "supportItems": ["Application coaching", "Competition routing", "Cross-border positioning"]
+      "supportItems": ["Application coaching", "Network introductions", "China market guide"]
     },
     "guide": {
       "title": "Application Guide & Tutorial",

@@ -53,6 +53,7 @@ const page = locale.page;
               `filter-pill--${filter.tone}`,
               filter.active && "is-active",
             ]}
+            data-status-filter={filter.value ?? filter.tone}
           >
             <span class="filter-pill-icon"></span>
             <span data-i18n={`page.statusFilters.${filterIndex}.label`}>{filter.label}</span>
@@ -70,6 +71,7 @@ const page = locale.page;
               `filter-pill--${filter.tone}`,
               filter.active && "is-active",
             ]}
+            data-focus-filter={filter.value ?? filter.tone}
           >
             <span class="filter-pill-icon"></span>
             <span data-i18n={`page.focusFilters.${filterIndex}.label`}>{filter.label}</span>
@@ -121,7 +123,12 @@ const page = locale.page;
           hidden={tabIndex !== 0}
         >
           {tab.featured && (
-            <article class:list={["featured-card", `featured-card--${tab.featured.theme}`]}>
+            <article
+              class:list={["featured-card", `featured-card--${tab.featured.theme}`]}
+              data-filter-item
+              data-status={tab.featured.statusTone}
+              data-focuses={tab.featured.focusKeys.join(" ")}
+            >
               <div class="featured-visual">
                 <div class="featured-visual-grid"></div>
                 <div class="featured-watermark" data-i18n={`page.tabs.${tabIndex}.featured.watermark`}>
@@ -138,8 +145,15 @@ const page = locale.page;
                   <div class="featured-category" data-i18n={`page.tabs.${tabIndex}.featured.category`}>
                     {tab.featured.category}
                   </div>
-                  <h2 class="featured-title" data-i18n={`page.tabs.${tabIndex}.featured.title`}>
-                    {tab.featured.title}
+                  <h2 class="featured-title">
+                    <a
+                      href={tab.featured.href}
+                      class="competition-name-link"
+                      data-competition-name-link={tab.featured.slug}
+                      data-i18n={`page.tabs.${tabIndex}.featured.title`}
+                    >
+                      {tab.featured.title}
+                    </a>
                   </h2>
                   <p class="featured-description" data-i18n={`page.tabs.${tabIndex}.featured.description`}>
                     {tab.featured.description}
@@ -187,7 +201,12 @@ const page = locale.page;
             <>
               <div class="comp-grid">
                 {tab.cards.map((card, cardIndex) => (
-                  <article class:list={["ccard", `ccard--${card.accent}`]}>
+                  <article
+                    class:list={["ccard", `ccard--${card.accent}`]}
+                    data-filter-item
+                    data-status={card.statusTone}
+                    data-focuses={card.focusKeys.join(" ")}
+                  >
                     <div class="ccard-image">
                       <div class="ccard-grid"></div>
                       <span class:list={["ccard-badge", `ccard-badge--${card.statusTone}`]}>
@@ -205,8 +224,15 @@ const page = locale.page;
                       <div class="ccard-category" data-i18n={`page.tabs.${tabIndex}.cards.${cardIndex}.category`}>
                         {card.category}
                       </div>
-                      <h3 class="ccard-name" data-i18n={`page.tabs.${tabIndex}.cards.${cardIndex}.name`}>
-                        {card.name}
+                      <h3 class="ccard-name">
+                        <a
+                          href={card.href}
+                          class="competition-name-link"
+                          data-competition-name-link={card.slug}
+                          data-i18n={`page.tabs.${tabIndex}.cards.${cardIndex}.name`}
+                        >
+                          {card.name}
+                        </a>
                       </h3>
                       <p
                         class="ccard-description"
@@ -268,6 +294,10 @@ const page = locale.page;
 <script>
   const tabTriggers = Array.from(document.querySelectorAll("[data-tab-trigger]"));
   const tabPanels = Array.from(document.querySelectorAll("[data-tab-panel]"));
+  const statusFilterButtons = Array.from(document.querySelectorAll("[data-status-filter]"));
+  const focusFilterButtons = Array.from(document.querySelectorAll("[data-focus-filter]"));
+  let activeStatusFilter = "all";
+  let activeFocusFilter = "all";
 
   function activateTab(tabId) {
     tabTriggers.forEach((trigger) => {
@@ -283,7 +313,62 @@ const page = locale.page;
     });
   }
 
+  function applyFilters() {
+    const filterItems = Array.from(document.querySelectorAll("[data-filter-item]"));
+
+    filterItems.forEach((item) => {
+      const status = item.dataset.status || "open";
+      const focuses = (item.dataset.focuses || "").split(" ").filter(Boolean);
+      const matchesStatus = activeStatusFilter === "all" || status === activeStatusFilter;
+      const matchesFocus = activeFocusFilter === "all" || focuses.includes(activeFocusFilter);
+      item.hidden = !(matchesStatus && matchesFocus);
+    });
+  }
+
+  function activateFilter(buttons, targetValue, activeClassName) {
+    buttons.forEach((button) => {
+      const currentValue =
+        button.dataset.statusFilter || button.dataset.focusFilter || "";
+      button.classList.toggle(activeClassName, currentValue === targetValue);
+    });
+  }
+
+  function revealFirstVisibleItem() {
+    const activePanel = tabPanels.find((panel) => !panel.hidden);
+    const firstVisibleItem = activePanel
+      ? Array.from(activePanel.querySelectorAll("[data-filter-item]")).find((item) => !item.hidden)
+      : undefined;
+
+    if (firstVisibleItem instanceof HTMLElement) {
+      firstVisibleItem.scrollIntoView({ block: "start", behavior: "auto" });
+    }
+  }
+
   tabTriggers.forEach((trigger) => {
     trigger.addEventListener("click", () => activateTab(trigger.dataset.tabTrigger));
   });
+
+  statusFilterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      activeStatusFilter = button.dataset.statusFilter || "all";
+      activateFilter(statusFilterButtons, activeStatusFilter, "is-active");
+      applyFilters();
+      if (activeStatusFilter !== "all" && activeFocusFilter !== "all") {
+        revealFirstVisibleItem();
+      }
+    });
+  });
+
+  focusFilterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      activeFocusFilter = button.dataset.focusFilter || "all";
+      activateFilter(focusFilterButtons, activeFocusFilter, "is-active");
+      applyFilters();
+      if (activeStatusFilter !== "all" && activeFocusFilter !== "all") {
+        revealFirstVisibleItem();
+      }
+    });
+  });
+
+  applyFilters();
 </script>

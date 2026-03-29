@@ -284,6 +284,11 @@ test("competitions and pre-registration pages build with the expected mockup con
       /href="\/competitions\/greater-tech-challenge-2025\/"/,
       "expected the competitions listing to link to generated detail pages",
     );
+    assert.match(
+      competitionsHtml,
+      /\[TEST DATA\]/i,
+      "expected the competitions listing to include clearly marked test data entries",
+    );
 
     assert.match(
       competitionDetailHtml,
@@ -308,8 +313,13 @@ test("competitions and pre-registration pages build with the expected mockup con
     );
     assert.match(
       preRegistrationHtml,
-      /Application Support|Competition Support|Pre-Registration/i,
-      "expected the shared form explainer banner",
+      /This is a Pre-Registration/i,
+      "expected the shared form to keep the original black-banner headline",
+    );
+    assert.match(
+      preRegistrationHtml,
+      /Application coaching/i,
+      "expected the original black-banner support items to remain visible",
     );
     assert.match(
       preRegistrationHtml,
@@ -507,6 +517,111 @@ test("interior pages expose shared localization hooks and localize in the browse
       submitLabel,
       /Enviar|Inscri/i,
       "expected the submit CTA to switch to Portuguese",
+    );
+  } finally {
+    build.cleanup();
+    server.kill("SIGTERM");
+
+    try {
+      runAgentBrowser(["--session", session, "close"]);
+    } catch {
+      // ignore cleanup failures
+    }
+  }
+});
+
+test("competition filters work on the listing page, names link to detail pages, and the application page surfaces the selected competition", { concurrency: false }, async () => {
+  const build = buildSite();
+  const port = 4500 + Math.floor(Math.random() * 500);
+  const session = `competition-filters-${Date.now()}`;
+  const server = spawn("python3", ["-m", "http.server", String(port), "-d", build.outDir], {
+    cwd: projectRoot,
+    stdio: "ignore",
+  });
+
+  try {
+    await waitForServer(port);
+
+    try {
+      runAgentBrowser(["--session", session, "close"]);
+    } catch {
+      // session may not exist yet
+    }
+
+    runAgentBrowser(["--session", session, "set", "viewport", "1440", "900"]);
+    runAgentBrowser(["--session", session, "open", `http://127.0.0.1:${port}/competitions/`]);
+    runAgentBrowser(["--session", session, "wait", "1000"]);
+    runAgentBrowser(["--session", session, "click", "[data-status-filter='future']"]);
+    runAgentBrowser(["--session", session, "click", "[data-focus-filter='ai']"]);
+    runAgentBrowser(["--session", session, "wait", "300"]);
+
+    const visibleCards = runAgentBrowser([
+      "--session",
+      session,
+      "eval",
+      `(() => {
+        const nodes = Array.from(document.querySelectorAll("#panel-startup [data-filter-item]"));
+        return nodes.filter((node) => !node.hasAttribute("hidden")).length;
+      })()`,
+    ]);
+
+    const filteredHeading = runAgentBrowser([
+      "--session",
+      session,
+      "get",
+      "text",
+      "#panel-startup [data-filter-item]:not([hidden]) [data-competition-name-link]",
+    ]);
+
+    assert.match(visibleCards, /^1\s*$/, "expected the combined filters to leave exactly one visible startup competition");
+    assert.match(
+      filteredHeading,
+      /\[TEST DATA\].*AI/i,
+      "expected the future + AI filters to isolate the marked test-data entry",
+    );
+
+    runAgentBrowser([
+      "--session",
+      session,
+      "click",
+      "#panel-startup [data-filter-item]:not([hidden]) [data-competition-name-link]",
+    ]);
+    runAgentBrowser(["--session", session, "wait", "1000"]);
+
+    const detailHeading = runAgentBrowser([
+      "--session",
+      session,
+      "get",
+      "text",
+      ".competition-detail-title",
+    ]);
+
+    assert.match(
+      detailHeading,
+      /\[TEST DATA\].*AI/i,
+      "expected clicking the competition name to open the matching detail page",
+    );
+
+    runAgentBrowser([
+      "--session",
+      session,
+      "open",
+      `http://127.0.0.1:${port}/pre-registration/?competition=test-data-ai-sandbox`,
+    ]);
+    runAgentBrowser(["--session", session, "wait", "1000"]);
+
+    const selectedCompetition = runAgentBrowser([
+      "--session",
+      session,
+      "get",
+      "text",
+      "[data-selected-competition-name]",
+    ]);
+
+    assert.match(
+      selectedCompetition,
+      /\[TEST DATA\].*AI/i,
+      "expected the application page to surface the selected competition name",
     );
   } finally {
     build.cleanup();

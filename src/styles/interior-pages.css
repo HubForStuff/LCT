@@ -625,6 +625,18 @@ body.interior-body svg {
   letter-spacing: -0.025em;
 }
 
+.competition-name-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.competition-name-link:hover,
+.competition-name-link:focus-visible {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
 .featured-description {
   margin: 0;
   font-size: 18px;
@@ -1103,6 +1115,27 @@ body.interior-body svg {
   font-size: clamp(24px, 2.6vw, 34px);
   font-weight: 800;
   letter-spacing: -0.03em;
+}
+
+.selected-competition-context {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.06);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.selected-competition-context strong {
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--site-red);
 }
 
 .prereg-banner p {

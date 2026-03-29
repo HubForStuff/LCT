@@ -322,12 +322,12 @@
     "subtitle": "请使用下方统一表单申请竞赛，我们的团队会协助你完成后续提交步骤。",
     "formProgressLabel": "表单进度",
     "banner": {
-      "badge": "申请支持",
-      "title": "一套表单适用于所有竞赛",
-      "descriptionHtml": "提交此表单后，<strong>LATAM CHINA TECH</strong> 将帮助你进入正确的竞赛流程，审阅定位，并与你一起准备下一步提交材料。",
+      "badge": "预报名",
+      "title": "这是一个预报名流程",
+      "descriptionHtml": "提交此表单后，<strong>LATAM CHINA TECH</strong> 将全程协助你完成 HICOOL 正式申请：审阅材料、强化路演表达，并尽可能提升你的获奖机会。",
       "supportLabel": "支持方",
       "supportName": "LATAM CHINA TECH",
-      "supportItems": ["申请辅导", "竞赛分流", "跨境定位支持"]
+      "supportItems": ["申请辅导", "资源引荐", "中国市场指南"]
     },
     "guide": {
       "title": "申请指南与教程",

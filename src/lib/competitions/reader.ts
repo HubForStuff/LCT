@@ -52,12 +52,34 @@ const detailCopyByCode = {
   },
 } as const satisfies Record<HomepageLocaleCode, CompetitionDetailPageCopy>;
 
+const statusFilterValues = ["all", "open", "future", "closed"] as const;
+const focusFilterValues = [
+  "all",
+  "deep-tech",
+  "sustainability",
+  "fintech",
+  "agritech",
+  "ai",
+  "healthtech",
+  "logistics",
+  "biotech",
+  "manufacturing",
+] as const;
+
 function buildCompetitionHref(slug: string): string {
   return `/competitions/${slug}/`;
 }
 
 function buildCompetitionApplicationHref(slug: string): string {
   return `/pre-registration/?competition=${slug}`;
+}
+
+function normalizeFocusKey(value: string): string {
+  return value
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 }
 
 function localizeCompetitionEntry(
@@ -94,6 +116,7 @@ function getTrackLabel(code: HomepageLocaleCode, track: CompetitionCollectionEnt
 function buildListingCard(entry: CompetitionLocalizedEntry) {
   return {
     href: buildCompetitionHref(entry.slug),
+    slug: entry.slug,
     category: entry.localized.category,
     name: entry.localized.name,
     description: entry.localized.description,
@@ -101,6 +124,7 @@ function buildListingCard(entry: CompetitionLocalizedEntry) {
     prize: entry.value,
     status: entry.localized.statusLabel,
     statusTone: entry.statusTone,
+    focusKeys: entry.focusTags.map((tag) => normalizeFocusKey(tag)),
     deadlinePrefix: entry.localized.deadlinePrefix,
     deadlineValue: entry.localized.deadlineValue,
     ctaLabel: entry.localized.ctaLabel,
@@ -111,6 +135,7 @@ function buildListingCard(entry: CompetitionLocalizedEntry) {
 function buildFeaturedCard(entry: CompetitionLocalizedEntry) {
   return {
     href: buildCompetitionHref(entry.slug),
+    slug: entry.slug,
     theme: entry.track === "corporate" ? "corporate" : "startup",
     tag: entry.localized.featuredTag,
     category: entry.localized.category,
@@ -119,6 +144,8 @@ function buildFeaturedCard(entry: CompetitionLocalizedEntry) {
     value: entry.value,
     valueCaption: entry.localized.featuredValueCaption,
     status: entry.localized.statusLabel,
+    statusTone: entry.statusTone,
+    focusKeys: entry.focusTags.map((tag) => normalizeFocusKey(tag)),
     deadlinePrefix: entry.localized.deadlinePrefix,
     deadlineValue: entry.localized.deadlineValue,
     ctaLabel: entry.localized.ctaLabel,
@@ -228,6 +255,14 @@ export async function getCompetitionsListingPageData(): Promise<CompetitionListi
           footer: locale.footer,
           page: {
             ...locale.competitionsPage,
+            statusFilters: locale.competitionsPage.statusFilters.map((filter, index) => ({
+              ...filter,
+              value: statusFilterValues[index] ?? filter.tone,
+            })),
+            focusFilters: locale.competitionsPage.focusFilters.map((filter, index) => ({
+              ...filter,
+              value: focusFilterValues[index] ?? normalizeFocusKey(filter.label),
+            })),
             tabs,
           },
         },

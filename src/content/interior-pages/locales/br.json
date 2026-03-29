@@ -322,12 +322,12 @@
     "subtitle": "Use o formulario padrao abaixo para aplicar a uma competicao e nossa equipe vai orientar os proximos passos da sua submissao.",
     "formProgressLabel": "Progresso do formulario",
     "banner": {
-      "badge": "Suporte de aplicacao",
-      "title": "Um formulario padrao para todas as competicoes",
-      "descriptionHtml": "Envie este formulario e a <strong>LATAM CHINA TECH</strong> vai direcionar sua aplicacao para o fluxo correto da competicao, revisar seu posicionamento e preparar os proximos passos com voce.",
+      "badge": "Pre-inscricao",
+      "title": "Esta e uma pre-inscricao",
+      "descriptionHtml": "Envie este formulario e a <strong>LATAM CHINA TECH</strong> vai orientar pessoalmente toda a sua candidatura HICOOL: revisando seu envio, fortalecendo seu pitch e aumentando suas chances de vencer.",
       "supportLabel": "Com apoio de",
       "supportName": "LATAM CHINA TECH",
-      "supportItems": ["Coaching de candidatura", "Direcionamento da competicao", "Posicionamento cross-border"]
+      "supportItems": ["Coaching de candidatura", "Introducoes de rede", "Guia do mercado chines"]
     },
     "guide": {
       "title": "Guia de candidatura e tutorial",

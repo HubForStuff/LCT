@@ -73,6 +73,10 @@ const aiTextareaFields = [
             {page.eyebrow}
           </div>
           <h1 class="page-title" data-i18n-html="page.titleHtml" set:html={page.titleHtml}></h1>
+          <p class="selected-competition-context" data-selected-competition-context hidden>
+            <span data-i18n="page.fields.selectedCompetition">{page.fields.selectedCompetition}</span>
+            <strong data-selected-competition-name></strong>
+          </p>
         </div>
         <p class="page-subtitle" data-i18n="page.subtitle">{page.subtitle}</p>
       </div>
@@ -653,6 +657,8 @@ const aiTextareaFields = [
 <script>
   const competitionSelect = document.querySelector("[data-competition-select]");
   const competitionHiddenInput = document.querySelector("[data-competition-hidden]");
+  const competitionContext = document.querySelector("[data-selected-competition-context]");
+  const competitionName = document.querySelector("[data-selected-competition-name]");
 
   function syncCompetitionSelection() {
     if (!(competitionSelect instanceof HTMLSelectElement) || !(competitionHiddenInput instanceof HTMLInputElement)) {
@@ -673,11 +679,27 @@ const aiTextareaFields = [
     }
 
     competitionHiddenInput.value = competitionSelect.value;
+
+    if (!(competitionContext instanceof HTMLElement) || !(competitionName instanceof HTMLElement)) {
+      return;
+    }
+
+    const selectedOption = competitionSelect.selectedOptions[0];
+    const hasSelection = Boolean(competitionSelect.value && selectedOption);
+
+    competitionContext.hidden = !hasSelection;
+    competitionName.textContent = hasSelection ? selectedOption.textContent.trim() : "";
   }
 
   if (competitionSelect instanceof HTMLSelectElement) {
     syncCompetitionSelection();
     competitionSelect.addEventListener("change", syncCompetitionSelection);
     window.addEventListener("pageshow", syncCompetitionSelection);
+    const competitionObserver = new MutationObserver(syncCompetitionSelection);
+    competitionObserver.observe(competitionSelect, {
+      childList: true,
+      subtree: true,
+      characterData: true,
+    });
   }
 </script>
