@@ -1,0 +1,18 @@
+---
+interface Props {
+  alt: string;
+  className?: string;
+}
+
+const { alt, className = "" } = Astro.props;
+---
+
+<img
+  src="/images/latam-china-tech-logo.png"
+  alt={alt}
+  class:list={["site-logo", className]}
+  width="3426"
+  height="2108"
+  loading="eager"
+  decoding="async"
+/>

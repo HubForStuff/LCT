@@ -1,6 +1,12 @@
 ---
 import BrandLogo from "./BrandLogo.astro";
 
+import {
+  HOMEPAGE_ROUTE_TARGETS,
+  getCompetitionSectionHref,
+  getMobileFooterLinkHref,
+  getMobileMenuCardHref,
+} from "../../lib/homepage/links";
 import type { HomepageLocaleContent, LanguageOption, SiteSettings } from "../../lib/homepage/types";
 
 interface Props {
@@ -14,7 +20,12 @@ const { locale, languages, siteSettings } = Astro.props;
 
 <section class="mobile-home" aria-label="Mobile homepage">
   <header class="mob-nav">
-    <a href="#" class="mob-brand" aria-label={locale.ui.homeLabel} data-i18n-aria-label="ui.homeLabel">
+    <a
+      href={HOMEPAGE_ROUTE_TARGETS.home}
+      class="mob-brand"
+      aria-label={locale.ui.homeLabel}
+      data-i18n-aria-label="ui.homeLabel"
+    >
       <BrandLogo alt={siteSettings.siteName} className="mob-brand-image" />
     </a>
 
@@ -82,7 +93,7 @@ const { locale, languages, siteSettings } = Astro.props;
                   {card.description}
                 </p>
                 <a
-                  href="#mobile-footer"
+                  href={getMobileMenuCardHref(sectionIndex, cardIndex)}
                   class="mob-menu-card-btn"
                   data-i18n={`mobileMenuSections.${sectionIndex}.cards.${cardIndex}.cta`}
                 >
@@ -157,7 +168,10 @@ const { locale, languages, siteSettings } = Astro.props;
 
     <div class="mob-comp-grid">
       {locale.competitionCards.map((card, index) => (
-        <a href="#mobile-footer" class={`mob-comp-card mob-comp-card--${card.theme} mob-reveal`}>
+        <a
+          href={getCompetitionSectionHref(index)}
+          class={`mob-comp-card mob-comp-card--${card.theme} mob-reveal`}
+        >
           <div class="mob-comp-label" data-i18n={`competitionCards.${index}.label`}>{card.label}</div>
           <div
             class="mob-comp-title"
@@ -209,7 +223,10 @@ const { locale, languages, siteSettings } = Astro.props;
           </div>
           <div class="mob-footer-links">
             {column.links.map((link, linkIndex) => (
-              <a href="#mobile-footer" data-i18n={`footerColumns.${columnIndex}.links.${linkIndex}`}>
+              <a
+                href={getMobileFooterLinkHref(columnIndex, linkIndex)}
+                data-i18n={`footerColumns.${columnIndex}.links.${linkIndex}`}
+              >
                 {link}
               </a>
             ))}

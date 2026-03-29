@@ -94,6 +94,16 @@ test("homepage build matches the supplied design structure", () => {
     /mob-lang-sheet--top/,
     "expected the mobile language sheet to expose the top-anchored treatment from the mockup",
   );
+  assert.match(
+    html,
+    /href="\/competitions\/"/,
+    "expected the homepage to link into the competitions route",
+  );
+  assert.match(
+    html,
+    /href="\/pre-registration\/"/,
+    "expected the homepage to link into the pre-registration route",
+  );
 
   const mobileGlowCount = (html.match(/mob-cat-glow/g) ?? []).length;
   assert.ok(

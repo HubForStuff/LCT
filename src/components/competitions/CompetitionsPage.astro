@@ -1,0 +1,234 @@
+---
+import InteriorFooter from "../site/InteriorFooter.astro";
+import InteriorHeader from "../site/InteriorHeader.astro";
+
+import type { SiteSettings } from "../../lib/homepage/types";
+import type {
+  CompetitionsPageContent,
+  InteriorFooterContent,
+  InteriorNavItem,
+} from "../../content/interior-pages";
+
+interface Props {
+  page: CompetitionsPageContent;
+  navItems: InteriorNavItem[];
+  footer: InteriorFooterContent;
+  siteSettings: SiteSettings;
+}
+
+const { page, navItems, footer, siteSettings } = Astro.props;
+---
+
+<div class="interior-page">
+  <InteriorHeader
+    navItems={navItems}
+    activeLabel="Competitions & Challenges"
+    siteSettings={siteSettings}
+  />
+
+  <main>
+    <section class="page-header">
+      <div class="interior-wrap page-header-inner">
+        <div>
+          <div class="page-eyebrow">
+            <span class="dot"></span>
+            {page.eyebrow}
+          </div>
+          <h1 class="page-title" set:html={page.titleHtml}></h1>
+        </div>
+      </div>
+    </section>
+
+    <section class="interior-wrap competitions-shell">
+      <div class="filters-bar" aria-label="Competition filters">
+        <span class="filter-group-label">Status</span>
+        {page.statusFilters.map((filter) => (
+          <button
+            type="button"
+            class:list={[
+              "filter-pill",
+              `filter-pill--${filter.tone}`,
+              filter.active && "is-active",
+            ]}
+          >
+            <span class="filter-pill-icon"></span>
+            {filter.label}
+          </button>
+        ))}
+
+        <span class="filter-separator" aria-hidden="true"></span>
+
+        <span class="filter-group-label">Focus</span>
+        {page.focusFilters.map((filter) => (
+          <button
+            type="button"
+            class:list={[
+              "filter-pill",
+              `filter-pill--${filter.tone}`,
+              filter.active && "is-active",
+            ]}
+          >
+            <span class="filter-pill-icon"></span>
+            {filter.label}
+          </button>
+        ))}
+      </div>
+
+      <div class="tab-bar">
+        <div class="tab-group" role="tablist" aria-label="Competition types">
+          {page.tabs.map((tab, index) => (
+            <button
+              type="button"
+              class:list={["tab", index === 0 && "is-active"]}
+              role="tab"
+              aria-selected={index === 0 ? "true" : "false"}
+              aria-controls={`panel-${tab.id}`}
+              id={`tab-${tab.id}`}
+              data-tab-trigger={tab.id}
+            >
+              <span>{tab.label}</span>
+              <span class="tab-count">{tab.count}</span>
+            </button>
+          ))}
+        </div>
+
+        <div class="tab-sort">
+          <label class="sr-only" for="competitionSort">Sort challenges</label>
+          <select id="competitionSort" class="sort-select">
+            {page.sortOptions.map((option) => (
+              <option>{option}</option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      {page.tabs.map((tab, index) => (
+        <section
+          class:list={["tab-panel", index === 0 && "is-active"]}
+          id={`panel-${tab.id}`}
+          role="tabpanel"
+          aria-labelledby={`tab-${tab.id}`}
+          data-tab-panel={tab.id}
+          hidden={index !== 0}
+        >
+          {tab.featured && (
+            <article class:list={["featured-card", `featured-card--${tab.featured.theme}`]}>
+              <div class="featured-visual">
+                <div class="featured-visual-grid"></div>
+                <div class="featured-watermark">{tab.featured.watermark}</div>
+                <div class="featured-accent"></div>
+              </div>
+
+              <div class="featured-body">
+                <div>
+                  <div class="featured-tag-pill">{tab.featured.tag}</div>
+                  <div class="featured-category">{tab.featured.category}</div>
+                  <h2 class="featured-title">{tab.featured.title}</h2>
+                  <p class="featured-description">{tab.featured.description}</p>
+                </div>
+
+                <div>
+                  <div class="featured-value-row">
+                    <div class="featured-value">{tab.featured.value}</div>
+                    <div class="featured-value-caption">{tab.featured.valueCaption}</div>
+                  </div>
+
+                  <div class="featured-footer">
+                    <div class="featured-status">
+                      <span class="status-dot"></span>
+                      {tab.featured.status}
+                    </div>
+                    <div class="featured-deadline">
+                      {tab.featured.deadlinePrefix} <strong>{tab.featured.deadlineValue}</strong>
+                    </div>
+                    <a href="/pre-registration/" class="site-btn site-btn--primary site-btn--compact">
+                      {tab.featured.ctaLabel}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </article>
+          )}
+
+          {tab.cards && (
+            <>
+              <div class="comp-grid">
+                {tab.cards.map((card) => (
+                  <article class:list={["ccard", `ccard--${card.accent}`]}>
+                    <div class="ccard-image">
+                      <div class="ccard-grid"></div>
+                      <span class:list={["ccard-badge", `ccard-badge--${card.statusTone}`]}>
+                        {card.status}
+                      </span>
+                      <div class="ccard-prize">{card.prize}</div>
+                      <div class="ccard-watermark">{card.watermark}</div>
+                    </div>
+
+                    <div class="ccard-body">
+                      <div class="ccard-category">{card.category}</div>
+                      <h3 class="ccard-name">{card.name}</h3>
+                      <p class="ccard-description">{card.description}</p>
+                    </div>
+
+                    <div class="ccard-footer">
+                      <div class="ccard-deadline">
+                        {card.deadlinePrefix} <strong>{card.deadlineValue}</strong>
+                      </div>
+                      <a href="/pre-registration/" class="ccard-apply">
+                        {card.ctaLabel}
+                      </a>
+                    </div>
+                  </article>
+                ))}
+
+                <div class="ccard-placeholder">
+                  <div class="ccard-placeholder-label">
+                    {tab.id === "startup" ? "More Coming Q3 2025" : "More Coming Q4 2025"}
+                  </div>
+                </div>
+              </div>
+
+              <div class="load-more">
+                <button type="button" class="site-btn site-btn--secondary">
+                  {page.loadMoreLabel}
+                </button>
+              </div>
+            </>
+          )}
+
+          {!tab.cards && (
+            <div class="empty-panel">
+              <h3>{tab.emptyStateTitle}</h3>
+              <p>{tab.emptyStateBody}</p>
+            </div>
+          )}
+        </section>
+      ))}
+    </section>
+  </main>
+
+  <InteriorFooter footer={footer} siteSettings={siteSettings} />
+</div>
+
+<script>
+  const tabTriggers = Array.from(document.querySelectorAll("[data-tab-trigger]"));
+  const tabPanels = Array.from(document.querySelectorAll("[data-tab-panel]"));
+
+  function activateTab(tabId) {
+    tabTriggers.forEach((trigger) => {
+      const isActive = trigger.dataset.tabTrigger === tabId;
+      trigger.classList.toggle("is-active", isActive);
+      trigger.setAttribute("aria-selected", isActive ? "true" : "false");
+    });
+
+    tabPanels.forEach((panel) => {
+      const isActive = panel.dataset.tabPanel === tabId;
+      panel.classList.toggle("is-active", isActive);
+      panel.hidden = !isActive;
+    });
+  }
+
+  tabTriggers.forEach((trigger) => {
+    trigger.addEventListener("click", () => activateTab(trigger.dataset.tabTrigger));
+  });
+</script>

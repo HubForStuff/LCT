@@ -1,0 +1,24 @@
+---
+import CompetitionsPage from "../components/competitions/CompetitionsPage.astro";
+import {
+  competitionsPage,
+  interiorFooter,
+  interiorNavItems,
+  interiorSiteSettings,
+} from "../content/interior-pages";
+import Layout from "../layouts/Layout.astro";
+import "../styles/interior-pages.css";
+---
+
+<Layout
+  title={competitionsPage.meta.title}
+  description={competitionsPage.meta.description}
+  bodyClass="interior-body"
+>
+  <CompetitionsPage
+    page={competitionsPage}
+    navItems={interiorNavItems}
+    footer={interiorFooter}
+    siteSettings={interiorSiteSettings}
+  />
+</Layout>

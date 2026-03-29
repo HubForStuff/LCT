@@ -1,0 +1,43 @@
+---
+import type { LanguageOption } from "../../lib/homepage/types";
+
+interface Props {
+  languages: LanguageOption[];
+  currentLanguage?: string;
+  label?: string;
+  className?: string;
+  align?: "left" | "right";
+}
+
+const {
+  languages,
+  currentLanguage = "EN",
+  label = "Select language",
+  className = "",
+  align = "right",
+} = Astro.props;
+---
+
+<div class:list={["site-lang", className, `site-lang--${align}`]}>
+  <button type="button" class="site-lang-btn" aria-label={label}>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+      <circle cx="12" cy="12" r="10"></circle>
+      <line x1="2" y1="12" x2="22" y2="12"></line>
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+    </svg>
+  </button>
+  <div class="site-lang-menu">
+    {languages.map((language) => (
+      <button
+        type="button"
+        class:list={[
+          "site-lang-option",
+          language.code === currentLanguage && "is-active",
+        ]}
+      >
+        <span>{language.code}</span>
+        <small>{language.label}</small>
+      </button>
+    ))}
+  </div>
+</div>

@@ -1,0 +1,55 @@
+---
+import BrandLogo from "./BrandLogo.astro";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
+
+import type { SiteSettings } from "../../lib/homepage/types";
+import type { InteriorNavItem } from "../../content/interior-pages";
+
+interface Props {
+  navItems: InteriorNavItem[];
+  activeLabel: string;
+  siteSettings: SiteSettings;
+  languageLabel?: string;
+}
+
+const {
+  navItems,
+  activeLabel,
+  siteSettings,
+  languageLabel = "Select language",
+} = Astro.props;
+---
+
+<header class="site-header">
+  <div class="interior-wrap site-header-inner">
+    <a href="/" class="site-brand" aria-label={siteSettings.siteName}>
+      <BrandLogo alt={siteSettings.siteName} className="site-brand-image site-brand-image--dark" />
+    </a>
+
+    <nav class="site-nav" aria-label="Interior navigation">
+      <ul class="site-nav-list">
+        {navItems.map((item) => {
+          const isActive = item.label === activeLabel;
+
+          return (
+            <li class="site-nav-item">
+              <a
+                href={item.href}
+                class:list={["site-nav-link", isActive && "is-active"]}
+                aria-current={isActive ? "page" : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+
+    <LanguageSwitcher
+      languages={siteSettings.languages}
+      currentLanguage={siteSettings.defaultLanguage}
+      label={languageLabel}
+    />
+  </div>
+</header>

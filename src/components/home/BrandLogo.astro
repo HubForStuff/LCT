@@ -1,4 +1,6 @@
 ---
+import SiteBrandLogo from "../site/BrandLogo.astro";
+
 interface Props {
   alt: string;
   className?: string;
@@ -7,12 +9,4 @@ interface Props {
 const { alt, className = "" } = Astro.props;
 ---
 
-<img
-  src="/images/latam-china-tech-logo.png"
-  alt={alt}
-  class:list={["home-logo", className]}
-  width="3426"
-  height="2108"
-  loading="eager"
-  decoding="async"
-/>
+<SiteBrandLogo alt={alt} className={["home-logo", className].filter(Boolean).join(" ")} />

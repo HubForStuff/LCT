@@ -2,6 +2,10 @@
 import DesktopFooter from "./DesktopFooter.astro";
 import DesktopNavigation from "./DesktopNavigation.astro";
 
+import {
+  HOMEPAGE_ROUTE_TARGETS,
+  getCompetitionSectionHref,
+} from "../../lib/homepage/links";
 import type { HomepageLocaleContent, LanguageOption, SiteSettings } from "../../lib/homepage/types";
 
 interface Props {
@@ -70,7 +74,11 @@ const { locale, languages, siteSettings } = Astro.props;
             {locale.competitionsSection.desktopTitle}
           </h2>
         </div>
-        <a href="#" class="desk-section-link" data-i18n="competitionsSection.allLink">
+        <a
+          href={HOMEPAGE_ROUTE_TARGETS.competitions}
+          class="desk-section-link"
+          data-i18n="competitionsSection.allLink"
+        >
           {locale.competitionsSection.allLink}
         </a>
       </div>
@@ -79,7 +87,7 @@ const { locale, languages, siteSettings } = Astro.props;
     <div class="desk-comp-grid">
       {locale.competitionCards.map((card, index) => (
         <a
-          href="#desktop-footer"
+          href={getCompetitionSectionHref(index)}
           class={`desk-comp-square desk-comp-square--${card.theme} desk-comp-square--light-shell`}
         >
           <div class="desk-comp-square-surface">

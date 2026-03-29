@@ -1,6 +1,12 @@
 ---
 import BrandLogo from "./BrandLogo.astro";
 
+import {
+  HOMEPAGE_ROUTE_TARGETS,
+  getDesktopMenuCardHref,
+  getDesktopMenuLinkHref,
+  getDesktopMenuSectionHref,
+} from "../../lib/homepage/links";
 import type {
   HomepageLocaleContent,
   LanguageOption,
@@ -19,7 +25,7 @@ const { locale, languages, siteSettings } = Astro.props;
 <header class="desk-nav">
   <div class="desk-wrap desk-nav-inner">
     <a
-      href="#"
+      href={HOMEPAGE_ROUTE_TARGETS.home}
       class="desk-brand"
       aria-label={locale.ui.homeLabel}
       data-i18n-aria-label="ui.homeLabel"
@@ -31,7 +37,11 @@ const { locale, languages, siteSettings } = Astro.props;
       <ul class="desk-nav-list">
         {locale.desktopMenuSections.map((section, sectionIndex) => (
           <li class="desk-nav-item">
-            <a href="#" class="desk-nav-link" data-i18n={`desktopMenuSections.${sectionIndex}.label`}>
+            <a
+              href={getDesktopMenuSectionHref(sectionIndex)}
+              class="desk-nav-link"
+              data-i18n={`desktopMenuSections.${sectionIndex}.label`}
+            >
               {section.label}
             </a>
             <div class="desk-mega">
@@ -40,7 +50,7 @@ const { locale, languages, siteSettings } = Astro.props;
                   <div class="desk-mega-label" data-i18n="navExploreLabel">{locale.navExploreLabel}</div>
                   <div class="desk-mega-links">
                     {section.links.map((link, linkIndex) => (
-                      <a href="#" class="desk-mega-link">
+                      <a href={getDesktopMenuLinkHref(sectionIndex, linkIndex)} class="desk-mega-link">
                         <span
                           class="desk-mega-link-title"
                           data-i18n={`desktopMenuSections.${sectionIndex}.links.${linkIndex}.title`}
@@ -79,7 +89,7 @@ const { locale, languages, siteSettings } = Astro.props;
                     {section.card.body}
                   </p>
                   <a
-                    href="#"
+                    href={getDesktopMenuCardHref(sectionIndex)}
                     class="desk-btn desk-btn--red desk-btn--compact"
                     data-i18n={`desktopMenuSections.${sectionIndex}.card.cta`}
                   >

@@ -1,0 +1,24 @@
+---
+import PreRegistrationPage from "../components/pre-registration/PreRegistrationPage.astro";
+import {
+  interiorFooter,
+  interiorNavItems,
+  interiorSiteSettings,
+  preRegistrationPage,
+} from "../content/interior-pages";
+import Layout from "../layouts/Layout.astro";
+import "../styles/interior-pages.css";
+---
+
+<Layout
+  title={preRegistrationPage.meta.title}
+  description={preRegistrationPage.meta.description}
+  bodyClass="interior-body"
+>
+  <PreRegistrationPage
+    page={preRegistrationPage}
+    navItems={interiorNavItems}
+    footer={interiorFooter}
+    siteSettings={interiorSiteSettings}
+  />
+</Layout>

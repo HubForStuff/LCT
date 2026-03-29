@@ -1,4 +1,6 @@
 ---
+import { getFooterLinkHref } from "../../lib/homepage/links";
+
 import type {
   HomepageLocaleContent,
   LanguageOption,
@@ -47,7 +49,10 @@ const { locale, languages, siteSettings } = Astro.props;
             </div>
             <div class="desk-footer-group-links">
               {column.links.map((link, linkIndex) => (
-                <a href="#desktop-footer" data-i18n={`footerColumns.${columnIndex}.links.${linkIndex}`}>
+                <a
+                  href={getFooterLinkHref(columnIndex, linkIndex)}
+                  data-i18n={`footerColumns.${columnIndex}.links.${linkIndex}`}
+                >
                   {link}
                 </a>
               ))}
