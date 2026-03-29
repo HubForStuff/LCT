@@ -192,38 +192,6 @@
     "title": "News & Insights",
     "allLink": "All Insights"
   },
-  "newsItems": [
-    {
-      "tag": "Analysis",
-      "title": "Why Chinese Giants Need LATAM Startups More Than Ever",
-      "image": "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=800",
-      "altImage": "https://images.pexels.com/photos/2747449/pexels-photo-2747449.jpeg?auto=compress&cs=tinysrgb&w=800"
-    },
-    {
-      "tag": "Report",
-      "title": "China-LATAM Tech Investment: 2025 Outlook",
-      "image": "https://images.pexels.com/photos/3109807/pexels-photo-3109807.jpeg?auto=compress&cs=tinysrgb&w=800",
-      "altImage": "https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=800"
-    },
-    {
-      "tag": "Fintech",
-      "title": "Fintech Between China and Brazil: New Regulatory Pathways",
-      "image": "https://images.pexels.com/photos/1762851/pexels-photo-1762851.jpeg?auto=compress&cs=tinysrgb&w=800",
-      "altImage": "https://images.pexels.com/photos/3342740/pexels-photo-3342740.jpeg?auto=compress&cs=tinysrgb&w=800"
-    },
-    {
-      "tag": "Research",
-      "title": "Why 73% of Startups Fail in Cross-Border Market Entry",
-      "image": "https://images.pexels.com/photos/2156881/pexels-photo-2156881.jpeg?auto=compress&cs=tinysrgb&w=800",
-      "altImage": "https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&cs=tinysrgb&w=800"
-    },
-    {
-      "tag": "AgriTech",
-      "title": "The Rise of AgriTech Corridors Between China and Brazil",
-      "image": "https://images.pexels.com/photos/924824/pexels-photo-924824.jpeg?auto=compress&cs=tinysrgb&w=800",
-      "altImage": "https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?auto=compress&cs=tinysrgb&w=800"
-    }
-  ],
   "footerCta": {
     "eye": "Fuel your growth.",
     "titleHtml": "Get funded, connected,<br>and scale across LatAm & China",

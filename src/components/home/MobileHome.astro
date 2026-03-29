@@ -6,6 +6,7 @@ import {
   getCompetitionSectionHref,
   getMobileFooterLinkHref,
   getMobileMenuCardHref,
+  getNewsListingHref,
 } from "../../lib/homepage/links";
 import type { HomepageLocaleContent, LanguageOption, SiteSettings } from "../../lib/homepage/types";
 
@@ -191,9 +192,12 @@ const { locale, languages, siteSettings } = Astro.props;
   <section class="mob-section mob-section--contrast" id="mobile-news">
     <div class="mob-section-eye" data-i18n="newsSection.eye">{locale.newsSection.eye}</div>
     <h2 class="mob-section-title" data-i18n="newsSection.title">{locale.newsSection.title}</h2>
+    <a href={getNewsListingHref()} class="mob-section-link" data-i18n="newsSection.allLink">
+      {locale.newsSection.allLink}
+    </a>
     <div class="mob-news-scroll">
       {locale.newsItems.map((item, index) => (
-        <a href="#" class="mob-news-card">
+        <a href={item.href} class="mob-news-card">
           <div class="mob-news-image" style={`background-image:url('${item.image}')`}></div>
           <div class="mob-news-body">
             <div class="mob-news-tag" data-i18n={`newsItems.${index}.tag`}>{item.tag}</div>

@@ -192,38 +192,6 @@
     "title": "新闻与洞察",
     "allLink": "查看全部洞察"
   },
-  "newsItems": [
-    {
-      "tag": "分析",
-      "title": "为什么中国科技巨头比以往任何时候都更需要拉美创业公司",
-      "image": "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=800",
-      "altImage": "https://images.pexels.com/photos/2747449/pexels-photo-2747449.jpeg?auto=compress&cs=tinysrgb&w=800"
-    },
-    {
-      "tag": "报告",
-      "title": "中国与拉美科技投资：2025 年展望",
-      "image": "https://images.pexels.com/photos/3109807/pexels-photo-3109807.jpeg?auto=compress&cs=tinysrgb&w=800",
-      "altImage": "https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=800"
-    },
-    {
-      "tag": "金融科技",
-      "title": "中国与巴西之间的金融科技：新的监管路径",
-      "image": "https://images.pexels.com/photos/1762851/pexels-photo-1762851.jpeg?auto=compress&cs=tinysrgb&w=800",
-      "altImage": "https://images.pexels.com/photos/3342740/pexels-photo-3342740.jpeg?auto=compress&cs=tinysrgb&w=800"
-    },
-    {
-      "tag": "研究",
-      "title": "为什么 73% 的创业公司会在跨境市场进入中失败",
-      "image": "https://images.pexels.com/photos/2156881/pexels-photo-2156881.jpeg?auto=compress&cs=tinysrgb&w=800",
-      "altImage": "https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&cs=tinysrgb&w=800"
-    },
-    {
-      "tag": "农业科技",
-      "title": "中国与巴西之间农业科技走廊的崛起",
-      "image": "https://images.pexels.com/photos/924824/pexels-photo-924824.jpeg?auto=compress&cs=tinysrgb&w=800",
-      "altImage": "https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?auto=compress&cs=tinysrgb&w=800"
-    }
-  ],
   "footerCta": {
     "eye": "为你的增长加速。",
     "titleHtml": "获得资金、建立连接，<br>并在拉美与中国之间扩张",

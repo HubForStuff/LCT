@@ -1,0 +1,118 @@
+---
+import InteriorFooter from "../site/InteriorFooter.astro";
+import InteriorHeader from "../site/InteriorHeader.astro";
+
+import type { HomepageLocaleCode, SiteSettings } from "../../lib/homepage/types";
+import type { NewsArticleRouteLocale } from "../../lib/news/types";
+
+interface Props {
+  locale: NewsArticleRouteLocale;
+  siteSettings: SiteSettings;
+  currentLanguage: HomepageLocaleCode;
+}
+
+const { locale, siteSettings, currentLanguage } = Astro.props;
+---
+
+<div class="interior-page">
+  <InteriorHeader
+    navItems={locale.navItems}
+    activeHref="/news/"
+    siteSettings={siteSettings}
+    currentLanguage={currentLanguage}
+    languageLabel={locale.ui.chooseLanguage}
+    homeLabel={locale.ui.homeLabel}
+  />
+
+  <main>
+    <section class="page-header news-article-header">
+      <div class="interior-wrap">
+        <a href="/news/" class="news-back-link" data-i18n="articlePage.backLabel">
+          {locale.articlePage.backLabel}
+        </a>
+
+        <div class="news-article-meta-row">
+          <div class="news-card-tag" data-i18n="page.tag">{locale.page.tag}</div>
+          <div class="news-inline-meta">
+            <span>
+              <span data-i18n="articlePage.publishedLabel">{locale.articlePage.publishedLabel}</span>{" "}
+              <strong data-i18n="page.publishedDateText">{locale.page.publishedDateText}</strong>
+            </span>
+            <span>
+              <span data-i18n="articlePage.writtenByLabel">{locale.articlePage.writtenByLabel}</span>{" "}
+              <strong>{locale.page.author}</strong>
+            </span>
+            <span>
+              <strong>{locale.page.readTimeMinutes}</strong>{" "}
+              <span data-i18n="articlePage.readingTimeLabel">{locale.articlePage.readingTimeLabel}</span>
+            </span>
+          </div>
+        </div>
+
+        <h1 class="page-title news-article-title" data-i18n="page.title">{locale.page.title}</h1>
+        <p class="page-subtitle page-subtitle--wide news-article-summary" data-i18n="page.summary">
+          {locale.page.summary}
+        </p>
+      </div>
+    </section>
+
+    <section class="interior-wrap news-article-shell">
+      <div
+        class="news-article-hero-image"
+        role="img"
+        aria-label={locale.page.imageAlt}
+        data-i18n-aria-label="page.imageAlt"
+        style={`background-image:url('${locale.page.image}')`}
+      ></div>
+
+      <article class="news-article-body" data-i18n-html="page.bodyHtml" set:html={locale.page.bodyHtml}></article>
+
+      {locale.relatedArticles.length > 0 && (
+        <section class="news-related-shell">
+          <div class="news-grid-header news-grid-header--article">
+            <h2 data-i18n="articlePage.moreInsightsLabel">{locale.articlePage.moreInsightsLabel}</h2>
+            <a href="/news/" class="news-list-link" data-i18n="articlePage.allInsightsLabel">
+              {locale.articlePage.allInsightsLabel}
+            </a>
+          </div>
+
+          <div class="news-list-grid news-list-grid--compact">
+            {locale.relatedArticles.map((item, index) => (
+              <a href={item.href} class="news-list-card news-list-card--compact">
+                <div class="news-list-card-inner">
+                  <div class="news-card-copy">
+                    <div class="news-card-tag" data-i18n={`relatedArticles.${index}.tag`}>{item.tag}</div>
+                    <h3 class="news-card-title" data-i18n={`relatedArticles.${index}.title`}>{item.title}</h3>
+                    <p class="news-card-summary" data-i18n={`relatedArticles.${index}.summary`}>
+                      {item.summary}
+                    </p>
+                  </div>
+
+                  <div
+                    class="news-card-media"
+                    role="img"
+                    aria-label={item.imageAlt}
+                    data-i18n-aria-label={`relatedArticles.${index}.imageAlt`}
+                  >
+                    <div class="news-card-media-layer" style={`background-image:url('${item.image}')`}></div>
+                    <div
+                      class="news-card-media-layer news-card-media-layer--hover"
+                      style={`background-image:url('${item.hoverImage}')`}
+                    ></div>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+    </section>
+  </main>
+
+  <InteriorFooter
+    footer={locale.footer}
+    ui={locale.ui}
+    siteSettings={siteSettings}
+    currentLanguage={currentLanguage}
+  />
+</div>

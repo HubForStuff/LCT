@@ -59,8 +59,11 @@ const buildSite = () => {
 test("interior page route files stay thin and delegate rendering", { concurrency: false }, () => {
   const competitionsRoute = resolve(projectRoot, "src/pages/competitions.astro");
   const preRegistrationRoute = resolve(projectRoot, "src/pages/pre-registration.astro");
+  const newsIndexRoute = resolve(projectRoot, "src/pages/news/index.astro");
+  const newsArticleRoute = resolve(projectRoot, "src/pages/news/[slug].astro");
   const contentLocalesDir = resolve(projectRoot, "src/content/interior-pages/locales");
   const readerModule = resolve(projectRoot, "src/lib/interior-pages/reader.ts");
+  const newsReaderModule = resolve(projectRoot, "src/lib/news/reader.ts");
 
   assert.equal(existsSync(competitionsRoute), true, "expected competitions route to exist");
   assert.equal(
@@ -68,6 +71,8 @@ test("interior page route files stay thin and delegate rendering", { concurrency
     true,
     "expected pre-registration route to exist",
   );
+  assert.equal(existsSync(newsIndexRoute), true, "expected news index route to exist");
+  assert.equal(existsSync(newsArticleRoute), true, "expected news article route to exist");
   assert.equal(
     existsSync(contentLocalesDir),
     true,
@@ -77,6 +82,11 @@ test("interior page route files stay thin and delegate rendering", { concurrency
     existsSync(readerModule),
     true,
     "expected interior pages to use a dedicated localized data reader",
+  );
+  assert.equal(
+    existsSync(newsReaderModule),
+    true,
+    "expected news pages to use a dedicated Keystatic-backed reader",
   );
 
   const localeFiles = readdirSync(contentLocalesDir).filter((entry) => entry.endsWith(".json"));
@@ -88,6 +98,8 @@ test("interior page route files stay thin and delegate rendering", { concurrency
 
   const competitionsSource = readProjectFile("src/pages/competitions.astro");
   const preRegistrationSource = readProjectFile("src/pages/pre-registration.astro");
+  const newsIndexSource = readProjectFile("src/pages/news/index.astro");
+  const newsArticleSource = readProjectFile("src/pages/news/[slug].astro");
 
   assert.ok(
     competitionsSource.trim().split("\n").length < 80,
@@ -96,6 +108,14 @@ test("interior page route files stay thin and delegate rendering", { concurrency
   assert.ok(
     preRegistrationSource.trim().split("\n").length < 80,
     "expected pre-registration route to stay thin",
+  );
+  assert.ok(
+    newsIndexSource.trim().split("\n").length < 80,
+    "expected news index route to stay thin",
+  );
+  assert.ok(
+    newsArticleSource.trim().split("\n").length < 120,
+    "expected news article route to stay thin",
   );
 
   assert.match(
@@ -107,6 +127,16 @@ test("interior page route files stay thin and delegate rendering", { concurrency
     preRegistrationSource,
     /PreRegistrationPage/,
     "expected pre-registration route to delegate to a reusable page component",
+  );
+  assert.match(
+    newsIndexSource,
+    /NewsIndexPage/,
+    "expected news index route to delegate to a reusable page component",
+  );
+  assert.match(
+    newsArticleSource,
+    /NewsArticlePage/,
+    "expected news article route to delegate to a reusable page component",
   );
   assert.match(
     competitionsSource,
@@ -134,12 +164,32 @@ test("interior page route files stay thin and delegate rendering", { concurrency
     "expected pre-registration route to include the shared localization client",
   );
   assert.match(
+    newsIndexSource,
+    /LocalizationClient/,
+    "expected news index route to include the shared localization client",
+  );
+  assert.match(
+    newsArticleSource,
+    /LocalizationClient/,
+    "expected news article route to include the shared localization client",
+  );
+  assert.match(
     preRegistrationSource,
     /interior-pages\.css/,
     "expected pre-registration route to import the dedicated interior stylesheet",
   );
+  assert.match(
+    newsIndexSource,
+    /interior-pages\.css/,
+    "expected news index route to import the shared interior stylesheet",
+  );
+  assert.match(
+    newsArticleSource,
+    /interior-pages\.css/,
+    "expected news article route to import the shared interior stylesheet",
+  );
   assert.doesNotMatch(
-    `${competitionsSource}\n${preRegistrationSource}`,
+    `${competitionsSource}\n${preRegistrationSource}\n${newsIndexSource}\n${newsArticleSource}`,
     /content\/interior-pages/,
     "expected the routes to avoid the old one-off interior content module",
   );
@@ -155,6 +205,16 @@ test("competitions and pre-registration pages build with the expected mockup con
     );
     const preRegistrationHtml = readFileSync(
       resolve(build.outDir, "pre-registration", "index.html"),
+      "utf8",
+    );
+    const newsIndexHtml = readFileSync(resolve(build.outDir, "news", "index.html"), "utf8");
+    const newsArticleHtml = readFileSync(
+      resolve(
+        build.outDir,
+        "news",
+        "why-chinese-giants-need-latam-startups-more-than-ever",
+        "index.html",
+      ),
       "utf8",
     );
 
@@ -219,6 +279,54 @@ test("competitions and pre-registration pages build with the expected mockup con
     assert.ok(
       benefitCount >= 8,
       `expected at least 8 benefit options, found ${benefitCount}`,
+    );
+
+    assert.match(
+      newsIndexHtml,
+      /News\s*&amp;\s*Insights|News\s*&\s*Insights/i,
+      "expected the news listing page heading",
+    );
+    assert.match(
+      newsIndexHtml,
+      /Why Chinese Giants Need LATAM Startups More Than Ever/i,
+      "expected the seeded article to appear on the news listing page",
+    );
+    assert.match(
+      newsIndexHtml,
+      /Why 73% of Startups Fail in Cross-Border Market Entry/i,
+      "expected the fourth mockup article to appear on the news listing page",
+    );
+    assert.match(
+      newsIndexHtml,
+      /The Rise of AgriTech Corridors Between China and Brazil/i,
+      "expected the fifth mockup article to appear on the news listing page",
+    );
+    assert.match(
+      newsIndexHtml,
+      /href="\/news\/why-chinese-giants-need-latam-startups-more-than-ever\/"/,
+      "expected the news listing page to link to seeded article detail pages",
+    );
+
+    const newsCardCount = (newsIndexHtml.match(/class="news-list-card/g) ?? []).length;
+    assert.ok(
+      newsCardCount >= 4,
+      `expected at least 4 grid cards beneath the featured article, found ${newsCardCount}`,
+    );
+
+    assert.match(
+      newsArticleHtml,
+      /Why Chinese Giants Need LATAM Startups More Than Ever/i,
+      "expected the seeded news detail page title",
+    );
+    assert.match(
+      newsArticleHtml,
+      /Back to all insights/i,
+      "expected the news detail page to include the back-to-list CTA",
+    );
+    assert.match(
+      newsArticleHtml,
+      /Cross-border execution is no longer a side bet/i,
+      "expected the news detail page to render article body content",
     );
   } finally {
     build.cleanup();
@@ -332,6 +440,178 @@ test("interior pages expose shared localization hooks and localize in the browse
       submitLabel,
       /Enviar|Pré-inscrição/i,
       "expected the submit CTA to switch to Portuguese",
+    );
+  } finally {
+    build.cleanup();
+    server.kill("SIGTERM");
+
+    try {
+      runAgentBrowser(["--session", session, "close"]);
+    } catch {
+      // ignore cleanup failures
+    }
+  }
+});
+
+test("news pages expose shared localization hooks and localize article content in the browser", { concurrency: false }, async () => {
+  const build = buildSite();
+  const newsArticleHtml = readFileSync(
+    resolve(
+      build.outDir,
+      "news",
+      "why-chinese-giants-need-latam-startups-more-than-ever",
+      "index.html",
+    ),
+    "utf8",
+  );
+
+  assert.match(
+    newsArticleHtml,
+    /id="localized-content"/,
+    "expected news pages to ship the shared localized content payload",
+  );
+  assert.match(
+    newsArticleHtml,
+    /data-lang-toggle/,
+    "expected news pages to use the shared language switcher hooks",
+  );
+  assert.match(
+    newsArticleHtml,
+    /data-i18n-html="page\.bodyHtml"/,
+    "expected news article bodies to use shared HTML localization hooks",
+  );
+
+  const port = 4800 + Math.floor(Math.random() * 500);
+  const session = `news-i18n-${Date.now()}`;
+  const server = spawn("python3", ["-m", "http.server", String(port), "-d", build.outDir], {
+    cwd: projectRoot,
+    stdio: "ignore",
+  });
+
+  try {
+    await waitForServer(port);
+
+    try {
+      runAgentBrowser(["--session", session, "close"]);
+    } catch {
+      // session may not exist yet
+    }
+
+    runAgentBrowser(["--session", session, "set", "viewport", "1440", "900"]);
+    runAgentBrowser([
+      "--session",
+      session,
+      "open",
+      `http://127.0.0.1:${port}/news/why-chinese-giants-need-latam-startups-more-than-ever/`,
+    ]);
+    runAgentBrowser(["--session", session, "wait", "1000"]);
+    runAgentBrowser(["--session", session, "click", ".site-lang [data-lang-toggle]"]);
+    runAgentBrowser(["--session", session, "click", ".site-lang [data-lang-option='CN']"]);
+    runAgentBrowser(["--session", session, "wait", "500"]);
+
+    const articleHeading = runAgentBrowser(["--session", session, "get", "text", ".news-article-title"]);
+    const articleBody = runAgentBrowser(["--session", session, "get", "text", ".news-article-body"]);
+
+    assert.match(
+      articleHeading,
+      /中国科技巨头|拉美创业公司/u,
+      "expected the news article title to switch to Chinese",
+    );
+    assert.match(
+      articleBody,
+      /跨境执行|拉美团队/u,
+      "expected the news article body to switch to Chinese",
+    );
+
+    runAgentBrowser(["--session", session, "click", ".site-lang [data-lang-toggle]"]);
+    runAgentBrowser(["--session", session, "click", ".site-lang [data-lang-option='BR']"]);
+    runAgentBrowser(["--session", session, "wait", "500"]);
+
+    const backLink = runAgentBrowser(["--session", session, "get", "text", ".news-back-link"]);
+
+    assert.match(
+      backLink,
+      /Voltar|insights/i,
+      "expected the news article back link to switch to Portuguese",
+    );
+  } finally {
+    build.cleanup();
+    server.kill("SIGTERM");
+
+    try {
+      runAgentBrowser(["--session", session, "close"]);
+    } catch {
+      // ignore cleanup failures
+    }
+  }
+});
+
+test("news listing keeps metadata visible and separates the featured CTA from the publish row", { concurrency: false }, async () => {
+  const build = buildSite();
+  const port = 4900 + Math.floor(Math.random() * 500);
+  const session = `news-layout-${Date.now()}`;
+  const server = spawn("python3", ["-m", "http.server", String(port), "-d", build.outDir], {
+    cwd: projectRoot,
+    stdio: "ignore",
+  });
+
+  try {
+    await waitForServer(port);
+
+    try {
+      runAgentBrowser(["--session", session, "close"]);
+    } catch {
+      // session may not exist yet
+    }
+
+    runAgentBrowser(["--session", session, "set", "viewport", "1440", "1400"]);
+    runAgentBrowser(["--session", session, "open", `http://127.0.0.1:${port}/news/`]);
+    runAgentBrowser(["--session", session, "wait", "1000"]);
+
+    const rawLayoutMetrics = runAgentBrowser([
+      "--session",
+      session,
+      "eval",
+      `(() => {
+        const featuredMeta = document.querySelector(".news-featured-copy .news-card-meta");
+        const featuredButton = document.querySelector(".news-featured-copy .site-btn");
+        const firstCard = document.querySelector(".news-list-card");
+        const firstCardMeta = firstCard?.querySelector(".news-card-meta");
+
+        if (!featuredMeta || !featuredButton || !firstCard || !firstCardMeta) {
+          throw new Error("News layout elements not found");
+        }
+
+        const featuredMetaRect = featuredMeta.getBoundingClientRect();
+        const featuredButtonRect = featuredButton.getBoundingClientRect();
+        const firstCardRect = firstCard.getBoundingClientRect();
+        const firstCardMetaRect = firstCardMeta.getBoundingClientRect();
+
+        return JSON.stringify({
+          featuredGap: featuredButtonRect.top - featuredMetaRect.bottom,
+          firstCardMetaVisible: firstCardMetaRect.top >= firstCardRect.top && firstCardMetaRect.bottom <= firstCardRect.bottom,
+          firstCardMetaBottomGap: firstCardRect.bottom - firstCardMetaRect.bottom
+        });
+      })()`,
+    ]);
+    const parsedLayoutMetrics = JSON.parse(rawLayoutMetrics);
+    const layoutMetrics =
+      typeof parsedLayoutMetrics === "string"
+        ? JSON.parse(parsedLayoutMetrics)
+        : parsedLayoutMetrics;
+
+    assert.ok(
+      layoutMetrics.featuredGap >= 16,
+      `expected at least 16px between featured meta row and CTA, received ${layoutMetrics.featuredGap}`,
+    );
+    assert.equal(
+      layoutMetrics.firstCardMetaVisible,
+      true,
+      `expected first card metadata to remain fully visible, received ${JSON.stringify(layoutMetrics)}`,
+    );
+    assert.ok(
+      layoutMetrics.firstCardMetaBottomGap >= 16,
+      `expected at least 16px of breathing room below the first card metadata, received ${layoutMetrics.firstCardMetaBottomGap}`,
     );
   } finally {
     build.cleanup();

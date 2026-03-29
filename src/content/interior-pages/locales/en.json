@@ -473,5 +473,30 @@
     "submitNoteHtml": "By submitting, you confirm that all information is accurate and agree to be contacted by <strong>LATAM CHINA TECH</strong> to support your full application. This is a pre-registration, not the final HICOOL submission.",
     "saveDraftLabel": "Save Draft",
     "submitLabel": "Submit Pre-Registration"
+  },
+  "newsListingPage": {
+    "meta": {
+      "htmlLang": "en",
+      "title": "News & Insights | LATAM China Tech",
+      "description": "Read the latest analysis, operator notes, and market signals shaping the China-LATAM innovation corridor."
+    },
+    "eyebrow": "Latest",
+    "title": "News & Insights",
+    "description": "Operator notes, founder stories, and corridor intelligence from the teams building between China and Latin America.",
+    "featuredLabel": "Featured insight",
+    "allArticlesLabel": "All insights",
+    "readArticleLabel": "Read article",
+    "publishedLabel": "Published",
+    "readingTimeLabel": "min read",
+    "emptyStateTitle": "More insights are on the way",
+    "emptyStateBody": "We are preparing fresh analysis for the next batch of operators moving across the corridor."
+  },
+  "newsArticlePage": {
+    "backLabel": "Back to all insights",
+    "publishedLabel": "Published",
+    "readingTimeLabel": "min read",
+    "writtenByLabel": "Written by",
+    "moreInsightsLabel": "More insights",
+    "allInsightsLabel": "View all insights"
   }
 }

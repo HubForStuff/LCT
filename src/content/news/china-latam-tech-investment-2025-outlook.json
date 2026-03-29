@@ -1,0 +1,42 @@
+{
+  "slug": {
+    "name": "China-LATAM Tech Investment: 2025 Outlook",
+    "slug": "china-latam-tech-investment-2025-outlook"
+  },
+  "publishedAt": "2025-01-28",
+  "author": "Diego Freitas",
+  "readTimeMinutes": 7,
+  "featured": true,
+  "primaryImage": "https://images.pexels.com/photos/3109807/pexels-photo-3109807.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "hoverImage": "https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "en": {
+    "tag": "Report",
+    "title": "China-LATAM Tech Investment: 2025 Outlook",
+    "summary": "Capital is still available across the corridor in 2025, but it is moving toward execution-heavy sectors where founders can prove adoption, policy alignment, and industrial fit early.",
+    "imageAlt": "Financial dashboards and city lights symbolizing cross-border technology investment flows.",
+    "publishedDateText": "Jan 28, 2025",
+    "metaTitle": "China-LATAM Tech Investment: 2025 Outlook | LATAM China Tech",
+    "metaDescription": "A 2025 investment outlook for the China-LATAM corridor, highlighting the sectors, capital behavior, and founder signals that matter most.",
+    "bodyHtml": "<p>The funding climate between China and Latin America is not frozen. It is becoming more selective, more operational, and more tied to sectors where execution can be validated quickly.</p><h2>Where capital is concentrating</h2><p>Investors are showing the strongest conviction in AI-enabled enterprise tools, climate infrastructure, fintech rails, and industrial technology with a clear deployment path in either market. The common thread is simple: capital wants proof of adoption, not only ambition.</p><ul><li>Teams with live pilots and revenue traction are moving faster through diligence.</li><li>Founders who can explain regulatory exposure clearly are winning more trust.</li><li>Industrial partnerships are becoming as important as traditional VC endorsements.</li></ul><p>In 2025, the most attractive founders will be the ones who can show a corridor-specific wedge: a reason their company becomes stronger because China and LATAM are linked, not despite that complexity.</p>"
+  },
+  "br": {
+    "tag": "Relatorio",
+    "title": "Investimento tech China-LATAM: panorama de 2025",
+    "summary": "Ha capital disponivel no corredor em 2025, mas ele esta migrando para setores em que os founders conseguem provar adocao, aderencia regulatoria e encaixe industrial logo no inicio.",
+    "imageAlt": "Painel financeiro e luzes urbanas representando fluxos de investimento tecnologico cross-border.",
+    "publishedDateText": "28 jan 2025",
+    "metaTitle": "Investimento tech China-LATAM: panorama de 2025 | LATAM China Tech",
+    "metaDescription": "Um panorama de investimento para 2025 no corredor China-LATAM, destacando setores, comportamento de capital e sinais que mais importam para founders.",
+    "bodyHtml": "<p>O clima de investimento entre China e America Latina nao esta travado. Ele esta mais seletivo, mais operacional e mais concentrado em setores onde a execucao pode ser validada rapidamente.</p><h2>Onde o capital esta se concentrando</h2><p>Os investidores demonstram maior conviccao em ferramentas enterprise com IA, infraestrutura climatica, rails de fintech e tecnologia industrial com rota clara de implantacao em qualquer um dos mercados. O ponto em comum e simples: o capital quer prova de adocao, nao apenas ambicao.</p><ul><li>Times com pilotos ativos e tracao de receita avancam mais rapido na diligencia.</li><li>Founders que explicam exposicao regulatoria com clareza ganham mais confianca.</li><li>Parcerias industriais passaram a pesar tanto quanto o apoio de VCs tradicionais.</li></ul><p>Em 2025, os founders mais atraentes serao aqueles que mostrarem uma tese especifica de corredor: um motivo concreto pelo qual a empresa fica mais forte quando China e LATAM estao conectadas.</p>"
+  },
+  "cn": {
+    "tag": "报告",
+    "title": "中国与拉美科技投资：2025 年展望",
+    "summary": "2025 年中拉走廊依然有资金，但资本正明显转向那些能够尽早证明采用率、监管匹配度和产业落地能力的赛道。",
+    "imageAlt": "金融图表与城市夜景，象征跨境科技投资流动。",
+    "publishedDateText": "2025年1月28日",
+    "metaTitle": "中国与拉美科技投资：2025 年展望 | LATAM China Tech",
+    "metaDescription": "解读 2025 年中拉科技投资趋势，关注最重要的行业方向、资本偏好与创业团队信号。",
+    "bodyHtml": "<p>中国与拉丁美洲之间的融资环境并没有停滞，而是变得更加挑剔、更强调运营能力，也更聚焦那些能够快速验证执行结果的行业。</p><h2>资本集中流向哪里</h2><p>投资人当前最看好的方向包括 AI 企业工具、气候基础设施、金融科技底层通道，以及能够在任一市场快速落地的工业科技。共同逻辑非常清晰：资本要看到采用证据，而不仅仅是宏大愿景。</p><ul><li>已经拥有试点项目和收入验证的团队在尽调中推进更快。</li><li>能够清楚解释监管暴露的创业者更容易建立信任。</li><li>产业合作伙伴背书的重要性正在接近传统 VC 认可。</li></ul><p>2025 年最具吸引力的创业团队，将是那些能够证明自己具备“中拉走廊楔子”的团队，也就是公司会因为连接中国与拉美而更强，而不是被复杂性拖慢。</p>"
+  }
+}

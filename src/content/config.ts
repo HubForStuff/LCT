@@ -10,7 +10,13 @@ const interiorPages = defineCollection({
   schema: z.any(),
 });
 
+const news = defineCollection({
+  type: "data",
+  schema: z.any(),
+});
+
 export const collections = {
   homepage,
   "interior-pages": interiorPages,
+  news,
 };

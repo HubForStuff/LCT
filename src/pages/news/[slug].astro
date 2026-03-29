@@ -1,0 +1,38 @@
+---
+import LocalizationClient from "../../components/i18n/LocalizationClient.astro";
+import NewsArticlePage from "../../components/news/NewsArticlePage.astro";
+import Layout from "../../layouts/Layout.astro";
+import { getAllNewsArticleSlugs, getNewsArticlePageData } from "../../lib/news/reader";
+import "../../styles/interior-pages.css";
+
+export async function getStaticPaths() {
+  const slugs = await getAllNewsArticleSlugs();
+
+  return slugs.map((slug) => ({
+    params: { slug },
+  }));
+}
+
+const slug = Astro.params.slug;
+
+if (!slug) {
+  throw new Error("Missing news article slug.");
+}
+
+const { defaultLanguage, defaultLocale, localizedContent, siteSettings } =
+  await getNewsArticlePageData(slug);
+---
+
+<Layout
+  title={defaultLocale.meta.title}
+  description={defaultLocale.meta.description}
+  htmlLang={defaultLocale.meta.htmlLang}
+  bodyClass="interior-body"
+>
+  <NewsArticlePage
+    locale={defaultLocale}
+    siteSettings={siteSettings}
+    currentLanguage={defaultLanguage}
+  />
+  <LocalizationClient defaultLanguage={defaultLanguage} localizedContent={localizedContent} />
+</Layout>

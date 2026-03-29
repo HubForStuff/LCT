@@ -2,7 +2,16 @@ export const HOMEPAGE_ROUTE_TARGETS = {
   home: "/",
   competitions: "/competitions/",
   preRegistration: "/pre-registration/",
+  news: "/news/",
 } as const;
+
+export function getNewsListingHref(): string {
+  return HOMEPAGE_ROUTE_TARGETS.news;
+}
+
+export function getNewsArticleHref(slug: string): string {
+  return `${HOMEPAGE_ROUTE_TARGETS.news}${slug}/`;
+}
 
 export function getDesktopMenuSectionHref(sectionIndex: number): string {
   if (sectionIndex === 1) {

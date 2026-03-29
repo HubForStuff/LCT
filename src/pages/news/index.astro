@@ -1,0 +1,24 @@
+---
+import LocalizationClient from "../../components/i18n/LocalizationClient.astro";
+import NewsIndexPage from "../../components/news/NewsIndexPage.astro";
+import Layout from "../../layouts/Layout.astro";
+import { getNewsListingPageData } from "../../lib/news/reader";
+import "../../styles/interior-pages.css";
+
+const { defaultLanguage, defaultLocale, localizedContent, siteSettings } =
+  await getNewsListingPageData();
+---
+
+<Layout
+  title={defaultLocale.meta.title}
+  description={defaultLocale.meta.description}
+  htmlLang={defaultLocale.meta.htmlLang}
+  bodyClass="interior-body"
+>
+  <NewsIndexPage
+    locale={defaultLocale}
+    siteSettings={siteSettings}
+    currentLanguage={defaultLanguage}
+  />
+  <LocalizationClient defaultLanguage={defaultLanguage} localizedContent={localizedContent} />
+</Layout>

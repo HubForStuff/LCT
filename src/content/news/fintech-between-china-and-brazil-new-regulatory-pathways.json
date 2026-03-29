@@ -1,0 +1,42 @@
+{
+  "slug": {
+    "name": "Fintech Between China and Brazil: New Regulatory Pathways",
+    "slug": "fintech-between-china-and-brazil-new-regulatory-pathways"
+  },
+  "publishedAt": "2024-12-18",
+  "author": "Liu Wen",
+  "readTimeMinutes": 5,
+  "featured": true,
+  "primaryImage": "https://images.pexels.com/photos/1762851/pexels-photo-1762851.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "hoverImage": "https://images.pexels.com/photos/3342740/pexels-photo-3342740.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "en": {
+    "tag": "Fintech",
+    "title": "Fintech Between China and Brazil: New Regulatory Pathways",
+    "summary": "Brazil is opening fresh room for fintech experimentation while Chinese payment and infrastructure expertise offers a mature playbook for scale, compliance, and interoperability.",
+    "imageAlt": "A hand holding a payment card over a digital commerce terminal.",
+    "publishedDateText": "Dec 18, 2024",
+    "metaTitle": "Fintech Between China and Brazil: New Regulatory Pathways | LATAM China Tech",
+    "metaDescription": "How Brazilian regulation and Chinese fintech infrastructure are creating new pathways for payment, credit, and compliance innovation.",
+    "bodyHtml": "<p>Fintech collaboration between China and Brazil is moving beyond broad inspiration. It is entering a phase where infrastructure lessons, compliance design, and partnership models can be adapted much more concretely.</p><h2>What makes the moment different</h2><p>Brazil has built one of the most dynamic regulatory environments for digital finance in the region, while China has already stress-tested payment and platform infrastructure at massive scale. That combination creates a useful bridge for founders building credit, cross-border settlement, treasury, and embedded finance products.</p><ul><li>Brazil offers regulatory momentum and real consumer adoption.</li><li>China offers operational depth in payments, risk tooling, and digital ecosystems.</li><li>The winning teams will translate, not copy, the strongest elements of each market.</li></ul><p>For founders, the opportunity is not to replicate existing super-app models. It is to design compliant financial products that respect local behavior while borrowing the strongest infrastructure instincts from both sides of the corridor.</p>"
+  },
+  "br": {
+    "tag": "Fintech",
+    "title": "Fintech entre China e Brasil: novos caminhos regulatorios",
+    "summary": "O Brasil abriu novo espaco para experimentacao em fintech, enquanto a experiencia chinesa em pagamentos e infraestrutura oferece um playbook maduro para escala, compliance e interoperabilidade.",
+    "imageAlt": "Uma mao segurando um cartao de pagamento diante de um terminal de comercio digital.",
+    "publishedDateText": "18 dez 2024",
+    "metaTitle": "Fintech entre China e Brasil: novos caminhos regulatorios | LATAM China Tech",
+    "metaDescription": "Como a regulacao brasileira e a infraestrutura fintech chinesa estao abrindo novos caminhos para inovacao em pagamentos, credito e compliance.",
+    "bodyHtml": "<p>A colaboracao em fintech entre China e Brasil esta indo alem da inspiracao generica. Ela entra agora em uma fase em que licoes de infraestrutura, desenho regulatorio e modelos de parceria podem ser adaptados com muito mais precisao.</p><h2>O que torna este momento diferente</h2><p>O Brasil construiu um dos ambientes regulatorios mais dinamicos da regiao para financas digitais, enquanto a China ja testou infraestrutura de pagamentos e plataformas em escala massiva. Essa combinacao cria uma ponte relevante para founders que estao construindo credito, settlement cross-border, tesouraria e embedded finance.</p><ul><li>O Brasil oferece impulso regulatorio e adocao real por parte do consumidor.</li><li>A China oferece profundidade operacional em pagamentos, risco e ecossistemas digitais.</li><li>As equipes vencedoras vao traduzir, e nao copiar, o melhor de cada mercado.</li></ul><p>Para os founders, a oportunidade nao esta em replicar modelos prontos de super-app. Ela esta em desenhar produtos financeiros aderentes ao comportamento local, usando os melhores instintos de infraestrutura dos dois lados do corredor.</p>"
+  },
+  "cn": {
+    "tag": "金融科技",
+    "title": "中国与巴西之间的金融科技：新的监管路径",
+    "summary": "巴西正在为金融科技实验打开新的空间，而中国在支付与基础设施上的成熟经验，为规模化、合规和互操作性提供了可借鉴的路径。",
+    "imageAlt": "手持支付卡片靠近数字支付终端。",
+    "publishedDateText": "2024年12月18日",
+    "metaTitle": "中国与巴西之间的金融科技：新的监管路径 | LATAM China Tech",
+    "metaDescription": "解读巴西监管环境与中国金融科技基础设施如何共同创造支付、信贷与合规创新的新机会。",
+    "bodyHtml": "<p>中国与巴西之间的金融科技合作，已经不再停留在宏观层面的借鉴，而是进入了基础设施能力、合规设计和合作模式都可以被更具体地转化的阶段。</p><h2>为什么这个时间点更特殊</h2><p>巴西已经形成区域内最有活力的数字金融监管环境之一，而中国则在支付与平台基础设施上完成了超大规模验证。两者结合，为建设信贷、跨境结算、资金管理和嵌入式金融产品的创业团队提供了非常现实的桥梁。</p><ul><li>巴西提供监管动能与真实用户采用。</li><li>中国提供支付、风控工具与数字生态的运营深度。</li><li>最终胜出的团队将是那些懂得“转译”而不是照搬的团队。</li></ul><p>对于创业者来说，机会不在于复制既有的超级应用模式，而在于设计真正符合本地行为的合规金融产品，同时借用走廊两端最成熟的基础设施思路。</p>"
+  }
+}

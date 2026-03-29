@@ -192,38 +192,6 @@
     "title": "Noticias e Insights",
     "allLink": "Todos os insights"
   },
-  "newsItems": [
-    {
-      "tag": "Analise",
-      "title": "Por que gigantes chinesas precisam mais do que nunca das startups LATAM",
-      "image": "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=800",
-      "altImage": "https://images.pexels.com/photos/2747449/pexels-photo-2747449.jpeg?auto=compress&cs=tinysrgb&w=800"
-    },
-    {
-      "tag": "Relatorio",
-      "title": "Investimento tech China-LATAM: panorama de 2025",
-      "image": "https://images.pexels.com/photos/3109807/pexels-photo-3109807.jpeg?auto=compress&cs=tinysrgb&w=800",
-      "altImage": "https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=800"
-    },
-    {
-      "tag": "Fintech",
-      "title": "Fintech entre China e Brasil: novos caminhos regulatorios",
-      "image": "https://images.pexels.com/photos/1762851/pexels-photo-1762851.jpeg?auto=compress&cs=tinysrgb&w=800",
-      "altImage": "https://images.pexels.com/photos/3342740/pexels-photo-3342740.jpeg?auto=compress&cs=tinysrgb&w=800"
-    },
-    {
-      "tag": "Pesquisa",
-      "title": "Por que 73% das startups fracassam na entrada cross-border",
-      "image": "https://images.pexels.com/photos/2156881/pexels-photo-2156881.jpeg?auto=compress&cs=tinysrgb&w=800",
-      "altImage": "https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&cs=tinysrgb&w=800"
-    },
-    {
-      "tag": "AgriTech",
-      "title": "A ascensao dos corredores de AgriTech entre China e Brasil",
-      "image": "https://images.pexels.com/photos/924824/pexels-photo-924824.jpeg?auto=compress&cs=tinysrgb&w=800",
-      "altImage": "https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?auto=compress&cs=tinysrgb&w=800"
-    }
-  ],
   "footerCta": {
     "eye": "Impulsione seu crescimento.",
     "titleHtml": "Receba investimento, conecte-se<br>e cresca entre LatAm e China",

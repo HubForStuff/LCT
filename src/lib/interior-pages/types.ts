@@ -230,12 +230,37 @@ export type PreRegistrationPageContent = {
   submitLabel: string;
 };
 
+export type NewsListingPageContent = {
+  meta: InteriorPageMeta;
+  eyebrow: string;
+  title: string;
+  description: string;
+  featuredLabel: string;
+  allArticlesLabel: string;
+  readArticleLabel: string;
+  publishedLabel: string;
+  readingTimeLabel: string;
+  emptyStateTitle: string;
+  emptyStateBody: string;
+};
+
+export type NewsArticlePageContent = {
+  backLabel: string;
+  publishedLabel: string;
+  readingTimeLabel: string;
+  writtenByLabel: string;
+  moreInsightsLabel: string;
+  allInsightsLabel: string;
+};
+
 export type InteriorPageLocaleContent = {
   ui: InteriorPageUi;
   navItems: InteriorNavItem[];
   footer: InteriorFooterContent;
   competitionsPage: CompetitionsPageContent;
   preRegistrationPage: PreRegistrationPageContent;
+  newsListingPage: NewsListingPageContent;
+  newsArticlePage: NewsArticlePageContent;
 };
 
 export type InteriorPageKey = keyof Pick<

@@ -110,6 +110,7 @@ export type NewsItem = {
   title: string;
   image: string;
   altImage: string;
+  href: string;
 };
 
 export type FooterCta = {
@@ -161,6 +162,8 @@ export type HomepageLocaleContent = {
   mobileBottomLinks: string[];
   footer: FooterContent;
 };
+
+export type HomepageLocaleManagedContent = Omit<HomepageLocaleContent, "newsItems">;
 
 export type HomepageLocalizedContent = Record<HomepageLocaleCode, HomepageLocaleContent>;
 

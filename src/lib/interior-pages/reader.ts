@@ -1,25 +1,16 @@
-import localeBr from "../../content/interior-pages/locales/br.json";
-import localeCn from "../../content/interior-pages/locales/cn.json";
-import localeEn from "../../content/interior-pages/locales/en.json";
 import { getHomepageData } from "../homepage/reader";
+import { INTERIOR_LOCALES } from "./locales";
 
 import type {
   InteriorPageContentByKey,
   InteriorPageData,
   InteriorPageKey,
-  InteriorPageLocaleContent,
   InteriorPageLocalizedContent,
   InteriorPageRouteLocale,
 } from "./types";
 
-const interiorLocales = {
-  EN: localeEn,
-  BR: localeBr,
-  CN: localeCn,
-} as const satisfies Record<string, InteriorPageLocaleContent>;
-
 function buildRouteLocale<TKey extends InteriorPageKey>(
-  locale: InteriorPageLocaleContent,
+  locale: (typeof INTERIOR_LOCALES)[keyof typeof INTERIOR_LOCALES],
   pageKey: TKey,
 ): InteriorPageRouteLocale<InteriorPageContentByKey[TKey]> {
   const page = locale[pageKey];
@@ -39,7 +30,7 @@ export async function getInteriorPageData<TKey extends InteriorPageKey>(
   const homepageData = await getHomepageData();
 
   const localizedContent = Object.fromEntries(
-    Object.entries(interiorLocales).map(([languageCode, locale]) => [
+    Object.entries(INTERIOR_LOCALES).map(([languageCode, locale]) => [
       languageCode,
       buildRouteLocale(locale, pageKey),
     ]),

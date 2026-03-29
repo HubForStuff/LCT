@@ -5,6 +5,7 @@ import DesktopNavigation from "./DesktopNavigation.astro";
 import {
   HOMEPAGE_ROUTE_TARGETS,
   getCompetitionSectionHref,
+  getNewsListingHref,
 } from "../../lib/homepage/links";
 import type { HomepageLocaleContent, LanguageOption, SiteSettings } from "../../lib/homepage/types";
 
@@ -120,14 +121,14 @@ const { locale, languages, siteSettings } = Astro.props;
           <div class="desk-section-eye" data-i18n="newsSection.eye">{locale.newsSection.eye}</div>
           <h2 class="desk-section-title" data-i18n="newsSection.title">{locale.newsSection.title}</h2>
         </div>
-        <a href="#" class="desk-section-link" data-i18n="newsSection.allLink">
+        <a href={getNewsListingHref()} class="desk-section-link" data-i18n="newsSection.allLink">
           {locale.newsSection.allLink}
         </a>
       </div>
 
       <div class="desk-news-grid">
         {locale.newsItems.map((item, index) => (
-          <a href="#" class="desk-news-card desk-news-card--shell">
+          <a href={item.href} class="desk-news-card desk-news-card--shell">
             <div class="desk-news-card-inner">
               <div class="desk-news-body">
                 <div class="desk-news-title" data-i18n={`newsItems.${index}.title`}>{item.title}</div>

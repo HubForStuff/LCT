@@ -1,0 +1,42 @@
+{
+  "slug": {
+    "name": "The Rise of AgriTech Corridors Between China and Brazil",
+    "slug": "the-rise-of-agritech-corridors-between-china-and-brazil"
+  },
+  "publishedAt": "2024-09-22",
+  "author": "Pedro Song",
+  "readTimeMinutes": 6,
+  "featured": true,
+  "primaryImage": "https://images.pexels.com/photos/924824/pexels-photo-924824.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "hoverImage": "https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "en": {
+    "tag": "AgriTech",
+    "title": "The Rise of AgriTech Corridors Between China and Brazil",
+    "summary": "Agriculture is becoming one of the clearest China-Brazil innovation corridors, as software, sensing, financing, and logistics products move closer to real field deployment.",
+    "imageAlt": "Agricultural fields viewed from above, representing cross-border AgriTech collaboration.",
+    "publishedDateText": "Sep 22, 2024",
+    "metaTitle": "The Rise of AgriTech Corridors Between China and Brazil | LATAM China Tech",
+    "metaDescription": "How AgriTech founders and industrial partners are building stronger innovation links between China and Brazil.",
+    "bodyHtml": "<p>AgriTech is becoming one of the most practical innovation corridors between China and Brazil because the commercial logic is already clear. Both markets care about productivity, resilience, traceability, and smarter infrastructure across the food system.</p><h2>Why this corridor is accelerating</h2><p>Brazil brings scale, field complexity, and urgent demand for better crop intelligence and farm logistics. China brings manufacturing power, sensing technology, and platform experience that can compress deployment timelines when paired with the right local operators.</p><ul><li>Precision tools are moving from pilot plots into larger commercial deployments.</li><li>Financing and insurance products are being redesigned around better farm data.</li><li>Logistics visibility is becoming as important as yield improvement.</li></ul><p>The next generation of corridor winners will not be single-product companies. They will be teams that can integrate hardware, software, and financial workflows into a system farmers and agribusiness operators can actually adopt.</p>"
+  },
+  "br": {
+    "tag": "AgriTech",
+    "title": "A ascensao dos corredores de AgriTech entre China e Brasil",
+    "summary": "A agricultura esta se tornando um dos corredores mais claros de inovacao entre China e Brasil, com software, sensores, financiamento e logistica cada vez mais proximos da implementacao real no campo.",
+    "imageAlt": "Campos agricolas vistos de cima, representando colaboracao cross-border em AgriTech.",
+    "publishedDateText": "22 set 2024",
+    "metaTitle": "A ascensao dos corredores de AgriTech entre China e Brasil | LATAM China Tech",
+    "metaDescription": "Como founders de AgriTech e parceiros industriais estao fortalecendo as conexoes de inovacao entre China e Brasil.",
+    "bodyHtml": "<p>AgriTech esta se tornando um dos corredores de inovacao mais praticos entre China e Brasil porque a logica comercial ja e evidente. Os dois mercados se importam com produtividade, resiliencia, rastreabilidade e infraestrutura mais inteligente ao longo de toda a cadeia alimentar.</p><h2>Por que esse corredor esta acelerando</h2><p>O Brasil traz escala, complexidade de campo e demanda urgente por melhor inteligencia agricola e logistica rural. A China traz capacidade de manufatura, tecnologia de sensores e experiencia em plataformas que podem encurtar o tempo de implantacao quando combinadas com operadores locais fortes.</p><ul><li>Ferramentas de precisao estao saindo de pilotos pequenos e chegando a implantacoes comerciais maiores.</li><li>Produtos de financiamento e seguro estao sendo redesenhados com base em dados agricolas melhores.</li><li>Visibilidade logistica esta ficando tao importante quanto ganho de produtividade.</li></ul><p>A proxima geracao de vencedores desse corredor nao sera formada por empresas de um unico produto. Sera composta por times capazes de integrar hardware, software e fluxos financeiros em um sistema que produtores e operadores consigam adotar de verdade.</p>"
+  },
+  "cn": {
+    "tag": "农业科技",
+    "title": "中国与巴西之间农业科技走廊的崛起",
+    "summary": "农业正在成为中巴之间最清晰的创新走廊之一，软件、传感、金融和物流产品正在更接近真实田间部署。",
+    "imageAlt": "从空中俯瞰的农业田野，象征中巴农业科技协作。",
+    "publishedDateText": "2024年9月22日",
+    "metaTitle": "中国与巴西之间农业科技走廊的崛起 | LATAM China Tech",
+    "metaDescription": "解读农业科技创业团队与产业伙伴如何在中国和巴西之间建立更强的创新连接。",
+    "bodyHtml": "<p>农业科技正在成为中国与巴西之间最务实的创新走廊之一，因为商业逻辑已经非常明确。两个市场都在关注生产效率、韧性、可追溯性，以及贯穿食品体系的更智能基础设施。</p><h2>为什么这一走廊正在加速</h2><p>巴西提供了规模化农场场景、复杂的田间问题和对更好农业情报与物流能力的迫切需求。中国则提供制造能力、传感技术和平台经验，如果与强本地运营者结合，可以显著缩短部署周期。</p><ul><li>精准农业工具正在从小规模试点走向更大的商业部署。</li><li>金融和保险产品正围绕更高质量的农业数据重新设计。</li><li>物流可视化正在变得和产量提升一样重要。</li></ul><p>下一批走廊赢家不会是单一产品公司，而会是那些能够把硬件、软件与金融流程整合成真正可被农户和农业企业采用的系统型团队。</p>"
+  }
+}

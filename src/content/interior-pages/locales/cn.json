@@ -473,5 +473,30 @@
     "submitNoteHtml": "提交即表示你确认所有信息准确无误，并同意由 <strong>LATAM CHINA TECH</strong> 与你联系，协助完成正式申请。此表单为预报名，不是 HICOOL 的最终提交。",
     "saveDraftLabel": "保存草稿",
     "submitLabel": "提交预报名"
+  },
+  "newsListingPage": {
+    "meta": {
+      "htmlLang": "zh-CN",
+      "title": "新闻与洞察 | LATAM China Tech",
+      "description": "阅读正在塑造中拉创新走廊的最新分析、运营观察和市场信号。"
+    },
+    "eyebrow": "最新动态",
+    "title": "新闻与洞察",
+    "description": "面向正在连接中国与拉美的团队，提供市场观察、创业者故事与跨境运营洞察。",
+    "featuredLabel": "重点洞察",
+    "allArticlesLabel": "全部洞察",
+    "readArticleLabel": "阅读文章",
+    "publishedLabel": "发布日期",
+    "readingTimeLabel": "分钟阅读",
+    "emptyStateTitle": "更多洞察即将发布",
+    "emptyStateBody": "我们正在准备下一批面向中拉创新走廊建设者的深度内容。"
+  },
+  "newsArticlePage": {
+    "backLabel": "返回全部洞察",
+    "publishedLabel": "发布日期",
+    "readingTimeLabel": "分钟阅读",
+    "writtenByLabel": "作者",
+    "moreInsightsLabel": "更多洞察",
+    "allInsightsLabel": "查看全部洞察"
   }
 }

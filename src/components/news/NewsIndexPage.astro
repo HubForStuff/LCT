@@ -1,0 +1,136 @@
+---
+import InteriorFooter from "../site/InteriorFooter.astro";
+import InteriorHeader from "../site/InteriorHeader.astro";
+
+import type { HomepageLocaleCode, SiteSettings } from "../../lib/homepage/types";
+import type { NewsListingRouteLocale } from "../../lib/news/types";
+
+interface Props {
+  locale: NewsListingRouteLocale;
+  siteSettings: SiteSettings;
+  currentLanguage: HomepageLocaleCode;
+}
+
+const { locale, siteSettings, currentLanguage } = Astro.props;
+const featuredItem = locale.featuredItem;
+---
+
+<div class="interior-page">
+  <InteriorHeader
+    navItems={locale.navItems}
+    activeHref="/news/"
+    siteSettings={siteSettings}
+    currentLanguage={currentLanguage}
+    languageLabel={locale.ui.chooseLanguage}
+    homeLabel={locale.ui.homeLabel}
+  />
+
+  <main>
+    <section class="page-header">
+      <div class="interior-wrap page-header-inner page-header-inner--split">
+        <div>
+          <div class="page-eyebrow" data-i18n="page.eyebrow">
+            <span class="dot"></span>
+            {locale.page.eyebrow}
+          </div>
+          <h1 class="page-title" data-i18n="page.title">{locale.page.title}</h1>
+        </div>
+        <p class="page-subtitle page-subtitle--wide" data-i18n="page.description">
+          {locale.page.description}
+        </p>
+      </div>
+    </section>
+
+    <section class="interior-wrap news-list-shell">
+      {featuredItem && (
+        <article class="news-featured-card">
+          <div
+            class="news-featured-media"
+            role="img"
+            aria-label={featuredItem.imageAlt}
+            data-i18n-aria-label="featuredItem.imageAlt"
+            style={`background-image:url('${featuredItem.image}')`}
+          ></div>
+
+          <div class="news-featured-copy">
+            <div class="news-featured-label" data-i18n="page.featuredLabel">{locale.page.featuredLabel}</div>
+            <div class="news-card-tag" data-i18n="featuredItem.tag">{featuredItem.tag}</div>
+            <h2 class="news-featured-title" data-i18n="featuredItem.title">{featuredItem.title}</h2>
+            <p class="news-card-summary" data-i18n="featuredItem.summary">{featuredItem.summary}</p>
+
+            <div class="news-card-meta">
+              <span>
+                <span data-i18n="page.publishedLabel">{locale.page.publishedLabel}</span>{" "}
+                <strong data-i18n="featuredItem.publishedDateText">{featuredItem.publishedDateText}</strong>
+              </span>
+              <span>
+                <strong>{featuredItem.readTimeMinutes}</strong>{" "}
+                <span data-i18n="page.readingTimeLabel">{locale.page.readingTimeLabel}</span>
+              </span>
+            </div>
+
+            <a href={featuredItem.href} class="site-btn site-btn--primary" data-i18n="page.readArticleLabel">
+              {locale.page.readArticleLabel}
+            </a>
+          </div>
+        </article>
+      )}
+
+      <div class="news-grid-header">
+        <h2 data-i18n="page.allArticlesLabel">{locale.page.allArticlesLabel}</h2>
+      </div>
+
+      {locale.items.length > 0 ? (
+        <div class="news-list-grid">
+          {locale.items.map((item, index) => (
+            <a href={item.href} class="news-list-card">
+              <div class="news-list-card-inner">
+                <div class="news-card-copy">
+                  <div class="news-card-tag" data-i18n={`items.${index}.tag`}>{item.tag}</div>
+                  <h3 class="news-card-title" data-i18n={`items.${index}.title`}>{item.title}</h3>
+                  <p class="news-card-summary" data-i18n={`items.${index}.summary`}>{item.summary}</p>
+                </div>
+
+                <div
+                  class="news-card-media"
+                  role="img"
+                  aria-label={item.imageAlt}
+                  data-i18n-aria-label={`items.${index}.imageAlt`}
+                >
+                  <div class="news-card-media-layer" style={`background-image:url('${item.image}')`}></div>
+                  <div
+                    class="news-card-media-layer news-card-media-layer--hover"
+                    style={`background-image:url('${item.hoverImage}')`}
+                  ></div>
+                </div>
+              </div>
+
+              <div class="news-card-meta">
+                <span>
+                  <span data-i18n="page.publishedLabel">{locale.page.publishedLabel}</span>{" "}
+                  <strong data-i18n={`items.${index}.publishedDateText`}>{item.publishedDateText}</strong>
+                </span>
+                <span>
+                  <strong>{item.readTimeMinutes}</strong>{" "}
+                  <span data-i18n="page.readingTimeLabel">{locale.page.readingTimeLabel}</span>
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <div class="news-empty-state">
+          <h2 data-i18n="page.emptyStateTitle">{locale.page.emptyStateTitle}</h2>
+          <p data-i18n="page.emptyStateBody">{locale.page.emptyStateBody}</p>
+        </div>
+      )}
+    </section>
+  </main>
+
+  <InteriorFooter
+    footer={locale.footer}
+    ui={locale.ui}
+    siteSettings={siteSettings}
+    currentLanguage={currentLanguage}
+  />
+</div>

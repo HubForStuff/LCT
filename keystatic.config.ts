@@ -1,10 +1,20 @@
-import { config, singleton } from "@keystatic/core";
+import { collection, config, singleton } from "@keystatic/core";
 
 import { homepageLocaleSchema, siteSettingsSchema } from "./src/lib/homepage/schema.ts";
+import { newsCollectionSchema } from "./src/lib/news/schema.ts";
 
 export default config({
   storage: {
     kind: "local",
+  },
+  collections: {
+    news: collection({
+      label: "News",
+      path: "src/content/news/*",
+      format: "json",
+      columns: ["publishedAt", "author", "featured"],
+      schema: newsCollectionSchema,
+    }),
   },
   singletons: {
     siteSettings: singleton({

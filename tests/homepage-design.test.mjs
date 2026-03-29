@@ -104,6 +104,17 @@ test("homepage build matches the supplied design structure", () => {
     /href="\/pre-registration\/"/,
     "expected the homepage to link into the pre-registration route",
   );
+  assert.match(
+    html,
+    /href="\/news\/"/,
+    "expected the homepage insights section to link to the full news listing route",
+  );
+
+  const articleLinkCount = (html.match(/href="\/news\/[^"]+\/"/g) ?? []).length;
+  assert.ok(
+    articleLinkCount >= 3,
+    `expected at least 3 homepage cards to link to news detail pages, found ${articleLinkCount}`,
+  );
 
   const mobileGlowCount = (html.match(/mob-cat-glow/g) ?? []).length;
   assert.ok(

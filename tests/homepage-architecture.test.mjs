@@ -68,3 +68,45 @@ test("homepage content is seeded into keystatic-managed files", () => {
     `expected localized homepage content for EN, BR, and CN, found ${localeFiles.join(", ")}`,
   );
 });
+
+test("news content is modeled as a keystatic-managed collection", () => {
+  const keystaticConfig = readProjectFile("keystatic.config.ts");
+  const newsSchemaModule = resolve(projectRoot, "src/lib/news/schema.ts");
+  const newsReaderModule = resolve(projectRoot, "src/lib/news/reader.ts");
+  const newsContentDir = resolve(projectRoot, "src/content/news");
+
+  assert.match(
+    keystaticConfig,
+    /collection\s*\(/,
+    "expected keystatic.config.ts to declare at least one collection",
+  );
+  assert.match(
+    keystaticConfig,
+    /collections:\s*\{[\s\S]*news:\s*collection\s*\(/,
+    "expected keystatic.config.ts to register a news collection",
+  );
+  assert.equal(
+    existsSync(newsSchemaModule),
+    true,
+    "expected the news collection schema to live in src/lib/news/schema.ts",
+  );
+  assert.equal(
+    existsSync(newsReaderModule),
+    true,
+    "expected the news reader helpers to live in src/lib/news/reader.ts",
+  );
+  assert.equal(
+    existsSync(newsContentDir),
+    true,
+    "expected news entries to be stored in src/content/news",
+  );
+
+  const newsEntries = existsSync(newsContentDir)
+    ? readdirSync(newsContentDir).filter((entry) => !entry.startsWith("."))
+    : [];
+
+  assert.ok(
+    newsEntries.length >= 3,
+    `expected at least 3 seeded news entries, found ${newsEntries.length}`,
+  );
+});

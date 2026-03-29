@@ -7,9 +7,11 @@ import {
   type HomepageData,
   type HomepageLocaleCode,
   type HomepageLocaleContent,
+  type HomepageLocaleManagedContent,
   type HomepageLocalizedContent,
   type SiteSettings,
 } from "./types";
+import { getHomepageNewsItemsByLocale } from "../news/reader";
 
 const keystaticReader = createReader(process.cwd(), keystaticConfig);
 
@@ -23,15 +25,26 @@ const isLocaleCode = (value: string): value is HomepageLocaleCode =>
   HOMEPAGE_LOCALE_CODES.includes(value as HomepageLocaleCode);
 
 export async function getHomepageData(): Promise<HomepageData> {
-  const [siteSettings, localizedContent] = await Promise.all([
+  const [siteSettings, homepageNewsItems, localeEntries] = await Promise.all([
     keystaticReader.singletons.siteSettings.readOrThrow() as Promise<SiteSettings>,
+    getHomepageNewsItemsByLocale(),
     Promise.all(
       HOMEPAGE_LOCALE_CODES.map(async (code) => [
         code,
-        (await localeReaders[code].readOrThrow()) as HomepageLocaleContent,
+        (await localeReaders[code].readOrThrow()) as HomepageLocaleManagedContent,
       ]),
-    ).then((entries) => Object.fromEntries(entries) as HomepageLocalizedContent),
+    ),
   ]);
+
+  const localizedContent = Object.fromEntries(
+    localeEntries.map(([code, locale]) => [
+      code,
+      {
+        ...locale,
+        newsItems: homepageNewsItems[code],
+      },
+    ]),
+  ) as HomepageLocalizedContent;
 
   const defaultLanguage = isLocaleCode(siteSettings.defaultLanguage)
     ? siteSettings.defaultLanguage

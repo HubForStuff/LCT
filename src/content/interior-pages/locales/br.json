@@ -473,5 +473,30 @@
     "submitNoteHtml": "Ao enviar, voce confirma que todas as informacoes sao verdadeiras e concorda em ser contatado pela <strong>LATAM CHINA TECH</strong> para apoiar sua candidatura completa. Esta e uma pre-inscricao, nao a submissao final da HICOOL.",
     "saveDraftLabel": "Salvar rascunho",
     "submitLabel": "Enviar pré-inscrição"
+  },
+  "newsListingPage": {
+    "meta": {
+      "htmlLang": "pt-BR",
+      "title": "Noticias e Insights | LATAM China Tech",
+      "description": "Leia as analises, sinais de mercado e notas operacionais que estao moldando o corredor de inovacao China-LATAM."
+    },
+    "eyebrow": "Atualizacoes",
+    "title": "Noticias e Insights",
+    "description": "Leituras de mercado, historias de founders e sinais operacionais para quem esta construindo entre a China e a America Latina.",
+    "featuredLabel": "Insight em destaque",
+    "allArticlesLabel": "Todos os insights",
+    "readArticleLabel": "Ler artigo",
+    "publishedLabel": "Publicado",
+    "readingTimeLabel": "min de leitura",
+    "emptyStateTitle": "Mais insights em breve",
+    "emptyStateBody": "Estamos preparando novas analises para a proxima leva de operadores no corredor China-LATAM."
+  },
+  "newsArticlePage": {
+    "backLabel": "Voltar para todos os insights",
+    "publishedLabel": "Publicado",
+    "readingTimeLabel": "min de leitura",
+    "writtenByLabel": "Escrito por",
+    "moreInsightsLabel": "Mais insights",
+    "allInsightsLabel": "Ver todos os insights"
   }
 }

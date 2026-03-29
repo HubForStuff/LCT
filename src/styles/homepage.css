@@ -1761,6 +1761,18 @@
     display: none;
   }
 
+  .mobile-home .mob-section-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 18px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.74);
+  }
+
   .mobile-home .mob-news-card {
     flex: 0 0 240px;
     border: 1px solid rgba(255, 255, 255, 0.06);

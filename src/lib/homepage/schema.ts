@@ -95,16 +95,6 @@ const competitionCardFields = fields.object(
   { label: "Competition card" },
 );
 
-const newsItemFields = fields.object(
-  {
-    tag: requiredText("Tag"),
-    title: requiredText("Title", true),
-    image: requiredUrl("Primary image URL"),
-    altImage: requiredUrl("Alternate image URL"),
-  },
-  { label: "News item" },
-);
-
 const footerColumnFields = fields.object(
   {
     title: requiredText("Title"),
@@ -241,9 +231,6 @@ export const homepageLocaleSchema = {
     },
     { label: "News section" },
   ),
-  newsItems: fields.array(newsItemFields, {
-    label: "News items",
-  }),
   footerCta: fields.object(
     {
       eye: requiredText("Eyebrow"),
