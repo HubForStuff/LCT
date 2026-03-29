@@ -156,6 +156,8 @@ export type PreRegistrationPageContent = {
     beijing: string;
   };
   fields: {
+    selectedCompetition: string;
+    selectedCompetitionPlaceholder: string;
     projectName: string;
     projectNamePlaceholder: string;
     projectIntroduction: string;

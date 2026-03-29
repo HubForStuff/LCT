@@ -2,14 +2,11 @@
 import InteriorFooter from "../site/InteriorFooter.astro";
 import InteriorHeader from "../site/InteriorHeader.astro";
 
+import type { CompetitionListingRouteLocale } from "../../lib/competitions/types";
 import type { HomepageLocaleCode, SiteSettings } from "../../lib/homepage/types";
-import type {
-  CompetitionsPageContent,
-  InteriorPageRouteLocale,
-} from "../../lib/interior-pages/types";
 
 interface Props {
-  locale: InteriorPageRouteLocale<CompetitionsPageContent>;
+  locale: CompetitionListingRouteLocale;
   siteSettings: SiteSettings;
   currentLanguage: HomepageLocaleCode;
 }
@@ -175,7 +172,7 @@ const page = locale.page;
                         {tab.featured.deadlineValue}
                       </strong>
                     </div>
-                    <a href="/pre-registration/" class="site-btn site-btn--primary site-btn--compact">
+                    <a href={tab.featured.href} class="site-btn site-btn--primary site-btn--compact">
                       <span data-i18n={`page.tabs.${tabIndex}.featured.ctaLabel`}>
                         {tab.featured.ctaLabel}
                       </span>
@@ -228,7 +225,7 @@ const page = locale.page;
                           {card.deadlineValue}
                         </strong>
                       </div>
-                      <a href="/pre-registration/" class="ccard-apply">
+                      <a href={card.href} class="ccard-apply">
                         <span data-i18n={`page.tabs.${tabIndex}.cards.${cardIndex}.ctaLabel`}>
                           {card.ctaLabel}
                         </span>

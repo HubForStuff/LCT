@@ -3,19 +3,17 @@ import InteriorFooter from "../site/InteriorFooter.astro";
 import InteriorHeader from "../site/InteriorHeader.astro";
 
 import type { HomepageLocaleCode, SiteSettings } from "../../lib/homepage/types";
-import type {
-  InteriorPageRouteLocale,
-  PreRegistrationPageContent,
-} from "../../lib/interior-pages/types";
+import type { CompetitionFormRouteLocale } from "../../lib/competitions/types";
 
 interface Props {
-  locale: InteriorPageRouteLocale<PreRegistrationPageContent>;
+  locale: CompetitionFormRouteLocale;
   siteSettings: SiteSettings;
   currentLanguage: HomepageLocaleCode;
 }
 
 const { locale, siteSettings, currentLanguage } = Astro.props;
 const page = locale.page;
+const competitionOptions = locale.competitionOptions;
 
 const aiTextareaFields = [
   {
@@ -153,7 +151,7 @@ const aiTextareaFields = [
       </div>
 
       <div class="form-wrap">
-        <form class="pre-reg-form">
+        <form class="pre-reg-form" method="post" enctype="multipart/form-data">
           <section class="form-section" id="section-1">
             <div class="form-section-header">
               <div class="form-section-number">1</div>
@@ -165,6 +163,24 @@ const aiTextareaFields = [
                   {page.sections.competitionInformationSubtitle}
                 </p>
               </div>
+            </div>
+
+            <div class="form-row">
+              <label for="selectedCompetition">
+                <span data-i18n="page.fields.selectedCompetition">{page.fields.selectedCompetition}</span>{" "}
+                <span class="req">*</span>
+              </label>
+              <select id="selectedCompetition" name="selectedCompetition" data-competition-select>
+                <option value="" data-i18n="page.fields.selectedCompetitionPlaceholder">
+                  {page.fields.selectedCompetitionPlaceholder}
+                </option>
+                {competitionOptions.map((option, optionIndex) => (
+                  <option value={option.slug} data-i18n={`competitionOptions.${optionIndex}.label`}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+              <input type="hidden" name="competitionSlug" data-competition-hidden />
             </div>
 
             <div class="form-row">
@@ -633,3 +649,35 @@ const aiTextareaFields = [
 
   <InteriorFooter footer={locale.footer} ui={locale.ui} siteSettings={siteSettings} currentLanguage={currentLanguage} />
 </div>
+
+<script>
+  const competitionSelect = document.querySelector("[data-competition-select]");
+  const competitionHiddenInput = document.querySelector("[data-competition-hidden]");
+
+  function syncCompetitionSelection() {
+    if (!(competitionSelect instanceof HTMLSelectElement) || !(competitionHiddenInput instanceof HTMLInputElement)) {
+      return;
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const competitionSlug = params.get("competition");
+
+    if (competitionSlug) {
+      const matchingOption = Array.from(competitionSelect.options).find(
+        (option) => option.value === competitionSlug,
+      );
+
+      if (matchingOption) {
+        competitionSelect.value = competitionSlug;
+      }
+    }
+
+    competitionHiddenInput.value = competitionSelect.value;
+  }
+
+  if (competitionSelect instanceof HTMLSelectElement) {
+    syncCompetitionSelection();
+    competitionSelect.addEventListener("change", syncCompetitionSelection);
+    window.addEventListener("pageshow", syncCompetitionSelection);
+  }
+</script>

@@ -314,24 +314,24 @@
   "preRegistrationPage": {
     "meta": {
       "htmlLang": "en",
-      "title": "HICOOL Pre-Registration | LATAM China Tech",
-      "description": "Start your HICOOL Global Startup Competition pre-registration with LATAM China Tech guidance and application support."
+      "title": "Competition Application | LATAM China Tech",
+      "description": "Submit a standard competition application with LATAM China Tech guidance and application support."
     },
-    "eyebrow": "Pre-Registration Open",
-    "titleHtml": "HICOOL Global<br /><em>Startup Competition</em>",
-    "subtitle": "Ready to apply? Fill in the form below and our team will guide you through every step of your HICOOL application.",
+    "eyebrow": "Applications Open",
+    "titleHtml": "Competition<br /><em>Application Form</em>",
+    "subtitle": "Use the standard form below to apply to a competition and our team will guide you through the next steps of your submission.",
     "formProgressLabel": "Form progress",
     "banner": {
-      "badge": "Pre-Registration",
-      "title": "This is a Pre-Registration",
-      "descriptionHtml": "Submit this form and <strong>LATAM CHINA TECH</strong> will personally guide you through your full HICOOL application: reviewing your submission, strengthening your pitch, and maximizing your chances of winning.",
+      "badge": "Application Support",
+      "title": "One Standard Form for Every Competition",
+      "descriptionHtml": "Submit this form and <strong>LATAM CHINA TECH</strong> will help route your application to the right competition flow, review your positioning, and prepare the next submission steps with you.",
       "supportLabel": "Supported by",
       "supportName": "LATAM CHINA TECH",
-      "supportItems": ["Application coaching", "Network introductions", "China market guide"]
+      "supportItems": ["Application coaching", "Competition routing", "Cross-border positioning"]
     },
     "guide": {
       "title": "Application Guide & Tutorial",
-      "description": "Before you begin, download our step-by-step PDF guide. It covers competition rules, judging criteria, Beijing incorporation requirements, and tips for a winning application in English, Spanish, and Portuguese.",
+      "description": "Before you begin, download our step-by-step guide. It covers competition expectations, required materials, and tips for preparing a stronger cross-border submission.",
       "actions": [
         { "label": "Download PDF Guide", "href": "#", "theme": "dark", "icon": "download" },
         { "label": "Watch Tutorial", "href": "#", "theme": "light", "icon": "play" }
@@ -341,23 +341,25 @@
       { "number": "01", "label": "Competition Info", "target": "section-1" },
       { "number": "02", "label": "Applicant Details", "target": "section-2" },
       { "number": "03", "label": "Project Information", "target": "section-3" },
-      { "number": "04", "label": "Beijing Plan", "target": "section-4" }
+      { "number": "04", "label": "Strategic Fit", "target": "section-4" }
     ],
     "sections": {
       "competitionInformationTitle": "Competition Information",
-      "competitionInformationSubtitle": "Basic details about your project and company registration.",
+      "competitionInformationSubtitle": "Choose the competition and share the core details about your project and company.",
       "applicantTitle": "Main Participant Applicant",
       "applicantSubtitle": "Personal details of the lead applicant.",
       "projectTitle": "Project Information",
       "projectSubtitle": "Tell us about your startup. Use the helper prompts if you want a faster first draft.",
-      "beijingTitle": "Plan for Incorporation in Beijing",
-      "beijingSubtitle": "Required for prize eligibility."
+      "beijingTitle": "Expansion Plan & Strategic Fit",
+      "beijingSubtitle": "Tell us how this opportunity fits your market-entry or growth strategy."
     },
     "notes": {
       "applicant": "Instructions: The main applicant should be the largest natural shareholder and be available for a semi-finals roadshow if selected.",
-      "beijing": "Important: Incorporation in Beijing is the goal of the organizers and is mandatory to receive your awarded prize."
+      "beijing": "Important: Describe the strategic fit for this competition clearly, including any market-entry, partnership, or geographic expansion plans."
     },
     "fields": {
+      "selectedCompetition": "Competition",
+      "selectedCompetitionPlaceholder": "Select the competition you are applying to",
       "projectName": "Project Name",
       "projectNamePlaceholder": "Your project or startup name",
       "projectIntroduction": "Project Introduction",
@@ -412,11 +414,11 @@
       "expectedBenefits": "What do you expect to receive?",
       "hearAbout": "Where did you hear about us?",
       "hearAboutPlaceholder": "Select a source",
-      "beijingPlan": "Beijing Incorporation & China Opportunity Plan",
-      "beijingPlanPlaceholder": "Describe your plan for incorporating in Beijing. How does your startup leverage China's market, technology ecosystem, policy environment, or talent pool?",
-      "incorporationTimeline": "Intended Incorporation Timeline in Beijing",
-      "incorporationTimelineHint": "Full 1-on-1 incorporation support will be provided",
-      "incorporationTimelinePlaceholder": "When do you plan to incorporate?"
+      "beijingPlan": "Expansion Plan & Strategic Fit",
+      "beijingPlanPlaceholder": "Describe why this competition is the right fit. Include your expansion plan, target market, partnership strategy, or the cross-border opportunity you want to unlock.",
+      "incorporationTimeline": "Preferred Execution Timeline",
+      "incorporationTimelineHint": "Use this to tell us when you expect to activate the next step after selection.",
+      "incorporationTimelinePlaceholder": "When do you plan to move forward?"
     },
     "writeWithAiLabel": "Write with AI",
     "wordCountTarget": "Target: 30-50 words",
@@ -464,15 +466,15 @@
       "Other"
     ],
     "incorporationTimelineOptions": [
-      "Immediately upon winning",
-      "Within 3 months of award",
-      "Within 6 months of award",
-      "Within 12 months of award",
+      "Immediately if selected",
+      "Within 3 months",
+      "Within 6 months",
+      "Within 12 months",
       "Still evaluating the timeline"
     ],
-    "submitNoteHtml": "By submitting, you confirm that all information is accurate and agree to be contacted by <strong>LATAM CHINA TECH</strong> to support your full application. This is a pre-registration, not the final HICOOL submission.",
+    "submitNoteHtml": "By submitting, you confirm that the information is accurate and agree to be contacted by <strong>LATAM CHINA TECH</strong> for competition-specific follow-up and application support.",
     "saveDraftLabel": "Save Draft",
-    "submitLabel": "Submit Pre-Registration"
+    "submitLabel": "Submit Application"
   },
   "newsListingPage": {
     "meta": {

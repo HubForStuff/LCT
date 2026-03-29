@@ -110,3 +110,40 @@ test("news content is modeled as a keystatic-managed collection", () => {
     `expected at least 3 seeded news entries, found ${newsEntries.length}`,
   );
 });
+
+test("competitions content is modeled as a keystatic-managed collection", () => {
+  const keystaticConfig = readProjectFile("keystatic.config.ts");
+  const competitionsSchemaModule = resolve(projectRoot, "src/lib/competitions/schema.ts");
+  const competitionsReaderModule = resolve(projectRoot, "src/lib/competitions/reader.ts");
+  const competitionsContentDir = resolve(projectRoot, "src/content/competitions");
+
+  assert.match(
+    keystaticConfig,
+    /collections:\s*\{[\s\S]*competitions:\s*collection\s*\(/,
+    "expected keystatic.config.ts to register a competitions collection",
+  );
+  assert.equal(
+    existsSync(competitionsSchemaModule),
+    true,
+    "expected the competitions collection schema to live in src/lib/competitions/schema.ts",
+  );
+  assert.equal(
+    existsSync(competitionsReaderModule),
+    true,
+    "expected the competitions reader helpers to live in src/lib/competitions/reader.ts",
+  );
+  assert.equal(
+    existsSync(competitionsContentDir),
+    true,
+    "expected competitions entries to be stored in src/content/competitions",
+  );
+
+  const competitionEntries = existsSync(competitionsContentDir)
+    ? readdirSync(competitionsContentDir).filter((entry) => !entry.startsWith("."))
+    : [];
+
+  assert.ok(
+    competitionEntries.length >= 6,
+    `expected at least 6 seeded competition entries, found ${competitionEntries.length}`,
+  );
+});

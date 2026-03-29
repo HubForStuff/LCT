@@ -314,24 +314,24 @@
   "preRegistrationPage": {
     "meta": {
       "htmlLang": "zh-CN",
-      "title": "HICOOL 预报名 | LATAM China Tech",
-      "description": "在 LATAM China Tech 的指导和申请支持下，开始你的 HICOOL 全球创业大赛预报名。"
+      "title": "竞赛申请表 | LATAM China Tech",
+      "description": "在 LATAM China Tech 的指导和申请支持下，提交标准化竞赛申请。"
     },
-    "eyebrow": "预报名开放中",
-    "titleHtml": "HICOOL 全球<br /><em>创业大赛预报名</em>",
-    "subtitle": "准备申请了吗？填写下方表单，我们的团队会陪你完成 HICOOL 申请的每一步。",
+    "eyebrow": "申请开放中",
+    "titleHtml": "竞赛<br /><em>申请表</em>",
+    "subtitle": "请使用下方统一表单申请竞赛，我们的团队会协助你完成后续提交步骤。",
     "formProgressLabel": "表单进度",
     "banner": {
-      "badge": "预报名",
-      "title": "这是一个预报名流程",
-      "descriptionHtml": "提交此表单后，<strong>LATAM CHINA TECH</strong> 将全程协助你完成 HICOOL 正式申请：审阅材料、强化路演表达，并尽可能提升你的获奖机会。",
+      "badge": "申请支持",
+      "title": "一套表单适用于所有竞赛",
+      "descriptionHtml": "提交此表单后，<strong>LATAM CHINA TECH</strong> 将帮助你进入正确的竞赛流程，审阅定位，并与你一起准备下一步提交材料。",
       "supportLabel": "支持方",
       "supportName": "LATAM CHINA TECH",
-      "supportItems": ["申请辅导", "资源引荐", "中国市场指南"]
+      "supportItems": ["申请辅导", "竞赛分流", "跨境定位支持"]
     },
     "guide": {
       "title": "申请指南与教程",
-      "description": "开始前，请下载我们的 PDF 分步指南。内容涵盖比赛规则、评审标准、北京落地要求，以及英文、西班牙文和葡萄牙文版本的获胜申请建议。",
+      "description": "开始前，请下载我们的分步指南。内容涵盖竞赛要求、所需材料，以及如何准备更强跨境申请的建议。",
       "actions": [
         { "label": "下载 PDF 指南", "href": "#", "theme": "dark", "icon": "download" },
         { "label": "观看教程", "href": "#", "theme": "light", "icon": "play" }
@@ -341,23 +341,25 @@
       { "number": "01", "label": "竞赛信息", "target": "section-1" },
       { "number": "02", "label": "申请人信息", "target": "section-2" },
       { "number": "03", "label": "项目信息", "target": "section-3" },
-      { "number": "04", "label": "北京落地计划", "target": "section-4" }
+      { "number": "04", "label": "战略契合度", "target": "section-4" }
     ],
     "sections": {
       "competitionInformationTitle": "竞赛信息",
-      "competitionInformationSubtitle": "关于你的项目和公司注册的基础信息。",
+      "competitionInformationSubtitle": "请选择竞赛，并分享项目与公司的核心信息。",
       "applicantTitle": "主要申请人",
       "applicantSubtitle": "主申请人的个人信息。",
       "projectTitle": "项目信息",
       "projectSubtitle": "请介绍你的创业项目。如果你想更快完成初稿，可以使用辅助提示。",
-      "beijingTitle": "北京落地计划",
-      "beijingSubtitle": "获奖资格所需。"
+      "beijingTitle": "扩张计划与战略契合度",
+      "beijingSubtitle": "请说明这次机会如何契合你的市场进入或增长策略。"
     },
     "notes": {
       "applicant": "说明：主申请人应为最大自然人股东，并在入围后能够参加半决赛路演。",
-      "beijing": "重要提示：在北京注册落地是主办方目标，也是领取奖金的必要条件。"
+      "beijing": "重要提示：请清楚说明该竞赛与你的战略契合度，包括扩张计划、合作策略或你希望释放的跨境机会。"
     },
     "fields": {
+      "selectedCompetition": "竞赛",
+      "selectedCompetitionPlaceholder": "请选择你要申请的竞赛",
       "projectName": "项目名称",
       "projectNamePlaceholder": "你的项目或创业公司名称",
       "projectIntroduction": "项目简介",
@@ -412,11 +414,11 @@
       "expectedBenefits": "你希望获得什么支持？",
       "hearAbout": "你是如何了解到我们的？",
       "hearAboutPlaceholder": "选择来源",
-      "beijingPlan": "北京注册与中国机会计划",
-      "beijingPlanPlaceholder": "请描述你在北京落地注册的计划。你的创业项目将如何利用中国市场、科技生态、政策环境或人才资源？",
-      "incorporationTimeline": "预计在北京注册的时间线",
-      "incorporationTimelineHint": "我们将提供一对一落地支持",
-      "incorporationTimelinePlaceholder": "你计划何时完成注册？"
+      "beijingPlan": "扩张计划与战略契合度",
+      "beijingPlanPlaceholder": "请说明为什么这项竞赛适合你。包括扩张计划、目标市场、合作策略，或你希望抓住的跨境机会。",
+      "incorporationTimeline": "预期执行时间",
+      "incorporationTimelineHint": "请说明如果入选，你希望何时启动下一步。",
+      "incorporationTimelinePlaceholder": "你计划何时推进？"
     },
     "writeWithAiLabel": "用 AI 协助撰写",
     "wordCountTarget": "目标：30-50 个词",
@@ -464,15 +466,15 @@
       "其他"
     ],
     "incorporationTimelineOptions": [
-      "获奖后立即注册",
-      "获奖后 3 个月内",
-      "获奖后 6 个月内",
-      "获奖后 12 个月内",
+      "一旦入选立即推进",
+      "3 个月内",
+      "6 个月内",
+      "12 个月内",
       "仍在评估时间安排"
     ],
-    "submitNoteHtml": "提交即表示你确认所有信息准确无误，并同意由 <strong>LATAM CHINA TECH</strong> 与你联系，协助完成正式申请。此表单为预报名，不是 HICOOL 的最终提交。",
+    "submitNoteHtml": "提交即表示你确认所有信息准确无误，并同意由 <strong>LATAM CHINA TECH</strong> 与你联系，进行竞赛相关跟进与申请支持。",
     "saveDraftLabel": "保存草稿",
-    "submitLabel": "提交预报名"
+    "submitLabel": "提交申请"
   },
   "newsListingPage": {
     "meta": {

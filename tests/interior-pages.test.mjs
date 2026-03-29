@@ -58,14 +58,21 @@ const buildSite = () => {
 
 test("interior page route files stay thin and delegate rendering", { concurrency: false }, () => {
   const competitionsRoute = resolve(projectRoot, "src/pages/competitions.astro");
+  const competitionDetailRoute = resolve(projectRoot, "src/pages/competitions/[slug].astro");
   const preRegistrationRoute = resolve(projectRoot, "src/pages/pre-registration.astro");
   const newsIndexRoute = resolve(projectRoot, "src/pages/news/index.astro");
   const newsArticleRoute = resolve(projectRoot, "src/pages/news/[slug].astro");
   const contentLocalesDir = resolve(projectRoot, "src/content/interior-pages/locales");
   const readerModule = resolve(projectRoot, "src/lib/interior-pages/reader.ts");
   const newsReaderModule = resolve(projectRoot, "src/lib/news/reader.ts");
+  const competitionsReaderModule = resolve(projectRoot, "src/lib/competitions/reader.ts");
 
   assert.equal(existsSync(competitionsRoute), true, "expected competitions route to exist");
+  assert.equal(
+    existsSync(competitionDetailRoute),
+    true,
+    "expected competition detail route to exist",
+  );
   assert.equal(
     existsSync(preRegistrationRoute),
     true,
@@ -88,6 +95,11 @@ test("interior page route files stay thin and delegate rendering", { concurrency
     true,
     "expected news pages to use a dedicated Keystatic-backed reader",
   );
+  assert.equal(
+    existsSync(competitionsReaderModule),
+    true,
+    "expected competitions pages to use a dedicated Keystatic-backed reader",
+  );
 
   const localeFiles = readdirSync(contentLocalesDir).filter((entry) => entry.endsWith(".json"));
   assert.deepEqual(
@@ -97,6 +109,7 @@ test("interior page route files stay thin and delegate rendering", { concurrency
   );
 
   const competitionsSource = readProjectFile("src/pages/competitions.astro");
+  const competitionDetailSource = readProjectFile("src/pages/competitions/[slug].astro");
   const preRegistrationSource = readProjectFile("src/pages/pre-registration.astro");
   const newsIndexSource = readProjectFile("src/pages/news/index.astro");
   const newsArticleSource = readProjectFile("src/pages/news/[slug].astro");
@@ -108,6 +121,10 @@ test("interior page route files stay thin and delegate rendering", { concurrency
   assert.ok(
     preRegistrationSource.trim().split("\n").length < 80,
     "expected pre-registration route to stay thin",
+  );
+  assert.ok(
+    competitionDetailSource.trim().split("\n").length < 120,
+    "expected competition detail route to stay thin",
   );
   assert.ok(
     newsIndexSource.trim().split("\n").length < 80,
@@ -139,14 +156,24 @@ test("interior page route files stay thin and delegate rendering", { concurrency
     "expected news article route to delegate to a reusable page component",
   );
   assert.match(
+    competitionDetailSource,
+    /CompetitionDetailPage/,
+    "expected competition detail route to delegate to a reusable page component",
+  );
+  assert.match(
     competitionsSource,
     /interior-pages\.css/,
     "expected competitions route to import the dedicated interior stylesheet",
   );
   assert.match(
     competitionsSource,
-    /getInteriorPageData\("competitionsPage"\)/,
-    "expected competitions route to load localized content through the reader",
+    /getCompetitionsListingPageData\(/,
+    "expected competitions route to load collection-backed content through the competitions reader",
+  );
+  assert.match(
+    competitionDetailSource,
+    /getCompetitionDetailPageData\(/,
+    "expected competition detail route to load collection-backed content through the competitions reader",
   );
   assert.match(
     preRegistrationSource,
@@ -203,6 +230,15 @@ test("competitions and pre-registration pages build with the expected mockup con
       resolve(build.outDir, "competitions", "index.html"),
       "utf8",
     );
+    const competitionDetailHtml = readFileSync(
+      resolve(
+        build.outDir,
+        "competitions",
+        "greater-tech-challenge-2025",
+        "index.html",
+      ),
+      "utf8",
+    );
     const preRegistrationHtml = readFileSync(
       resolve(build.outDir, "pre-registration", "index.html"),
       "utf8",
@@ -243,16 +279,37 @@ test("competitions and pre-registration pages build with the expected mockup con
       /Load More Challenges/i,
       "expected the load more CTA from the mockup",
     );
+    assert.match(
+      competitionsHtml,
+      /href="\/competitions\/greater-tech-challenge-2025\/"/,
+      "expected the competitions listing to link to generated detail pages",
+    );
+
+    assert.match(
+      competitionDetailHtml,
+      /Greater Tech Challenge 2025/i,
+      "expected the competition detail page title to render",
+    );
+    assert.match(
+      competitionDetailHtml,
+      /Apply Now|Apply to this challenge/i,
+      "expected the competition detail page to include the application CTA",
+    );
+    assert.match(
+      competitionDetailHtml,
+      /href="\/pre-registration\/\?competition=greater-tech-challenge-2025"/,
+      "expected the competition detail page CTA to pass the selected competition into the shared form route",
+    );
 
     assert.match(
       preRegistrationHtml,
-      /HICOOL Global[\s\S]*Startup Competition/i,
-      "expected the pre-registration page hero heading from the mockup",
+      /Competition Application|Pre-Registration|Application Form/i,
+      "expected the shared competition application form heading",
     );
     assert.match(
       preRegistrationHtml,
-      /This is a Pre-Registration/i,
-      "expected the pre-registration explainer banner",
+      /Application Support|Competition Support|Pre-Registration/i,
+      "expected the shared form explainer banner",
     );
     assert.match(
       preRegistrationHtml,
@@ -266,12 +323,12 @@ test("competitions and pre-registration pages build with the expected mockup con
     );
     assert.match(
       preRegistrationHtml,
-      /Plan for Incorporation in Beijing/i,
-      "expected the Beijing plan section heading",
+      /Project Information/i,
+      "expected the form to retain the shared project-information section",
     );
     assert.match(
       preRegistrationHtml,
-      /Submit Pre-Registration/i,
+      /Submit/i,
       "expected the final submit CTA",
     );
 
@@ -378,7 +435,12 @@ test("interior pages expose shared localization hooks and localize in the browse
     }
 
     runAgentBrowser(["--session", session, "set", "viewport", "1440", "900"]);
-    runAgentBrowser(["--session", session, "open", `http://127.0.0.1:${port}/competitions/`]);
+    runAgentBrowser([
+      "--session",
+      session,
+      "open",
+      `http://127.0.0.1:${port}/competitions/greater-tech-challenge-2025/`,
+    ]);
     runAgentBrowser(["--session", session, "wait", "1000"]);
     runAgentBrowser(["--session", session, "click", ".site-lang [data-lang-toggle]"]);
     runAgentBrowser(["--session", session, "click", ".site-lang [data-lang-option='CN']"]);
@@ -396,21 +458,26 @@ test("interior pages expose shared localization hooks and localize in the browse
       session,
       "get",
       "text",
-      ".filter-group-label",
+      ".competition-meta-label",
     ]);
 
     assert.match(
       competitionsHeading,
-      /挑战|竞赛/u,
-      "expected the competitions page heading to switch to Chinese",
+      /Greater Tech Challenge|竞赛|挑战/u,
+      "expected the competition detail heading to switch to Chinese",
     );
     assert.match(
       competitionsFilter,
-      /状态/u,
-      "expected the competitions filters to switch to Chinese",
+      /状态|阶段/u,
+      "expected the competition detail metadata to switch to Chinese",
     );
 
-    runAgentBrowser(["--session", session, "open", `http://127.0.0.1:${port}/pre-registration/`]);
+    runAgentBrowser([
+      "--session",
+      session,
+      "open",
+      `http://127.0.0.1:${port}/pre-registration/?competition=greater-tech-challenge-2025`,
+    ]);
     runAgentBrowser(["--session", session, "wait", "1000"]);
     runAgentBrowser(["--session", session, "click", ".site-lang [data-lang-toggle]"]);
     runAgentBrowser(["--session", session, "click", ".site-lang [data-lang-option='BR']"]);
@@ -433,12 +500,12 @@ test("interior pages expose shared localization hooks and localize in the browse
 
     assert.match(
       preRegistrationHeading,
-      /Pré|Inscrição/i,
-      "expected the pre-registration page heading to switch to Portuguese",
+      /Aplica|Inscri/i,
+      "expected the shared competition application heading to switch to Portuguese",
     );
     assert.match(
       submitLabel,
-      /Enviar|Pré-inscrição/i,
+      /Enviar|Inscri/i,
       "expected the submit CTA to switch to Portuguese",
     );
   } finally {

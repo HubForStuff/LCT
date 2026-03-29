@@ -1,0 +1,140 @@
+---
+import InteriorFooter from "../site/InteriorFooter.astro";
+import InteriorHeader from "../site/InteriorHeader.astro";
+
+import type { HomepageLocaleCode, SiteSettings } from "../../lib/homepage/types";
+import type { CompetitionDetailRouteLocale } from "../../lib/competitions/types";
+
+interface Props {
+  locale: CompetitionDetailRouteLocale;
+  siteSettings: SiteSettings;
+  currentLanguage: HomepageLocaleCode;
+}
+
+const { locale, siteSettings, currentLanguage } = Astro.props;
+---
+
+<div class="interior-page">
+  <InteriorHeader
+    navItems={locale.navItems}
+    activeHref="/competitions/"
+    siteSettings={siteSettings}
+    currentLanguage={currentLanguage}
+    languageLabel={locale.ui.chooseLanguage}
+    homeLabel={locale.ui.homeLabel}
+  />
+
+  <main>
+    <section class="page-header competition-detail-header">
+      <div class="interior-wrap competition-detail-header-inner">
+        <a href="/competitions/" class="news-back-link" data-i18n="detailPage.backLabel">
+          {locale.detailPage.backLabel}
+        </a>
+
+        <div class="competition-detail-topline">
+          <div class="page-eyebrow" data-i18n="page.detailEyebrow">
+            <span class="dot"></span>
+            {locale.page.detailEyebrow}
+          </div>
+          <div class="competition-watermark">{locale.page.watermark}</div>
+        </div>
+
+        <div class="competition-hero-grid">
+          <div>
+            <div class="competition-detail-category" data-i18n="page.category">{locale.page.category}</div>
+            <h1 class="page-title competition-detail-title" data-i18n="page.name">{locale.page.name}</h1>
+            <p class="page-subtitle page-subtitle--wide" data-i18n="page.detailSubtitle">
+              {locale.page.detailSubtitle}
+            </p>
+          </div>
+
+          <aside class="competition-hero-card">
+            <div class="competition-hero-value">{locale.page.value}</div>
+            <div class="competition-hero-status">
+              <span class="status-dot"></span>
+              <span data-i18n="page.statusLabel">{locale.page.statusLabel}</span>
+            </div>
+            <a href={locale.page.applicationHref} class="site-btn site-btn--primary" data-i18n="page.applicationLabel">
+              {locale.page.applicationLabel}
+            </a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="interior-wrap competition-detail-shell">
+      <div class="competition-meta-grid">
+        <article class="competition-meta-card">
+          <div class="competition-meta-label" data-i18n="detailPage.statusLabel">
+            {locale.detailPage.statusLabel}
+          </div>
+          <div class:list={["competition-meta-value", `competition-meta-value--${locale.page.statusTone}`]}>
+            {locale.page.statusLabel}
+          </div>
+        </article>
+
+        <article class="competition-meta-card">
+          <div class="competition-meta-label" data-i18n="detailPage.deadlineLabel">
+            {locale.detailPage.deadlineLabel}
+          </div>
+          <div class="competition-meta-value">
+            <span data-i18n="page.deadlinePrefix">{locale.page.deadlinePrefix}</span>{" "}
+            <strong data-i18n="page.deadlineValue">{locale.page.deadlineValue}</strong>
+          </div>
+        </article>
+
+        <article class="competition-meta-card">
+          <div class="competition-meta-label" data-i18n="detailPage.trackLabel">
+            {locale.detailPage.trackLabel}
+          </div>
+          <div class="competition-meta-value" data-i18n="page.trackLabel">{locale.page.trackLabel}</div>
+        </article>
+
+        <article class="competition-meta-card">
+          <div class="competition-meta-label" data-i18n="detailPage.focusLabel">
+            {locale.detailPage.focusLabel}
+          </div>
+          <div class="competition-focus-tags">
+            {locale.page.focusTags.map((tag) => (
+              <span class="competition-focus-tag">{tag}</span>
+            ))}
+          </div>
+        </article>
+      </div>
+
+      <article class="competition-rich-card">
+        <div class="competition-rich-body" data-i18n-html="page.overviewHtml" set:html={locale.page.overviewHtml}></div>
+      </article>
+
+      <div class="competition-detail-grid">
+        <article class="competition-rich-card">
+          <h2 data-i18n="page.eligibilityTitle">{locale.page.eligibilityTitle}</h2>
+          <div class="competition-rich-body" data-i18n-html="page.eligibilityHtml" set:html={locale.page.eligibilityHtml}></div>
+        </article>
+
+        <article class="competition-rich-card">
+          <h2 data-i18n="page.supportTitle">{locale.page.supportTitle}</h2>
+          <div class="competition-rich-body" data-i18n-html="page.supportHtml" set:html={locale.page.supportHtml}></div>
+        </article>
+      </div>
+
+      <article class="competition-rich-card">
+        <h2 data-i18n="page.processTitle">{locale.page.processTitle}</h2>
+        <div class="competition-rich-body" data-i18n-html="page.processHtml" set:html={locale.page.processHtml}></div>
+
+        <div class="competition-detail-actions">
+          <a href={locale.page.applicationHref} class="site-btn site-btn--primary" data-i18n="detailPage.applyLabel">
+            {locale.detailPage.applyLabel}
+          </a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <InteriorFooter
+    footer={locale.footer}
+    ui={locale.ui}
+    siteSettings={siteSettings}
+    currentLanguage={currentLanguage}
+  />
+</div>

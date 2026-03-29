@@ -2,16 +2,17 @@
 import CompetitionsPage from "../components/competitions/CompetitionsPage.astro";
 import LocalizationClient from "../components/i18n/LocalizationClient.astro";
 import Layout from "../layouts/Layout.astro";
-import { getInteriorPageData } from "../lib/interior-pages/reader";
+import { getCompetitionsListingPageData } from "../lib/competitions/reader";
 import "../styles/interior-pages.css";
 
 const { defaultLanguage, defaultLocale, localizedContent, siteSettings } =
-  await getInteriorPageData("competitionsPage");
+  await getCompetitionsListingPageData();
 ---
 
 <Layout
   title={defaultLocale.meta.title}
   description={defaultLocale.meta.description}
+  htmlLang={defaultLocale.meta.htmlLang}
   bodyClass="interior-body"
 >
   <CompetitionsPage

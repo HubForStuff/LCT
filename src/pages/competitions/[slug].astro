@@ -1,0 +1,41 @@
+---
+import CompetitionDetailPage from "../../components/competitions/CompetitionDetailPage.astro";
+import LocalizationClient from "../../components/i18n/LocalizationClient.astro";
+import Layout from "../../layouts/Layout.astro";
+import {
+  getAllCompetitionSlugs,
+  getCompetitionDetailPageData,
+} from "../../lib/competitions/reader";
+import "../../styles/interior-pages.css";
+
+export async function getStaticPaths() {
+  const slugs = await getAllCompetitionSlugs();
+
+  return slugs.map((slug) => ({
+    params: { slug },
+  }));
+}
+
+const slug = Astro.params.slug;
+
+if (!slug) {
+  throw new Error("Missing competition slug.");
+}
+
+const { defaultLanguage, defaultLocale, localizedContent, siteSettings } =
+  await getCompetitionDetailPageData(slug);
+---
+
+<Layout
+  title={defaultLocale.meta.title}
+  description={defaultLocale.meta.description}
+  htmlLang={defaultLocale.meta.htmlLang}
+  bodyClass="interior-body"
+>
+  <CompetitionDetailPage
+    locale={defaultLocale}
+    siteSettings={siteSettings}
+    currentLanguage={defaultLanguage}
+  />
+  <LocalizationClient defaultLanguage={defaultLanguage} localizedContent={localizedContent} />
+</Layout>

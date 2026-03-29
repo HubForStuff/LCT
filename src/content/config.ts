@@ -15,8 +15,14 @@ const news = defineCollection({
   schema: z.any(),
 });
 
+const competitions = defineCollection({
+  type: "data",
+  schema: z.any(),
+});
+
 export const collections = {
   homepage,
   "interior-pages": interiorPages,
+  competitions,
   news,
 };
