@@ -28,6 +28,10 @@ body.interior-body svg {
   display: block;
 }
 
+.interior-page [hidden] {
+  display: none !important;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

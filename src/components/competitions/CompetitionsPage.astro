@@ -323,6 +323,24 @@ const page = locale.page;
       const matchesFocus = activeFocusFilter === "all" || focuses.includes(activeFocusFilter);
       item.hidden = !(matchesStatus && matchesFocus);
     });
+
+    tabTriggers.forEach((trigger) => {
+      const tabId = trigger.dataset.tabTrigger;
+      const countNode = trigger.querySelector(".tab-count");
+      const panel = tabId
+        ? document.querySelector(`[data-tab-panel="${tabId}"]`)
+        : null;
+
+      if (!(countNode instanceof HTMLElement) || !(panel instanceof HTMLElement)) {
+        return;
+      }
+
+      const visibleCount = Array.from(panel.querySelectorAll("[data-filter-item]")).filter(
+        (item) => !item.hasAttribute("hidden"),
+      ).length;
+
+      countNode.textContent = String(visibleCount);
+    });
   }
 
   function activateFilter(buttons, targetValue, activeClassName) {

@@ -561,7 +561,11 @@ test("competition filters work on the listing page, names link to detail pages, 
       "eval",
       `(() => {
         const nodes = Array.from(document.querySelectorAll("#panel-startup [data-filter-item]"));
-        return nodes.filter((node) => !node.hasAttribute("hidden")).length;
+        return nodes.filter((node) => {
+          const style = window.getComputedStyle(node);
+          const rect = node.getBoundingClientRect();
+          return !node.hasAttribute("hidden") && style.display !== "none" && rect.height > 0;
+        }).length;
       })()`,
     ]);
 
@@ -573,11 +577,45 @@ test("competition filters work on the listing page, names link to detail pages, 
       "#panel-startup [data-filter-item]:not([hidden]) [data-competition-name-link]",
     ]);
 
+    const tabCountState = JSON.parse(
+      JSON.parse(
+      runAgentBrowser([
+        "--session",
+        session,
+        "eval",
+        `JSON.stringify(
+          Array.from(document.querySelectorAll("[data-tab-trigger]")).map((trigger) => {
+            const tabId = trigger.getAttribute("data-tab-trigger");
+            const panel = document.querySelector(\`[data-tab-panel="\${tabId}"]\`);
+            const visibleCount = panel
+              ? Array.from(panel.querySelectorAll("[data-filter-item]")).filter((node) => {
+                  const style = window.getComputedStyle(node);
+                  const rect = node.getBoundingClientRect();
+                  return !node.hasAttribute("hidden") && style.display !== "none" && rect.height > 0;
+                }).length
+              : 0;
+
+            return {
+              tabId,
+              renderedCount: trigger.querySelector(".tab-count")?.textContent?.trim() ?? "",
+              visibleCount,
+            };
+          })
+        )`,
+      ]),
+      ),
+    );
+
     assert.match(visibleCards, /^1\s*$/, "expected the combined filters to leave exactly one visible startup competition");
     assert.match(
       filteredHeading,
       /\[TEST DATA\].*AI/i,
       "expected the future + AI filters to isolate the marked test-data entry",
+    );
+    assert.equal(
+      tabCountState.every((entry) => entry.renderedCount === String(entry.visibleCount)),
+      true,
+      `expected each tab badge to match the number of rendered items after filtering, received ${JSON.stringify(tabCountState)}`,
     );
 
     runAgentBrowser([
