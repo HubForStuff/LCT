@@ -2,89 +2,102 @@
 import InteriorFooter from "../site/InteriorFooter.astro";
 import InteriorHeader from "../site/InteriorHeader.astro";
 
-import type { SiteSettings } from "../../lib/homepage/types";
+import type { HomepageLocaleCode, SiteSettings } from "../../lib/homepage/types";
 import type {
-  InteriorFooterContent,
-  InteriorNavItem,
+  InteriorPageRouteLocale,
   PreRegistrationPageContent,
-} from "../../content/interior-pages";
+} from "../../lib/interior-pages/types";
 
 interface Props {
-  page: PreRegistrationPageContent;
-  navItems: InteriorNavItem[];
-  footer: InteriorFooterContent;
+  locale: InteriorPageRouteLocale<PreRegistrationPageContent>;
   siteSettings: SiteSettings;
+  currentLanguage: HomepageLocaleCode;
 }
 
-const { page, navItems, footer, siteSettings } = Astro.props;
+const { locale, siteSettings, currentLanguage } = Astro.props;
+const page = locale.page;
 
 const aiTextareaFields = [
   {
     id: "projectOverview",
-    label: "Project Overview",
-    placeholder:
-      "Provide a detailed overview of your project — the problem it addresses, your solution approach, and why now.",
+    label: page.fields.projectOverview,
+    labelKey: "page.fields.projectOverview",
+    placeholder: page.fields.projectOverviewPlaceholder,
+    placeholderKey: "page.fields.projectOverviewPlaceholder",
   },
   {
     id: "productFeatures",
-    label: "Product / Service Features",
-    placeholder: "Describe the key features and differentiators of your product or service.",
+    label: page.fields.productFeatures,
+    labelKey: "page.fields.productFeatures",
+    placeholder: page.fields.productFeaturesPlaceholder,
+    placeholderKey: "page.fields.productFeaturesPlaceholder",
   },
   {
     id: "businessModel",
-    label: "Business Model",
-    placeholder: "Explain how your startup generates revenue and your go-to-market strategy.",
+    label: page.fields.businessModel,
+    labelKey: "page.fields.businessModel",
+    placeholder: page.fields.businessModelPlaceholder,
+    placeholderKey: "page.fields.businessModelPlaceholder",
   },
   {
-    id: "teamIntro",
-    label: "Team Introduction",
-    placeholder:
-      "Introduce your founding team — backgrounds, expertise, and why you're the right team to execute this vision.",
+    id: "teamIntroduction",
+    label: page.fields.teamIntroduction,
+    labelKey: "page.fields.teamIntroduction",
+    placeholder: page.fields.teamIntroductionPlaceholder,
+    placeholderKey: "page.fields.teamIntroductionPlaceholder",
   },
   {
     id: "investmentValue",
-    label: "Investment Value",
-    placeholder:
-      "Describe your investment opportunity — current traction, financials, use of funds, and growth potential.",
+    label: page.fields.investmentValue,
+    labelKey: "page.fields.investmentValue",
+    placeholder: page.fields.investmentValuePlaceholder,
+    placeholderKey: "page.fields.investmentValuePlaceholder",
   },
-];
+] as const;
 ---
 
 <div class="interior-page">
   <InteriorHeader
-    navItems={navItems}
-    activeLabel="Competitions & Challenges"
+    navItems={locale.navItems}
+    activeHref="/competitions/"
     siteSettings={siteSettings}
+    currentLanguage={currentLanguage}
+    languageLabel={locale.ui.chooseLanguage}
+    homeLabel={locale.ui.homeLabel}
   />
 
   <main>
     <section class="page-header">
       <div class="interior-wrap page-header-inner page-header-inner--split">
         <div>
-          <div class="page-eyebrow">
+          <div class="page-eyebrow" data-i18n="page.eyebrow">
             <span class="dot"></span>
             {page.eyebrow}
           </div>
-          <h1 class="page-title" set:html={page.titleHtml}></h1>
+          <h1 class="page-title" data-i18n-html="page.titleHtml" set:html={page.titleHtml}></h1>
         </div>
-        <p class="page-subtitle">{page.subtitle}</p>
+        <p class="page-subtitle" data-i18n="page.subtitle">{page.subtitle}</p>
       </div>
     </section>
 
     <section class="interior-wrap pre-registration-shell">
       <div class="prereg-banner">
         <div class="prereg-banner-copy">
-          <div class="prereg-banner-badge">{page.banner.badge}</div>
-          <h2>{page.banner.title}</h2>
-          <p set:html={page.banner.descriptionHtml}></p>
+          <div class="prereg-banner-badge" data-i18n="page.banner.badge">{page.banner.badge}</div>
+          <h2 data-i18n="page.banner.title">{page.banner.title}</h2>
+          <p data-i18n-html="page.banner.descriptionHtml" set:html={page.banner.descriptionHtml}></p>
         </div>
 
         <aside class="prereg-support-card">
-          <div class="prereg-support-label">{page.banner.supportLabel}</div>
-          <div class="prereg-support-name">{page.banner.supportName}</div>
+          <div class="prereg-support-label" data-i18n="page.banner.supportLabel">
+            {page.banner.supportLabel}
+          </div>
+          <div class="prereg-support-name" data-i18n="page.banner.supportName">
+            {page.banner.supportName}
+          </div>
           <div class="prereg-support-items">
-            {page.banner.supportItems.map((item) => (
-              <span>{item}</span>
+            {page.banner.supportItems.map((item, itemIndex) => (
+              <span data-i18n={`page.banner.supportItems.${itemIndex}`}>{item}</span>
             ))}
           </div>
         </aside>
@@ -101,12 +114,12 @@ const aiTextareaFields = [
         </div>
 
         <div class="tutorial-body">
-          <h2>{page.guide.title}</h2>
-          <p>{page.guide.description}</p>
+          <h2 data-i18n="page.guide.title">{page.guide.title}</h2>
+          <p data-i18n="page.guide.description">{page.guide.description}</p>
         </div>
 
         <div class="tutorial-actions">
-          {page.guide.actions.map((action) => (
+          {page.guide.actions.map((action, actionIndex) => (
             <a
               href={action.href}
               class:list={[
@@ -117,20 +130,24 @@ const aiTextareaFields = [
               <span class="resource-icon" aria-hidden="true">
                 {action.icon === "download" ? "↓" : "▶"}
               </span>
-              {action.label}
+              <span data-i18n={`page.guide.actions.${actionIndex}.label`}>{action.label}</span>
             </a>
           ))}
         </div>
       </div>
 
-      <div class="form-progress" aria-label="Form progress">
-        {page.progressSteps.map((step, index) => (
+      <div
+        class="form-progress"
+        aria-label={page.formProgressLabel}
+        data-i18n-aria-label="page.formProgressLabel"
+      >
+        {page.progressSteps.map((step, stepIndex) => (
           <a
             href={`#${step.target}`}
-            class:list={["progress-step", index === 0 && "is-active"]}
+            class:list={["progress-step", stepIndex === 0 && "is-active"]}
           >
             <span class="progress-step-number">{step.number}</span>
-            {step.label}
+            <span data-i18n={`page.progressSteps.${stepIndex}.label`}>{step.label}</span>
           </a>
         ))}
       </div>
@@ -141,21 +158,35 @@ const aiTextareaFields = [
             <div class="form-section-header">
               <div class="form-section-number">1</div>
               <div>
-                <h2 class="form-section-title">Competition Information</h2>
-                <p class="form-section-subtitle">
-                  Basic details about your project and company registration.
+                <h2 class="form-section-title" data-i18n="page.sections.competitionInformationTitle">
+                  {page.sections.competitionInformationTitle}
+                </h2>
+                <p class="form-section-subtitle" data-i18n="page.sections.competitionInformationSubtitle">
+                  {page.sections.competitionInformationSubtitle}
                 </p>
               </div>
             </div>
 
             <div class="form-row">
-              <label for="projectName">Project Name <span class="req">*</span></label>
-              <input id="projectName" name="projectName" type="text" placeholder="Your project or startup name" />
+              <label for="projectName">
+                <span data-i18n="page.fields.projectName">{page.fields.projectName}</span> <span class="req">*</span>
+              </label>
+              <input
+                id="projectName"
+                name="projectName"
+                type="text"
+                placeholder={page.fields.projectNamePlaceholder}
+                data-i18n-placeholder="page.fields.projectNamePlaceholder"
+              />
             </div>
 
             <div class="form-row">
               <label for="projectIntro">
-                Project Introduction <span class="req">*</span> <span class="hint">30-50 words</span>
+                <span data-i18n="page.fields.projectIntroduction">{page.fields.projectIntroduction}</span>{" "}
+                <span class="req">*</span>{" "}
+                <span class="hint" data-i18n="page.fields.projectIntroductionHint">
+                  {page.fields.projectIntroductionHint}
+                </span>
               </label>
               <div class="field-wrap">
                 <textarea
@@ -163,67 +194,90 @@ const aiTextareaFields = [
                   name="projectIntro"
                   rows="4"
                   class="has-ai"
-                  placeholder="Describe your project in 30-50 words. What problem does it solve? Who does it serve?"
+                  placeholder={page.fields.projectIntroductionPlaceholder}
+                  data-i18n-placeholder="page.fields.projectIntroductionPlaceholder"
                 ></textarea>
-                <button type="button" class="ai-btn">Write with AI</button>
+                <button type="button" class="ai-btn" data-i18n="page.writeWithAiLabel">
+                  {page.writeWithAiLabel}
+                </button>
               </div>
-              <div class="word-count">Target: 30-50 words</div>
+              <div class="word-count" data-i18n="page.wordCountTarget">{page.wordCountTarget}</div>
             </div>
 
             <div class="form-row">
-              <label for="compField">Competition Field <span class="req">*</span></label>
+              <label for="compField">
+                <span data-i18n="page.fields.competitionField">{page.fields.competitionField}</span>{" "}
+                <span class="req">*</span>
+              </label>
               <select id="compField" name="compField">
-                <option value="">Select your primary tech vertical</option>
-                {page.competitionFieldOptions.map((option) => (
-                  <option value={option}>{option}</option>
+                <option value="" data-i18n="page.fields.competitionFieldPlaceholder">
+                  {page.fields.competitionFieldPlaceholder}
+                </option>
+                {page.competitionFieldOptions.map((option, optionIndex) => (
+                  <option value={option} data-i18n={`page.competitionFieldOptions.${optionIndex}`}>
+                    {option}
+                  </option>
                 ))}
               </select>
             </div>
 
             <div class="form-row">
-              <span class="label-like">Where is your company headquartered? <span class="req">*</span></span>
+              <span class="label-like">
+                <span data-i18n="page.fields.companyHeadquarters">{page.fields.companyHeadquarters}</span>{" "}
+                <span class="req">*</span>
+              </span>
               <div class="radio-group">
-                {page.companyHeadquartersOptions.map((option, index) => (
+                {page.companyHeadquartersOptions.map((option, optionIndex) => (
                   <label class="radio-pill">
                     <input
                       type="radio"
                       name="companyHeadquarters"
                       value={option}
-                      checked={index === 1}
+                      checked={optionIndex === 1}
                     />
-                    <span>{option}</span>
+                    <span data-i18n={`page.companyHeadquartersOptions.${optionIndex}`}>{option}</span>
                   </label>
                 ))}
               </div>
             </div>
 
             <div class="form-row">
-              <label for="compLocation">Company Location <span class="req">*</span></label>
+              <label for="compLocation">
+                <span data-i18n="page.fields.companyLocation">{page.fields.companyLocation}</span>{" "}
+                <span class="req">*</span>
+              </label>
               <input
                 id="compLocation"
                 name="compLocation"
                 type="text"
-                placeholder="City, Country (e.g. São Paulo, Brazil)"
+                placeholder={page.fields.companyLocationPlaceholder}
+                data-i18n-placeholder="page.fields.companyLocationPlaceholder"
               />
             </div>
 
             <div class="form-row">
-              <label for="compFullName">Full Name of the Company</label>
+              <label for="compFullName">
+                <span data-i18n="page.fields.companyFullName">{page.fields.companyFullName}</span>
+              </label>
               <input
                 id="compFullName"
                 name="compFullName"
                 type="text"
-                placeholder="Registered company name (if applicable)"
+                placeholder={page.fields.companyFullNamePlaceholder}
+                data-i18n-placeholder="page.fields.companyFullNamePlaceholder"
               />
             </div>
 
             <div class="form-row">
-              <label for="officeAddress">Office Address</label>
+              <label for="officeAddress">
+                <span data-i18n="page.fields.officeAddress">{page.fields.officeAddress}</span>
+              </label>
               <input
                 id="officeAddress"
                 name="officeAddress"
                 type="text"
-                placeholder="Full registered office address"
+                placeholder={page.fields.officeAddressPlaceholder}
+                data-i18n-placeholder="page.fields.officeAddressPlaceholder"
               />
             </div>
           </section>
@@ -232,27 +286,39 @@ const aiTextareaFields = [
             <div class="form-section-header">
               <div class="form-section-number">2</div>
               <div>
-                <h2 class="form-section-title">Main Participant Applicant</h2>
-                <p class="form-section-subtitle">Personal details of the lead applicant.</p>
+                <h2 class="form-section-title" data-i18n="page.sections.applicantTitle">
+                  {page.sections.applicantTitle}
+                </h2>
+                <p class="form-section-subtitle" data-i18n="page.sections.applicantSubtitle">
+                  {page.sections.applicantSubtitle}
+                </p>
               </div>
             </div>
 
-            <div class="form-note">
-              <strong>Instructions:</strong> The main applicant should be the largest natural shareholder and be available for a semi-finals roadshow if selected.
-            </div>
+            <div class="form-note" data-i18n="page.notes.applicant">{page.notes.applicant}</div>
 
             <div class="form-row form-row--split">
               <div>
-                <label for="applicantName">Full Name <span class="req">*</span></label>
-                <input id="applicantName" name="applicantName" type="text" placeholder="First and Last name" />
+                <label for="applicantName">
+                  <span data-i18n="page.fields.fullName">{page.fields.fullName}</span> <span class="req">*</span>
+                </label>
+                <input
+                  id="applicantName"
+                  name="applicantName"
+                  type="text"
+                  placeholder={page.fields.fullNamePlaceholder}
+                  data-i18n-placeholder="page.fields.fullNamePlaceholder"
+                />
               </div>
               <div>
-                <span class="label-like">Gender <span class="req">*</span></span>
+                <span class="label-like">
+                  <span data-i18n="page.fields.gender">{page.fields.gender}</span> <span class="req">*</span>
+                </span>
                 <div class="radio-group">
-                  {["Male", "Female", "Other"].map((option) => (
+                  {page.genderOptions.map((option, optionIndex) => (
                     <label class="radio-pill">
                       <input type="radio" name="gender" value={option} />
-                      <span>{option}</span>
+                      <span data-i18n={`page.genderOptions.${optionIndex}`}>{option}</span>
                     </label>
                   ))}
                 </div>
@@ -261,31 +327,56 @@ const aiTextareaFields = [
 
             <div class="form-row form-row--split">
               <div>
-                <label for="dob">Date of Birth <span class="req">*</span></label>
+                <label for="dob">
+                  <span data-i18n="page.fields.dateOfBirth">{page.fields.dateOfBirth}</span>{" "}
+                  <span class="req">*</span>
+                </label>
                 <input id="dob" name="dob" type="date" />
               </div>
               <div>
-                <label for="nationality">Nationality <span class="req">*</span></label>
+                <label for="nationality">
+                  <span data-i18n="page.fields.nationality">{page.fields.nationality}</span>{" "}
+                  <span class="req">*</span>
+                </label>
                 <input
                   id="nationality"
                   name="nationality"
                   type="text"
-                  placeholder="e.g. Brazilian, Mexican, Colombian"
+                  placeholder={page.fields.nationalityPlaceholder}
+                  data-i18n-placeholder="page.fields.nationalityPlaceholder"
                 />
               </div>
             </div>
 
             <div class="form-row form-row--split">
               <div>
-                <label for="university">Latest Graduation Institution <span class="req">*</span></label>
-                <input id="university" name="university" type="text" placeholder="University or institution name" />
+                <label for="university">
+                  <span data-i18n="page.fields.graduationInstitution">
+                    {page.fields.graduationInstitution}
+                  </span>{" "}
+                  <span class="req">*</span>
+                </label>
+                <input
+                  id="university"
+                  name="university"
+                  type="text"
+                  placeholder={page.fields.graduationInstitutionPlaceholder}
+                  data-i18n-placeholder="page.fields.graduationInstitutionPlaceholder"
+                />
               </div>
               <div>
-                <label for="degree">Highest Degree <span class="req">*</span></label>
+                <label for="degree">
+                  <span data-i18n="page.fields.highestDegree">{page.fields.highestDegree}</span>{" "}
+                  <span class="req">*</span>
+                </label>
                 <select id="degree" name="degree">
-                  <option value="">Select degree</option>
-                  {page.degreeOptions.map((option) => (
-                    <option value={option}>{option}</option>
+                  <option value="" data-i18n="page.fields.highestDegreePlaceholder">
+                    {page.fields.highestDegreePlaceholder}
+                  </option>
+                  {page.degreeOptions.map((option, optionIndex) => (
+                    <option value={option} data-i18n={`page.degreeOptions.${optionIndex}`}>
+                      {option}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -293,18 +384,43 @@ const aiTextareaFields = [
 
             <div class="form-row form-row--split">
               <div>
-                <label for="wechat">WeChat or WhatsApp <span class="req">*</span></label>
-                <input id="wechat" name="wechat" type="text" placeholder="WeChat ID or WhatsApp number" />
+                <label for="wechat">
+                  <span data-i18n="page.fields.wechatOrWhatsapp">{page.fields.wechatOrWhatsapp}</span>{" "}
+                  <span class="req">*</span>
+                </label>
+                <input
+                  id="wechat"
+                  name="wechat"
+                  type="text"
+                  placeholder={page.fields.wechatOrWhatsappPlaceholder}
+                  data-i18n-placeholder="page.fields.wechatOrWhatsappPlaceholder"
+                />
               </div>
               <div>
-                <label for="linkedin">LinkedIn Profile</label>
-                <input id="linkedin" name="linkedin" type="url" placeholder="https://linkedin.com/in/yourprofile" />
+                <label for="linkedin">
+                  <span data-i18n="page.fields.linkedIn">{page.fields.linkedIn}</span>
+                </label>
+                <input
+                  id="linkedin"
+                  name="linkedin"
+                  type="url"
+                  placeholder={page.fields.linkedInPlaceholder}
+                  data-i18n-placeholder="page.fields.linkedInPlaceholder"
+                />
               </div>
             </div>
 
             <div class="form-row">
-              <label for="email">Email Address <span class="req">*</span></label>
-              <input id="email" name="email" type="email" placeholder="your@email.com" />
+              <label for="email">
+                <span data-i18n="page.fields.email">{page.fields.email}</span> <span class="req">*</span>
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder={page.fields.emailPlaceholder}
+                data-i18n-placeholder="page.fields.emailPlaceholder"
+              />
             </div>
           </section>
 
@@ -312,16 +428,22 @@ const aiTextareaFields = [
             <div class="form-section-header">
               <div class="form-section-number">3</div>
               <div>
-                <h2 class="form-section-title">Project Information</h2>
-                <p class="form-section-subtitle">
-                  Tell us about your startup. Use the helper prompts if you want a faster first draft.
+                <h2 class="form-section-title" data-i18n="page.sections.projectTitle">
+                  {page.sections.projectTitle}
+                </h2>
+                <p class="form-section-subtitle" data-i18n="page.sections.projectSubtitle">
+                  {page.sections.projectSubtitle}
                 </p>
               </div>
             </div>
 
             <div class="form-row">
               <label for="elevatorPitch">
-                Elevator Pitch <span class="req">*</span> <span class="hint">One compelling sentence</span>
+                <span data-i18n="page.fields.elevatorPitch">{page.fields.elevatorPitch}</span>{" "}
+                <span class="req">*</span>{" "}
+                <span class="hint" data-i18n="page.fields.elevatorPitchHint">
+                  {page.fields.elevatorPitchHint}
+                </span>
               </label>
               <div class="field-wrap">
                 <input
@@ -329,67 +451,108 @@ const aiTextareaFields = [
                   name="elevatorPitch"
                   type="text"
                   class="has-ai-input"
-                  placeholder="Add a compelling one-sentence pitch for your startup"
+                  placeholder={page.fields.elevatorPitchPlaceholder}
+                  data-i18n-placeholder="page.fields.elevatorPitchPlaceholder"
                 />
-                <button type="button" class="ai-btn">Write with AI</button>
+                <button type="button" class="ai-btn" data-i18n="page.writeWithAiLabel">
+                  {page.writeWithAiLabel}
+                </button>
               </div>
             </div>
 
             {aiTextareaFields.map((field) => (
               <div class="form-row">
-                <label for={field.id}>{field.label} <span class="req">*</span></label>
+                <label for={field.id}>
+                  <span data-i18n={field.labelKey}>{field.label}</span> <span class="req">*</span>
+                </label>
                 <div class="field-wrap">
-                  <textarea id={field.id} name={field.id} rows="4" class="has-ai" placeholder={field.placeholder}></textarea>
-                  <button type="button" class="ai-btn">Write with AI</button>
+                  <textarea
+                    id={field.id}
+                    name={field.id}
+                    rows="4"
+                    class="has-ai"
+                    placeholder={field.placeholder}
+                    data-i18n-placeholder={field.placeholderKey}
+                  ></textarea>
+                  <button type="button" class="ai-btn" data-i18n="page.writeWithAiLabel">
+                    {page.writeWithAiLabel}
+                  </button>
                 </div>
               </div>
             ))}
 
             <div class="form-row">
               <label for="deckFile">
-                Pitching Deck <span class="req">*</span> <span class="hint">PDF or PPT, max 20MB</span>
+                <span data-i18n="page.fields.pitchingDeck">{page.fields.pitchingDeck}</span>{" "}
+                <span class="req">*</span>{" "}
+                <span class="hint" data-i18n="page.fields.pitchingDeckHint">
+                  {page.fields.pitchingDeckHint}
+                </span>
               </label>
               <label class="file-upload-area" for="deckFile">
                 <input id="deckFile" name="deckFile" type="file" accept=".pdf,.ppt,.pptx" />
                 <span class="file-upload-icon">↑</span>
-                <span class="file-upload-label">Click to upload your Pitch Deck</span>
-                <span class="file-upload-sub">PDF, PPT or PPTX — Maximum 20MB</span>
+                <span class="file-upload-label" data-i18n="page.fields.pitchingDeckUploadLabel">
+                  {page.fields.pitchingDeckUploadLabel}
+                </span>
+                <span class="file-upload-sub" data-i18n="page.fields.pitchingDeckUploadSubtext">
+                  {page.fields.pitchingDeckUploadSubtext}
+                </span>
               </label>
             </div>
 
             <div class="form-row">
               <label for="suppFile">
-                Supplementary Materials <span class="hint">Optional — videos, demos, reports</span>
+                <span data-i18n="page.fields.supplementaryMaterials">
+                  {page.fields.supplementaryMaterials}
+                </span>{" "}
+                <span class="hint" data-i18n="page.fields.supplementaryMaterialsHint">
+                  {page.fields.supplementaryMaterialsHint}
+                </span>
               </label>
               <label class="file-upload-area" for="suppFile">
                 <input id="suppFile" name="suppFile" type="file" multiple />
                 <span class="file-upload-icon">↑</span>
-                <span class="file-upload-label">Upload supplementary materials</span>
-                <span class="file-upload-sub">Any format — videos, demos, reports, patents</span>
+                <span class="file-upload-label" data-i18n="page.fields.supplementaryMaterialsUploadLabel">
+                  {page.fields.supplementaryMaterialsUploadLabel}
+                </span>
+                <span class="file-upload-sub" data-i18n="page.fields.supplementaryMaterialsUploadSubtext">
+                  {page.fields.supplementaryMaterialsUploadSubtext}
+                </span>
               </label>
             </div>
 
             <div class="form-row">
-              <span class="label-like">What do you expect to receive? <span class="req">*</span></span>
+              <span class="label-like">
+                <span data-i18n="page.fields.expectedBenefits">{page.fields.expectedBenefits}</span>{" "}
+                <span class="req">*</span>
+              </span>
               <div class="benefit-grid">
-                {page.benefits.map((benefit) => (
+                {page.benefits.map((benefit, benefitIndex) => (
                   <label class="benefit-item">
                     <input type="checkbox" name="benefits" value={benefit.value} />
                     <span class:list={["benefit-icon", `benefit-icon--${benefit.tone}`]}>
                       {benefit.short}
                     </span>
-                    <span>{benefit.label}</span>
+                    <span data-i18n={`page.benefits.${benefitIndex}.label`}>{benefit.label}</span>
                   </label>
                 ))}
               </div>
             </div>
 
             <div class="form-row">
-              <label for="hearAbout">Where did you hear about us? <span class="req">*</span></label>
+              <label for="hearAbout">
+                <span data-i18n="page.fields.hearAbout">{page.fields.hearAbout}</span>{" "}
+                <span class="req">*</span>
+              </label>
               <select id="hearAbout" name="hearAbout">
-                <option value="">Select a source</option>
-                {page.hearAboutOptions.map((option) => (
-                  <option value={option}>{option}</option>
+                <option value="" data-i18n="page.fields.hearAboutPlaceholder">
+                  {page.fields.hearAboutPlaceholder}
+                </option>
+                {page.hearAboutOptions.map((option, optionIndex) => (
+                  <option value={option} data-i18n={`page.hearAboutOptions.${optionIndex}`}>
+                    {option}
+                  </option>
                 ))}
               </select>
             </div>
@@ -399,18 +562,21 @@ const aiTextareaFields = [
             <div class="form-section-header">
               <div class="form-section-number">4</div>
               <div>
-                <h2 class="form-section-title">Plan for Incorporation in Beijing</h2>
-                <p class="form-section-subtitle">Required for prize eligibility.</p>
+                <h2 class="form-section-title" data-i18n="page.sections.beijingTitle">
+                  {page.sections.beijingTitle}
+                </h2>
+                <p class="form-section-subtitle" data-i18n="page.sections.beijingSubtitle">
+                  {page.sections.beijingSubtitle}
+                </p>
               </div>
             </div>
 
-            <div class="form-note">
-              <strong>Important:</strong> Incorporation in Beijing is the goal of the organizers and is mandatory to receive your awarded prize.
-            </div>
+            <div class="form-note" data-i18n="page.notes.beijing">{page.notes.beijing}</div>
 
             <div class="form-row">
               <label for="beijingPlan">
-                Beijing Incorporation &amp; China Opportunity Plan <span class="req">*</span>
+                <span data-i18n="page.fields.beijingPlan">{page.fields.beijingPlan}</span>{" "}
+                <span class="req">*</span>
               </label>
               <div class="field-wrap">
                 <textarea
@@ -418,30 +584,46 @@ const aiTextareaFields = [
                   name="beijingPlan"
                   rows="7"
                   class="has-ai"
-                  placeholder="Describe your plan for incorporating in Beijing. How does your startup leverage China's market, technology ecosystem, policy environment, or talent pool?"
+                  placeholder={page.fields.beijingPlanPlaceholder}
+                  data-i18n-placeholder="page.fields.beijingPlanPlaceholder"
                 ></textarea>
-                <button type="button" class="ai-btn">Write with AI</button>
+                <button type="button" class="ai-btn" data-i18n="page.writeWithAiLabel">
+                  {page.writeWithAiLabel}
+                </button>
               </div>
             </div>
 
             <div class="form-row">
               <label for="incorporationTimeline">
-                Intended Incorporation Timeline in Beijing <span class="hint">Full 1-on-1 incorporation support will be provided</span>
+                <span data-i18n="page.fields.incorporationTimeline">
+                  {page.fields.incorporationTimeline}
+                </span>{" "}
+                <span class="hint" data-i18n="page.fields.incorporationTimelineHint">
+                  {page.fields.incorporationTimelineHint}
+                </span>
               </label>
               <select id="incorporationTimeline" name="incorporationTimeline">
-                <option value="">When do you plan to incorporate?</option>
-                {page.incorporationTimelineOptions.map((option) => (
-                  <option value={option}>{option}</option>
+                <option value="" data-i18n="page.fields.incorporationTimelinePlaceholder">
+                  {page.fields.incorporationTimelinePlaceholder}
+                </option>
+                {page.incorporationTimelineOptions.map((option, optionIndex) => (
+                  <option value={option} data-i18n={`page.incorporationTimelineOptions.${optionIndex}`}>
+                    {option}
+                  </option>
                 ))}
               </select>
             </div>
           </section>
 
           <section class="submit-section">
-            <p class="submit-note" set:html={page.submitNoteHtml}></p>
+            <p class="submit-note" data-i18n-html="page.submitNoteHtml" set:html={page.submitNoteHtml}></p>
             <div class="submit-actions">
-              <button type="button" class="site-btn site-btn--secondary">Save Draft</button>
-              <button type="submit" class="site-btn site-btn--primary">Submit Pre-Registration</button>
+              <button type="button" class="site-btn site-btn--secondary" data-i18n="page.saveDraftLabel">
+                {page.saveDraftLabel}
+              </button>
+              <button type="submit" class="site-btn site-btn--primary" data-i18n="page.submitLabel">
+                {page.submitLabel}
+              </button>
             </div>
           </section>
         </form>
@@ -449,5 +631,5 @@ const aiTextareaFields = [
     </section>
   </main>
 
-  <InteriorFooter footer={footer} siteSettings={siteSettings} />
+  <InteriorFooter footer={locale.footer} ui={locale.ui} siteSettings={siteSettings} currentLanguage={currentLanguage} />
 </div>

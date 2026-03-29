@@ -1,0 +1,477 @@
+{
+  "ui": {
+    "chooseLanguage": "选择语言",
+    "homeLabel": "LATAM China Tech 首页",
+    "newsletterEmail": "新闻简报邮箱",
+    "newsletterPlaceholder": "请输入邮箱"
+  },
+  "navItems": [
+    { "label": "咨询", "href": "/" },
+    { "label": "竞赛与挑战", "href": "/competitions/" },
+    { "label": "活动", "href": "/" },
+    { "label": "项目", "href": "/" },
+    { "label": "网络", "href": "/" }
+  ],
+  "footer": {
+    "eyebrow": "与我们一起扩张",
+    "titleHtml": "获得资金、连接资源，<br />与 <span>LATAM CHINA TECH</span> 一起成长",
+    "buttonLabel": "查看项目",
+    "buttonHref": "/",
+    "newsletterTitle": "第一时间了解下一次中拉机会",
+    "newsletterButtonLabel": "订阅 Substack",
+    "bottomNote": "为连接拉丁美洲与中国的创业者、投资人和企业创新者而打造。",
+    "columns": [
+      {
+        "title": "服务",
+        "links": [
+          { "label": "投资", "href": "/" },
+          { "label": "技术转移", "href": "/" }
+        ]
+      },
+      {
+        "title": "竞赛",
+        "links": [
+          { "label": "创业竞赛", "href": "/pre-registration/" },
+          { "label": "企业挑战赛", "href": "/competitions/" }
+        ]
+      },
+      {
+        "title": "活动",
+        "links": [
+          { "label": "展会与博览会", "href": "/" },
+          { "label": "峰会", "href": "/" }
+        ]
+      },
+      {
+        "title": "扩张",
+        "links": [
+          { "label": "市场进入", "href": "/" },
+          { "label": "商务考察", "href": "/" }
+        ]
+      }
+    ]
+  },
+  "competitionsPage": {
+    "meta": {
+      "htmlLang": "zh-CN",
+      "title": "竞赛与挑战 | LATAM China Tech",
+      "description": "探索连接拉丁美洲与中国的创业竞赛、企业挑战与创新机会。"
+    },
+    "eyebrow": "开放申请中",
+    "titleHtml": "挑战与<em>竞赛</em>",
+    "statusLabel": "状态",
+    "focusLabel": "方向",
+    "sortLabel": "排序方式",
+    "filtersAriaLabel": "竞赛筛选器",
+    "tabsAriaLabel": "竞赛类型",
+    "statusFilters": [
+      { "label": "全部", "tone": "neutral", "active": true },
+      { "label": "开放中", "tone": "open" },
+      { "label": "即将开放", "tone": "future" },
+      { "label": "已关闭", "tone": "closed" }
+    ],
+    "focusFilters": [
+      { "label": "全部行业", "tone": "neutral", "active": true },
+      { "label": "深科技", "tone": "violet" },
+      { "label": "可持续发展", "tone": "green" },
+      { "label": "金融科技", "tone": "blue" },
+      { "label": "农业科技", "tone": "green" },
+      { "label": "AI", "tone": "violet" },
+      { "label": "健康科技", "tone": "orange" },
+      { "label": "物流", "tone": "orange" },
+      { "label": "生物科技", "tone": "teal" },
+      { "label": "制造业", "tone": "closed" }
+    ],
+    "sortOptions": [
+      "按截止时间排序（最近优先）",
+      "按奖金排序（最高优先）",
+      "按最新发布排序"
+    ],
+    "loadMoreLabel": "加载更多挑战",
+    "tabs": [
+      {
+        "id": "startup",
+        "label": "创业竞赛",
+        "count": 9,
+        "placeholderLabel": "更多项目将于 2025 年第三季度开放",
+        "featured": {
+          "theme": "startup",
+          "tag": "重点推荐",
+          "category": "深科技 · 跨境",
+          "title": "Greater Tech Challenge 2025",
+          "description": "The flagship innovation competition bridging Latin America and China. Submit your breakthrough solution in AI, cleantech, or biotech and compete for the largest prize pool in the region.",
+          "value": "$500K",
+          "valueCaption": "总奖金",
+          "status": "开放中",
+          "deadlinePrefix": "截止日期",
+          "deadlineValue": "Sep 30, 2025",
+          "ctaLabel": "立即申请",
+          "watermark": "GTC"
+        },
+        "cards": [
+          {
+            "category": "FinTech",
+            "name": "China-LATAM FinTech Cup",
+            "description": "Financial inclusion innovation across emerging markets. Build solutions for the unbanked across Brazil, Mexico, and Southeast China.",
+            "watermark": "FIN",
+            "prize": "$200K",
+            "status": "Open",
+            "statusTone": "open",
+            "deadlinePrefix": "Closes",
+            "deadlineValue": "Aug 15, 2025",
+            "ctaLabel": "Apply Now",
+            "accent": "warm"
+          },
+          {
+            "category": "AgriTech · Sustainability",
+            "name": "Food Future Challenge",
+            "description": "Transforming agriculture supply chains between Latin America's farmlands and China's markets using AI, IoT, and precision agriculture.",
+            "watermark": "AGR",
+            "prize": "$150K",
+            "status": "Future",
+            "statusTone": "future",
+            "deadlinePrefix": "Opens",
+            "deadlineValue": "Jul 1, 2025",
+            "ctaLabel": "Learn More",
+            "accent": "warm"
+          },
+          {
+            "category": "CleanTech",
+            "name": "Clean Energy Sprint",
+            "description": "Accelerating decarbonization across Latin American cities using Chinese clean energy technology. Solar, wind, and grid innovation welcome.",
+            "watermark": "CLN",
+            "prize": "$300K",
+            "status": "Open",
+            "statusTone": "open",
+            "deadlinePrefix": "Closes",
+            "deadlineValue": "Oct 10, 2025",
+            "ctaLabel": "Apply Now",
+            "accent": "warm"
+          },
+          {
+            "category": "AI · Startup",
+            "name": "AI Founders Battle",
+            "description": "Early-stage AI founders competing for market access, seed investment, and a 6-month acceleration in Shenzhen and São Paulo.",
+            "watermark": "AI",
+            "prize": "$120K + inv.",
+            "status": "Open",
+            "statusTone": "open",
+            "deadlinePrefix": "Closes",
+            "deadlineValue": "Jul 31, 2025",
+            "ctaLabel": "Apply Now",
+            "accent": "warm"
+          },
+          {
+            "category": "Logistics · Supply Chain",
+            "name": "Trade Route 2050 Challenge",
+            "description": "Reimagining cross-Pacific logistics for the next generation with autonomous freight, port automation, and smart customs solutions.",
+            "watermark": "LOG",
+            "prize": "$180K",
+            "status": "Future",
+            "statusTone": "future",
+            "deadlinePrefix": "Opens",
+            "deadlineValue": "Aug 1, 2025",
+            "ctaLabel": "Learn More",
+            "accent": "warm"
+          },
+          {
+            "category": "EdTech · Social Impact",
+            "name": "EduBridge Hackathon",
+            "description": "A 48-hour sprint for multilingual education tools serving underserved communities through Chinese EdTech infrastructure.",
+            "watermark": "EDU",
+            "prize": "$60K",
+            "status": "Open",
+            "statusTone": "open",
+            "deadlinePrefix": "Closes",
+            "deadlineValue": "Jun 20, 2025",
+            "ctaLabel": "Apply Now",
+            "accent": "warm"
+          },
+          {
+            "category": "BioTech · Health",
+            "name": "Pacific BioVenture Prize",
+            "description": "Connecting biotech startups with LATAM-China co-development pathways. The 2024 edition closed and 2026 early access is now open.",
+            "watermark": "BIO",
+            "prize": "$90K",
+            "status": "Closed",
+            "statusTone": "closed",
+            "deadlinePrefix": "Closed",
+            "deadlineValue": "Apr 15, 2025",
+            "ctaLabel": "Join Waitlist",
+            "accent": "warm"
+          },
+          {
+            "category": "Manufacturing · Deep Tech",
+            "name": "Smart Factory Sprint",
+            "description": "Industry 4.0 solutions for LATAM manufacturing powered by Chinese automation and IoT technology. Hardware and software welcome.",
+            "watermark": "MFG",
+            "prize": "$175K",
+            "status": "Open",
+            "statusTone": "open",
+            "deadlinePrefix": "Closes",
+            "deadlineValue": "Nov 5, 2025",
+            "ctaLabel": "Apply Now",
+            "accent": "warm"
+          }
+        ]
+      },
+      {
+        "id": "corporate",
+        "label": "企业挑战赛",
+        "count": 5,
+        "placeholderLabel": "更多项目将于 2025 年第四季度开放",
+        "featured": {
+          "theme": "corporate",
+          "tag": "重点推荐",
+          "category": "企业 · 市场进入",
+          "title": "China Market Entry Accelerator 2025",
+          "description": "The premier programme for established LATAM companies ready to enter the Chinese market through structured support, in-market immersion, and direct access to distribution partners.",
+          "value": "市场进入",
+          "valueCaption": "咨询支持包",
+          "status": "开放中",
+          "deadlinePrefix": "截止日期",
+          "deadlineValue": "Oct 15, 2025",
+          "ctaLabel": "立即申请",
+          "watermark": "COR"
+        },
+        "cards": [
+          {
+            "category": "SME · Scale-Up",
+            "name": "SME Export Accelerator",
+            "description": "For established companies seeking to scale their China market strategy with structured advisory, trade facilitation, and on-ground support.",
+            "watermark": "SME",
+            "prize": "Market Access",
+            "status": "Open",
+            "statusTone": "open",
+            "deadlinePrefix": "Rolling",
+            "deadlineValue": "Applications",
+            "ctaLabel": "Apply Now",
+            "accent": "cool"
+          },
+          {
+            "category": "HealthTech · Corporate",
+            "name": "MedBridge Innovation Award",
+            "description": "Connecting Latin American biotech companies with China's healthcare distribution and co-development market through an enterprise track.",
+            "watermark": "MED",
+            "prize": "$250K",
+            "status": "Open",
+            "statusTone": "open",
+            "deadlinePrefix": "Closes",
+            "deadlineValue": "Dec 1, 2025",
+            "ctaLabel": "Apply Now",
+            "accent": "cool"
+          },
+          {
+            "category": "Retail · Consumer Goods",
+            "name": "LATAM Brands in China",
+            "description": "A corporate challenge for LATAM consumer brands preparing to launch on China's e-commerce platforms with Tier-1 distribution partners.",
+            "watermark": "RET",
+            "prize": "Distribution",
+            "status": "Future",
+            "statusTone": "future",
+            "deadlinePrefix": "Opens",
+            "deadlineValue": "Sep 1, 2025",
+            "ctaLabel": "Learn More",
+            "accent": "cool"
+          },
+          {
+            "category": "Energy · Infrastructure",
+            "name": "Green Infrastructure Challenge",
+            "description": "Corporate track for infrastructure teams partnering with Chinese EPC firms on LATAM renewable energy projects.",
+            "watermark": "ENR",
+            "prize": "$400K",
+            "status": "Open",
+            "statusTone": "open",
+            "deadlinePrefix": "Closes",
+            "deadlineValue": "Aug 30, 2025",
+            "ctaLabel": "Apply Now",
+            "accent": "cool"
+          },
+          {
+            "category": "Financial Services",
+            "name": "Cross-Border Finance Forum",
+            "description": "A challenge for banks, fintechs, and payments companies building LATAM-China FX infrastructure and payment corridors.",
+            "watermark": "FIN",
+            "prize": "Partnership",
+            "status": "Future",
+            "statusTone": "future",
+            "deadlinePrefix": "Opens",
+            "deadlineValue": "Oct 1, 2025",
+            "ctaLabel": "Learn More",
+            "accent": "cool"
+          }
+        ]
+      },
+      {
+        "id": "academic",
+        "label": "学术创新",
+        "count": 0,
+        "emptyStateTitle": "学术创新",
+        "emptyStateBody": "面向高校、研究机构与学术创业者的项目即将推出。"
+      }
+    ]
+  },
+  "preRegistrationPage": {
+    "meta": {
+      "htmlLang": "zh-CN",
+      "title": "HICOOL 预报名 | LATAM China Tech",
+      "description": "在 LATAM China Tech 的指导和申请支持下，开始你的 HICOOL 全球创业大赛预报名。"
+    },
+    "eyebrow": "预报名开放中",
+    "titleHtml": "HICOOL 全球<br /><em>创业大赛预报名</em>",
+    "subtitle": "准备申请了吗？填写下方表单，我们的团队会陪你完成 HICOOL 申请的每一步。",
+    "formProgressLabel": "表单进度",
+    "banner": {
+      "badge": "预报名",
+      "title": "这是一个预报名流程",
+      "descriptionHtml": "提交此表单后，<strong>LATAM CHINA TECH</strong> 将全程协助你完成 HICOOL 正式申请：审阅材料、强化路演表达，并尽可能提升你的获奖机会。",
+      "supportLabel": "支持方",
+      "supportName": "LATAM CHINA TECH",
+      "supportItems": ["申请辅导", "资源引荐", "中国市场指南"]
+    },
+    "guide": {
+      "title": "申请指南与教程",
+      "description": "开始前，请下载我们的 PDF 分步指南。内容涵盖比赛规则、评审标准、北京落地要求，以及英文、西班牙文和葡萄牙文版本的获胜申请建议。",
+      "actions": [
+        { "label": "下载 PDF 指南", "href": "#", "theme": "dark", "icon": "download" },
+        { "label": "观看教程", "href": "#", "theme": "light", "icon": "play" }
+      ]
+    },
+    "progressSteps": [
+      { "number": "01", "label": "竞赛信息", "target": "section-1" },
+      { "number": "02", "label": "申请人信息", "target": "section-2" },
+      { "number": "03", "label": "项目信息", "target": "section-3" },
+      { "number": "04", "label": "北京落地计划", "target": "section-4" }
+    ],
+    "sections": {
+      "competitionInformationTitle": "竞赛信息",
+      "competitionInformationSubtitle": "关于你的项目和公司注册的基础信息。",
+      "applicantTitle": "主要申请人",
+      "applicantSubtitle": "主申请人的个人信息。",
+      "projectTitle": "项目信息",
+      "projectSubtitle": "请介绍你的创业项目。如果你想更快完成初稿，可以使用辅助提示。",
+      "beijingTitle": "北京落地计划",
+      "beijingSubtitle": "获奖资格所需。"
+    },
+    "notes": {
+      "applicant": "说明：主申请人应为最大自然人股东，并在入围后能够参加半决赛路演。",
+      "beijing": "重要提示：在北京注册落地是主办方目标，也是领取奖金的必要条件。"
+    },
+    "fields": {
+      "projectName": "项目名称",
+      "projectNamePlaceholder": "你的项目或创业公司名称",
+      "projectIntroduction": "项目简介",
+      "projectIntroductionHint": "30-50 个词",
+      "projectIntroductionPlaceholder": "请用 30-50 个词描述你的项目。它解决什么问题？服务于谁？",
+      "competitionField": "参赛领域",
+      "competitionFieldPlaceholder": "选择你的主要技术赛道",
+      "companyHeadquarters": "你的公司总部位于哪里？",
+      "companyLocation": "公司所在地",
+      "companyLocationPlaceholder": "城市，国家（例如：巴西圣保罗）",
+      "companyFullName": "公司全称",
+      "companyFullNamePlaceholder": "已注册公司名称（如适用）",
+      "officeAddress": "办公地址",
+      "officeAddressPlaceholder": "完整的注册地址",
+      "fullName": "姓名",
+      "fullNamePlaceholder": "名字和姓氏",
+      "gender": "性别",
+      "dateOfBirth": "出生日期",
+      "nationality": "国籍",
+      "nationalityPlaceholder": "例如：巴西、墨西哥、哥伦比亚",
+      "graduationInstitution": "最近毕业院校",
+      "graduationInstitutionPlaceholder": "大学或机构名称",
+      "highestDegree": "最高学历",
+      "highestDegreePlaceholder": "选择学历",
+      "wechatOrWhatsapp": "微信或 WhatsApp",
+      "wechatOrWhatsappPlaceholder": "微信 ID 或 WhatsApp 号码",
+      "linkedIn": "LinkedIn 主页",
+      "linkedInPlaceholder": "https://linkedin.com/in/yourprofile",
+      "email": "邮箱地址",
+      "emailPlaceholder": "your@email.com",
+      "elevatorPitch": "一句话路演",
+      "elevatorPitchHint": "一句有说服力的话",
+      "elevatorPitchPlaceholder": "用一句话概括你的创业项目亮点",
+      "projectOverview": "项目概览",
+      "projectOverviewPlaceholder": "详细介绍你的项目：解决的问题、方案路径，以及为什么是现在。",
+      "productFeatures": "产品 / 服务特点",
+      "productFeaturesPlaceholder": "请描述你的产品或服务的核心特点和差异化优势。",
+      "businessModel": "商业模式",
+      "businessModelPlaceholder": "说明你的创业项目如何产生收入，以及你的市场进入策略。",
+      "teamIntroduction": "团队介绍",
+      "teamIntroductionPlaceholder": "介绍你的创始团队：背景、专长，以及为什么你们是最适合执行这一愿景的团队。",
+      "investmentValue": "投资价值",
+      "investmentValuePlaceholder": "介绍你的投资机会：当前进展、财务情况、资金用途和增长潜力。",
+      "pitchingDeck": "路演材料",
+      "pitchingDeckHint": "PDF 或 PPT，最大 20MB",
+      "pitchingDeckUploadLabel": "点击上传你的 Pitch Deck",
+      "pitchingDeckUploadSubtext": "PDF、PPT 或 PPTX，最大 20MB",
+      "supplementaryMaterials": "补充材料",
+      "supplementaryMaterialsHint": "可选：视频、Demo、报告",
+      "supplementaryMaterialsUploadLabel": "上传补充材料",
+      "supplementaryMaterialsUploadSubtext": "任意格式：视频、Demo、报告、专利等",
+      "expectedBenefits": "你希望获得什么支持？",
+      "hearAbout": "你是如何了解到我们的？",
+      "hearAboutPlaceholder": "选择来源",
+      "beijingPlan": "北京注册与中国机会计划",
+      "beijingPlanPlaceholder": "请描述你在北京落地注册的计划。你的创业项目将如何利用中国市场、科技生态、政策环境或人才资源？",
+      "incorporationTimeline": "预计在北京注册的时间线",
+      "incorporationTimelineHint": "我们将提供一对一落地支持",
+      "incorporationTimelinePlaceholder": "你计划何时完成注册？"
+    },
+    "writeWithAiLabel": "用 AI 协助撰写",
+    "wordCountTarget": "目标：30-50 个词",
+    "companyHeadquartersOptions": ["中国", "其他国家", "尚未成立公司"],
+    "genderOptions": ["男", "女", "其他"],
+    "degreeOptions": ["高中", "大专", "本科", "硕士", "MBA", "博士", "其他"],
+    "competitionFieldOptions": [
+      "人工智能与机器学习",
+      "金融科技与数字金融",
+      "清洁科技与可持续发展",
+      "生物科技与生命科学",
+      "农业科技与食品科技",
+      "智能制造与工业 4.0",
+      "教育科技与未来工作",
+      "健康科技与医疗科技",
+      "出行与物流",
+      "企业 SaaS 与云服务",
+      "深科技与硬科技",
+      "其他科技方向"
+    ],
+    "benefits": [
+      { "label": "政策申报", "value": "policy", "short": "PD", "tone": "blue" },
+      { "label": "人才服务", "value": "talent", "short": "TS", "tone": "green" },
+      { "label": "商业与税务支持", "value": "tax", "short": "BT", "tone": "lilac" },
+      { "label": "上市辅导", "value": "listing", "short": "LG", "tone": "sand" },
+      { "label": "HICOOL 基金投资", "value": "fund", "short": "HF", "tone": "green" },
+      { "label": "财务顾问", "value": "fa", "short": "FA", "tone": "blue" },
+      { "label": "VC 对接", "value": "vc", "short": "VC", "tone": "sand" },
+      { "label": "产业对接", "value": "industrial", "short": "IM", "tone": "lilac" },
+      { "label": "场景对接", "value": "scenario", "short": "SM", "tone": "blue" },
+      { "label": "展览展示", "value": "exhibition", "short": "EX", "tone": "green" },
+      { "label": "路演支持", "value": "pitching", "short": "PT", "tone": "sand" },
+      { "label": "品牌建设", "value": "branding", "short": "BR", "tone": "lilac" }
+    ],
+    "hearAboutOptions": [
+      "LATAM CHINA TECH 官网",
+      "LATAM CHINA TECH 社交媒体",
+      "LinkedIn",
+      "Instagram",
+      "WhatsApp / WeChat",
+      "朋友或同事推荐",
+      "大学或加速器",
+      "展会或活动",
+      "新闻报道或媒体",
+      "其他"
+    ],
+    "incorporationTimelineOptions": [
+      "获奖后立即注册",
+      "获奖后 3 个月内",
+      "获奖后 6 个月内",
+      "获奖后 12 个月内",
+      "仍在评估时间安排"
+    ],
+    "submitNoteHtml": "提交即表示你确认所有信息准确无误，并同意由 <strong>LATAM CHINA TECH</strong> 与你联系，协助完成正式申请。此表单为预报名，不是 HICOOL 的最终提交。",
+    "saveDraftLabel": "保存草稿",
+    "submitLabel": "提交预报名"
+  }
+}

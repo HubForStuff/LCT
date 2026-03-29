@@ -1,24 +1,23 @@
 ---
+import LocalizationClient from "../components/i18n/LocalizationClient.astro";
 import PreRegistrationPage from "../components/pre-registration/PreRegistrationPage.astro";
-import {
-  interiorFooter,
-  interiorNavItems,
-  interiorSiteSettings,
-  preRegistrationPage,
-} from "../content/interior-pages";
 import Layout from "../layouts/Layout.astro";
+import { getInteriorPageData } from "../lib/interior-pages/reader";
 import "../styles/interior-pages.css";
+
+const { defaultLanguage, defaultLocale, localizedContent, siteSettings } =
+  await getInteriorPageData("preRegistrationPage");
 ---
 
 <Layout
-  title={preRegistrationPage.meta.title}
-  description={preRegistrationPage.meta.description}
+  title={defaultLocale.meta.title}
+  description={defaultLocale.meta.description}
   bodyClass="interior-body"
 >
   <PreRegistrationPage
-    page={preRegistrationPage}
-    navItems={interiorNavItems}
-    footer={interiorFooter}
-    siteSettings={interiorSiteSettings}
+    locale={defaultLocale}
+    siteSettings={siteSettings}
+    currentLanguage={defaultLanguage}
   />
+  <LocalizationClient defaultLanguage={defaultLanguage} localizedContent={localizedContent} />
 </Layout>

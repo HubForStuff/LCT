@@ -2,47 +2,53 @@
 import InteriorFooter from "../site/InteriorFooter.astro";
 import InteriorHeader from "../site/InteriorHeader.astro";
 
-import type { SiteSettings } from "../../lib/homepage/types";
+import type { HomepageLocaleCode, SiteSettings } from "../../lib/homepage/types";
 import type {
   CompetitionsPageContent,
-  InteriorFooterContent,
-  InteriorNavItem,
-} from "../../content/interior-pages";
+  InteriorPageRouteLocale,
+} from "../../lib/interior-pages/types";
 
 interface Props {
-  page: CompetitionsPageContent;
-  navItems: InteriorNavItem[];
-  footer: InteriorFooterContent;
+  locale: InteriorPageRouteLocale<CompetitionsPageContent>;
   siteSettings: SiteSettings;
+  currentLanguage: HomepageLocaleCode;
 }
 
-const { page, navItems, footer, siteSettings } = Astro.props;
+const { locale, siteSettings, currentLanguage } = Astro.props;
+const page = locale.page;
 ---
 
 <div class="interior-page">
   <InteriorHeader
-    navItems={navItems}
-    activeLabel="Competitions & Challenges"
+    navItems={locale.navItems}
+    activeHref="/competitions/"
     siteSettings={siteSettings}
+    currentLanguage={currentLanguage}
+    languageLabel={locale.ui.chooseLanguage}
+    homeLabel={locale.ui.homeLabel}
   />
 
   <main>
     <section class="page-header">
       <div class="interior-wrap page-header-inner">
         <div>
-          <div class="page-eyebrow">
+          <div class="page-eyebrow" data-i18n="page.eyebrow">
             <span class="dot"></span>
             {page.eyebrow}
           </div>
-          <h1 class="page-title" set:html={page.titleHtml}></h1>
+          <h1 class="page-title" data-i18n-html="page.titleHtml" set:html={page.titleHtml}></h1>
         </div>
       </div>
     </section>
 
     <section class="interior-wrap competitions-shell">
-      <div class="filters-bar" aria-label="Competition filters">
-        <span class="filter-group-label">Status</span>
-        {page.statusFilters.map((filter) => (
+      <div
+        class="filters-bar"
+        aria-label={page.filtersAriaLabel}
+        data-i18n-aria-label="page.filtersAriaLabel"
+      >
+        <span class="filter-group-label" data-i18n="page.statusLabel">{page.statusLabel}</span>
+        {page.statusFilters.map((filter, filterIndex) => (
           <button
             type="button"
             class:list={[
@@ -52,14 +58,14 @@ const { page, navItems, footer, siteSettings } = Astro.props;
             ]}
           >
             <span class="filter-pill-icon"></span>
-            {filter.label}
+            <span data-i18n={`page.statusFilters.${filterIndex}.label`}>{filter.label}</span>
           </button>
         ))}
 
         <span class="filter-separator" aria-hidden="true"></span>
 
-        <span class="filter-group-label">Focus</span>
-        {page.focusFilters.map((filter) => (
+        <span class="filter-group-label" data-i18n="page.focusLabel">{page.focusLabel}</span>
+        {page.focusFilters.map((filter, filterIndex) => (
           <button
             type="button"
             class:list={[
@@ -69,80 +75,110 @@ const { page, navItems, footer, siteSettings } = Astro.props;
             ]}
           >
             <span class="filter-pill-icon"></span>
-            {filter.label}
+            <span data-i18n={`page.focusFilters.${filterIndex}.label`}>{filter.label}</span>
           </button>
         ))}
       </div>
 
       <div class="tab-bar">
-        <div class="tab-group" role="tablist" aria-label="Competition types">
-          {page.tabs.map((tab, index) => (
+        <div class="tab-group" role="tablist" aria-label={page.tabsAriaLabel} data-i18n-aria-label="page.tabsAriaLabel">
+          {page.tabs.map((tab, tabIndex) => (
             <button
               type="button"
-              class:list={["tab", index === 0 && "is-active"]}
+              class:list={["tab", tabIndex === 0 && "is-active"]}
               role="tab"
-              aria-selected={index === 0 ? "true" : "false"}
+              aria-selected={tabIndex === 0 ? "true" : "false"}
               aria-controls={`panel-${tab.id}`}
               id={`tab-${tab.id}`}
               data-tab-trigger={tab.id}
             >
-              <span>{tab.label}</span>
+              <span data-i18n={`page.tabs.${tabIndex}.label`}>{tab.label}</span>
               <span class="tab-count">{tab.count}</span>
             </button>
           ))}
         </div>
 
         <div class="tab-sort">
-          <label class="sr-only" for="competitionSort">Sort challenges</label>
+          <label
+            class="sr-only"
+            for="competitionSort"
+            data-i18n="page.sortLabel"
+          >
+            {page.sortLabel}
+          </label>
           <select id="competitionSort" class="sort-select">
-            {page.sortOptions.map((option) => (
-              <option>{option}</option>
+            {page.sortOptions.map((option, optionIndex) => (
+              <option data-i18n={`page.sortOptions.${optionIndex}`}>{option}</option>
             ))}
           </select>
         </div>
       </div>
 
-      {page.tabs.map((tab, index) => (
+      {page.tabs.map((tab, tabIndex) => (
         <section
-          class:list={["tab-panel", index === 0 && "is-active"]}
+          class:list={["tab-panel", tabIndex === 0 && "is-active"]}
           id={`panel-${tab.id}`}
           role="tabpanel"
           aria-labelledby={`tab-${tab.id}`}
           data-tab-panel={tab.id}
-          hidden={index !== 0}
+          hidden={tabIndex !== 0}
         >
           {tab.featured && (
             <article class:list={["featured-card", `featured-card--${tab.featured.theme}`]}>
               <div class="featured-visual">
                 <div class="featured-visual-grid"></div>
-                <div class="featured-watermark">{tab.featured.watermark}</div>
+                <div class="featured-watermark" data-i18n={`page.tabs.${tabIndex}.featured.watermark`}>
+                  {tab.featured.watermark}
+                </div>
                 <div class="featured-accent"></div>
               </div>
 
               <div class="featured-body">
                 <div>
-                  <div class="featured-tag-pill">{tab.featured.tag}</div>
-                  <div class="featured-category">{tab.featured.category}</div>
-                  <h2 class="featured-title">{tab.featured.title}</h2>
-                  <p class="featured-description">{tab.featured.description}</p>
+                  <div class="featured-tag-pill" data-i18n={`page.tabs.${tabIndex}.featured.tag`}>
+                    {tab.featured.tag}
+                  </div>
+                  <div class="featured-category" data-i18n={`page.tabs.${tabIndex}.featured.category`}>
+                    {tab.featured.category}
+                  </div>
+                  <h2 class="featured-title" data-i18n={`page.tabs.${tabIndex}.featured.title`}>
+                    {tab.featured.title}
+                  </h2>
+                  <p class="featured-description" data-i18n={`page.tabs.${tabIndex}.featured.description`}>
+                    {tab.featured.description}
+                  </p>
                 </div>
 
                 <div>
                   <div class="featured-value-row">
-                    <div class="featured-value">{tab.featured.value}</div>
-                    <div class="featured-value-caption">{tab.featured.valueCaption}</div>
+                    <div class="featured-value" data-i18n={`page.tabs.${tabIndex}.featured.value`}>
+                      {tab.featured.value}
+                    </div>
+                    <div
+                      class="featured-value-caption"
+                      data-i18n={`page.tabs.${tabIndex}.featured.valueCaption`}
+                    >
+                      {tab.featured.valueCaption}
+                    </div>
                   </div>
 
                   <div class="featured-footer">
                     <div class="featured-status">
                       <span class="status-dot"></span>
-                      {tab.featured.status}
+                      <span data-i18n={`page.tabs.${tabIndex}.featured.status`}>{tab.featured.status}</span>
                     </div>
                     <div class="featured-deadline">
-                      {tab.featured.deadlinePrefix} <strong>{tab.featured.deadlineValue}</strong>
+                      <span data-i18n={`page.tabs.${tabIndex}.featured.deadlinePrefix`}>
+                        {tab.featured.deadlinePrefix}
+                      </span>{" "}
+                      <strong data-i18n={`page.tabs.${tabIndex}.featured.deadlineValue`}>
+                        {tab.featured.deadlineValue}
+                      </strong>
                     </div>
                     <a href="/pre-registration/" class="site-btn site-btn--primary site-btn--compact">
-                      {tab.featured.ctaLabel}
+                      <span data-i18n={`page.tabs.${tabIndex}.featured.ctaLabel`}>
+                        {tab.featured.ctaLabel}
+                      </span>
                     </a>
                   </div>
                 </div>
@@ -153,43 +189,65 @@ const { page, navItems, footer, siteSettings } = Astro.props;
           {tab.cards && (
             <>
               <div class="comp-grid">
-                {tab.cards.map((card) => (
+                {tab.cards.map((card, cardIndex) => (
                   <article class:list={["ccard", `ccard--${card.accent}`]}>
                     <div class="ccard-image">
                       <div class="ccard-grid"></div>
                       <span class:list={["ccard-badge", `ccard-badge--${card.statusTone}`]}>
-                        {card.status}
+                        <span data-i18n={`page.tabs.${tabIndex}.cards.${cardIndex}.status`}>{card.status}</span>
                       </span>
-                      <div class="ccard-prize">{card.prize}</div>
-                      <div class="ccard-watermark">{card.watermark}</div>
+                      <div class="ccard-prize" data-i18n={`page.tabs.${tabIndex}.cards.${cardIndex}.prize`}>
+                        {card.prize}
+                      </div>
+                      <div class="ccard-watermark" data-i18n={`page.tabs.${tabIndex}.cards.${cardIndex}.watermark`}>
+                        {card.watermark}
+                      </div>
                     </div>
 
                     <div class="ccard-body">
-                      <div class="ccard-category">{card.category}</div>
-                      <h3 class="ccard-name">{card.name}</h3>
-                      <p class="ccard-description">{card.description}</p>
+                      <div class="ccard-category" data-i18n={`page.tabs.${tabIndex}.cards.${cardIndex}.category`}>
+                        {card.category}
+                      </div>
+                      <h3 class="ccard-name" data-i18n={`page.tabs.${tabIndex}.cards.${cardIndex}.name`}>
+                        {card.name}
+                      </h3>
+                      <p
+                        class="ccard-description"
+                        data-i18n={`page.tabs.${tabIndex}.cards.${cardIndex}.description`}
+                      >
+                        {card.description}
+                      </p>
                     </div>
 
                     <div class="ccard-footer">
                       <div class="ccard-deadline">
-                        {card.deadlinePrefix} <strong>{card.deadlineValue}</strong>
+                        <span data-i18n={`page.tabs.${tabIndex}.cards.${cardIndex}.deadlinePrefix`}>
+                          {card.deadlinePrefix}
+                        </span>{" "}
+                        <strong data-i18n={`page.tabs.${tabIndex}.cards.${cardIndex}.deadlineValue`}>
+                          {card.deadlineValue}
+                        </strong>
                       </div>
                       <a href="/pre-registration/" class="ccard-apply">
-                        {card.ctaLabel}
+                        <span data-i18n={`page.tabs.${tabIndex}.cards.${cardIndex}.ctaLabel`}>
+                          {card.ctaLabel}
+                        </span>
                       </a>
                     </div>
                   </article>
                 ))}
 
-                <div class="ccard-placeholder">
-                  <div class="ccard-placeholder-label">
-                    {tab.id === "startup" ? "More Coming Q3 2025" : "More Coming Q4 2025"}
+                {tab.placeholderLabel && (
+                  <div class="ccard-placeholder">
+                    <div class="ccard-placeholder-label" data-i18n={`page.tabs.${tabIndex}.placeholderLabel`}>
+                      {tab.placeholderLabel}
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
 
               <div class="load-more">
-                <button type="button" class="site-btn site-btn--secondary">
+                <button type="button" class="site-btn site-btn--secondary" data-i18n="page.loadMoreLabel">
                   {page.loadMoreLabel}
                 </button>
               </div>
@@ -198,8 +256,8 @@ const { page, navItems, footer, siteSettings } = Astro.props;
 
           {!tab.cards && (
             <div class="empty-panel">
-              <h3>{tab.emptyStateTitle}</h3>
-              <p>{tab.emptyStateBody}</p>
+              <h3 data-i18n={`page.tabs.${tabIndex}.emptyStateTitle`}>{tab.emptyStateTitle}</h3>
+              <p data-i18n={`page.tabs.${tabIndex}.emptyStateBody`}>{tab.emptyStateBody}</p>
             </div>
           )}
         </section>
@@ -207,7 +265,7 @@ const { page, navItems, footer, siteSettings } = Astro.props;
     </section>
   </main>
 
-  <InteriorFooter footer={footer} siteSettings={siteSettings} />
+  <InteriorFooter footer={locale.footer} ui={locale.ui} siteSettings={siteSettings} currentLanguage={currentLanguage} />
 </div>
 
 <script>

@@ -1,16 +1,39 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { existsSync, mkdtempSync, readFileSync, readdirSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { spawnSync } from "node:child_process";
+import { execFileSync, spawn, spawnSync } from "node:child_process";
 
 const testDir = dirname(fileURLToPath(import.meta.url));
 const projectRoot = resolve(testDir, "..");
 
 const readProjectFile = (relativePath) =>
   readFileSync(resolve(projectRoot, relativePath), "utf8");
+
+const waitForServer = async (port) => {
+  for (let attempt = 0; attempt < 50; attempt += 1) {
+    try {
+      const response = await fetch(`http://127.0.0.1:${port}/`);
+      if (response.ok) {
+        return;
+      }
+    } catch {
+      // keep retrying until the server is ready
+    }
+
+    await new Promise((resolveDelay) => setTimeout(resolveDelay, 100));
+  }
+
+  throw new Error(`Timed out waiting for local server on port ${port}`);
+};
+
+const runAgentBrowser = (args) =>
+  execFileSync("agent-browser", args, {
+    cwd: projectRoot,
+    encoding: "utf8",
+  });
 
 const buildSite = () => {
   const outDir = mkdtempSync(resolve(tmpdir(), "inovacao-hub-interior-"));
@@ -33,10 +56,11 @@ const buildSite = () => {
   };
 };
 
-test("interior page route files stay thin and delegate rendering", () => {
+test("interior page route files stay thin and delegate rendering", { concurrency: false }, () => {
   const competitionsRoute = resolve(projectRoot, "src/pages/competitions.astro");
   const preRegistrationRoute = resolve(projectRoot, "src/pages/pre-registration.astro");
-  const contentModule = resolve(projectRoot, "src/content/interior-pages.ts");
+  const contentLocalesDir = resolve(projectRoot, "src/content/interior-pages/locales");
+  const readerModule = resolve(projectRoot, "src/lib/interior-pages/reader.ts");
 
   assert.equal(existsSync(competitionsRoute), true, "expected competitions route to exist");
   assert.equal(
@@ -45,9 +69,21 @@ test("interior page route files stay thin and delegate rendering", () => {
     "expected pre-registration route to exist",
   );
   assert.equal(
-    existsSync(contentModule),
+    existsSync(contentLocalesDir),
     true,
-    "expected interior page content to live in a dedicated module",
+    "expected interior page content to live in dedicated locale files",
+  );
+  assert.equal(
+    existsSync(readerModule),
+    true,
+    "expected interior pages to use a dedicated localized data reader",
+  );
+
+  const localeFiles = readdirSync(contentLocalesDir).filter((entry) => entry.endsWith(".json"));
+  assert.deepEqual(
+    localeFiles.sort(),
+    ["br.json", "cn.json", "en.json"],
+    `expected interior page locales for EN, BR, and CN, found ${localeFiles.join(", ")}`,
   );
 
   const competitionsSource = readProjectFile("src/pages/competitions.astro");
@@ -78,13 +114,38 @@ test("interior page route files stay thin and delegate rendering", () => {
     "expected competitions route to import the dedicated interior stylesheet",
   );
   assert.match(
+    competitionsSource,
+    /getInteriorPageData\("competitionsPage"\)/,
+    "expected competitions route to load localized content through the reader",
+  );
+  assert.match(
+    preRegistrationSource,
+    /getInteriorPageData\("preRegistrationPage"\)/,
+    "expected pre-registration route to load localized content through the reader",
+  );
+  assert.match(
+    competitionsSource,
+    /LocalizationClient/,
+    "expected competitions route to include the shared localization client",
+  );
+  assert.match(
+    preRegistrationSource,
+    /LocalizationClient/,
+    "expected pre-registration route to include the shared localization client",
+  );
+  assert.match(
     preRegistrationSource,
     /interior-pages\.css/,
     "expected pre-registration route to import the dedicated interior stylesheet",
   );
+  assert.doesNotMatch(
+    `${competitionsSource}\n${preRegistrationSource}`,
+    /content\/interior-pages/,
+    "expected the routes to avoid the old one-off interior content module",
+  );
 });
 
-test("competitions and pre-registration pages build with the expected mockup content", () => {
+test("competitions and pre-registration pages build with the expected mockup content", { concurrency: false }, () => {
   const build = buildSite();
 
   try {
@@ -161,5 +222,125 @@ test("competitions and pre-registration pages build with the expected mockup con
     );
   } finally {
     build.cleanup();
+  }
+});
+
+test("interior pages expose shared localization hooks and localize in the browser", { concurrency: false }, async () => {
+  const build = buildSite();
+  const competitionsHtml = readFileSync(
+    resolve(build.outDir, "competitions", "index.html"),
+    "utf8",
+  );
+
+  assert.match(
+    competitionsHtml,
+    /id="localized-content"/,
+    "expected interior pages to ship the shared localized content payload",
+  );
+  assert.match(
+    competitionsHtml,
+    /data-lang-toggle/,
+    "expected interior pages to use the shared language switcher hooks",
+  );
+  assert.match(
+    competitionsHtml,
+    /data-lang-option="CN"/,
+    "expected interior pages to expose the shared language options",
+  );
+  assert.match(
+    competitionsHtml,
+    /alt="LATAM China Tech"/,
+    "expected interior pages to reuse the shared brand logo asset",
+  );
+
+  const port = 4300 + Math.floor(Math.random() * 500);
+  const session = `interior-i18n-${Date.now()}`;
+  const server = spawn("python3", ["-m", "http.server", String(port), "-d", build.outDir], {
+    cwd: projectRoot,
+    stdio: "ignore",
+  });
+
+  try {
+    await waitForServer(port);
+
+    try {
+      runAgentBrowser(["--session", session, "close"]);
+    } catch {
+      // session may not exist yet
+    }
+
+    runAgentBrowser(["--session", session, "set", "viewport", "1440", "900"]);
+    runAgentBrowser(["--session", session, "open", `http://127.0.0.1:${port}/competitions/`]);
+    runAgentBrowser(["--session", session, "wait", "1000"]);
+    runAgentBrowser(["--session", session, "click", ".site-lang [data-lang-toggle]"]);
+    runAgentBrowser(["--session", session, "click", ".site-lang [data-lang-option='CN']"]);
+    runAgentBrowser(["--session", session, "wait", "500"]);
+
+    const competitionsHeading = runAgentBrowser([
+      "--session",
+      session,
+      "get",
+      "text",
+      ".page-title",
+    ]);
+    const competitionsFilter = runAgentBrowser([
+      "--session",
+      session,
+      "get",
+      "text",
+      ".filter-group-label",
+    ]);
+
+    assert.match(
+      competitionsHeading,
+      /挑战|竞赛/u,
+      "expected the competitions page heading to switch to Chinese",
+    );
+    assert.match(
+      competitionsFilter,
+      /状态/u,
+      "expected the competitions filters to switch to Chinese",
+    );
+
+    runAgentBrowser(["--session", session, "open", `http://127.0.0.1:${port}/pre-registration/`]);
+    runAgentBrowser(["--session", session, "wait", "1000"]);
+    runAgentBrowser(["--session", session, "click", ".site-lang [data-lang-toggle]"]);
+    runAgentBrowser(["--session", session, "click", ".site-lang [data-lang-option='BR']"]);
+    runAgentBrowser(["--session", session, "wait", "500"]);
+
+    const preRegistrationHeading = runAgentBrowser([
+      "--session",
+      session,
+      "get",
+      "text",
+      ".page-title",
+    ]);
+    const submitLabel = runAgentBrowser([
+      "--session",
+      session,
+      "get",
+      "text",
+      ".submit-actions .site-btn--primary",
+    ]);
+
+    assert.match(
+      preRegistrationHeading,
+      /Pré|Inscrição/i,
+      "expected the pre-registration page heading to switch to Portuguese",
+    );
+    assert.match(
+      submitLabel,
+      /Enviar|Pré-inscrição/i,
+      "expected the submit CTA to switch to Portuguese",
+    );
+  } finally {
+    build.cleanup();
+    server.kill("SIGTERM");
+
+    try {
+      runAgentBrowser(["--session", session, "close"]);
+    } catch {
+      // ignore cleanup failures
+    }
   }
 });

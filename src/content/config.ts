@@ -5,4 +5,12 @@ const homepage = defineCollection({
   schema: z.any(),
 });
 
-export const collections = { homepage };
+const interiorPages = defineCollection({
+  type: "data",
+  schema: z.any(),
+});
+
+export const collections = {
+  homepage,
+  "interior-pages": interiorPages,
+};

@@ -1,24 +1,23 @@
 ---
 import CompetitionsPage from "../components/competitions/CompetitionsPage.astro";
-import {
-  competitionsPage,
-  interiorFooter,
-  interiorNavItems,
-  interiorSiteSettings,
-} from "../content/interior-pages";
+import LocalizationClient from "../components/i18n/LocalizationClient.astro";
 import Layout from "../layouts/Layout.astro";
+import { getInteriorPageData } from "../lib/interior-pages/reader";
 import "../styles/interior-pages.css";
+
+const { defaultLanguage, defaultLocale, localizedContent, siteSettings } =
+  await getInteriorPageData("competitionsPage");
 ---
 
 <Layout
-  title={competitionsPage.meta.title}
-  description={competitionsPage.meta.description}
+  title={defaultLocale.meta.title}
+  description={defaultLocale.meta.description}
   bodyClass="interior-body"
 >
   <CompetitionsPage
-    page={competitionsPage}
-    navItems={interiorNavItems}
-    footer={interiorFooter}
-    siteSettings={interiorSiteSettings}
+    locale={defaultLocale}
+    siteSettings={siteSettings}
+    currentLanguage={defaultLanguage}
   />
+  <LocalizationClient defaultLanguage={defaultLanguage} localizedContent={localizedContent} />
 </Layout>

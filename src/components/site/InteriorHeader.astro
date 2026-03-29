@@ -3,33 +3,42 @@ import BrandLogo from "./BrandLogo.astro";
 import LanguageSwitcher from "./LanguageSwitcher.astro";
 
 import type { SiteSettings } from "../../lib/homepage/types";
-import type { InteriorNavItem } from "../../content/interior-pages";
+import type { InteriorNavItem } from "../../lib/interior-pages/types";
 
 interface Props {
   navItems: InteriorNavItem[];
-  activeLabel: string;
+  activeHref: string;
   siteSettings: SiteSettings;
+  currentLanguage: string;
   languageLabel?: string;
+  homeLabel?: string;
 }
 
 const {
   navItems,
-  activeLabel,
+  activeHref,
   siteSettings,
+  currentLanguage,
   languageLabel = "Select language",
+  homeLabel = siteSettings.siteName,
 } = Astro.props;
 ---
 
 <header class="site-header">
   <div class="interior-wrap site-header-inner">
-    <a href="/" class="site-brand" aria-label={siteSettings.siteName}>
+    <a
+      href="/"
+      class="site-brand"
+      aria-label={homeLabel}
+      data-i18n-aria-label="ui.homeLabel"
+    >
       <BrandLogo alt={siteSettings.siteName} className="site-brand-image site-brand-image--dark" />
     </a>
 
     <nav class="site-nav" aria-label="Interior navigation">
       <ul class="site-nav-list">
-        {navItems.map((item) => {
-          const isActive = item.label === activeLabel;
+        {navItems.map((item, index) => {
+          const isActive = item.href === activeHref;
 
           return (
             <li class="site-nav-item">
@@ -37,6 +46,7 @@ const {
                 href={item.href}
                 class:list={["site-nav-link", isActive && "is-active"]}
                 aria-current={isActive ? "page" : undefined}
+                data-i18n={`navItems.${index}.label`}
               >
                 {item.label}
               </a>
@@ -48,8 +58,9 @@ const {
 
     <LanguageSwitcher
       languages={siteSettings.languages}
-      currentLanguage={siteSettings.defaultLanguage}
+      currentLanguage={currentLanguage}
       label={languageLabel}
+      labelTranslationKey="ui.chooseLanguage"
     />
   </div>
 </header>

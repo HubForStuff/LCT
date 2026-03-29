@@ -2,15 +2,21 @@
 import LanguageSwitcher from "./LanguageSwitcher.astro";
 
 import type { SiteSettings } from "../../lib/homepage/types";
-import type { InteriorFooterContent } from "../../content/interior-pages";
+import type { InteriorFooterContent, InteriorPageUi } from "../../lib/interior-pages/types";
 
 interface Props {
   footer: InteriorFooterContent;
+  ui: InteriorPageUi;
   siteSettings: SiteSettings;
   currentLanguage?: string;
 }
 
-const { footer, siteSettings, currentLanguage = siteSettings.defaultLanguage } = Astro.props;
+const {
+  footer,
+  ui,
+  siteSettings,
+  currentLanguage = siteSettings.defaultLanguage,
+} = Astro.props;
 const currentYear = new Date().getFullYear();
 ---
 
@@ -20,11 +26,11 @@ const currentYear = new Date().getFullYear();
   <section class="site-footer-hero">
     <div class="interior-wrap site-footer-hero-inner">
       <div>
-        <div class="site-footer-eyebrow">{footer.eyebrow}</div>
-        <h2 class="site-footer-title" set:html={footer.titleHtml}></h2>
+        <div class="site-footer-eyebrow" data-i18n="footer.eyebrow">{footer.eyebrow}</div>
+        <h2 class="site-footer-title" data-i18n-html="footer.titleHtml" set:html={footer.titleHtml}></h2>
       </div>
 
-      <a href={footer.buttonHref} class="site-btn site-btn--primary">
+      <a href={footer.buttonHref} class="site-btn site-btn--primary" data-i18n="footer.buttonLabel">
         {footer.buttonLabel}
       </a>
     </div>
@@ -35,12 +41,16 @@ const currentYear = new Date().getFullYear();
   <section class="site-footer-body">
     <div class="interior-wrap site-footer-grid">
       <div class="site-footer-columns">
-        {footer.columns.map((column) => (
+        {footer.columns.map((column, columnIndex) => (
           <div class="site-footer-column">
-            <div class="site-footer-column-title">{column.title}</div>
+            <div class="site-footer-column-title" data-i18n={`footer.columns.${columnIndex}.title`}>
+              {column.title}
+            </div>
             <div class="site-footer-column-links">
-              {column.links.map((link) => (
-                <a href={link.href}>{link.label}</a>
+              {column.links.map((link, linkIndex) => (
+                <a href={link.href} data-i18n={`footer.columns.${columnIndex}.links.${linkIndex}.label`}>
+                  {link.label}
+                </a>
               ))}
             </div>
           </div>
@@ -48,14 +58,23 @@ const currentYear = new Date().getFullYear();
       </div>
 
       <div class="site-footer-newsletter">
-        <div class="site-footer-column-title">{footer.newsletterTitle}</div>
+        <div class="site-footer-column-title" data-i18n="footer.newsletterTitle">
+          {footer.newsletterTitle}
+        </div>
         <div class="site-footer-newsletter-row">
-          <input type="email" placeholder={footer.newsletterPlaceholder} aria-label={footer.newsletterPlaceholder} />
+          <input
+            type="email"
+            placeholder={ui.newsletterPlaceholder}
+            aria-label={ui.newsletterEmail}
+            data-i18n-placeholder="ui.newsletterPlaceholder"
+            data-i18n-aria-label="ui.newsletterEmail"
+          />
           <a
             href={siteSettings.newsletterUrl}
             target="_blank"
             rel="noreferrer"
             class="site-footer-subscribe"
+            data-i18n="footer.newsletterButtonLabel"
           >
             {footer.newsletterButtonLabel}
           </a>
@@ -105,11 +124,13 @@ const currentYear = new Date().getFullYear();
     </div>
 
     <div class="interior-wrap site-footer-bottom">
-      <p>{footer.bottomNote}</p>
+      <p data-i18n="footer.bottomNote">{footer.bottomNote}</p>
       <div class="site-footer-bottom-meta">
         <LanguageSwitcher
           languages={siteSettings.languages}
           currentLanguage={currentLanguage}
+          label={ui.chooseLanguage}
+          labelTranslationKey="ui.chooseLanguage"
           className="site-lang--footer"
         />
         <span>© {currentYear} LATAM China Tech</span>

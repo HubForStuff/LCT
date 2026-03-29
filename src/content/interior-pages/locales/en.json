@@ -1,0 +1,477 @@
+{
+  "ui": {
+    "chooseLanguage": "Choose language",
+    "homeLabel": "LATAM China Tech home",
+    "newsletterEmail": "Newsletter email",
+    "newsletterPlaceholder": "Your email"
+  },
+  "navItems": [
+    { "label": "Advisory", "href": "/" },
+    { "label": "Competitions & Challenges", "href": "/competitions/" },
+    { "label": "Events", "href": "/" },
+    { "label": "Programs", "href": "/" },
+    { "label": "Network", "href": "/" }
+  ],
+  "footer": {
+    "eyebrow": "Scale with us",
+    "titleHtml": "Get funded, connected,<br />and scale with <span>LATAM CHINA TECH</span>",
+    "buttonLabel": "View Programs",
+    "buttonHref": "/",
+    "newsletterTitle": "Stay close to the next China-LATAM opportunity",
+    "newsletterButtonLabel": "Subscribe on Substack",
+    "bottomNote": "Built for founders, investors, and corporate innovators bridging Latin America and China.",
+    "columns": [
+      {
+        "title": "Services",
+        "links": [
+          { "label": "Investment", "href": "/" },
+          { "label": "Tech Transfer", "href": "/" }
+        ]
+      },
+      {
+        "title": "Competitions",
+        "links": [
+          { "label": "Startup Competitions", "href": "/pre-registration/" },
+          { "label": "Corporate Challenges", "href": "/competitions/" }
+        ]
+      },
+      {
+        "title": "Events",
+        "links": [
+          { "label": "Trade Fairs & Expos", "href": "/" },
+          { "label": "Summits", "href": "/" }
+        ]
+      },
+      {
+        "title": "Expansion",
+        "links": [
+          { "label": "Market Entry", "href": "/" },
+          { "label": "Business Mission", "href": "/" }
+        ]
+      }
+    ]
+  },
+  "competitionsPage": {
+    "meta": {
+      "htmlLang": "en",
+      "title": "Challenges & Competitions | LATAM China Tech",
+      "description": "Explore startup competitions, corporate challenges, and innovation opportunities connecting Latin America and China."
+    },
+    "eyebrow": "Open for Applications",
+    "titleHtml": "Challenges &amp; <em>Competitions</em>",
+    "statusLabel": "Status",
+    "focusLabel": "Focus",
+    "sortLabel": "Sort challenges",
+    "filtersAriaLabel": "Competition filters",
+    "tabsAriaLabel": "Competition types",
+    "statusFilters": [
+      { "label": "All", "tone": "neutral", "active": true },
+      { "label": "Open", "tone": "open" },
+      { "label": "Future", "tone": "future" },
+      { "label": "Closed", "tone": "closed" }
+    ],
+    "focusFilters": [
+      { "label": "All Industries", "tone": "neutral", "active": true },
+      { "label": "Deep Tech", "tone": "violet" },
+      { "label": "Sustainability", "tone": "green" },
+      { "label": "FinTech", "tone": "blue" },
+      { "label": "AgriTech", "tone": "green" },
+      { "label": "AI", "tone": "violet" },
+      { "label": "HealthTech", "tone": "orange" },
+      { "label": "Logistics", "tone": "orange" },
+      { "label": "BioTech", "tone": "teal" },
+      { "label": "Manufacturing", "tone": "closed" }
+    ],
+    "sortOptions": [
+      "Sort: Deadline (nearest)",
+      "Sort: Prize (highest)",
+      "Sort: Newest"
+    ],
+    "loadMoreLabel": "Load More Challenges",
+    "tabs": [
+      {
+        "id": "startup",
+        "label": "Startup Competitions",
+        "count": 9,
+        "placeholderLabel": "More Coming Q3 2025",
+        "featured": {
+          "theme": "startup",
+          "tag": "Featured Challenge",
+          "category": "Deep Tech · Cross-Border",
+          "title": "Greater Tech Challenge 2025",
+          "description": "The flagship innovation competition bridging Latin America and China. Submit your breakthrough solution in AI, cleantech, or biotech and compete for the largest prize pool in the region.",
+          "value": "$500K",
+          "valueCaption": "Total Awards",
+          "status": "Open Now",
+          "deadlinePrefix": "Closes",
+          "deadlineValue": "Sep 30, 2025",
+          "ctaLabel": "Apply Now",
+          "watermark": "GTC"
+        },
+        "cards": [
+          {
+            "category": "FinTech",
+            "name": "China-LATAM FinTech Cup",
+            "description": "Financial inclusion innovation across emerging markets. Build solutions for the unbanked across Brazil, Mexico, and Southeast China.",
+            "watermark": "FIN",
+            "prize": "$200K",
+            "status": "Open",
+            "statusTone": "open",
+            "deadlinePrefix": "Closes",
+            "deadlineValue": "Aug 15, 2025",
+            "ctaLabel": "Apply Now",
+            "accent": "warm"
+          },
+          {
+            "category": "AgriTech · Sustainability",
+            "name": "Food Future Challenge",
+            "description": "Transforming agriculture supply chains between Latin America's farmlands and China's markets using AI, IoT, and precision agriculture.",
+            "watermark": "AGR",
+            "prize": "$150K",
+            "status": "Future",
+            "statusTone": "future",
+            "deadlinePrefix": "Opens",
+            "deadlineValue": "Jul 1, 2025",
+            "ctaLabel": "Learn More",
+            "accent": "warm"
+          },
+          {
+            "category": "CleanTech",
+            "name": "Clean Energy Sprint",
+            "description": "Accelerating decarbonization across Latin American cities using Chinese clean energy technology. Solar, wind, and grid innovation welcome.",
+            "watermark": "CLN",
+            "prize": "$300K",
+            "status": "Open",
+            "statusTone": "open",
+            "deadlinePrefix": "Closes",
+            "deadlineValue": "Oct 10, 2025",
+            "ctaLabel": "Apply Now",
+            "accent": "warm"
+          },
+          {
+            "category": "AI · Startup",
+            "name": "AI Founders Battle",
+            "description": "Early-stage AI founders competing for market access, seed investment, and a 6-month acceleration in Shenzhen and São Paulo.",
+            "watermark": "AI",
+            "prize": "$120K + inv.",
+            "status": "Open",
+            "statusTone": "open",
+            "deadlinePrefix": "Closes",
+            "deadlineValue": "Jul 31, 2025",
+            "ctaLabel": "Apply Now",
+            "accent": "warm"
+          },
+          {
+            "category": "Logistics · Supply Chain",
+            "name": "Trade Route 2050 Challenge",
+            "description": "Reimagining cross-Pacific logistics for the next generation with autonomous freight, port automation, and smart customs solutions.",
+            "watermark": "LOG",
+            "prize": "$180K",
+            "status": "Future",
+            "statusTone": "future",
+            "deadlinePrefix": "Opens",
+            "deadlineValue": "Aug 1, 2025",
+            "ctaLabel": "Learn More",
+            "accent": "warm"
+          },
+          {
+            "category": "EdTech · Social Impact",
+            "name": "EduBridge Hackathon",
+            "description": "A 48-hour sprint for multilingual education tools serving underserved communities through Chinese EdTech infrastructure.",
+            "watermark": "EDU",
+            "prize": "$60K",
+            "status": "Open",
+            "statusTone": "open",
+            "deadlinePrefix": "Closes",
+            "deadlineValue": "Jun 20, 2025",
+            "ctaLabel": "Apply Now",
+            "accent": "warm"
+          },
+          {
+            "category": "BioTech · Health",
+            "name": "Pacific BioVenture Prize",
+            "description": "Connecting biotech startups with LATAM-China co-development pathways. The 2024 edition closed and 2026 early access is now open.",
+            "watermark": "BIO",
+            "prize": "$90K",
+            "status": "Closed",
+            "statusTone": "closed",
+            "deadlinePrefix": "Closed",
+            "deadlineValue": "Apr 15, 2025",
+            "ctaLabel": "Join Waitlist",
+            "accent": "warm"
+          },
+          {
+            "category": "Manufacturing · Deep Tech",
+            "name": "Smart Factory Sprint",
+            "description": "Industry 4.0 solutions for LATAM manufacturing powered by Chinese automation and IoT technology. Hardware and software welcome.",
+            "watermark": "MFG",
+            "prize": "$175K",
+            "status": "Open",
+            "statusTone": "open",
+            "deadlinePrefix": "Closes",
+            "deadlineValue": "Nov 5, 2025",
+            "ctaLabel": "Apply Now",
+            "accent": "warm"
+          }
+        ]
+      },
+      {
+        "id": "corporate",
+        "label": "Corporate Challenges",
+        "count": 5,
+        "placeholderLabel": "More Coming Q4 2025",
+        "featured": {
+          "theme": "corporate",
+          "tag": "Featured Challenge",
+          "category": "Corporate · Market Entry",
+          "title": "China Market Entry Accelerator 2025",
+          "description": "The premier programme for established LATAM companies ready to enter the Chinese market through structured support, in-market immersion, and direct access to distribution partners.",
+          "value": "Market Access",
+          "valueCaption": "Advisory Package",
+          "status": "Open Now",
+          "deadlinePrefix": "Closes",
+          "deadlineValue": "Oct 15, 2025",
+          "ctaLabel": "Apply Now",
+          "watermark": "COR"
+        },
+        "cards": [
+          {
+            "category": "SME · Scale-Up",
+            "name": "SME Export Accelerator",
+            "description": "For established companies seeking to scale their China market strategy with structured advisory, trade facilitation, and on-ground support.",
+            "watermark": "SME",
+            "prize": "Market Access",
+            "status": "Open",
+            "statusTone": "open",
+            "deadlinePrefix": "Rolling",
+            "deadlineValue": "Applications",
+            "ctaLabel": "Apply Now",
+            "accent": "cool"
+          },
+          {
+            "category": "HealthTech · Corporate",
+            "name": "MedBridge Innovation Award",
+            "description": "Connecting Latin American biotech companies with China's healthcare distribution and co-development market through an enterprise track.",
+            "watermark": "MED",
+            "prize": "$250K",
+            "status": "Open",
+            "statusTone": "open",
+            "deadlinePrefix": "Closes",
+            "deadlineValue": "Dec 1, 2025",
+            "ctaLabel": "Apply Now",
+            "accent": "cool"
+          },
+          {
+            "category": "Retail · Consumer Goods",
+            "name": "LATAM Brands in China",
+            "description": "A corporate challenge for LATAM consumer brands preparing to launch on China's e-commerce platforms with Tier-1 distribution partners.",
+            "watermark": "RET",
+            "prize": "Distribution",
+            "status": "Future",
+            "statusTone": "future",
+            "deadlinePrefix": "Opens",
+            "deadlineValue": "Sep 1, 2025",
+            "ctaLabel": "Learn More",
+            "accent": "cool"
+          },
+          {
+            "category": "Energy · Infrastructure",
+            "name": "Green Infrastructure Challenge",
+            "description": "Corporate track for infrastructure teams partnering with Chinese EPC firms on LATAM renewable energy projects.",
+            "watermark": "ENR",
+            "prize": "$400K",
+            "status": "Open",
+            "statusTone": "open",
+            "deadlinePrefix": "Closes",
+            "deadlineValue": "Aug 30, 2025",
+            "ctaLabel": "Apply Now",
+            "accent": "cool"
+          },
+          {
+            "category": "Financial Services",
+            "name": "Cross-Border Finance Forum",
+            "description": "A challenge for banks, fintechs, and payments companies building LATAM-China FX infrastructure and payment corridors.",
+            "watermark": "FIN",
+            "prize": "Partnership",
+            "status": "Future",
+            "statusTone": "future",
+            "deadlinePrefix": "Opens",
+            "deadlineValue": "Oct 1, 2025",
+            "ctaLabel": "Learn More",
+            "accent": "cool"
+          }
+        ]
+      },
+      {
+        "id": "academic",
+        "label": "Academic Innovation",
+        "count": 0,
+        "emptyStateTitle": "Academic Innovation",
+        "emptyStateBody": "Programmes for universities, research institutes, and academic entrepreneurs are coming soon."
+      }
+    ]
+  },
+  "preRegistrationPage": {
+    "meta": {
+      "htmlLang": "en",
+      "title": "HICOOL Pre-Registration | LATAM China Tech",
+      "description": "Start your HICOOL Global Startup Competition pre-registration with LATAM China Tech guidance and application support."
+    },
+    "eyebrow": "Pre-Registration Open",
+    "titleHtml": "HICOOL Global<br /><em>Startup Competition</em>",
+    "subtitle": "Ready to apply? Fill in the form below and our team will guide you through every step of your HICOOL application.",
+    "formProgressLabel": "Form progress",
+    "banner": {
+      "badge": "Pre-Registration",
+      "title": "This is a Pre-Registration",
+      "descriptionHtml": "Submit this form and <strong>LATAM CHINA TECH</strong> will personally guide you through your full HICOOL application: reviewing your submission, strengthening your pitch, and maximizing your chances of winning.",
+      "supportLabel": "Supported by",
+      "supportName": "LATAM CHINA TECH",
+      "supportItems": ["Application coaching", "Network introductions", "China market guide"]
+    },
+    "guide": {
+      "title": "Application Guide & Tutorial",
+      "description": "Before you begin, download our step-by-step PDF guide. It covers competition rules, judging criteria, Beijing incorporation requirements, and tips for a winning application in English, Spanish, and Portuguese.",
+      "actions": [
+        { "label": "Download PDF Guide", "href": "#", "theme": "dark", "icon": "download" },
+        { "label": "Watch Tutorial", "href": "#", "theme": "light", "icon": "play" }
+      ]
+    },
+    "progressSteps": [
+      { "number": "01", "label": "Competition Info", "target": "section-1" },
+      { "number": "02", "label": "Applicant Details", "target": "section-2" },
+      { "number": "03", "label": "Project Information", "target": "section-3" },
+      { "number": "04", "label": "Beijing Plan", "target": "section-4" }
+    ],
+    "sections": {
+      "competitionInformationTitle": "Competition Information",
+      "competitionInformationSubtitle": "Basic details about your project and company registration.",
+      "applicantTitle": "Main Participant Applicant",
+      "applicantSubtitle": "Personal details of the lead applicant.",
+      "projectTitle": "Project Information",
+      "projectSubtitle": "Tell us about your startup. Use the helper prompts if you want a faster first draft.",
+      "beijingTitle": "Plan for Incorporation in Beijing",
+      "beijingSubtitle": "Required for prize eligibility."
+    },
+    "notes": {
+      "applicant": "Instructions: The main applicant should be the largest natural shareholder and be available for a semi-finals roadshow if selected.",
+      "beijing": "Important: Incorporation in Beijing is the goal of the organizers and is mandatory to receive your awarded prize."
+    },
+    "fields": {
+      "projectName": "Project Name",
+      "projectNamePlaceholder": "Your project or startup name",
+      "projectIntroduction": "Project Introduction",
+      "projectIntroductionHint": "30-50 words",
+      "projectIntroductionPlaceholder": "Describe your project in 30-50 words. What problem does it solve? Who does it serve?",
+      "competitionField": "Competition Field",
+      "competitionFieldPlaceholder": "Select your primary tech vertical",
+      "companyHeadquarters": "Where is your company headquartered?",
+      "companyLocation": "Company Location",
+      "companyLocationPlaceholder": "City, Country (e.g. São Paulo, Brazil)",
+      "companyFullName": "Full Name of the Company",
+      "companyFullNamePlaceholder": "Registered company name (if applicable)",
+      "officeAddress": "Office Address",
+      "officeAddressPlaceholder": "Full registered office address",
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "First and Last name",
+      "gender": "Gender",
+      "dateOfBirth": "Date of Birth",
+      "nationality": "Nationality",
+      "nationalityPlaceholder": "e.g. Brazilian, Mexican, Colombian",
+      "graduationInstitution": "Latest Graduation Institution",
+      "graduationInstitutionPlaceholder": "University or institution name",
+      "highestDegree": "Highest Degree",
+      "highestDegreePlaceholder": "Select degree",
+      "wechatOrWhatsapp": "WeChat or WhatsApp",
+      "wechatOrWhatsappPlaceholder": "WeChat ID or WhatsApp number",
+      "linkedIn": "LinkedIn Profile",
+      "linkedInPlaceholder": "https://linkedin.com/in/yourprofile",
+      "email": "Email Address",
+      "emailPlaceholder": "your@email.com",
+      "elevatorPitch": "Elevator Pitch",
+      "elevatorPitchHint": "One compelling sentence",
+      "elevatorPitchPlaceholder": "Add a compelling one-sentence pitch for your startup",
+      "projectOverview": "Project Overview",
+      "projectOverviewPlaceholder": "Provide a detailed overview of your project — the problem it addresses, your solution approach, and why now.",
+      "productFeatures": "Product / Service Features",
+      "productFeaturesPlaceholder": "Describe the key features and differentiators of your product or service.",
+      "businessModel": "Business Model",
+      "businessModelPlaceholder": "Explain how your startup generates revenue and your go-to-market strategy.",
+      "teamIntroduction": "Team Introduction",
+      "teamIntroductionPlaceholder": "Introduce your founding team — backgrounds, expertise, and why you're the right team to execute this vision.",
+      "investmentValue": "Investment Value",
+      "investmentValuePlaceholder": "Describe your investment opportunity — current traction, financials, use of funds, and growth potential.",
+      "pitchingDeck": "Pitching Deck",
+      "pitchingDeckHint": "PDF or PPT, max 20MB",
+      "pitchingDeckUploadLabel": "Click to upload your Pitch Deck",
+      "pitchingDeckUploadSubtext": "PDF, PPT or PPTX — Maximum 20MB",
+      "supplementaryMaterials": "Supplementary Materials",
+      "supplementaryMaterialsHint": "Optional — videos, demos, reports",
+      "supplementaryMaterialsUploadLabel": "Upload supplementary materials",
+      "supplementaryMaterialsUploadSubtext": "Any format — videos, demos, reports, patents",
+      "expectedBenefits": "What do you expect to receive?",
+      "hearAbout": "Where did you hear about us?",
+      "hearAboutPlaceholder": "Select a source",
+      "beijingPlan": "Beijing Incorporation & China Opportunity Plan",
+      "beijingPlanPlaceholder": "Describe your plan for incorporating in Beijing. How does your startup leverage China's market, technology ecosystem, policy environment, or talent pool?",
+      "incorporationTimeline": "Intended Incorporation Timeline in Beijing",
+      "incorporationTimelineHint": "Full 1-on-1 incorporation support will be provided",
+      "incorporationTimelinePlaceholder": "When do you plan to incorporate?"
+    },
+    "writeWithAiLabel": "Write with AI",
+    "wordCountTarget": "Target: 30-50 words",
+    "companyHeadquartersOptions": ["China", "Other Countries", "Not yet established as a company"],
+    "genderOptions": ["Male", "Female", "Other"],
+    "degreeOptions": ["High School Diploma", "Associate Degree", "Bachelor's Degree", "Master's Degree", "MBA", "PhD / Doctorate", "Other"],
+    "competitionFieldOptions": [
+      "Artificial Intelligence & Machine Learning",
+      "FinTech & Digital Finance",
+      "CleanTech & Sustainability",
+      "BioTech & Life Sciences",
+      "AgriTech & FoodTech",
+      "Smart Manufacturing & Industry 4.0",
+      "EdTech & Future of Work",
+      "HealthTech & MedTech",
+      "Mobility & Logistics",
+      "Enterprise SaaS & Cloud",
+      "Deep Tech & Hardware",
+      "Other Tech Vertical"
+    ],
+    "benefits": [
+      { "label": "Policy Declaration", "value": "policy", "short": "PD", "tone": "blue" },
+      { "label": "Talent Services", "value": "talent", "short": "TS", "tone": "green" },
+      { "label": "Business & Taxation", "value": "tax", "short": "BT", "tone": "lilac" },
+      { "label": "Listing Guidance", "value": "listing", "short": "LG", "tone": "sand" },
+      { "label": "HICOOL Fund Investment", "value": "fund", "short": "HF", "tone": "green" },
+      { "label": "Financial Advisory", "value": "fa", "short": "FA", "tone": "blue" },
+      { "label": "VC Matchmaking", "value": "vc", "short": "VC", "tone": "sand" },
+      { "label": "Industrial Matchmaking", "value": "industrial", "short": "IM", "tone": "lilac" },
+      { "label": "Scenario Matchmaking", "value": "scenario", "short": "SM", "tone": "blue" },
+      { "label": "Exhibition", "value": "exhibition", "short": "EX", "tone": "green" },
+      { "label": "Pitching", "value": "pitching", "short": "PT", "tone": "sand" },
+      { "label": "Branding", "value": "branding", "short": "BR", "tone": "lilac" }
+    ],
+    "hearAboutOptions": [
+      "LATAM CHINA TECH Website",
+      "LATAM CHINA TECH Social Media",
+      "LinkedIn",
+      "Instagram",
+      "WhatsApp / WeChat",
+      "Friend or Colleague",
+      "University or Accelerator",
+      "Trade Fair or Event",
+      "News Article or Media",
+      "Other"
+    ],
+    "incorporationTimelineOptions": [
+      "Immediately upon winning",
+      "Within 3 months of award",
+      "Within 6 months of award",
+      "Within 12 months of award",
+      "Still evaluating the timeline"
+    ],
+    "submitNoteHtml": "By submitting, you confirm that all information is accurate and agree to be contacted by <strong>LATAM CHINA TECH</strong> to support your full application. This is a pre-registration, not the final HICOOL submission.",
+    "saveDraftLabel": "Save Draft",
+    "submitLabel": "Submit Pre-Registration"
+  }
+}
