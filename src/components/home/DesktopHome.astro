@@ -56,22 +56,31 @@ const { locale, languages, siteSettings } = Astro.props;
 
   <section class="desk-section desk-categories" id="desktop-categories">
     <div class="desk-catblocks">
-      {locale.categoryCards.map((card, index) => (
-        <a
-          href="#desktop-footer"
-          class={`desk-catblock ${card.theme === "light" ? "desk-catblock--light" : ""}`}
-        >
-          <div class="desk-catblock-body">
-            <div class="desk-catblock-eye" data-i18n={`categoryCards.${index}.eyebrow`}>{card.eyebrow}</div>
-            <h2 class="desk-catblock-title" data-i18n={`categoryCards.${index}.title`}>{card.title}</h2>
-            <p class="desk-catblock-desc" data-i18n={`categoryCards.${index}.description`}>
-              {card.description}
-            </p>
-            <div class="desk-catblock-cta" data-i18n={`categoryCards.${index}.cta`}>{card.cta}</div>
+      {locale.categoryCards.map((card, index) => {
+        const isLast = index === locale.categoryCards.length - 1;
+        const Tag = isLast ? "a" : "div";
+        const themeClass = card.theme === "light" ? " desk-catblock--light" : "";
+        return (
+          <div class="desk-catblock-sticky-wrap" data-card-index={index}>
+            <Tag
+              href={isLast ? "#desktop-footer" : undefined}
+              class={`desk-catblock${themeClass}`}
+            >
+              <div class="desk-catblock-body">
+                <div class="desk-catblock-eye" data-i18n={`categoryCards.${index}.eyebrow`}>{card.eyebrow}</div>
+                <h2 class="desk-catblock-title" data-i18n={`categoryCards.${index}.title`}>{card.title}</h2>
+                <p class="desk-catblock-desc" data-i18n={`categoryCards.${index}.description`}>
+                  {card.description}
+                </p>
+                {isLast && (
+                  <div class="desk-catblock-cta" data-i18n={`categoryCards.${index}.cta`}>{card.cta}</div>
+                )}
+              </div>
+              <div class={`desk-catblock-media desk-catblock-media--${index + 1}`}></div>
+            </Tag>
           </div>
-          <div class={`desk-catblock-media desk-catblock-media--${index + 1}`}></div>
-        </a>
-      ))}
+        );
+      })}
     </div>
   </section>
 
@@ -160,3 +169,75 @@ const { locale, languages, siteSettings } = Astro.props;
 
   <DesktopFooter locale={locale} languages={languages} siteSettings={siteSettings} />
 </section>
+
+<script>
+  /** Scroll-based stacking card effect for the desktop category section.
+   *
+   *  Each .desk-catblock-sticky-wrap is position:sticky at the same top.
+   *  Later wrappers have higher z-index, so they visually cover earlier ones.
+   *  As the next wrapper's natural (non-stuck) position reaches the sticky
+   *  offset, it starts covering the current card.  At that point we add
+   *  .is-stacked / .is-stacked-deep to the covered card to scale it down. */
+  function initCatblockScroll() {
+    const wraps = Array.from(
+      document.querySelectorAll<HTMLElement>('.desk-catblock-sticky-wrap')
+    );
+    if (wraps.length < 2) return;
+
+    const cards = wraps.map(w => w.querySelector<HTMLElement>('.desk-catblock')!);
+    const total = wraps.length;
+
+    function onScroll() {
+      for (let i = 0; i < total; i++) {
+        const card = cards[i];
+        if (!card) continue;
+
+        const isLast = i === total - 1;
+
+        if (isLast) {
+          // Last card is never stacked
+          card.classList.remove('is-stacked', 'is-stacked-deep');
+          continue;
+        }
+
+        // Check how far the next wrapper has scrolled up.
+        // When the next wrapper's top is at or near the sticky top
+        // (80px), it's overlapping us.
+        const nextRect = wraps[i + 1].getBoundingClientRect();
+        const stickyTop = 80; // matches CSS top value
+        const threshold = stickyTop + 60; // within 60px of sticking
+
+        const stacked = nextRect.top <= threshold;
+
+        // Deep-stacked when two cards ahead are also covering us
+        const deepStacked =
+          stacked &&
+          i + 2 < total &&
+          wraps[i + 2].getBoundingClientRect().top <= threshold;
+
+        card.classList.toggle('is-stacked', stacked && !deepStacked);
+        card.classList.toggle('is-stacked-deep', deepStacked);
+      }
+    }
+
+    let ticking = false;
+    function requestTick() {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(() => {
+          onScroll();
+          ticking = false;
+        });
+      }
+    }
+
+    window.addEventListener('scroll', requestTick, { passive: true });
+    onScroll();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCatblockScroll);
+  } else {
+    initCatblockScroll();
+  }
+</script>
