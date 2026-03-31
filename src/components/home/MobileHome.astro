@@ -121,6 +121,17 @@ const { locale, languages, siteSettings } = Astro.props;
   </div>
 
   <section class="mob-hero">
+    <video
+      class="mob-hero-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      aria-hidden="true"
+    >
+      <source src="/0ba5f31073cf8b69936f9480dca4dd0a.mp4" type="video/mp4" />
+    </video>
     <h1
       class="mob-reveal"
       data-i18n-html="hero.mobileTitleHtml"

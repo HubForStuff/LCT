@@ -1,0 +1,246 @@
+<mxfile host="app.diagrams.net" modified="2026-03-31T14:00:00.000Z" agent="LATAM China Tech Site Map" version="24.0.0" type="device">
+  <diagram id="sitemap" name="Site Map">
+    <mxGraphModel dx="2400" dy="2000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="3400" pageHeight="4400" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ======================== TITLE ======================== -->
+        <mxCell id="title" value="&lt;b&gt;LATAM China Tech — Full Site Map&lt;/b&gt;&lt;br&gt;Generated 2026-03-31 · 17 pages total&lt;br&gt;&lt;br&gt;Legend: 🟢 Live page · 🟡 Placeholder link (#) · 🔵 External link · 🔴 Not yet built" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=14;fillColor=#f5f5f5;strokeColor=#666666;rounded=1;arcSize=8;spacingLeft=10;spacingTop=6;spacingRight=10;spacingBottom=6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="600" height="90" as="geometry" />
+        </mxCell>
+
+        <!-- ======================== HOMEPAGE ======================== -->
+        <mxCell id="home" value="&lt;b&gt;/ (Homepage)&lt;/b&gt;&lt;br&gt;🟢 LIVE&lt;br&gt;&lt;br&gt;Sections:&lt;br&gt;• Hero (video bg)&lt;br&gt;• Category cards (deck stack)&lt;br&gt;• Competitions preview&lt;br&gt;• News &amp; insights&lt;br&gt;• Footer with contact form" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="380" y="160" width="240" height="180" as="geometry" />
+        </mxCell>
+
+        <!-- Homepage screenshot -->
+        <mxCell id="home_img" value="" style="shape=image;imageAlign=center;verticalAlign=middle;image=sitemap-screenshots/homepage.png;imageWidth=220;imageHeight=140;rounded=1;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="350" width="220" height="140" as="geometry" />
+        </mxCell>
+
+        <!-- ======================== NAV MENU ITEMS (from homepage) ======================== -->
+
+        <!-- Advisory (placeholder) -->
+        <mxCell id="nav_advisory" value="&lt;b&gt;Advisory&lt;/b&gt;&lt;br&gt;🟡 PLACEHOLDER&lt;br&gt;&lt;br&gt;Sub-items:&lt;br&gt;• Investment (#)&lt;br&gt;• Tech Transfer (#)&lt;br&gt;• Book Advisory (#)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="-200" y="160" width="200" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- Events (placeholder) -->
+        <mxCell id="nav_events" value="&lt;b&gt;Events&lt;/b&gt;&lt;br&gt;🟡 PLACEHOLDER&lt;br&gt;&lt;br&gt;Sub-items:&lt;br&gt;• Trade Fairs &amp; Expos (#)&lt;br&gt;• Summits (#)&lt;br&gt;• View Calendar (#)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="160" width="200" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- Programs (placeholder) -->
+        <mxCell id="nav_programs" value="&lt;b&gt;Programs&lt;/b&gt;&lt;br&gt;🟡 PLACEHOLDER&lt;br&gt;&lt;br&gt;Sub-items:&lt;br&gt;• Market Entry (#)&lt;br&gt;• Business Mission (#)&lt;br&gt;• Apply Now (#)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="700" y="160" width="200" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- Network (placeholder) -->
+        <mxCell id="nav_network" value="&lt;b&gt;Network&lt;/b&gt;&lt;br&gt;🟡 PLACEHOLDER&lt;br&gt;&lt;br&gt;Sub-items:&lt;br&gt;• City Partnerships (#)&lt;br&gt;• Featured Speakers (#)&lt;br&gt;• Explore Network (#)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="960" y="160" width="200" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- Nav edges from homepage -->
+        <mxCell id="e_home_advisory" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#d6b656;dashed=1;" edge="1" source="home" target="nav_advisory" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_home_events" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#d6b656;dashed=1;" edge="1" source="home" target="nav_events" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_home_programs" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#d6b656;dashed=1;" edge="1" source="home" target="nav_programs" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_home_network" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#d6b656;dashed=1;" edge="1" source="home" target="nav_network" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ======================== COMPETITIONS ======================== -->
+        <mxCell id="competitions" value="&lt;b&gt;/competitions/&lt;/b&gt;&lt;br&gt;🟢 LIVE&lt;br&gt;&lt;br&gt;Tabs:&lt;br&gt;• Startup (?tab=startup)&lt;br&gt;• Corporate (?tab=corporate)&lt;br&gt;• Academic (?tab=academic)&lt;br&gt;&lt;br&gt;Lists 8 challenge cards" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="80" y="560" width="240" height="160" as="geometry" />
+        </mxCell>
+
+        <!-- Competitions screenshot -->
+        <mxCell id="comp_img" value="" style="shape=image;imageAlign=center;verticalAlign=middle;image=sitemap-screenshots/competitions.png;imageWidth=220;imageHeight=140;rounded=1;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="730" width="220" height="140" as="geometry" />
+        </mxCell>
+
+        <!-- Edge: Home → Competitions -->
+        <mxCell id="e_home_comp" value="Nav + Cards" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#6c8ebf;strokeWidth=2;" edge="1" source="home" target="competitions" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ======================== COMPETITION DETAIL PAGES ======================== -->
+        <mxCell id="comp_detail_group" value="&lt;b&gt;/competitions/[slug]/&lt;/b&gt;&lt;br&gt;🟢 LIVE (8 pages)&lt;br&gt;&lt;br&gt;Slugs:&lt;br&gt;• greater-tech-challenge-2025&lt;br&gt;• china-latam-fintech-cup&lt;br&gt;• clean-energy-sprint&lt;br&gt;• china-market-entry-accelerator-2025&lt;br&gt;• sme-export-accelerator&lt;br&gt;• medbridge-innovation-award&lt;br&gt;• test-data-ai-sandbox&lt;br&gt;• test-data-biotech-readiness&lt;br&gt;&lt;br&gt;Each has: hero, description,&lt;br&gt;timeline, eligibility, prizes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="-220" y="560" width="240" height="250" as="geometry" />
+        </mxCell>
+
+        <!-- Competition detail screenshot -->
+        <mxCell id="comp_detail_img" value="" style="shape=image;imageAlign=center;verticalAlign=middle;image=sitemap-screenshots/competition-detail.png;imageWidth=220;imageHeight=140;rounded=1;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="-210" y="820" width="220" height="140" as="geometry" />
+        </mxCell>
+
+        <!-- Edge: Competitions → Detail -->
+        <mxCell id="e_comp_detail" value="View challenge" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#6c8ebf;strokeWidth=2;" edge="1" source="competitions" target="comp_detail_group" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ======================== PRE-REGISTRATION ======================== -->
+        <mxCell id="prereg" value="&lt;b&gt;/pre-registration/&lt;/b&gt;&lt;br&gt;🟢 LIVE&lt;br&gt;&lt;br&gt;Competition application form&lt;br&gt;with multi-step wizard" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="380" y="560" width="240" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- Pre-registration screenshot -->
+        <mxCell id="prereg_img" value="" style="shape=image;imageAlign=center;verticalAlign=middle;image=sitemap-screenshots/pre-registration.png;imageWidth=220;imageHeight=140;rounded=1;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="670" width="220" height="140" as="geometry" />
+        </mxCell>
+
+        <!-- Edge: Home → Pre-reg -->
+        <mxCell id="e_home_prereg" value="Startup Competitions" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#6c8ebf;strokeWidth=2;" edge="1" source="home" target="prereg" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ======================== NEWS LISTING ======================== -->
+        <mxCell id="news" value="&lt;b&gt;/news/&lt;/b&gt;&lt;br&gt;🟢 LIVE&lt;br&gt;&lt;br&gt;News &amp; Insights listing&lt;br&gt;Shows 5 article cards" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="680" y="560" width="240" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- News screenshot -->
+        <mxCell id="news_img" value="" style="shape=image;imageAlign=center;verticalAlign=middle;image=sitemap-screenshots/news.png;imageWidth=220;imageHeight=140;rounded=1;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="690" y="670" width="220" height="140" as="geometry" />
+        </mxCell>
+
+        <!-- Edge: Home → News -->
+        <mxCell id="e_home_news" value="All Insights" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#6c8ebf;strokeWidth=2;" edge="1" source="home" target="news" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ======================== NEWS ARTICLES ======================== -->
+        <mxCell id="news_articles" value="&lt;b&gt;/news/[slug]/&lt;/b&gt;&lt;br&gt;🟢 LIVE (5 articles)&lt;br&gt;&lt;br&gt;Slugs:&lt;br&gt;• why-chinese-giants-need-latam-startups-more-than-ever&lt;br&gt;• china-latam-tech-investment-2025-outlook&lt;br&gt;• fintech-between-china-and-brazil-new-regulatory-pathways&lt;br&gt;• why-73-of-startups-fail-in-cross-border-market-entry&lt;br&gt;• the-rise-of-agritech-corridors-between-china-and-brazil" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="680" y="880" width="340" height="180" as="geometry" />
+        </mxCell>
+
+        <!-- News article screenshot -->
+        <mxCell id="news_article_img" value="" style="shape=image;imageAlign=center;verticalAlign=middle;image=sitemap-screenshots/news-article.png;imageWidth=220;imageHeight=140;rounded=1;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="780" y="1070" width="220" height="140" as="geometry" />
+        </mxCell>
+
+        <!-- Edge: News → Articles -->
+        <mxCell id="e_news_articles" value="Read article" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#6c8ebf;strokeWidth=2;" edge="1" source="news" target="news_articles" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Edge: Home → News Articles (direct links) -->
+        <mxCell id="e_home_articles" value="News cards" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#6c8ebf;strokeWidth=1;dashed=1;" edge="1" source="home" target="news_articles" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ======================== EXTERNAL LINKS ======================== -->
+        <mxCell id="ext_substack" value="&lt;b&gt;Substack&lt;/b&gt;&lt;br&gt;🔵 EXTERNAL&lt;br&gt;https://substack.com" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="380" y="880" width="180" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="ext_instagram" value="&lt;b&gt;Instagram&lt;/b&gt;&lt;br&gt;🔵 EXTERNAL" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="380" y="960" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ext_linkedin" value="&lt;b&gt;LinkedIn&lt;/b&gt;&lt;br&gt;🔵 EXTERNAL" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="510" y="960" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ext_whatsapp" value="&lt;b&gt;WhatsApp&lt;/b&gt;&lt;br&gt;🔵 EXTERNAL" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="380" y="1020" width="120" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- ======================== HOMEPAGE SECTIONS (CATEGORY CARDS) ======================== -->
+        <mxCell id="cat_cards" value="&lt;b&gt;Homepage Category Cards&lt;/b&gt;&lt;br&gt;&lt;br&gt;🟡 Expansion Programs → # (placeholder)&lt;br&gt;🟡 Network → # (placeholder)&lt;br&gt;🟡 Advisory Services → # (placeholder)&lt;br&gt;🟢 Competitions → /competitions/?tab=startup&lt;br&gt;🟢 Challenges → /competitions/?tab=corporate" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="380" width="280" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="e_home_cats" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#b85450;dashed=1;" edge="1" source="home" target="cat_cards" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ======================== FOOTER LINKS SUMMARY ======================== -->
+        <mxCell id="footer_links" value="&lt;b&gt;Footer Link Status&lt;/b&gt;&lt;br&gt;&lt;br&gt;🟢 View Programs → #desktop-categories (anchor)&lt;br&gt;🟡 Investment → # (placeholder)&lt;br&gt;🟡 Tech Transfer → # (placeholder)&lt;br&gt;🟢 Startup Competitions → /pre-registration/&lt;br&gt;🟢 Corporate Challenges → /competitions/&lt;br&gt;🟡 Trade Fairs &amp; Expos → # (placeholder)&lt;br&gt;🟡 Summits → # (placeholder)&lt;br&gt;🟡 Market Entry → # (placeholder)&lt;br&gt;🟡 Business Mission → # (placeholder)&lt;br&gt;🔵 Subscribe on Substack → external&lt;br&gt;🔵 Instagram / LinkedIn / WhatsApp → external" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="700" y="380" width="340" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="e_home_footer" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#666666;" edge="1" source="home" target="footer_links" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ======================== INTERIOR NAV LINKS ======================== -->
+        <mxCell id="interior_nav" value="&lt;b&gt;Interior Page Header Nav&lt;/b&gt;&lt;br&gt;(Competitions, News, Pre-reg)&lt;br&gt;&lt;br&gt;🟡 Advisory → / (homepage)&lt;br&gt;🟢 Competitions &amp; Challenges → /competitions/&lt;br&gt;🟡 Events → / (homepage)&lt;br&gt;🟡 Programs → / (homepage)&lt;br&gt;🟡 Network → / (homepage)&lt;br&gt;&lt;br&gt;&lt;i&gt;Note: non-live nav items link&lt;br&gt;back to homepage (/) as fallback&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="560" width="260" height="180" as="geometry" />
+        </mxCell>
+
+        <!-- ======================== READINESS SUMMARY ======================== -->
+        <mxCell id="summary" value="&lt;b&gt;READINESS SUMMARY&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;🟢 Live Pages (17 total):&lt;/b&gt;&lt;br&gt;  / (homepage)&lt;br&gt;  /competitions/ (with 3 tabs)&lt;br&gt;  /competitions/[slug]/ (8 detail pages)&lt;br&gt;  /pre-registration/&lt;br&gt;  /news/&lt;br&gt;  /news/[slug]/ (5 articles)&lt;br&gt;&lt;br&gt;&lt;b&gt;🟡 Placeholder Sections (nav links to #):&lt;/b&gt;&lt;br&gt;  Advisory (+ Investment, Tech Transfer, Book Advisory)&lt;br&gt;  Events (+ Trade Fairs, Summits, View Calendar)&lt;br&gt;  Programs (+ Market Entry, Business Mission, Apply Now)&lt;br&gt;  Network (+ City Partnerships, Featured Speakers)&lt;br&gt;  3 of 5 homepage category cards&lt;br&gt;  6 of 9 footer column links&lt;br&gt;&lt;br&gt;&lt;b&gt;🔵 External Links:&lt;/b&gt;&lt;br&gt;  Substack, Instagram, LinkedIn, WhatsApp&lt;br&gt;&lt;br&gt;&lt;b&gt;🔴 Not Yet Built (future pages needed):&lt;/b&gt;&lt;br&gt;  /advisory/ — Advisory services page&lt;br&gt;  /events/ — Events &amp; calendar page&lt;br&gt;  /programs/ — Programs listing page&lt;br&gt;  /network/ — Network &amp; partnerships page" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1120" width="420" height="420" as="geometry" />
+        </mxCell>
+
+        <!-- ======================== CROSS-PAGE NAVIGATION DIAGRAM ======================== -->
+        <mxCell id="nav_diagram_title" value="&lt;b&gt;Cross-Page Navigation Flow&lt;/b&gt;" style="text;html=1;align=left;verticalAlign=top;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="1120" width="300" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Simplified flow nodes -->
+        <mxCell id="flow_home" value="&lt;b&gt;Homepage&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="660" y="1170" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="flow_comp" value="&lt;b&gt;Competitions&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="520" y="1270" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="flow_prereg" value="&lt;b&gt;Pre-Reg&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="660" y="1370" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="flow_news" value="&lt;b&gt;News&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="800" y="1270" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="flow_detail" value="&lt;b&gt;Comp Detail&lt;/b&gt;&lt;br&gt;(×8)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="520" y="1370" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="flow_article" value="&lt;b&gt;Article&lt;/b&gt;&lt;br&gt;(×5)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="820" y="1370" width="100" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Flow edges -->
+        <mxCell id="fe1" style="strokeColor=#6c8ebf;strokeWidth=2;" edge="1" source="flow_home" target="flow_comp" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fe2" style="strokeColor=#6c8ebf;strokeWidth=2;" edge="1" source="flow_home" target="flow_news" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fe3" style="strokeColor=#6c8ebf;strokeWidth=2;" edge="1" source="flow_home" target="flow_prereg" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fe4" style="strokeColor=#6c8ebf;strokeWidth=2;" edge="1" source="flow_comp" target="flow_detail" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fe5" style="strokeColor=#6c8ebf;strokeWidth=2;" edge="1" source="flow_news" target="flow_article" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fe6" style="strokeColor=#6c8ebf;strokeWidth=1;dashed=1;" edge="1" source="flow_home" target="flow_article" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fe7" style="strokeColor=#6c8ebf;strokeWidth=1;dashed=1;" edge="1" source="flow_comp" target="flow_prereg" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Interior pages back to home via logo -->
+        <mxCell id="fe8" value="Logo → /" style="strokeColor=#82b366;strokeWidth=1;dashed=1;" edge="1" source="flow_comp" target="flow_home" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="560" y="1240" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fe9" value="Logo → /" style="strokeColor=#82b366;strokeWidth=1;dashed=1;" edge="1" source="flow_news" target="flow_home" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="880" y="1240" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -57,13 +57,20 @@ body.interior-body svg {
   --site-blue-soft: #7bb3d4;
   --site-lilac: #c4b1d7;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   background: #fff;
   color: var(--site-ink);
   font-family: "Roboto", sans-serif;
 }
 
+.interior-page > .site-footer {
+  margin-top: auto;
+}
+
 .interior-wrap {
-  width: min(100%, 1440px);
+  width: 100%;
+  max-width: 1600px;
   margin: 0 auto;
   padding: 0 58px;
 }
@@ -82,7 +89,7 @@ body.interior-body svg {
 }
 
 .site-brand-image--dark {
-  filter: brightness(0);
+  filter: none;
 }
 
 .site-header {
@@ -98,8 +105,8 @@ body.interior-body svg {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 28px;
-  min-height: 100px;
+  gap: 36px;
+  height: 100px;
 }
 
 .site-brand {
@@ -109,16 +116,14 @@ body.interior-body svg {
 }
 
 .site-nav {
-  flex: 1;
   overflow-x: auto;
 }
 
 .site-nav-list {
   display: flex;
   align-items: stretch;
-  justify-content: center;
   gap: 0;
-  min-height: 100px;
+  height: 100%;
   padding: 0;
   margin: 0;
   list-style: none;
@@ -126,13 +131,13 @@ body.interior-body svg {
 
 .site-nav-link {
   position: relative;
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  min-height: 100px;
+  height: 100px;
   padding: 0 16px;
   font-size: 17px;
-  letter-spacing: 0.03em;
   white-space: nowrap;
+  color: var(--site-ink);
 }
 
 .site-nav-link::after {
@@ -157,6 +162,119 @@ body.interior-body svg {
   font-weight: 500;
 }
 
+.site-nav-item {
+  position: relative;
+}
+
+.site-mega {
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  width: min(1484px, calc(100vw - 116px));
+  transform: translateX(-50%) translateY(14px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.site-nav-item:hover .site-mega {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.site-mega-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 0.92fr;
+  gap: 44px;
+  padding: 34px 42px 38px;
+  border-radius: 0 0 24px 24px;
+  background: rgba(8, 8, 8, 0.96);
+  color: #fff;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.36);
+}
+
+.site-mega-label {
+  margin-bottom: 14px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.site-mega-links {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.site-mega-link {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  transition: background 0.16s ease;
+}
+
+.site-mega-link:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.site-mega-link-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.site-mega-link-subtitle {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.site-mega-note {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.site-mega-note a {
+  color: var(--site-red);
+  font-weight: 700;
+  margin-left: 6px;
+}
+
+.site-mega-copy {
+  align-self: center;
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.site-mega-card {
+  align-self: start;
+  padding: 22px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+}
+
+.site-mega-card h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.site-mega-card p {
+  margin: 0 0 18px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.6);
+}
+
 .site-lang {
   position: relative;
   flex-shrink: 0;
@@ -172,7 +290,7 @@ body.interior-body svg {
   border: 0;
   border-radius: 50%;
   background: transparent;
-  color: rgba(0, 0, 0, 0.72);
+  color: rgba(0, 0, 0, 0.55);
   cursor: pointer;
   transition: color 0.16s ease, transform 0.16s ease;
 }
@@ -185,7 +303,7 @@ body.interior-body svg {
 .site-lang.is-open .site-lang-btn,
 .site-lang:hover .site-lang-btn,
 .site-lang:focus-within .site-lang-btn {
-  color: #000;
+  color: var(--site-ink);
   transform: scale(1.06);
 }
 
@@ -1751,6 +1869,8 @@ body.interior-body svg {
 .site-lang--footer .site-lang-menu {
   right: auto;
   left: 50%;
+  top: auto;
+  bottom: calc(100% + 10px);
   transform: translateX(-50%) translateY(8px);
 }
 
@@ -1786,7 +1906,7 @@ body.interior-body svg {
   }
 
   .site-header-inner {
-    min-height: 82px;
+    height: 82px;
   }
 
   .site-brand-image {

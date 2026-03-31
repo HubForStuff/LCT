@@ -43,10 +43,10 @@ export function getDesktopMenuCardHref(sectionIndex: number): string {
 
 export function getCompetitionSectionHref(cardIndex: number): string {
   if (cardIndex === 0) {
-    return HOMEPAGE_ROUTE_TARGETS.preRegistration;
+    return `${HOMEPAGE_ROUTE_TARGETS.competitions}?tab=startup`;
   }
 
-  return HOMEPAGE_ROUTE_TARGETS.competitions;
+  return `${HOMEPAGE_ROUTE_TARGETS.competitions}?tab=corporate`;
 }
 
 function getCompetitionFooterHref(linkIndex: number): string {

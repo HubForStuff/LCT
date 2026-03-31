@@ -2,6 +2,7 @@ import { createReader } from "@keystatic/core/reader";
 
 import keystaticConfig from "../../../keystatic.config.ts";
 
+import { getHomepageData } from "../homepage/reader";
 import { HOMEPAGE_LOCALE_CODES, type HomepageLocaleCode, type NewsItem, type SiteSettings } from "../homepage/types";
 import { INTERIOR_LOCALES } from "../interior-pages/locales";
 
@@ -140,11 +141,13 @@ export async function getAllNewsArticleSlugs(): Promise<string[]> {
 }
 
 export async function getNewsListingPageData(): Promise<NewsListingPageData> {
-  const [siteSettings, entries] = await Promise.all([getSiteSettings(), getAllNewsEntries()]);
+  const [homepageData, entries] = await Promise.all([getHomepageData(), getAllNewsEntries()]);
+  const siteSettings = homepageData.siteSettings;
 
   const localizedContent = Object.fromEntries(
     HOMEPAGE_LOCALE_CODES.map((code) => {
       const chrome = buildNewsChrome(code);
+      const homepageLocale = homepageData.localizedContent[code];
       const cards = entries.map((entry) => buildNewsCard(entry, code));
 
       const routeLocale: NewsListingRouteLocale = {
@@ -152,6 +155,8 @@ export async function getNewsListingPageData(): Promise<NewsListingPageData> {
         ui: chrome.ui,
         navItems: chrome.navItems,
         footer: chrome.footer,
+        desktopMenuSections: homepageLocale.desktopMenuSections,
+        navExploreLabel: homepageLocale.navExploreLabel,
         page: chrome.listingPage,
         featuredItem: cards[0] ?? null,
         items: cards.slice(1),
@@ -171,7 +176,8 @@ export async function getNewsListingPageData(): Promise<NewsListingPageData> {
 }
 
 export async function getNewsArticlePageData(slug: string): Promise<NewsArticlePageData> {
-  const [siteSettings, entries] = await Promise.all([getSiteSettings(), getAllNewsEntries()]);
+  const [homepageData, entries] = await Promise.all([getHomepageData(), getAllNewsEntries()]);
+  const siteSettings = homepageData.siteSettings;
   const targetEntry = entries.find((entry) => entry.slug === slug);
 
   if (!targetEntry) {
@@ -183,6 +189,7 @@ export async function getNewsArticlePageData(slug: string): Promise<NewsArticleP
   const localizedContent = Object.fromEntries(
     HOMEPAGE_LOCALE_CODES.map((code) => {
       const chrome = buildNewsChrome(code);
+      const homepageLocale = homepageData.localizedContent[code];
       const localized = getLocalizedNewsContent(targetEntry, code);
 
       const routeLocale: NewsArticleRouteLocale = {
@@ -194,6 +201,8 @@ export async function getNewsArticlePageData(slug: string): Promise<NewsArticleP
         ui: chrome.ui,
         navItems: chrome.navItems,
         footer: chrome.footer,
+        desktopMenuSections: homepageLocale.desktopMenuSections,
+        navExploreLabel: homepageLocale.navExploreLabel,
         listingPage: chrome.listingPage,
         articlePage: chrome.articlePage,
         page: buildNewsArticle(targetEntry, code),

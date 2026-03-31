@@ -2,7 +2,13 @@
 import BrandLogo from "./BrandLogo.astro";
 import LanguageSwitcher from "./LanguageSwitcher.astro";
 
+import {
+  getDesktopMenuSectionHref,
+  getDesktopMenuLinkHref,
+  getDesktopMenuCardHref,
+} from "../../lib/homepage/links";
 import type { SiteSettings } from "../../lib/homepage/types";
+import type { DesktopMenuSection } from "../../lib/homepage/types";
 import type { InteriorNavItem } from "../../lib/interior-pages/types";
 
 interface Props {
@@ -12,6 +18,8 @@ interface Props {
   currentLanguage: string;
   languageLabel?: string;
   homeLabel?: string;
+  desktopMenuSections?: DesktopMenuSection[];
+  navExploreLabel?: string;
 }
 
 const {
@@ -21,6 +29,8 @@ const {
   currentLanguage,
   languageLabel = "Select language",
   homeLabel = siteSettings.siteName,
+  desktopMenuSections = [],
+  navExploreLabel = "Explore",
 } = Astro.props;
 ---
 
@@ -39,6 +49,7 @@ const {
       <ul class="site-nav-list">
         {navItems.map((item, index) => {
           const isActive = item.href === activeHref;
+          const section = desktopMenuSections[index];
 
           return (
             <li class="site-nav-item">
@@ -50,6 +61,59 @@ const {
               >
                 {item.label}
               </a>
+              {section && (
+                <div class="site-mega">
+                  <div class="site-mega-grid">
+                    <div>
+                      <div class="site-mega-label" data-i18n="navExploreLabel">{navExploreLabel}</div>
+                      <div class="site-mega-links">
+                        {section.links.map((link, linkIndex) => (
+                          <a href={getDesktopMenuLinkHref(index, linkIndex)} class="site-mega-link">
+                            <span
+                              class="site-mega-link-title"
+                              data-i18n={`desktopMenuSections.${index}.links.${linkIndex}.title`}
+                            >
+                              {link.title}
+                            </span>
+                            <span
+                              class="site-mega-link-subtitle"
+                              data-i18n={`desktopMenuSections.${index}.links.${linkIndex}.subtitle`}
+                            >
+                              {link.subtitle}
+                            </span>
+                          </a>
+                        ))}
+                      </div>
+                      <div class="site-mega-note">
+                        <span data-i18n={`desktopMenuSections.${index}.note`}>{section.note}</span>
+                        <a href="#site-footer" data-i18n={`desktopMenuSections.${index}.noteLink`}>
+                          {section.noteLink}
+                        </a>
+                      </div>
+                    </div>
+                    <div class="site-mega-copy">
+                      <p data-i18n={`desktopMenuSections.${index}.description`}>
+                        {section.description}
+                      </p>
+                    </div>
+                    <div class="site-mega-card">
+                      <h3 data-i18n={`desktopMenuSections.${index}.card.title`}>
+                        {section.card.title}
+                      </h3>
+                      <p data-i18n={`desktopMenuSections.${index}.card.body`}>
+                        {section.card.body}
+                      </p>
+                      <a
+                        href={getDesktopMenuCardHref(index)}
+                        class="site-btn site-btn--primary site-btn--compact"
+                        data-i18n={`desktopMenuSections.${index}.card.cta`}
+                      >
+                        {section.card.cta}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              )}
             </li>
           );
         })}

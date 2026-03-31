@@ -1,4 +1,4 @@
-import type { HomepageLocaleCode, LanguageOption, SiteSettings } from "../homepage/types";
+import type { DesktopMenuSection, HomepageLocaleCode, LanguageOption, SiteSettings } from "../homepage/types";
 
 export type InteriorPageMeta = {
   htmlLang: string;
@@ -281,6 +281,8 @@ export type InteriorPageRouteLocale<TPage> = {
   ui: InteriorPageUi;
   navItems: InteriorNavItem[];
   footer: InteriorFooterContent;
+  desktopMenuSections: DesktopMenuSection[];
+  navExploreLabel: string;
   page: TPage;
 };
 

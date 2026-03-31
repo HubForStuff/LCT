@@ -23,6 +23,8 @@ const page = locale.page;
     currentLanguage={currentLanguage}
     languageLabel={locale.ui.chooseLanguage}
     homeLabel={locale.ui.homeLabel}
+    desktopMenuSections={locale.desktopMenuSections}
+    navExploreLabel={locale.navExploreLabel}
   />
 
   <main>
@@ -389,4 +391,17 @@ const page = locale.page;
   });
 
   applyFilters();
+
+  // Activate tab from URL query parameter
+  const urlParams = new URLSearchParams(window.location.search);
+  const tabParam = urlParams.get("tab");
+  if (tabParam) {
+    const matchingTrigger = tabTriggers.find(
+      (trigger) => trigger.dataset.tabTrigger === tabParam
+    );
+    if (matchingTrigger) {
+      activateTab(tabParam);
+      applyFilters();
+    }
+  }
 </script>

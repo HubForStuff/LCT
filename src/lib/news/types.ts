@@ -1,4 +1,4 @@
-import type { HomepageLocaleCode, LanguageOption, SiteSettings } from "../homepage/types";
+import type { DesktopMenuSection, HomepageLocaleCode, LanguageOption, SiteSettings } from "../homepage/types";
 import type {
   InteriorFooterContent,
   InteriorNavItem,
@@ -66,6 +66,8 @@ export type NewsListingRouteLocale = {
   ui: InteriorPageUi;
   navItems: InteriorNavItem[];
   footer: InteriorFooterContent;
+  desktopMenuSections: DesktopMenuSection[];
+  navExploreLabel: string;
   page: NewsListingPageContent;
   featuredItem: NewsListItem | null;
   items: NewsListItem[];
@@ -76,6 +78,8 @@ export type NewsArticleRouteLocale = {
   ui: InteriorPageUi;
   navItems: InteriorNavItem[];
   footer: InteriorFooterContent;
+  desktopMenuSections: DesktopMenuSection[];
+  navExploreLabel: string;
   listingPage: NewsListingPageContent;
   articlePage: NewsArticlePageContent;
   page: NewsArticle;

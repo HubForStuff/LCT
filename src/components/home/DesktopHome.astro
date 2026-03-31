@@ -22,6 +22,17 @@ const { locale, languages, siteSettings } = Astro.props;
   <DesktopNavigation locale={locale} languages={languages} siteSettings={siteSettings} />
 
   <section class="desk-hero">
+    <video
+      class="desk-hero-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      aria-hidden="true"
+    >
+      <source src="/0ba5f31073cf8b69936f9480dca4dd0a.mp4" type="video/mp4" />
+    </video>
     <div class="desk-wrap">
       <div class="desk-hero-copy desk-hero-pane">
         <h1 data-i18n-html="hero.desktopTitleHtml" set:html={locale.hero.desktopTitleHtml}></h1>

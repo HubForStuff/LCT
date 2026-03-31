@@ -220,6 +220,7 @@ export async function getCompetitionsListingPageData(): Promise<CompetitionListi
   const localizedContent = Object.fromEntries(
     HOMEPAGE_LOCALE_CODES.map((code) => {
       const locale = INTERIOR_LOCALES[code];
+      const homepageLocale = homepageData.localizedContent[code];
       const tabs = locale.competitionsPage.tabs.map((tab) => {
         const localizedEntries = entries
           .filter((entry) => entry.track === tab.id)
@@ -253,6 +254,8 @@ export async function getCompetitionsListingPageData(): Promise<CompetitionListi
           ui: locale.ui,
           navItems: locale.navItems,
           footer: locale.footer,
+          desktopMenuSections: homepageLocale.desktopMenuSections,
+          navExploreLabel: homepageLocale.navExploreLabel,
           page: {
             ...locale.competitionsPage,
             statusFilters: locale.competitionsPage.statusFilters.map((filter, index) => ({
@@ -290,6 +293,7 @@ export async function getCompetitionDetailPageData(slug: string): Promise<Compet
   const localizedContent = Object.fromEntries(
     HOMEPAGE_LOCALE_CODES.map((code) => {
       const locale = INTERIOR_LOCALES[code];
+      const homepageLocale = homepageData.localizedContent[code];
       const localizedEntry = localizeCompetitionEntry(targetEntry, code);
       const routeLocale: CompetitionDetailRouteLocale = {
         meta: {
@@ -300,6 +304,8 @@ export async function getCompetitionDetailPageData(slug: string): Promise<Compet
         ui: locale.ui,
         navItems: locale.navItems,
         footer: locale.footer,
+        desktopMenuSections: homepageLocale.desktopMenuSections,
+        navExploreLabel: homepageLocale.navExploreLabel,
         listingPage: locale.competitionsPage,
         detailPage: detailCopyByCode[code],
         page: buildCompetitionDetail(localizedEntry, code),

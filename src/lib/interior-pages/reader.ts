@@ -1,4 +1,5 @@
 import { getHomepageData } from "../homepage/reader";
+import { type HomepageLocaleCode, type HomepageLocaleContent } from "../homepage/types";
 import { INTERIOR_LOCALES } from "./locales";
 
 import type {
@@ -12,14 +13,17 @@ import type {
 function buildRouteLocale<TKey extends InteriorPageKey>(
   locale: (typeof INTERIOR_LOCALES)[keyof typeof INTERIOR_LOCALES],
   pageKey: TKey,
+  homepageLocale: HomepageLocaleContent,
 ): InteriorPageRouteLocale<InteriorPageContentByKey[TKey]> {
-  const page = locale[pageKey];
+  const page = locale[pageKey] as InteriorPageContentByKey[TKey];
 
   return {
     meta: page.meta,
     ui: locale.ui,
     navItems: locale.navItems,
     footer: locale.footer,
+    desktopMenuSections: homepageLocale.desktopMenuSections,
+    navExploreLabel: homepageLocale.navExploreLabel,
     page,
   };
 }
@@ -30,10 +34,14 @@ export async function getInteriorPageData<TKey extends InteriorPageKey>(
   const homepageData = await getHomepageData();
 
   const localizedContent = Object.fromEntries(
-    Object.entries(INTERIOR_LOCALES).map(([languageCode, locale]) => [
-      languageCode,
-      buildRouteLocale(locale, pageKey),
-    ]),
+    Object.entries(INTERIOR_LOCALES).map(([languageCode, locale]) => {
+      const homepageLocale = homepageData.localizedContent[languageCode as HomepageLocaleCode];
+
+      return [
+        languageCode,
+        buildRouteLocale(locale, pageKey, homepageLocale),
+      ];
+    }),
   ) as InteriorPageLocalizedContent<InteriorPageContentByKey[TKey]>;
 
   return {

@@ -1,4 +1,4 @@
-import type { HomepageLocaleCode, LanguageOption, SiteSettings } from "../homepage/types";
+import type { DesktopMenuSection, HomepageLocaleCode, LanguageOption, SiteSettings } from "../homepage/types";
 import type {
   CompetitionCard,
   CompetitionFeaturedCard,
@@ -99,6 +99,8 @@ export type CompetitionDetailRouteLocale = {
   ui: InteriorPageUi;
   navItems: InteriorNavItem[];
   footer: InteriorFooterContent;
+  desktopMenuSections: DesktopMenuSection[];
+  navExploreLabel: string;
   listingPage: CompetitionsPageContent;
   detailPage: CompetitionDetailPageCopy;
   page: CompetitionDetail;
