@@ -37,7 +37,7 @@ const featuredItem = locale.featuredItem;
           </div>
           <h1 class="page-title" data-i18n="page.title">{locale.page.title}</h1>
         </div>
-        <p class="page-subtitle page-subtitle--wide" data-i18n="page.description">
+        <p class="page-subtitle page-subtitle--wide page-subtitle--balanced" data-i18n="page.description">
           {locale.page.description}
         </p>
       </div>
@@ -56,7 +56,16 @@ const featuredItem = locale.featuredItem;
 
           <div class="news-featured-copy">
             <div class="news-featured-label" data-i18n="page.featuredLabel">{locale.page.featuredLabel}</div>
-            <div class="news-card-tag" data-i18n="featuredItem.tag">{featuredItem.tag}</div>
+            <div
+              class:list={[
+                "news-card-tag",
+                featuredItem.tag.trim().toLowerCase() === "report" ? null : "news-card-tag--muted",
+              ]}
+              data-i18n="featuredItem.tag"
+              data-tag-type={featuredItem.tag.trim().toLowerCase()}
+            >
+              {featuredItem.tag}
+            </div>
             <h2 class="news-featured-title" data-i18n="featuredItem.title">{featuredItem.title}</h2>
             <p class="news-card-summary" data-i18n="featuredItem.summary">{featuredItem.summary}</p>
 
@@ -71,9 +80,9 @@ const featuredItem = locale.featuredItem;
               </span>
             </div>
 
-            <a href={featuredItem.href} class="site-btn site-btn--primary" data-i18n="page.readArticleLabel">
-              {locale.page.readArticleLabel}
-            </a>
+              <a href={featuredItem.href} class="site-btn site-btn--primary" data-i18n="page.readArticleLabel">
+                {locale.page.readArticleLabel}
+              </a>
           </div>
         </article>
       )}
@@ -88,7 +97,16 @@ const featuredItem = locale.featuredItem;
             <a href={item.href} class="news-list-card">
               <div class="news-list-card-inner">
                 <div class="news-card-copy">
-                  <div class="news-card-tag" data-i18n={`items.${index}.tag`}>{item.tag}</div>
+                  <div
+                    class:list={[
+                      "news-card-tag",
+                      item.tag.trim().toLowerCase() === "report" ? null : "news-card-tag--muted",
+                    ]}
+                    data-i18n={`items.${index}.tag`}
+                    data-tag-type={item.tag.trim().toLowerCase()}
+                  >
+                    {item.tag}
+                  </div>
                   <h3 class="news-card-title" data-i18n={`items.${index}.title`}>{item.title}</h3>
                   <p class="news-card-summary" data-i18n={`items.${index}.summary`}>{item.summary}</p>
                 </div>
@@ -119,6 +137,12 @@ const featuredItem = locale.featuredItem;
               </div>
             </a>
           ))}
+        </div>
+
+        <div class="news-all-link-section">
+          <a href="/news/" class="site-btn site-btn--secondary" data-i18n="page.allNewsLabel">
+            All News &amp; Insights
+          </a>
         </div>
       ) : (
         <div class="news-empty-state">

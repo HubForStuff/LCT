@@ -387,7 +387,7 @@ test("competitions and pre-registration pages build with the expected mockup con
     );
     assert.match(
       newsArticleHtml,
-      /Back to all insights/i,
+      /Back/i,
       "expected the news detail page to include the back-to-list CTA",
     );
     assert.match(

@@ -17,7 +17,7 @@
     "titleHtml": "Get funded, connected,<br />and scale with <span>LATAM CHINA TECH</span>",
     "buttonLabel": "View Programs",
     "buttonHref": "/",
-    "newsletterTitle": "Stay close to the next China-LATAM opportunity",
+    "newsletterTitle": "NEWSLETTER",
     "newsletterButtonLabel": "Subscribe on Substack",
     "bottomNote": "Built for founders, investors, and corporate innovators bridging Latin America and China.",
     "columns": [
@@ -96,7 +96,7 @@
         "placeholderLabel": "More Coming Q3 2025",
         "featured": {
           "theme": "startup",
-          "tag": "Featured Challenge",
+          "tag": "Featured Competition",
           "category": "Deep Tech · Cross-Border",
           "title": "Greater Tech Challenge 2025",
           "description": "The flagship innovation competition bridging Latin America and China. Submit your breakthrough solution in AI, cleantech, or biotech and compete for the largest prize pool in the region.",
@@ -487,6 +487,7 @@
     "description": "Operator notes, founder stories, and corridor intelligence from the teams building between China and Latin America.",
     "featuredLabel": "Featured insight",
     "allArticlesLabel": "All insights",
+    "allNewsLabel": "All News & Insights",
     "readArticleLabel": "Read article",
     "publishedLabel": "Published",
     "readingTimeLabel": "min read",
@@ -494,11 +495,11 @@
     "emptyStateBody": "We are preparing fresh analysis for the next batch of operators moving across the corridor."
   },
   "newsArticlePage": {
-    "backLabel": "Back to all insights",
+    "backLabel": "Back",
     "publishedLabel": "Published",
     "readingTimeLabel": "min read",
     "writtenByLabel": "Written by",
     "moreInsightsLabel": "More insights",
-    "allInsightsLabel": "View all insights"
+    "allInsightsLabel": "View All"
   }
 }

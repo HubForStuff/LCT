@@ -26,3 +26,6 @@ pnpm-debug.log*
 Thumbs.db
 
 .$*.drawio.bkp
+
+# Feedback analysis artifacts
+.opencode/feedback/

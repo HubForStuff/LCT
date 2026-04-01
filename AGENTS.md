@@ -39,3 +39,28 @@
 - Run `npm test`.
 - Run `npm run build`.
 - If you touched localized UI, verify language switching in the browser for at least one interior page and the homepage.
+
+## Customer Feedback Loop
+
+A multi-agent workflow for processing UI/UX feedback against HTML mockups. Uses the `customer-feedback-loop` skill (in `~/.agents/skills/superpowers/customer-feedback-loop/`).
+
+### Pipeline
+
+1. **Triage** (orchestrator) — collect feedback, identify mockup refs and affected routes
+2. **Analysis** (analyst subagent) — compare mockup HTML/CSS vs implementation, produce `.opencode/feedback/analysis-YYYY-MM-DD.md`
+3. **Implementation** (implementer subagents) — fix approved batches, one commit per batch
+4. **Verification** (fresh verifier subagent) — independently confirm fixes match mockups
+
+### Artifacts
+
+- Analysis artifacts live in `.opencode/feedback/` (project-level, gitignored)
+- Each feedback item gets a stable ID: FB-001, FB-002, etc.
+- Verification reports are appended to the analysis artifact
+
+### Rules for Feedback Implementers
+
+- All rules in this file (Architecture, I18n, Shared Shell, etc.) still apply
+- Match exact CSS values from mockups — no approximations
+- Minimal changes only — fix what's specified, don't refactor surroundings
+- One commit per coherent batch, message format: `fix(ui): [theme] — FB-NNN, FB-NNN`
+- Run `npm run build` after each batch before proceeding

@@ -36,42 +36,53 @@
       "label": "Advisory",
       "links": [
         {
-          "title": "Investment",
-          "subtitle": "Capital readiness and partner introductions"
+          "title": "Consulting",
+          "subtitle": "Strategy, operations & market entry"
+        },
+        {
+          "title": "Investment Matchmaking",
+          "subtitle": "Connect with the right capital"
         },
         {
           "title": "Tech Transfer",
-          "subtitle": "Commercialization support across both regions"
+          "subtitle": "IP licensing & knowledge exchange"
         }
       ],
-      "note": "Need a custom advisory scope?",
+      "note": "Need a custom engagement?",
       "noteLink": "Contact us",
       "description": "Strategic advisory for investors, operators, and institutions moving between China and Latin America. We translate corridor complexity into concrete next steps, partner shortlists, and execution plans.",
       "card": {
-        "title": "Investor Readiness Sprint",
-        "body": "A fast-track program for founders preparing cross-border fundraising and partner conversations.",
-        "cta": "Book Advisory"
-      }
+        "title": "Book a Strategy Call",
+        "body": "Free 30-minute session with a senior advisor matched to your market and stage.",
+        "cta": "Book Now"
+      },
+      "layout": "standard"
     },
     {
       "label": "Competitions & Challenges",
       "links": [
         {
           "title": "Startup Competitions",
-          "subtitle": "Pitch for funding and program access"
+          "subtitle": "Pitch for funding & program access"
         },
         {
-          "title": "Corporate Challenges",
-          "subtitle": "Open innovation briefs for real industry demand"
+          "title": "Innovation Challenges",
+          "subtitle": "Corporate-backed open innovation"
         }
       ],
-      "note": "Looking to launch a brief?",
-      "noteLink": "Talk to our team",
+      "note": "Want to sponsor a challenge?",
+      "noteLink": "Contact us",
       "description": "Designed to surface high-potential founders, fresh solutions, and investable cross-border opportunities. We run competition formats that create momentum beyond demo day.",
       "card": {
-        "title": "Prize Pools Up To $150K",
-        "body": "Select finalists gain direct exposure to corporate partners, investors, and expansion programs.",
-        "cta": "See Open Calls"
+        "title": "ByteDance Corporate Challenge",
+        "body": "Partner with ByteDance to solve cross-border content & commerce problems. Open to LATAM startups.",
+        "cta": "Apply Now"
+      },
+      "layout": "two-cards",
+      "card2": {
+        "title": "Registration Open",
+        "body": "China–LATAM Pitch 2025 — deadline May 5. $150K prize pool.",
+        "cta": "Register Now"
       }
     },
     {
@@ -93,7 +104,22 @@
         "title": "Quarterly Corridor Summit",
         "body": "Live briefings and executive matchmaking sessions focused on growth sectors in LatAm and China.",
         "cta": "View Calendar"
-      }
+      },
+      "layout": "events",
+      "events": [
+        {
+          "tag": "Exhibitions",
+          "title": "Trade Fairs & Expos",
+          "body": "LATAM and Chinese companies side-by-side. Deal rooms, bilateral meetings, and live demos for active buyers and investors.",
+          "linkText": "View Trade Fairs"
+        },
+        {
+          "tag": "Summits",
+          "title": "Tech Conferences",
+          "body": "Panels and keynotes across China–LATAM corridors. Tactical, market-specific sessions designed for real takeaways.",
+          "linkText": "View Conferences"
+        }
+      ]
     },
     {
       "label": "Programs",
@@ -114,7 +140,8 @@
         "title": "Cohort 8 Now Open",
         "body": "Applications close April 30. Limited to 40 companies per cohort across both regions.",
         "cta": "Apply Now"
-      }
+      },
+      "layout": "standard"
     },
     {
       "label": "Network",
@@ -128,14 +155,15 @@
           "subtitle": "Curated operators and founders for flagship stages"
         }
       ],
-      "note": "Want a stronger ecosystem bridge?",
+      "note": "Not sure which fits?",
       "noteLink": "Partner with us",
       "description": "We broker ecosystem relationships between institutions, startups, and civic actors across the China-LATAM corridor, creating durable networks instead of one-off introductions.",
       "card": {
         "title": "120+ Active Partners",
-        "body": "Across 22 industries, with every match assessed for strategic compatibility and execution potential.",
-        "cta": "Explore Network"
-      }
+        "body": "Across 22 industries and both regions. Every match is rigorously assessed for compatibility.",
+        "cta": "Partner With Us"
+      },
+      "layout": "standard"
     }
   ],
   "categoryCards": [
@@ -175,7 +203,7 @@
       "status": "Open Now",
       "cta": "Register Now",
       "watermark": "WIN",
-      "theme": "blue"
+      "theme": "red"
     },
     {
       "label": "Challenges",
@@ -184,7 +212,7 @@
       "status": "Live Now",
       "cta": "Apply Now",
       "watermark": "NOW",
-      "theme": "red"
+      "theme": "blue"
     }
   ],
   "newsSection": {

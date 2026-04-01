@@ -36,42 +36,53 @@
       "label": "Assessoria",
       "links": [
         {
-          "title": "Investimento",
-          "subtitle": "Prontidao para capital e apresentacoes a parceiros"
+          "title": "Consultoria",
+          "subtitle": "Estrategia, operacoes e entrada em mercado"
+        },
+        {
+          "title": "Matchmaking de Investimento",
+          "subtitle": "Conecte-se ao capital certo"
         },
         {
           "title": "Transferencia de Tecnologia",
-          "subtitle": "Suporte de comercializacao nos dois mercados"
+          "subtitle": "Licenciamento de PI e intercambio de conhecimento"
         }
       ],
-      "note": "Precisa de um escopo sob medida?",
+      "note": "Precisa de um formato personalizado?",
       "noteLink": "Fale conosco",
       "description": "Assessoria estrategica para investidores, operadores e instituicoes que atuam entre a China e a America Latina. Transformamos a complexidade do corredor em proximos passos concretos, listas de parceiros e planos de execucao.",
       "card": {
-        "title": "Sprint de Prontidao para Investidores",
-        "body": "Um programa acelerado para fundadores que estao se preparando para captar e negociar parcerias internacionais.",
-        "cta": "Agendar Assessoria"
-      }
+        "title": "Agende uma Sessao Estrategica",
+        "body": "Sessao gratuita de 30 minutos com um consultor senior alinhado ao seu mercado e estagio.",
+        "cta": "Agendar Agora"
+      },
+      "layout": "standard"
     },
     {
       "label": "Competicoes e Desafios",
       "links": [
         {
           "title": "Competicoes de Startups",
-          "subtitle": "Pitch para captar recursos e entrar em programas"
+          "subtitle": "Pitch para captar e acessar programas"
         },
         {
-          "title": "Desafios Corporativos",
-          "subtitle": "Briefings de inovacao aberta com demanda real do mercado"
+          "title": "Desafios de Inovacao",
+          "subtitle": "Inovacao aberta apoiada por corporates"
         }
       ],
-      "note": "Quer lancar um desafio?",
-      "noteLink": "Converse com a equipe",
+      "note": "Quer patrocinar um desafio?",
+      "noteLink": "Fale conosco",
       "description": "Formatos desenhados para revelar fundadores de alto potencial, novas solucoes e oportunidades investiveis entre China e America Latina. Criamos competicoes que geram resultado muito alem do demo day.",
       "card": {
-        "title": "Premios de ate US$ 150 mil",
-        "body": "Finalistas selecionados ganham exposicao direta a corporates, investidores e programas de expansao.",
-        "cta": "Ver chamadas abertas"
+        "title": "Desafio Corporativo ByteDance",
+        "body": "Parceria com a ByteDance para resolver problemas de conteudo e comercio transfronteirico. Aberto para startups da LATAM.",
+        "cta": "Inscreva-se"
+      },
+      "layout": "two-cards",
+      "card2": {
+        "title": "Inscricoes Abertas",
+        "body": "China–LATAM Pitch 2025 — prazo 5 de maio. Premiacao de US$ 150 mil.",
+        "cta": "Registrar Agora"
       }
     },
     {
@@ -93,7 +104,22 @@
         "title": "Summit Trimestral do Corredor",
         "body": "Briefings ao vivo e matchmaking executivo focados em setores de crescimento na America Latina e na China.",
         "cta": "Ver calendario"
-      }
+      },
+      "layout": "events",
+      "events": [
+        {
+          "tag": "Exposicoes",
+          "title": "Feiras e Exposicoes",
+          "body": "Empresas da LATAM e da China lado a lado. Salas de negocios, reunioes bilaterais e demos ao vivo para compradores e investidores ativos.",
+          "linkText": "Ver Feiras"
+        },
+        {
+          "tag": "Summits",
+          "title": "Conferencias de Tecnologia",
+          "body": "Paineis e keynotes ao longo dos corredores China–LATAM. Sessoes praticas e especificas por mercado, feitas para gerar resultados reais.",
+          "linkText": "Ver Conferencias"
+        }
+      ]
     },
     {
       "label": "Programas",
@@ -114,7 +140,8 @@
         "title": "Cohort 8 com inscricoes abertas",
         "body": "As inscricoes se encerram em 30 de abril. O limite e de 40 empresas por turma nas duas regioes.",
         "cta": "Inscreva-se"
-      }
+      },
+      "layout": "standard"
     },
     {
       "label": "Rede",
@@ -128,14 +155,15 @@
           "subtitle": "Operadores e fundadores curados para palcos principais"
         }
       ],
-      "note": "Quer fortalecer sua ponte de ecossistema?",
+      "note": "Nao sabe qual se encaixa?",
       "noteLink": "Torne-se parceiro",
       "description": "Conectamos instituicoes, startups e atores civicos ao longo do corredor China-LATAM, criando redes duradouras em vez de introducoes pontuais.",
       "card": {
         "title": "Mais de 120 parceiros ativos",
-        "body": "Em 22 setores, com cada conexao avaliada por compatibilidade estrategica e potencial de execucao.",
-        "cta": "Explorar rede"
-      }
+        "body": "Em 22 setores e ambas as regioes. Cada parceria e rigorosamente avaliada por compatibilidade.",
+        "cta": "Torne-se Parceiro"
+      },
+      "layout": "standard"
     }
   ],
   "categoryCards": [
@@ -175,7 +203,7 @@
       "status": "Inscricoes abertas",
       "cta": "Registrar agora",
       "watermark": "VENCA",
-      "theme": "blue"
+      "theme": "red"
     },
     {
       "label": "Desafios",
@@ -184,7 +212,7 @@
       "status": "Ao vivo",
       "cta": "Quero participar",
       "watermark": "AGORA",
-      "theme": "red"
+      "theme": "blue"
     }
   ],
   "newsSection": {

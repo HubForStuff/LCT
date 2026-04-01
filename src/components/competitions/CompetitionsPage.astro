@@ -142,6 +142,10 @@ const page = locale.page;
               <div class="featured-body">
                 <div>
                   <div class="featured-tag-pill" data-i18n={`page.tabs.${tabIndex}.featured.tag`}>
+                    <span class:list={[
+                      "featured-star",
+                      tab.featured.theme === "corporate" && "featured-star--blue",
+                    ]}>&#9733;</span>
                     {tab.featured.tag}
                   </div>
                   <div class="featured-category" data-i18n={`page.tabs.${tabIndex}.featured.category`}>

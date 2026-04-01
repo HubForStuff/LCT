@@ -29,21 +29,24 @@ const { locale, siteSettings, currentLanguage } = Astro.props;
   <main>
     <section class="page-header competition-detail-header">
       <div class="interior-wrap competition-detail-header-inner">
-        <a href="/competitions/" class="news-back-link" data-i18n="detailPage.backLabel">
+        <a href="/competitions/" class="news-back-link news-back-link--muted" data-i18n="detailPage.backLabel">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
           {locale.detailPage.backLabel}
         </a>
 
         <div class="competition-detail-topline">
-          <div class="page-eyebrow" data-i18n="page.detailEyebrow">
-            <span class="dot"></span>
-            {locale.page.detailEyebrow}
+          <div class="competition-detail-category" data-i18n="page.category">{locale.page.category}</div>
+          <div class="competition-top-focus-tags">
+            {locale.page.focusTags.map((tag) => (
+              <span class="competition-focus-tag">{tag}</span>
+            ))}
           </div>
-          <div class="competition-watermark">{locale.page.watermark}</div>
         </div>
 
         <div class="competition-hero-grid">
           <div>
-            <div class="competition-detail-category" data-i18n="page.category">{locale.page.category}</div>
             <h1 class="page-title competition-detail-title" data-i18n="page.name">{locale.page.name}</h1>
             <p class="page-subtitle page-subtitle--wide" data-i18n="page.detailSubtitle">
               {locale.page.detailSubtitle}
@@ -56,13 +59,21 @@ const { locale, siteSettings, currentLanguage } = Astro.props;
               <span class="status-dot"></span>
               <span data-i18n="page.statusLabel">{locale.page.statusLabel}</span>
             </div>
-            <a href={locale.page.applicationHref} class="site-btn site-btn--primary" data-i18n="page.applicationLabel">
+            <a
+              href={locale.page.applicationHref}
+              class="site-btn site-btn--primary site-btn--compact"
+              data-i18n="page.applicationLabel"
+            >
               {locale.page.applicationLabel}
             </a>
           </aside>
         </div>
       </div>
     </section>
+
+    <div class="interior-wrap">
+      <div class="competition-hero-image-placeholder" role="img" aria-label="Competition hero image"></div>
+    </div>
 
     <section class="interior-wrap competition-detail-shell">
       <div class="competition-meta-grid">
@@ -131,6 +142,10 @@ const { locale, siteSettings, currentLanguage } = Astro.props;
         </div>
       </article>
     </section>
+
+    <div class="interior-wrap competition-detail-actions" style="padding-bottom: 48px;">
+      <a href="/competitions/" class="site-btn site-btn--secondary" data-i18n="detailPage.viewAllLabel">View All</a>
+    </div>
   </main>
 
   <InteriorFooter

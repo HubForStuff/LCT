@@ -39,6 +39,15 @@ const desktopMenuLinkFields = fields.object(
 const desktopMenuSectionFields = fields.object(
   {
     label: requiredText("Label"),
+    layout: fields.select({
+      label: "Layout",
+      options: [
+        { label: "Standard", value: "standard" },
+        { label: "Two cards", value: "two-cards" },
+        { label: "Events", value: "events" },
+      ],
+      defaultValue: "standard",
+    }),
     links: fields.array(desktopMenuLinkFields, {
       label: "Links",
     }),
@@ -52,6 +61,26 @@ const desktopMenuSectionFields = fields.object(
         cta: requiredText("Card CTA"),
       },
       { label: "Callout card" },
+    ),
+    card2: fields.object(
+      {
+        title: fields.text({ label: "Card 2 title" }),
+        body: fields.text({ label: "Card 2 body", multiline: true }),
+        cta: fields.text({ label: "Card 2 CTA" }),
+      },
+      { label: "Second callout card" },
+    ),
+    events: fields.array(
+      fields.object(
+        {
+          tag: requiredText("Tag"),
+          title: requiredText("Title"),
+          body: requiredText("Body", true),
+          linkText: requiredText("Link text"),
+        },
+        { label: "Event" },
+      ),
+      { label: "Events" },
     ),
   },
   { label: "Desktop menu section" },

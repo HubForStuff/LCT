@@ -1,0 +1,93 @@
+# UI/UX Refinement Checklist — All 56 Items
+
+## LANDING PAGE
+
+| # | Description | Status | Notes |
+|---|---|---|---|
+| **1** | Nav layout: full width, 3-part split (logo \| centered nav \| switcher), logo & switcher same width | ✅ Done | Fixed: 3-part flex with `flex: 0 0 200px` on brand/lang, centered nav |
+| **2** | Confirm Roboto is the font site-wide | ⏳ Pending | Roboto is base font; some sections use Outfit/DM Sans — leave for later review |
+| **3** | Language switcher in gray, reduced font size | ✅ Done | |
+| **4** | Language switcher: show selected lang, no menu resize on open; EN/中文/BR in red, hover shows full name in white | ✅ Done | Fixed: added `data-lang-active-code` span, labels always visible with opacity transition |
+| **5** | Reduce mega submenu height by ~50px | ⚠️ Needs visual QA | Mockup sets explicit `height: 260px`; current is content-driven with tighter padding (20/22 vs 36/40). Likely looks correct but needs visual confirmation |
+| **6** | Video: better resolution needed | ⏳ Waiting on user | User needs to provide a higher-res video file |
+| **7** | "Accelerating Innovation" block lower, buttons at page bottom | ✅ Done | |
+| **8** | Card stacking smoother, animated speed change | ✅ Done | |
+| **9** | Competition area: red on left (Startup), blue on right (Corporate) | ✅ Done | Fixed: swapped themes in all 3 locale files |
+| **10** | News cards: match design in mockup/news-card.png | ✅ Done | Fixed: left-edge accent stripe instead of full gradient border |
+| **11** | Footer: match design in mockup/footer-index.png | ✅ Done | Fixed: social icon order (WeChat, Instagram, LinkedIn, WhatsApp), sizes, subscribe pill button |
+| **12** | Footer: WhatsApp icon outlined, next to WeChat | ✅ Done | Fixed with item 11 |
+| **13** | Footer: newsletter/social area positioning, button sizes | ✅ Done | Fixed with item 11 |
+| **14** | Footer: language switcher reduced width, no extra blank space | ✅ Done | Fixed: reduced menu width, label always visible with opacity |
+| **15** | Footer: WeChat QR 18% transparency, centered text | ✅ Done | |
+
+## CHALLENGES & COMPETITIONS
+
+| # | Description | Status | Notes |
+|---|---|---|---|
+| **16** | *(Skipped in document — numbering goes 15→17)* | N/A | |
+| **17** | Interior nav positioning | ✅ Done | Fixed: applied same 3-part centered layout as homepage (`flex: 0 0 200px` on brand/lang, `flex: 1` centered nav) |
+| **18** | Mega menu layout: match mockup HTML `mockup/1 - LATAMCHINATECH_desktop v 1million.htm` | ✅ Done | Fixed: added layout variants (standard, two-cards, events) with conditional rendering |
+| **19** | Mega menu content for all 5 sections (Advisory, Competitions, Events, Programs, Network) | ✅ Done | Fixed: updated all 3 locale files with mockup-matched content |
+| **20** | STATUS/FOCUS filter pills: check against `mockup/3 - Challenges__Competitions_v7.htm` | ✅ Done | Fixed: pill padding `8px 17px`, font-size `14px`, label font-size `11px` |
+| **21** | Small dot on top-left label (eyebrow area) | ✅ Done | Fixed: dot gap tightened from 10px to 8px |
+| **22** | Tab fonts larger and bold | ✅ Done | |
+| **23** | "Featured Competition" text in Startup tab + red star | ✅ Done | |
+| **24** | Blue star on "Featured Challenge" in Corporate tab | ✅ Done | |
+| **25** | Pulsing red dot next to "Open Now", font reduced 1pt | ✅ Done | |
+| **26** | Filter: smaller font, more rounded | ✅ Done | |
+| **27** | Featured card: preview text in black, title less bold | ✅ Done | |
+| **28** | Featured card: footer elements on one line (nowrap) | ✅ Done | |
+| **29** | Cards taller; OPEN/FUTURE/CLOSED badges with distinct icons and solid colored backgrounds | ✅ Done | |
+| **30** | "View Competition" in competition tab, "View Challenge" in challenge tab | ⚠️ Needs review | CTA labels are locale-driven but may not match spec exactly |
+| **31** | Category priority with industry-specific pastel icon on each card | ✅ Done | |
+| **32** | "Load More" button: smaller font, red icon, gray outline/font | ✅ Done | |
+| **33** | "View Programs" button: white icon/text, red-orange gradient | ✅ Done | |
+| **34** | Footer: aligned with homepage, "Subscribe on Substack" visible | ✅ Done | |
+| **35** | Footer: remove gray divider line AND bottom note text | ⚠️ Partial | Divider hidden via CSS but `<p>` with bottomNote still rendered; `border-top` on `.site-footer-bottom` still present |
+| **36** | Replace footer title with "NEWSLETTER" | ✅ Done | |
+| **37** | Colored stripe bar at page bottom | ✅ Done | |
+
+## NEWS & INSIGHTS
+
+| # | Description | Status | Notes |
+|---|---|---|---|
+| **38** | Fonts in black, same size as Challenges page; red button text in white with dot | ✅ Done | |
+| **39** | "REPORT" tag in red; other categories in gray | ⚠️ Partial | HTML class `news-card-tag--muted` applied but no matching CSS rule |
+| **40** | Bottom text in news cards 2pts smaller | ✅ Done | |
+| **41** | "All News & Insights" button before footer | ✅ Done | |
+| **42** | Subtitle balanced across two similar-length lines | ⚠️ Partial | HTML class applied but no matching CSS rule for `page-subtitle--balanced` |
+| **43** | Red dot next to "Latest", consistent pattern | ✅ Done | |
+
+## DEEP DIVE — NEWS ARTICLE
+
+| # | Description | Status | Notes |
+|---|---|---|---|
+| **44** | Meta (published/author/read time): 2pts smaller, gray, below title | ✅ Done | |
+| **45** | Rename "Back to all insights" → "Back" | ✅ Done | |
+| **46** | Remove subtitle below title | ✅ Done | |
+| **47** | Photo insertion in article body | ⏳ Deferred | Future CMS functionality |
+| **48** | "View all insights" → "View All", gray, 2pts smaller | ⚠️ Partial | HTML class `news-list-link--muted` applied but no matching CSS rule |
+
+## DEEP DIVE — COMPETITION DETAIL
+
+| # | Description | Status | Notes |
+|---|---|---|---|
+| **49** | Remove eyebrow; back link: arrow, 2pts smaller, gray | ⚠️ Partial | Eyebrow removed, arrow added, but `news-back-link--muted` has no CSS rule |
+| **50** | Top focus area icons/tags | ✅ Done | |
+| **51** | Remove "GTC" watermark | ✅ Done | |
+| **52** | Wide photo placeholder | ⚠️ Partial | HTML element present but `competition-hero-image-placeholder` may need CSS |
+| **53** | "Open Now" pulsing circle; compact apply button with white text | ✅ Done | |
+| **54** | Reduce height of status/timeline/track/focus meta cards | ⚠️ Needs visual QA | |
+| **55** | "View All" link back to competitions | ✅ Done | |
+| **56** | Reduce drop shadow for whiter background | ⚠️ Needs visual QA | |
+
+---
+
+## Summary
+
+| Status | Count | Items |
+|---|---|---|
+| ✅ Done | 41 | 1, 3, 4, 7–15, 17–29, 31–34, 36–38, 40, 41, 43–46, 50, 51, 53, 55 |
+| ⚠️ Partial / Needs attention | 9 | 5, 30, 35, 39, 42, 48, 49, 52, 54, 56 |
+| ⏳ Waiting / Deferred | 3 | 2, 6, 47 |
+| N/A | 1 | 16 |

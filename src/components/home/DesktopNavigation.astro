@@ -45,58 +45,110 @@ const { locale, languages, siteSettings } = Astro.props;
               {section.label}
             </a>
             <div class="desk-mega">
-              <div class="desk-mega-grid">
-                <div>
-                  <div class="desk-mega-label" data-i18n="navExploreLabel">{locale.navExploreLabel}</div>
-                  <div class="desk-mega-links">
-                    {section.links.map((link, linkIndex) => (
-                      <a href={getDesktopMenuLinkHref(sectionIndex, linkIndex)} class="desk-mega-link">
-                        <span
-                          class="desk-mega-link-title"
-                          data-i18n={`desktopMenuSections.${sectionIndex}.links.${linkIndex}.title`}
-                        >
-                          {link.title}
-                        </span>
-                        <span
-                          class="desk-mega-link-subtitle"
-                          data-i18n={`desktopMenuSections.${sectionIndex}.links.${linkIndex}.subtitle`}
-                        >
-                          {link.subtitle}
+              {section.layout === "events" ? (
+                <div class="desk-mega-grid desk-mega-grid--events">
+                  {section.events?.map((event, eventIndex) => (
+                    <div class="desk-mega-event">
+                      <div class="desk-mega-event-tag" data-i18n={`desktopMenuSections.${sectionIndex}.events.${eventIndex}.tag`}>
+                        {event.tag}
+                      </div>
+                      <div class="desk-mega-event-title" data-i18n={`desktopMenuSections.${sectionIndex}.events.${eventIndex}.title`}>
+                        {event.title}
+                      </div>
+                      <p class="desk-mega-event-body" data-i18n={`desktopMenuSections.${sectionIndex}.events.${eventIndex}.body`}>
+                        {event.body}
+                      </p>
+                      <a href={getDesktopMenuLinkHref(sectionIndex, eventIndex)} class="desk-mega-event-link">
+                        <span data-i18n={`desktopMenuSections.${sectionIndex}.events.${eventIndex}.linkText`}>
+                          {event.linkText}
                         </span>
                       </a>
-                    ))}
+                    </div>
+                  ))}
+                </div>
+              ) : section.layout === "two-cards" ? (
+                <div class="desk-mega-grid desk-mega-grid--two-cards">
+                  <div>
+                    <div class="desk-mega-label" data-i18n="navExploreLabel">{locale.navExploreLabel}</div>
+                    <div class="desk-mega-links">
+                      {section.links.map((link, linkIndex) => (
+                        <a href={getDesktopMenuLinkHref(sectionIndex, linkIndex)} class="desk-mega-link">
+                          <span class="desk-mega-link-title" data-i18n={`desktopMenuSections.${sectionIndex}.links.${linkIndex}.title`}>
+                            {link.title}
+                          </span>
+                          <span class="desk-mega-link-subtitle" data-i18n={`desktopMenuSections.${sectionIndex}.links.${linkIndex}.subtitle`}>
+                            {link.subtitle}
+                          </span>
+                        </a>
+                      ))}
+                    </div>
+                    <div class="desk-mega-note">
+                      <span data-i18n={`desktopMenuSections.${sectionIndex}.note`}>{section.note}</span>
+                      <a href="#desktop-footer" data-i18n={`desktopMenuSections.${sectionIndex}.noteLink`}>
+                        {section.noteLink}
+                      </a>
+                    </div>
                   </div>
-                  <div class="desk-mega-note">
-                    <span data-i18n={`desktopMenuSections.${sectionIndex}.note`}>{section.note}</span>
-                    <a
-                      href="#desktop-footer"
-                      data-i18n={`desktopMenuSections.${sectionIndex}.noteLink`}
-                    >
-                      {section.noteLink}
+                  <div class="desk-mega-card">
+                    <h3 data-i18n={`desktopMenuSections.${sectionIndex}.card.title`}>{section.card.title}</h3>
+                    <p data-i18n={`desktopMenuSections.${sectionIndex}.card.body`}>{section.card.body}</p>
+                    <a href={getDesktopMenuCardHref(sectionIndex)} class="desk-btn desk-btn--red desk-btn--compact" data-i18n={`desktopMenuSections.${sectionIndex}.card.cta`}>
+                      {section.card.cta}
+                    </a>
+                  </div>
+                  <div class="desk-mega-card">
+                    <h3 data-i18n={`desktopMenuSections.${sectionIndex}.card2.title`}>{section.card2?.title}</h3>
+                    <p data-i18n={`desktopMenuSections.${sectionIndex}.card2.body`}>{section.card2?.body}</p>
+                    <a href={getDesktopMenuCardHref(sectionIndex)} class="desk-btn desk-btn--red desk-btn--compact" data-i18n={`desktopMenuSections.${sectionIndex}.card2.cta`}>
+                      {section.card2?.cta}
                     </a>
                   </div>
                 </div>
-                <div class="desk-mega-copy">
-                  <p data-i18n={`desktopMenuSections.${sectionIndex}.description`}>
-                    {section.description}
-                  </p>
+              ) : (
+                <div class="desk-mega-grid">
+                  <div>
+                    <div class="desk-mega-label" data-i18n="navExploreLabel">{locale.navExploreLabel}</div>
+                    <div class="desk-mega-links">
+                      {section.links.map((link, linkIndex) => (
+                        <a href={getDesktopMenuLinkHref(sectionIndex, linkIndex)} class="desk-mega-link">
+                          <span class="desk-mega-link-title" data-i18n={`desktopMenuSections.${sectionIndex}.links.${linkIndex}.title`}>
+                            {link.title}
+                          </span>
+                          <span class="desk-mega-link-subtitle" data-i18n={`desktopMenuSections.${sectionIndex}.links.${linkIndex}.subtitle`}>
+                            {link.subtitle}
+                          </span>
+                        </a>
+                      ))}
+                    </div>
+                    <div class="desk-mega-note">
+                      <span data-i18n={`desktopMenuSections.${sectionIndex}.note`}>{section.note}</span>
+                      <a href="#desktop-footer" data-i18n={`desktopMenuSections.${sectionIndex}.noteLink`}>
+                        {section.noteLink}
+                      </a>
+                    </div>
+                  </div>
+                  <div class="desk-mega-copy">
+                    <p data-i18n={`desktopMenuSections.${sectionIndex}.description`}>
+                      {section.description}
+                    </p>
+                  </div>
+                  <div class="desk-mega-card">
+                    <h3 data-i18n={`desktopMenuSections.${sectionIndex}.card.title`}>
+                      {section.card.title}
+                    </h3>
+                    <p data-i18n={`desktopMenuSections.${sectionIndex}.card.body`}>
+                      {section.card.body}
+                    </p>
+                    <a
+                      href={getDesktopMenuCardHref(sectionIndex)}
+                      class="desk-btn desk-btn--red desk-btn--compact"
+                      data-i18n={`desktopMenuSections.${sectionIndex}.card.cta`}
+                    >
+                      {section.card.cta}
+                    </a>
+                  </div>
                 </div>
-                <div class="desk-mega-card">
-                  <h3 data-i18n={`desktopMenuSections.${sectionIndex}.card.title`}>
-                    {section.card.title}
-                  </h3>
-                  <p data-i18n={`desktopMenuSections.${sectionIndex}.card.body`}>
-                    {section.card.body}
-                  </p>
-                  <a
-                    href={getDesktopMenuCardHref(sectionIndex)}
-                    class="desk-btn desk-btn--red desk-btn--compact"
-                    data-i18n={`desktopMenuSections.${sectionIndex}.card.cta`}
-                  >
-                    {section.card.cta}
-                  </a>
-                </div>
-              </div>
+              )}
             </div>
           </li>
         ))}
@@ -118,6 +170,7 @@ const { locale, languages, siteSettings } = Astro.props;
           <line x1="2" y1="12" x2="22" y2="12"></line>
           <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
         </svg>
+        <span class="desk-lang-active-code" data-lang-active-code>{languages[0].code}</span>
       </button>
       <div class="desk-lang-menu" data-lang-menu>
         {languages.map((language, index) => (

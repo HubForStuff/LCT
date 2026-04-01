@@ -60,11 +60,19 @@ export type DesktopMenuCard = {
 
 export type DesktopMenuSection = {
   label: string;
+  layout: "standard" | "two-cards" | "events";
   links: DesktopMenuLink[];
   note: string;
   noteLink: string;
   description: string;
   card: DesktopMenuCard;
+  card2?: DesktopMenuCard;
+  events?: Array<{
+    tag: string;
+    title: string;
+    body: string;
+    linkText: string;
+  }>;
 };
 
 export type HeroContent = {

@@ -17,7 +17,7 @@
     "titleHtml": "获得资金、连接资源，<br />与 <span>LATAM CHINA TECH</span> 一起成长",
     "buttonLabel": "查看项目",
     "buttonHref": "/",
-    "newsletterTitle": "第一时间了解下一次中拉机会",
+    "newsletterTitle": "NEWSLETTER",
     "newsletterButtonLabel": "订阅 Substack",
     "bottomNote": "为连接拉丁美洲与中国的创业者、投资人和企业创新者而打造。",
     "columns": [
@@ -96,7 +96,7 @@
         "placeholderLabel": "更多项目将于 2025 年第三季度开放",
         "featured": {
           "theme": "startup",
-          "tag": "重点推荐",
+          "tag": "重点竞赛",
           "category": "深科技 · 跨境",
           "title": "Greater Tech Challenge 2025",
           "description": "The flagship innovation competition bridging Latin America and China. Submit your breakthrough solution in AI, cleantech, or biotech and compete for the largest prize pool in the region.",
@@ -487,6 +487,7 @@
     "description": "面向正在连接中国与拉美的团队，提供市场观察、创业者故事与跨境运营洞察。",
     "featuredLabel": "重点洞察",
     "allArticlesLabel": "全部洞察",
+    "allNewsLabel": "全部新闻与洞察",
     "readArticleLabel": "阅读文章",
     "publishedLabel": "发布日期",
     "readingTimeLabel": "分钟阅读",
@@ -494,11 +495,11 @@
     "emptyStateBody": "我们正在准备下一批面向中拉创新走廊建设者的深度内容。"
   },
   "newsArticlePage": {
-    "backLabel": "返回全部洞察",
+    "backLabel": "返回",
     "publishedLabel": "发布日期",
     "readingTimeLabel": "分钟阅读",
     "writtenByLabel": "作者",
     "moreInsightsLabel": "更多洞察",
-    "allInsightsLabel": "查看全部洞察"
+    "allInsightsLabel": "查看全部"
   }
 }

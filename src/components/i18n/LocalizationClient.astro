@@ -37,6 +37,9 @@ const { defaultLanguage, localizedContent } = Astro.props;
     document.querySelectorAll("[data-lang-option]").forEach((option) => {
       option.classList.toggle("is-active", option.dataset.langOption === code);
     });
+    document.querySelectorAll("[data-lang-active-code]").forEach((el) => {
+      el.textContent = code;
+    });
   };
 
   const closeLanguageMenus = () => {

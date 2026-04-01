@@ -63,6 +63,16 @@
     height: 100px;
   }
 
+  .desktop-home .desk-nav-inner > nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .desktop-home .desk-brand {
+    flex: 0 0 200px;
+  }
+
   .desktop-home .desk-brand,
   .mobile-home .mob-brand {
     display: inline-flex;
@@ -161,7 +171,7 @@
     display: grid;
     grid-template-columns: 1.1fr 1fr 0.92fr;
     gap: 44px;
-    padding: 34px 42px 38px;
+    padding: 20px 42px 22px;
     border-radius: 0 0 24px 24px;
     background: #fff;
     color: #000;
@@ -247,21 +257,101 @@
     color: rgba(0, 0, 0, 0.72);
   }
 
+  /* Two-cards layout (Competitions) */
+  .desktop-home .desk-mega-grid--two-cards {
+    grid-template-columns: 1.1fr 1fr 1fr;
+  }
+
+  /* Events layout */
+  .desktop-home .desk-mega-grid--events {
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+
+  .desktop-home .desk-mega-event {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px 0;
+    padding-left: 20px;
+    border-left: 2px solid rgba(0, 0, 0, 0.08);
+    transition: border-color 0.16s ease;
+  }
+
+  .desktop-home .desk-mega-event:hover {
+    border-left-color: var(--desk-red);
+  }
+
+  .desktop-home .desk-mega-event-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.5);
+    margin-bottom: 8px;
+  }
+
+  .desktop-home .desk-mega-event-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 6px;
+    line-height: 1.05;
+  }
+
+  .desktop-home .desk-mega-event-body {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #000;
+    margin: 0 0 14px;
+  }
+
+  .desktop-home .desk-mega-event-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #000;
+    transition: color 0.15s ease;
+  }
+
+  .desktop-home .desk-mega-event-link:hover {
+    color: var(--desk-red);
+  }
+
+  .desktop-home .desk-mega-event-link::after {
+    content: "→";
+    font-size: 13px;
+  }
+
   .desktop-home .desk-lang,
   .desktop-home .desk-footer-lang {
     position: relative;
+  }
+
+  .desktop-home .desk-lang {
+    flex: 0 0 200px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
   }
 
   .desktop-home .desk-lang-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 42px;
-    height: 42px;
+    width: auto;
+    min-width: 36px;
+    height: 36px;
+    gap: 6px;
+    padding: 0 8px;
     border: 0;
     border-radius: 999px;
     background: transparent;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.45);
     cursor: pointer;
     transition: color 0.18s ease, transform 0.18s ease;
   }
@@ -272,15 +362,27 @@
   }
 
   .desktop-home .desk-lang-btn svg {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
+  }
+
+  .desktop-home .desk-lang-active-code {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  .desktop-home .desk-lang-btn:hover .desk-lang-active-code {
+    color: #fff;
   }
 
   .desktop-home .desk-lang-menu {
     position: absolute;
     top: calc(100% + 10px);
     right: 0;
-    min-width: 160px;
+    min-width: 140px;
     padding: 8px;
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 16px;
@@ -326,25 +428,37 @@
     text-align: left;
   }
 
+  .desktop-home .desk-lang-option span {
+    color: var(--desk-red);
+  }
+
   .desktop-home .desk-lang-option small {
+    opacity: 0.55;
     color: rgba(255, 255, 255, 0.55);
+    font-size: 11px;
+    transition: opacity 0.2s ease;
   }
 
   .desktop-home .desk-lang-option:hover,
   .desktop-home .desk-lang-option.is-active {
-    background: rgba(255, 255, 255, 0.08);
-    color: var(--desk-red);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .desktop-home .desk-lang-option:hover small {
+    opacity: 1;
+    color: #fff;
   }
 
   .desktop-home .desk-lang-option.is-active small {
-    color: rgba(255, 255, 255, 0.75);
+    opacity: 1;
+    color: rgba(255, 255, 255, 0.7);
   }
 
   .desktop-home .desk-hero {
     position: relative;
     min-height: calc(100vh - 100px);
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     overflow: hidden;
     background: #000;
   }
@@ -362,7 +476,7 @@
   .desktop-home .desk-hero-copy {
     position: relative;
     z-index: 1;
-    padding: 80px 0 72px;
+    padding: 120px 0 48px;
   }
 
   .desktop-home .desk-hero-pane {
@@ -383,7 +497,7 @@
   }
 
   .desktop-home .desk-hero-sub {
-    margin: 0 0 34px;
+    margin: 0 0 46px;
     font-size: clamp(28px, 2.8vw, 34px);
     line-height: 1.15;
     color: #fff;
@@ -511,8 +625,8 @@
     background: var(--desk-surface);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10);
     transition:
-      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-      box-shadow 0.4s ease;
+      transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.65s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: transform;
   }
 
@@ -697,7 +811,7 @@
     width: 100%;
     max-width: 1600px;
     margin: 0 auto;
-    padding: 0 58px;
+    padding: 0 88px;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 28px;
@@ -820,6 +934,14 @@
     transition: gap 0.2s ease, border-color 0.2s ease;
   }
 
+  .desktop-home .desk-comp-square--red .desk-comp-cta {
+    color: var(--desk-red);
+  }
+
+  .desktop-home .desk-comp-square--blue .desk-comp-cta {
+    color: var(--desk-blue);
+  }
+
   .desktop-home .desk-comp-square:hover .desk-comp-cta {
     gap: 14px;
     border-color: #000;
@@ -847,10 +969,11 @@
     position: relative;
     display: block;
     min-height: 320px;
-    padding: 3px;
     border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
     background: #fff;
     color: #000;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     overflow: visible;
   }
@@ -858,24 +981,20 @@
   .desktop-home .desk-news-card::before {
     content: "";
     position: absolute;
-    inset: 0;
-    padding: 2px;
-    border-radius: 16px;
-    background: linear-gradient(135deg, #ff3b00, #ff8c00, #ff3b00 60%, #0015ff);
-    -webkit-mask:
-      linear-gradient(#fff 0 0) content-box,
-      linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
+    top: 12px;
+    bottom: 12px;
+    left: 0;
+    width: 3px;
+    border-radius: 0 3px 3px 0;
+    background: linear-gradient(180deg, #ff3b00, #ff8c00);
     pointer-events: none;
   }
 
   .desktop-home .desk-news-card-inner {
     display: flex;
     flex-direction: column;
-    min-height: 314px;
-    padding: 16px 16px 14px;
-    border-radius: 14px;
+    min-height: 316px;
+    padding: 18px 18px 10px;
     background: #fff;
     overflow: hidden;
   }
@@ -1000,7 +1119,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 40px;
-    padding: 59px 88px;
+    padding: 48px 58px;
   }
 
   .desktop-home .desk-footer-eye {
@@ -1013,8 +1132,8 @@
   }
 
   .desktop-home .desk-footer-main {
-    padding-top: 48px;
-    padding-bottom: 40px;
+    padding-top: 40px;
+    padding-bottom: 32px;
   }
 
   .desktop-home .desk-footer-row {
@@ -1062,12 +1181,15 @@
     display: flex;
     flex-direction: column;
     gap: 14px;
+    align-items: flex-end;
+    text-align: right;
   }
 
   .desktop-home .desk-footer-newsletter-row {
     display: flex;
     gap: 8px;
     align-items: center;
+    justify-content: flex-end;
   }
 
   .desktop-home .desk-footer-newsletter input {
@@ -1089,11 +1211,11 @@
     align-items: center;
     justify-content: center;
     height: 38px;
-    padding: 0 14px;
-    border-radius: 8px;
+    padding: 0 18px;
+    border-radius: 999px;
     background: var(--desk-red);
     color: #fff;
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .desktop-home .desk-footer-socials {
@@ -1132,8 +1254,9 @@
 
   .desktop-home .desk-wechat-popup {
     position: absolute;
-    right: 0;
-    bottom: calc(100% + 12px);
+    right: auto;
+    left: -4px;
+    bottom: calc(100% + 10px);
     width: 146px;
     padding: 10px;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -1153,6 +1276,7 @@
 
   .desktop-home .desk-wechat-title {
     margin-bottom: 8px;
+    text-align: center;
     font-size: 9px;
     font-weight: 700;
     letter-spacing: 0.1em;
@@ -1168,11 +1292,28 @@
   .desktop-home .desk-wechat-qr svg {
     width: 96px;
     height: 96px;
+    opacity: 0.82;
   }
 
   .desktop-home .desk-footer-lang {
-    margin-left: 8px;
-    padding-top: 36px;
+    margin-left: 24px;
+    padding-top: 42px;
+  }
+
+  .desktop-home .desk-lang-btn--footer {
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  .desktop-home .desk-lang-btn--footer:hover {
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  .desktop-home .desk-lang-menu--footer .desk-lang-option small {
+    display: none;
+  }
+
+  .desktop-home .desk-lang-menu--footer .desk-lang-option {
+    font-size: 12px;
   }
 
   .mobile-home {
