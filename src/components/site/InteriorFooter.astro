@@ -17,10 +17,9 @@ const {
   siteSettings,
   currentLanguage = siteSettings.defaultLanguage,
 } = Astro.props;
-const currentYear = new Date().getFullYear();
 ---
 
-<footer class="site-footer">
+<footer class="site-footer" id="site-footer">
   <div class="site-footer-stripe"></div>
 
   <section class="site-footer-hero">
@@ -79,6 +78,43 @@ const currentYear = new Date().getFullYear();
         </div>
 
         <div class="site-footer-socials">
+          <div class="site-wechat">
+            <button
+              type="button"
+              class="site-social-btn"
+              aria-label={footer.scanWechat}
+              data-i18n-aria-label="footer.scanWechat"
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M8.5 2C4.36 2 1 5.03 1 8.78c0 1.99.98 3.77 2.53 4.97L2.5 16l2.7-1.35C6.1 14.87 7.27 15 8.5 15c.28 0 .56-.01.83-.04A5.54 5.54 0 0 1 9 13.22C9 10.33 11.91 8 15.5 8c.28 0 .56.01.83.03C15.62 4.6 12.4 2 8.5 2zm-2 4.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm4 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm5 3.5c-3.04 0-5.5 2.01-5.5 4.5S12.46 19 15.5 19c.7 0 1.37-.12 1.98-.33L20 20l-1.12-2.34C19.56 16.73 21 15.19 21 13.5 21 11.01 18.54 9 15.5 9zm-1.5 2.75a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5zm3 0a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5z"></path>
+              </svg>
+            </button>
+            <div class="site-wechat-popup">
+              <div class="site-wechat-title" data-i18n="footer.scanWechat">{footer.scanWechat}</div>
+              <div class="site-wechat-qr">
+                <svg viewBox="0 0 96 96" fill="none" aria-hidden="true">
+                  <rect width="96" height="96" fill="white"></rect>
+                  <rect x="8" y="8" width="32" height="32" rx="2" fill="#111"></rect>
+                  <rect x="12" y="12" width="24" height="24" rx="1" fill="white"></rect>
+                  <rect x="16" y="16" width="16" height="16" rx="1" fill="#111"></rect>
+                  <rect x="56" y="8" width="32" height="32" rx="2" fill="#111"></rect>
+                  <rect x="60" y="12" width="24" height="24" rx="1" fill="white"></rect>
+                  <rect x="64" y="16" width="16" height="16" rx="1" fill="#111"></rect>
+                  <rect x="8" y="56" width="32" height="32" rx="2" fill="#111"></rect>
+                  <rect x="12" y="60" width="24" height="24" rx="1" fill="white"></rect>
+                  <rect x="16" y="64" width="16" height="16" rx="1" fill="#111"></rect>
+                  <rect x="48" y="48" width="8" height="8" fill="#111"></rect>
+                  <rect x="60" y="48" width="8" height="8" fill="#111"></rect>
+                  <rect x="72" y="48" width="8" height="8" fill="#111"></rect>
+                  <rect x="48" y="60" width="8" height="8" fill="#111"></rect>
+                  <rect x="72" y="60" width="8" height="8" fill="#111"></rect>
+                  <rect x="48" y="72" width="8" height="8" fill="#111"></rect>
+                  <rect x="60" y="72" width="8" height="8" fill="#111"></rect>
+                  <rect x="72" y="72" width="8" height="8" fill="#111"></rect>
+                </svg>
+              </div>
+            </div>
+          </div>
           <a
             href={siteSettings.socialLinks.instagram}
             target="_blank"
@@ -119,11 +155,8 @@ const currentYear = new Date().getFullYear();
           </a>
         </div>
       </div>
-    </div>
 
-    <div class="interior-wrap site-footer-bottom">
-      <p data-i18n="footer.bottomNote">{footer.bottomNote}</p>
-      <div class="site-footer-bottom-meta">
+      <div class="site-footer-lang">
         <LanguageSwitcher
           languages={siteSettings.languages}
           currentLanguage={currentLanguage}
@@ -131,7 +164,6 @@ const currentYear = new Date().getFullYear();
           labelTranslationKey="ui.chooseLanguage"
           className="site-lang--footer"
         />
-        <span>© {currentYear} LATAM China Tech</span>
       </div>
     </div>
   </section>

@@ -35,6 +35,7 @@ export type InteriorFooterContent = {
   buttonHref: string;
   newsletterTitle: string;
   newsletterButtonLabel: string;
+  scanWechat: string;
   bottomNote: string;
   columns: InteriorFooterColumn[];
 };

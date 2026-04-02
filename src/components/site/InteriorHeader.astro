@@ -63,55 +63,138 @@ const {
               </a>
               {section && (
                 <div class="site-mega">
-                  <div class="site-mega-grid">
-                    <div>
-                      <div class="site-mega-label" data-i18n="navExploreLabel">{navExploreLabel}</div>
-                      <div class="site-mega-links">
-                        {section.links.map((link, linkIndex) => (
-                          <a href={getDesktopMenuLinkHref(index, linkIndex)} class="site-mega-link">
-                            <span
-                              class="site-mega-link-title"
-                              data-i18n={`desktopMenuSections.${index}.links.${linkIndex}.title`}
-                            >
-                              {link.title}
-                            </span>
-                            <span
-                              class="site-mega-link-subtitle"
-                              data-i18n={`desktopMenuSections.${index}.links.${linkIndex}.subtitle`}
-                            >
-                              {link.subtitle}
+                  {section.layout === "events" ? (
+                    <div class="site-mega-grid site-mega-grid--events">
+                      {section.events?.map((event, eventIndex) => (
+                        <div class="site-mega-event">
+                          <div class="site-mega-event-tag" data-i18n={`desktopMenuSections.${index}.events.${eventIndex}.tag`}>
+                            {event.tag}
+                          </div>
+                          <div class="site-mega-event-title" data-i18n={`desktopMenuSections.${index}.events.${eventIndex}.title`}>
+                            {event.title}
+                          </div>
+                          <p class="site-mega-event-body" data-i18n={`desktopMenuSections.${index}.events.${eventIndex}.body`}>
+                            {event.body}
+                          </p>
+                          <a href={getDesktopMenuLinkHref(index, eventIndex)} class="site-mega-event-link">
+                            <span data-i18n={`desktopMenuSections.${index}.events.${eventIndex}.linkText`}>
+                              {event.linkText}
                             </span>
                           </a>
-                        ))}
+                        </div>
+                      ))}
+                    </div>
+                  ) : section.layout === "two-cards" ? (
+                    <div class="site-mega-grid site-mega-grid--two-cards">
+                      <div>
+                        <div class="site-mega-label" data-i18n="navExploreLabel">{navExploreLabel}</div>
+                        <div class="site-mega-links">
+                          {section.links.map((link, linkIndex) => (
+                            <a href={getDesktopMenuLinkHref(index, linkIndex)} class="site-mega-link">
+                              <span
+                                class="site-mega-link-title"
+                                data-i18n={`desktopMenuSections.${index}.links.${linkIndex}.title`}
+                              >
+                                {link.title}
+                              </span>
+                              <span
+                                class="site-mega-link-subtitle"
+                                data-i18n={`desktopMenuSections.${index}.links.${linkIndex}.subtitle`}
+                              >
+                                {link.subtitle}
+                              </span>
+                            </a>
+                          ))}
+                        </div>
+                        <div class="site-mega-note">
+                          <span data-i18n={`desktopMenuSections.${index}.note`}>{section.note}</span>
+                          <a href="#site-footer" data-i18n={`desktopMenuSections.${index}.noteLink`}>
+                            {section.noteLink}
+                          </a>
+                        </div>
                       </div>
-                      <div class="site-mega-note">
-                        <span data-i18n={`desktopMenuSections.${index}.note`}>{section.note}</span>
-                        <a href="#site-footer" data-i18n={`desktopMenuSections.${index}.noteLink`}>
-                          {section.noteLink}
+                      <div class="site-mega-card">
+                        <h3 data-i18n={`desktopMenuSections.${index}.card.title`}>
+                          {section.card.title}
+                        </h3>
+                        <p data-i18n={`desktopMenuSections.${index}.card.body`}>
+                          {section.card.body}
+                        </p>
+                        <a
+                          href={getDesktopMenuCardHref(index)}
+                          class="site-btn site-btn--primary site-btn--compact"
+                          data-i18n={`desktopMenuSections.${index}.card.cta`}
+                        >
+                          {section.card.cta}
+                        </a>
+                      </div>
+                      <div class="site-mega-card">
+                        <h3 data-i18n={`desktopMenuSections.${index}.card2.title`}>
+                          {section.card2?.title}
+                        </h3>
+                        <p data-i18n={`desktopMenuSections.${index}.card2.body`}>
+                          {section.card2?.body}
+                        </p>
+                        <a
+                          href={getDesktopMenuCardHref(index)}
+                          class="site-btn site-btn--primary site-btn--compact"
+                          data-i18n={`desktopMenuSections.${index}.card2.cta`}
+                        >
+                          {section.card2?.cta}
                         </a>
                       </div>
                     </div>
-                    <div class="site-mega-copy">
-                      <p data-i18n={`desktopMenuSections.${index}.description`}>
-                        {section.description}
-                      </p>
+                  ) : (
+                    <div class="site-mega-grid">
+                      <div>
+                        <div class="site-mega-label" data-i18n="navExploreLabel">{navExploreLabel}</div>
+                        <div class="site-mega-links">
+                          {section.links.map((link, linkIndex) => (
+                            <a href={getDesktopMenuLinkHref(index, linkIndex)} class="site-mega-link">
+                              <span
+                                class="site-mega-link-title"
+                                data-i18n={`desktopMenuSections.${index}.links.${linkIndex}.title`}
+                              >
+                                {link.title}
+                              </span>
+                              <span
+                                class="site-mega-link-subtitle"
+                                data-i18n={`desktopMenuSections.${index}.links.${linkIndex}.subtitle`}
+                              >
+                                {link.subtitle}
+                              </span>
+                            </a>
+                          ))}
+                        </div>
+                        <div class="site-mega-note">
+                          <span data-i18n={`desktopMenuSections.${index}.note`}>{section.note}</span>
+                          <a href="#site-footer" data-i18n={`desktopMenuSections.${index}.noteLink`}>
+                            {section.noteLink}
+                          </a>
+                        </div>
+                      </div>
+                      <div class="site-mega-copy">
+                        <p data-i18n={`desktopMenuSections.${index}.description`}>
+                          {section.description}
+                        </p>
+                      </div>
+                      <div class="site-mega-card">
+                        <h3 data-i18n={`desktopMenuSections.${index}.card.title`}>
+                          {section.card.title}
+                        </h3>
+                        <p data-i18n={`desktopMenuSections.${index}.card.body`}>
+                          {section.card.body}
+                        </p>
+                        <a
+                          href={getDesktopMenuCardHref(index)}
+                          class="site-btn site-btn--primary site-btn--compact"
+                          data-i18n={`desktopMenuSections.${index}.card.cta`}
+                        >
+                          {section.card.cta}
+                        </a>
+                      </div>
                     </div>
-                    <div class="site-mega-card">
-                      <h3 data-i18n={`desktopMenuSections.${index}.card.title`}>
-                        {section.card.title}
-                      </h3>
-                      <p data-i18n={`desktopMenuSections.${index}.card.body`}>
-                        {section.card.body}
-                      </p>
-                      <a
-                        href={getDesktopMenuCardHref(index)}
-                        class="site-btn site-btn--primary site-btn--compact"
-                        data-i18n={`desktopMenuSections.${index}.card.cta`}
-                      >
-                        {section.card.cta}
-                      </a>
-                    </div>
-                  </div>
+                  )}
                 </div>
               )}
             </li>

@@ -31,19 +31,19 @@
 | **20** | STATUS/FOCUS filter pills: check against `mockup/3 - Challenges__Competitions_v7.htm` | ✅ Done | Fixed: pill padding `8px 17px`, font-size `14px`, label font-size `11px` |
 | **21** | Small dot on top-left label (eyebrow area) | ✅ Done | Fixed: dot gap tightened from 10px to 8px |
 | **22** | Tab fonts larger and bold | ✅ Done | |
-| **23** | "Featured Competition" text in Startup tab + red star | ✅ Done | |
+| **23** | "Featured Competition" text in Startup tab + red star | ✅ Done | Re-verified: startup featured tag now comes from competition content as "Featured Competition" |
 | **24** | Blue star on "Featured Challenge" in Corporate tab | ✅ Done | |
 | **25** | Pulsing red dot next to "Open Now", font reduced 1pt | ✅ Done | |
 | **26** | Filter: smaller font, more rounded | ✅ Done | |
 | **27** | Featured card: preview text in black, title less bold | ✅ Done | |
 | **28** | Featured card: footer elements on one line (nowrap) | ✅ Done | |
 | **29** | Cards taller; OPEN/FUTURE/CLOSED badges with distinct icons and solid colored backgrounds | ✅ Done | |
-| **30** | "View Competition" in competition tab, "View Challenge" in challenge tab | ⚠️ Needs review | CTA labels are locale-driven but may not match spec exactly |
+| **30** | "View Competition" in competition tab, "View Challenge" in challenge tab | ✅ Done | Updated competition collection locale CTA copy by track (startup=competition, corporate=challenge) |
 | **31** | Category priority with industry-specific pastel icon on each card | ✅ Done | |
 | **32** | "Load More" button: smaller font, red icon, gray outline/font | ✅ Done | |
 | **33** | "View Programs" button: white icon/text, red-orange gradient | ✅ Done | |
-| **34** | Footer: aligned with homepage, "Subscribe on Substack" visible | ✅ Done | |
-| **35** | Footer: remove gray divider line AND bottom note text | ⚠️ Partial | Divider hidden via CSS but `<p>` with bottomNote still rendered; `border-top` on `.site-footer-bottom` still present |
+| **34** | Footer: aligned with homepage, "Subscribe on Substack" visible | ✅ Done | Re-reviewed: interior footer now includes homepage-style WeChat QR treatment + localized scan label |
+| **35** | Footer: remove gray divider line AND bottom note text | ✅ Done | Re-verified: legacy bottom note row removed and the gray divider is no longer rendered |
 | **36** | Replace footer title with "NEWSLETTER" | ✅ Done | |
 | **37** | Colored stripe bar at page bottom | ✅ Done | |
 
@@ -52,10 +52,10 @@
 | # | Description | Status | Notes |
 |---|---|---|---|
 | **38** | Fonts in black, same size as Challenges page; red button text in white with dot | ✅ Done | |
-| **39** | "REPORT" tag in red; other categories in gray | ⚠️ Partial | HTML class `news-card-tag--muted` applied but no matching CSS rule |
+| **39** | "REPORT" tag in red; other categories in gray | ✅ Done | Added gray muted-tag rule for `.news-card-tag--muted` |
 | **40** | Bottom text in news cards 2pts smaller | ✅ Done | |
 | **41** | "All News & Insights" button before footer | ✅ Done | |
-| **42** | Subtitle balanced across two similar-length lines | ⚠️ Partial | HTML class applied but no matching CSS rule for `page-subtitle--balanced` |
+| **42** | Subtitle balanced across two similar-length lines | ✅ Done | Added `text-wrap: balance` via `.page-subtitle--balanced` |
 | **43** | Red dot next to "Latest", consistent pattern | ✅ Done | |
 
 ## DEEP DIVE — NEWS ARTICLE
@@ -66,20 +66,20 @@
 | **45** | Rename "Back to all insights" → "Back" | ✅ Done | |
 | **46** | Remove subtitle below title | ✅ Done | |
 | **47** | Photo insertion in article body | ⏳ Deferred | Future CMS functionality |
-| **48** | "View all insights" → "View All", gray, 2pts smaller | ⚠️ Partial | HTML class `news-list-link--muted` applied but no matching CSS rule |
+| **48** | "View all insights" → "View All", gray, 2pts smaller | ✅ Done | Added smaller gray muted-link rule for `.news-list-link--muted` |
 
 ## DEEP DIVE — COMPETITION DETAIL
 
 | # | Description | Status | Notes |
 |---|---|---|---|
-| **49** | Remove eyebrow; back link: arrow, 2pts smaller, gray | ⚠️ Partial | Eyebrow removed, arrow added, but `news-back-link--muted` has no CSS rule |
+| **49** | Remove eyebrow; back link: arrow, 2pts smaller, gray | ✅ Done | Added muted back-link styling for `news-back-link--muted` |
 | **50** | Top focus area icons/tags | ✅ Done | |
 | **51** | Remove "GTC" watermark | ✅ Done | |
-| **52** | Wide photo placeholder | ⚠️ Partial | HTML element present but `competition-hero-image-placeholder` may need CSS |
+| **52** | Wide photo placeholder | ✅ Done | Added visible placeholder block styling (`min-height`, border radius, background) |
 | **53** | "Open Now" pulsing circle; compact apply button with white text | ✅ Done | |
-| **54** | Reduce height of status/timeline/track/focus meta cards | ⚠️ Needs visual QA | |
+| **54** | Reduce height of status/timeline/track/focus meta cards | ✅ Done | Reduced card padding for lighter, shorter meta cards |
 | **55** | "View All" link back to competitions | ✅ Done | |
-| **56** | Reduce drop shadow for whiter background | ⚠️ Needs visual QA | |
+| **56** | Reduce drop shadow for whiter background | ✅ Done | Reduced shared competition detail card shadow intensity |
 
 ---
 
@@ -87,7 +87,26 @@
 
 | Status | Count | Items |
 |---|---|---|
-| ✅ Done | 41 | 1, 3, 4, 7–15, 17–29, 31–34, 36–38, 40, 41, 43–46, 50, 51, 53, 55 |
-| ⚠️ Partial / Needs attention | 9 | 5, 30, 35, 39, 42, 48, 49, 52, 54, 56 |
+| ✅ Done | 51 | 1, 3, 4, 7–15, 17–46, 48–56 |
+| ⚠️ Partial / Needs attention | 1 | 5 |
 | ⏳ Waiting / Deferred | 3 | 2, 6, 47 |
 | N/A | 1 | 16 |
+
+## Visual verification list — 2026-04-01
+
+- Homepage competitions mega menu hover height / white submenu treatment  
+  Screenshot: `.opencode/feedback/2026-04-01/shots/home-hover-competitions.png`
+- Interior competitions mega menu parity (two-card variant)  
+  Screenshot: `.opencode/feedback/2026-04-01/shots/interior-hover-competitions.png`
+- Competitions listing: `Featured Competition` label, `View Competition` / `View Challenge` CTA split, footer parity  
+  Screenshot: `.opencode/feedback/2026-04-01/shots/competitions-current-final.png`
+- News listing: balanced subtitle, gray non-report tags, footer parity  
+  Screenshot: `.opencode/feedback/2026-04-01/shots/news-current-post.png`
+- News article: muted `View All` link treatment  
+  Screenshot: `.opencode/feedback/2026-04-01/shots/article-current-post.png`
+- Competition detail: muted back link, hero placeholder, lighter meta/content cards  
+  Screenshot: `.opencode/feedback/2026-04-01/shots/competition-detail-current-post.png`
+- Interior footer WeChat treatment / QR hover parity  
+  Screenshot: `.opencode/feedback/2026-04-01/shots/interior-footer-wechat-final.png`
+- Browser language switching spot-checks  
+  Screenshots: `.opencode/feedback/2026-04-01/shots/home-lang-cn.png`, `.opencode/feedback/2026-04-01/shots/competitions-lang-br.png`

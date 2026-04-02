@@ -35,6 +35,34 @@ const runAgentBrowser = (args) =>
     encoding: "utf8",
   });
 
+const resolvePythonExecutable = () => {
+  const resolved = spawnSync(
+    "python3",
+    ["-c", "import os, sys; print(os.path.realpath(sys.executable))"],
+    {
+      cwd: projectRoot,
+      encoding: "utf8",
+    },
+  );
+
+  assert.equal(
+    resolved.status,
+    0,
+    `Failed to resolve python executable.\nSTDOUT:\n${resolved.stdout}\nSTDERR:\n${resolved.stderr}`,
+  );
+
+  const executablePath = resolved.stdout.trim();
+  assert.equal(
+    existsSync(executablePath),
+    true,
+    `Resolved python executable does not exist: ${executablePath}`,
+  );
+
+  return executablePath;
+};
+
+const pythonExecutable = resolvePythonExecutable();
+
 const buildSite = () => {
   const outDir = mkdtempSync(resolve(tmpdir(), "inovacao-hub-interior-"));
   const build = spawnSync("npm", ["run", "build", "--", "--outDir", outDir], {
@@ -400,6 +428,280 @@ test("competitions and pre-registration pages build with the expected mockup con
   }
 });
 
+test("interior header supports homepage mega-menu layout variants", { concurrency: false }, () => {
+  const build = buildSite();
+
+  try {
+    const competitionsHtml = readFileSync(
+      resolve(build.outDir, "competitions", "index.html"),
+      "utf8",
+    );
+
+    assert.match(
+      competitionsHtml,
+      /site-mega-grid--two-cards/,
+      "expected interior header to render the two-cards mega-menu variant",
+    );
+    assert.match(
+      competitionsHtml,
+      /data-i18n="desktopMenuSections\.1\.card2\.title"/,
+      "expected the competitions mega menu to render the secondary card content",
+    );
+    assert.match(
+      competitionsHtml,
+      /site-mega-grid--events/,
+      "expected interior header to render the events mega-menu variant",
+    );
+    assert.match(
+      competitionsHtml,
+      /site-mega-event/,
+      "expected interior header to render event cards for the events variant",
+    );
+    assert.match(
+      competitionsHtml,
+      /data-i18n="desktopMenuSections\.2\.events\.0\.title"/,
+      "expected interior header events variant to localize event entries",
+    );
+  } finally {
+    build.cleanup();
+  }
+});
+
+test("interior footer matches homepage structure without legacy bottom note row", { concurrency: false }, () => {
+  const build = buildSite();
+
+  try {
+    const competitionsHtml = readFileSync(
+      resolve(build.outDir, "competitions", "index.html"),
+      "utf8",
+    );
+    const interiorStyles = readProjectFile("src/styles/interior-pages.css");
+
+    assert.doesNotMatch(
+      competitionsHtml,
+      /data-i18n="footer\.bottomNote"/,
+      "expected interior footer to remove the legacy localized bottom note",
+    );
+    assert.doesNotMatch(
+      competitionsHtml,
+      /class="site-footer-bottom"/,
+      "expected interior footer to remove the old bottom row wrapper",
+    );
+    assert.match(
+      competitionsHtml,
+      /class="site-footer-newsletter"/,
+      "expected interior footer to keep newsletter section",
+    );
+    assert.match(
+      competitionsHtml,
+      /class="site-footer-socials"/,
+      "expected interior footer to keep social links section",
+    );
+    assert.match(
+      competitionsHtml,
+      /class="site-wechat"/,
+      "expected interior footer socials to include homepage-style WeChat wrapper",
+    );
+    assert.match(
+      competitionsHtml,
+      /class="site-wechat-popup"/,
+      "expected interior footer WeChat control to expose the QR popup container",
+    );
+    assert.match(
+      competitionsHtml,
+      /data-i18n="footer\.scanWechat"/,
+      "expected interior footer WeChat popup to keep shared localized scan label",
+    );
+    assert.match(
+      competitionsHtml,
+      /data-i18n-aria-label="footer\.scanWechat"/,
+      "expected interior footer WeChat button to localize its accessible label through the shared hooks",
+    );
+    assert.doesNotMatch(
+      competitionsHtml,
+      /aria-label="WeChat"/,
+      "expected interior footer WeChat button to avoid a hard-coded English accessible label",
+    );
+    assert.match(
+      competitionsHtml,
+      /class="site-lang site-lang--footer site-lang--right"/,
+      "expected interior footer to keep shared footer language switcher",
+    );
+    assert.match(
+      competitionsHtml,
+      /class="site-footer-bottom-stripe"/,
+      "expected interior footer to keep the bottom animated stripe",
+    );
+    assert.match(
+      interiorStyles,
+      /\.site-wechat:hover \.site-wechat-popup,\s*\.site-wechat:focus-within \.site-wechat-popup\s*\{/s,
+      "expected interior footer WeChat popup to be reachable on keyboard focus as well as hover",
+    );
+  } finally {
+    build.cleanup();
+  }
+});
+
+test("competitions listing/detail Batch B polish matches approved copy and shell styling", { concurrency: false }, () => {
+  const build = buildSite();
+  const featuredCompetitionContent = JSON.parse(
+    readProjectFile("src/content/competitions/greater-tech-challenge-2025.json"),
+  );
+
+  try {
+    const competitionsHtml = readFileSync(
+      resolve(build.outDir, "competitions", "index.html"),
+      "utf8",
+    );
+    const competitionDetailHtml = readFileSync(
+      resolve(
+        build.outDir,
+        "competitions",
+        "greater-tech-challenge-2025",
+        "index.html",
+      ),
+      "utf8",
+    );
+    const interiorStyles = readProjectFile("src/styles/interior-pages.css");
+
+    const startupPanelMatch = competitionsHtml.match(
+      /<section[^>]*data-tab-panel="startup"[\s\S]*?<\/section>/i,
+    );
+    const challengePanelMatch = competitionsHtml.match(
+      /<section[^>]*data-tab-panel="corporate"[\s\S]*?<\/section>/i,
+    );
+
+    assert.ok(startupPanelMatch, "expected startup tab panel to render");
+    assert.ok(challengePanelMatch, "expected corporate challenge tab panel to render");
+
+    assert.equal(
+      featuredCompetitionContent.br.featuredTag,
+      "Competição em destaque",
+      "expected the Portuguese startup featured tag to use competition wording",
+    );
+    assert.equal(
+      featuredCompetitionContent.br.detailEyebrow,
+      "Competição principal",
+      "expected the Portuguese startup eyebrow to preserve accented competition wording",
+    );
+    assert.equal(
+      featuredCompetitionContent.cn.featuredTag,
+      "重点竞赛",
+      "expected the Chinese startup featured tag to use competition wording",
+    );
+
+    const startupPanelHtml = startupPanelMatch?.[0] ?? "";
+    const challengePanelHtml = challengePanelMatch?.[0] ?? "";
+
+    assert.match(
+      startupPanelHtml,
+      />\s*Featured Competition\s*</i,
+      "expected startup featured tag to use competition wording",
+    );
+    assert.doesNotMatch(
+      startupPanelHtml,
+      />\s*Featured Challenge\s*</i,
+      "expected startup featured tag to avoid challenge wording",
+    );
+
+    assert.match(
+      startupPanelHtml,
+      />\s*View Competition\s*</i,
+      "expected startup competition CTAs to use competition wording",
+    );
+    assert.doesNotMatch(
+      startupPanelHtml,
+      />\s*View Challenge\s*</i,
+      "expected startup competition CTAs to avoid challenge wording",
+    );
+    assert.match(
+      challengePanelHtml,
+      />\s*View Challenge\s*</i,
+      "expected challenge tab CTAs to keep challenge wording",
+    );
+
+    assert.match(
+      competitionDetailHtml,
+      /class="news-back-link news-back-link--muted"/,
+      "expected competition detail back link to use the muted treatment hook",
+    );
+    assert.match(
+      interiorStyles,
+      /\.competition-hero-image-placeholder\s*\{[^}]*min-height:\s*320px;[^}]*border-radius:\s*24px;[^}]*background:/s,
+      "expected competition detail hero placeholder to render as a visible media block",
+    );
+    assert.match(
+      interiorStyles,
+      /\.competition-hero-card,\s*\.competition-meta-card,\s*\.competition-rich-card\s*\{[^}]*box-shadow:\s*0 16px 32px rgba\(15, 23, 42, 0\.06\);/s,
+      "expected competition detail cards to use lighter shared shadows",
+    );
+    assert.match(
+      interiorStyles,
+      /\.competition-meta-card\s*\{[^}]*padding:\s*18px 20px;/s,
+      "expected competition meta cards to reduce their vertical weight",
+    );
+    assert.match(
+      interiorStyles,
+      /\.competition-rich-card\s*\{[^}]*padding:\s*24px 26px;/s,
+      "expected competition rich cards to use tighter spacing",
+    );
+  } finally {
+    build.cleanup();
+  }
+});
+
+test("news Batch C styling hooks render and map to concrete muted/balanced CSS rules", { concurrency: false }, () => {
+  const build = buildSite();
+
+  try {
+    const newsIndexHtml = readFileSync(resolve(build.outDir, "news", "index.html"), "utf8");
+    const newsArticleHtml = readFileSync(
+      resolve(
+        build.outDir,
+        "news",
+        "why-chinese-giants-need-latam-startups-more-than-ever",
+        "index.html",
+      ),
+      "utf8",
+    );
+    const interiorStyles = readProjectFile("src/styles/interior-pages.css");
+
+    assert.match(
+      newsIndexHtml,
+      /class="page-subtitle page-subtitle--wide page-subtitle--balanced"/,
+      "expected news index subtitle to render the balancing hook",
+    );
+    assert.match(
+      newsIndexHtml,
+      /class="news-card-tag news-card-tag--muted"[^>]*data-tag-type="(?!report)[^"]+"/,
+      "expected non-report news tags on the index page to render with the muted hook",
+    );
+    assert.match(
+      newsArticleHtml,
+      /class="news-list-link news-list-link--muted"/,
+      "expected article related-content View All link to render with the muted hook",
+    );
+
+    assert.match(
+      interiorStyles,
+      /\.news-card-tag--muted\s*\{[^}]*color:\s*#64748b;/s,
+      "expected muted news tags to receive a concrete gray color rule",
+    );
+    assert.match(
+      interiorStyles,
+      /\.page-subtitle--balanced\s*\{[^}]*text-wrap:\s*balance;/s,
+      "expected balanced subtitle hook to apply text-wrap balancing",
+    );
+    assert.match(
+      interiorStyles,
+      /\.news-list-link--muted\s*\{[^}]*font-size:\s*0\.74rem;[^}]*letter-spacing:\s*0\.12em;[^}]*color:\s*#64748b;/s,
+      "expected related-content View All muted link to use the smaller gray treatment",
+    );
+  } finally {
+    build.cleanup();
+  }
+});
+
 test("interior pages expose shared localization hooks and localize in the browser", { concurrency: false }, async () => {
   const build = buildSite();
   const competitionsHtml = readFileSync(
@@ -430,7 +732,7 @@ test("interior pages expose shared localization hooks and localize in the browse
 
   const port = 4300 + Math.floor(Math.random() * 500);
   const session = `interior-i18n-${Date.now()}`;
-  const server = spawn("python3", ["-m", "http.server", String(port), "-d", build.outDir], {
+  const server = spawn(pythonExecutable, ["-m", "http.server", String(port), "-d", build.outDir], {
     cwd: projectRoot,
     stdio: "ignore",
   });
@@ -452,8 +754,8 @@ test("interior pages expose shared localization hooks and localize in the browse
       `http://127.0.0.1:${port}/competitions/greater-tech-challenge-2025/`,
     ]);
     runAgentBrowser(["--session", session, "wait", "1000"]);
-    runAgentBrowser(["--session", session, "click", ".site-lang [data-lang-toggle]"]);
-    runAgentBrowser(["--session", session, "click", ".site-lang [data-lang-option='CN']"]);
+    runAgentBrowser(["--session", session, "click", ".site-header .site-lang [data-lang-toggle]"]);
+    runAgentBrowser(["--session", session, "click", ".site-header .site-lang [data-lang-option='CN']"]);
     runAgentBrowser(["--session", session, "wait", "500"]);
 
     const competitionsHeading = runAgentBrowser([
@@ -489,8 +791,8 @@ test("interior pages expose shared localization hooks and localize in the browse
       `http://127.0.0.1:${port}/pre-registration/?competition=greater-tech-challenge-2025`,
     ]);
     runAgentBrowser(["--session", session, "wait", "1000"]);
-    runAgentBrowser(["--session", session, "click", ".site-lang [data-lang-toggle]"]);
-    runAgentBrowser(["--session", session, "click", ".site-lang [data-lang-option='BR']"]);
+    runAgentBrowser(["--session", session, "click", ".site-header .site-lang [data-lang-toggle]"]);
+    runAgentBrowser(["--session", session, "click", ".site-header .site-lang [data-lang-option='BR']"]);
     runAgentBrowser(["--session", session, "wait", "500"]);
 
     const preRegistrationHeading = runAgentBrowser([
@@ -534,7 +836,7 @@ test("competition filters work on the listing page, names link to detail pages, 
   const build = buildSite();
   const port = 4500 + Math.floor(Math.random() * 500);
   const session = `competition-filters-${Date.now()}`;
-  const server = spawn("python3", ["-m", "http.server", String(port), "-d", build.outDir], {
+  const server = spawn(pythonExecutable, ["-m", "http.server", String(port), "-d", build.outDir], {
     cwd: projectRoot,
     stdio: "ignore",
   });
@@ -551,6 +853,47 @@ test("competition filters work on the listing page, names link to detail pages, 
     runAgentBrowser(["--session", session, "set", "viewport", "1440", "900"]);
     runAgentBrowser(["--session", session, "open", `http://127.0.0.1:${port}/competitions/`]);
     runAgentBrowser(["--session", session, "wait", "1000"]);
+
+    runAgentBrowser(["--session", session, "click", ".site-header .site-lang [data-lang-toggle]"]);
+    runAgentBrowser(["--session", session, "click", ".site-header .site-lang [data-lang-option='BR']"]);
+    runAgentBrowser(["--session", session, "wait", "500"]);
+
+    const portugueseFeaturedTag = runAgentBrowser([
+      "--session",
+      session,
+      "get",
+      "text",
+      "#panel-startup .featured-tag-pill",
+    ]);
+
+    assert.match(
+      portugueseFeaturedTag,
+      /Competição em destaque/i,
+      "expected the visible startup featured tag to switch to Portuguese competition wording",
+    );
+
+    runAgentBrowser(["--session", session, "click", ".site-header .site-lang [data-lang-toggle]"]);
+    runAgentBrowser(["--session", session, "click", ".site-header .site-lang [data-lang-option='CN']"]);
+    runAgentBrowser(["--session", session, "wait", "500"]);
+
+    const chineseFeaturedTag = runAgentBrowser([
+      "--session",
+      session,
+      "get",
+      "text",
+      "#panel-startup .featured-tag-pill",
+    ]);
+
+    assert.match(
+      chineseFeaturedTag,
+      /重点竞赛/u,
+      "expected the visible startup featured tag to switch to Chinese competition wording",
+    );
+
+    runAgentBrowser(["--session", session, "click", ".site-header .site-lang [data-lang-toggle]"]);
+    runAgentBrowser(["--session", session, "click", ".site-header .site-lang [data-lang-option='EN']"]);
+    runAgentBrowser(["--session", session, "wait", "500"]);
+
     runAgentBrowser(["--session", session, "click", "[data-status-filter='future']"]);
     runAgentBrowser(["--session", session, "click", "[data-focus-filter='ai']"]);
     runAgentBrowser(["--session", session, "wait", "300"]);
@@ -576,6 +919,19 @@ test("competition filters work on the listing page, names link to detail pages, 
       "text",
       "#panel-startup [data-filter-item]:not([hidden]) [data-competition-name-link]",
     ]);
+    const filteredHref = JSON.parse(
+      JSON.parse(
+        runAgentBrowser([
+          "--session",
+          session,
+          "eval",
+          `JSON.stringify((() => {
+            const link = document.querySelector('#panel-startup [data-filter-item]:not([hidden]) [data-competition-name-link]');
+            return link?.getAttribute('href') ?? null;
+          })())`,
+        ]),
+      ),
+    );
 
     const tabCountState = JSON.parse(
       JSON.parse(
@@ -612,18 +968,18 @@ test("competition filters work on the listing page, names link to detail pages, 
       /\[TEST DATA\].*AI/i,
       "expected the future + AI filters to isolate the marked test-data entry",
     );
+    assert.match(
+      filteredHref,
+      /\/competitions\/test-data-ai-sandbox\//,
+      `expected the filtered startup link to point at the AI sandbox detail page, received ${filteredHref}`,
+    );
     assert.equal(
       tabCountState.every((entry) => entry.renderedCount === String(entry.visibleCount)),
       true,
       `expected each tab badge to match the number of rendered items after filtering, received ${JSON.stringify(tabCountState)}`,
     );
 
-    runAgentBrowser([
-      "--session",
-      session,
-      "click",
-      "#panel-startup [data-filter-item]:not([hidden]) [data-competition-name-link]",
-    ]);
+    runAgentBrowser(["--session", session, "open", `http://127.0.0.1:${port}${filteredHref}`]);
     runAgentBrowser(["--session", session, "wait", "1000"]);
 
     const detailHeading = runAgentBrowser([
@@ -673,6 +1029,121 @@ test("competition filters work on the listing page, names link to detail pages, 
   }
 });
 
+test("interior footer WeChat popup is reachable on keyboard focus", { concurrency: false }, async () => {
+  const build = buildSite();
+  const port = 5000 + Math.floor(Math.random() * 500);
+  const session = `interior-footer-focus-${Date.now()}`;
+  const server = spawn(pythonExecutable, ["-m", "http.server", String(port), "-d", build.outDir], {
+    cwd: projectRoot,
+    stdio: "ignore",
+  });
+
+  try {
+    await waitForServer(port);
+
+    try {
+      runAgentBrowser(["--session", session, "close"]);
+    } catch {
+      // session may not exist yet
+    }
+
+    runAgentBrowser(["--session", session, "set", "viewport", "1440", "1200"]);
+    runAgentBrowser(["--session", session, "open", `http://127.0.0.1:${port}/news/`]);
+    runAgentBrowser(["--session", session, "wait", "1000"]);
+    runAgentBrowser([
+      "--session",
+      session,
+      "eval",
+      "document.querySelector('.site-wechat .site-social-btn')?.focus()",
+    ]);
+    runAgentBrowser(["--session", session, "wait", "150"]);
+
+    const popupState = JSON.parse(
+      JSON.parse(
+        runAgentBrowser([
+          "--session",
+          session,
+          "eval",
+          `JSON.stringify((() => {
+            const popup = document.querySelector('.site-wechat-popup');
+            if (!popup) {
+              throw new Error('WeChat popup not found');
+            }
+
+            const style = window.getComputedStyle(popup);
+            return {
+              opacity: style.opacity,
+              pointerEvents: style.pointerEvents,
+            };
+          })())`,
+        ]),
+      ),
+    );
+
+    assert.equal(popupState.opacity, "1", `expected WeChat popup opacity to be 1 on keyboard focus, received ${JSON.stringify(popupState)}`);
+    assert.equal(popupState.pointerEvents, "auto", `expected WeChat popup to accept pointer events on keyboard focus, received ${JSON.stringify(popupState)}`);
+  } finally {
+    build.cleanup();
+    server.kill("SIGTERM");
+
+    try {
+      runAgentBrowser(["--session", session, "close"]);
+    } catch {
+      // ignore cleanup failures
+    }
+  }
+});
+
+test("interior footer language switch localizes footer controls at runtime", { concurrency: false }, async () => {
+  const build = buildSite();
+  const port = 5200 + Math.floor(Math.random() * 500);
+  const session = `interior-footer-i18n-${Date.now()}`;
+  const server = spawn(pythonExecutable, ["-m", "http.server", String(port), "-d", build.outDir], {
+    cwd: projectRoot,
+    stdio: "ignore",
+  });
+
+  try {
+    await waitForServer(port);
+
+    try {
+      runAgentBrowser(["--session", session, "close"]);
+    } catch {
+      // session may not exist yet
+    }
+
+    runAgentBrowser(["--session", session, "set", "viewport", "1440", "1200"]);
+    runAgentBrowser(["--session", session, "open", `http://127.0.0.1:${port}/news/`]);
+    runAgentBrowser(["--session", session, "wait", "1000"]);
+    runAgentBrowser(["--session", session, "click", ".site-footer-lang [data-lang-toggle]"]);
+    runAgentBrowser(["--session", session, "click", ".site-footer-lang [data-lang-option='BR']"]);
+    runAgentBrowser(["--session", session, "wait", "500"]);
+
+    const footerButton = runAgentBrowser([
+      "--session",
+      session,
+      "get",
+      "text",
+      ".site-footer-subscribe",
+    ]);
+
+    assert.match(
+      footerButton,
+      /Substack/i,
+      "expected the footer language switcher to update the footer subscribe control at runtime",
+    );
+  } finally {
+    build.cleanup();
+    server.kill("SIGTERM");
+
+    try {
+      runAgentBrowser(["--session", session, "close"]);
+    } catch {
+      // ignore cleanup failures
+    }
+  }
+});
+
 test("news pages expose shared localization hooks and localize article content in the browser", { concurrency: false }, async () => {
   const build = buildSite();
   const newsArticleHtml = readFileSync(
@@ -703,7 +1174,7 @@ test("news pages expose shared localization hooks and localize article content i
 
   const port = 4800 + Math.floor(Math.random() * 500);
   const session = `news-i18n-${Date.now()}`;
-  const server = spawn("python3", ["-m", "http.server", String(port), "-d", build.outDir], {
+  const server = spawn(pythonExecutable, ["-m", "http.server", String(port), "-d", build.outDir], {
     cwd: projectRoot,
     stdio: "ignore",
   });
@@ -725,8 +1196,8 @@ test("news pages expose shared localization hooks and localize article content i
       `http://127.0.0.1:${port}/news/why-chinese-giants-need-latam-startups-more-than-ever/`,
     ]);
     runAgentBrowser(["--session", session, "wait", "1000"]);
-    runAgentBrowser(["--session", session, "click", ".site-lang [data-lang-toggle]"]);
-    runAgentBrowser(["--session", session, "click", ".site-lang [data-lang-option='CN']"]);
+    runAgentBrowser(["--session", session, "click", ".site-header .site-lang [data-lang-toggle]"]);
+    runAgentBrowser(["--session", session, "click", ".site-header .site-lang [data-lang-option='CN']"]);
     runAgentBrowser(["--session", session, "wait", "500"]);
 
     const articleHeading = runAgentBrowser(["--session", session, "get", "text", ".news-article-title"]);
@@ -743,8 +1214,8 @@ test("news pages expose shared localization hooks and localize article content i
       "expected the news article body to switch to Chinese",
     );
 
-    runAgentBrowser(["--session", session, "click", ".site-lang [data-lang-toggle]"]);
-    runAgentBrowser(["--session", session, "click", ".site-lang [data-lang-option='BR']"]);
+    runAgentBrowser(["--session", session, "click", ".site-header .site-lang [data-lang-toggle]"]);
+    runAgentBrowser(["--session", session, "click", ".site-header .site-lang [data-lang-option='BR']"]);
     runAgentBrowser(["--session", session, "wait", "500"]);
 
     const backLink = runAgentBrowser(["--session", session, "get", "text", ".news-back-link"]);
@@ -770,7 +1241,7 @@ test("news listing keeps metadata visible and separates the featured CTA from th
   const build = buildSite();
   const port = 4900 + Math.floor(Math.random() * 500);
   const session = `news-layout-${Date.now()}`;
-  const server = spawn("python3", ["-m", "http.server", String(port), "-d", build.outDir], {
+  const server = spawn(pythonExecutable, ["-m", "http.server", String(port), "-d", build.outDir], {
     cwd: projectRoot,
     stdio: "ignore",
   });

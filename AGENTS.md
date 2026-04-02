@@ -34,11 +34,36 @@
 - Keep `mockup/` in place. Do not move or delete it.
 - If content is static for now, structure it so it can be localized later rather than hardcoding single-language copy inside components.
 
+## Mockup Coverage — What Exists and What Doesn't
+
+The `mockup/` folder is the authoritative design reference. Know its limits:
+
+| Mockup file | Page covered |
+|-------------|-------------|
+| `1 - LATAMCHINATECH_desktop v 1million.htm` | Desktop homepage |
+| `2 - LATAMCHINATECH_mobille.htm` | Mobile homepage |
+| `3 - Challenges___Competitions_v7.htm` | Competitions listing |
+| `4 - PRE registration_v13.html` | Pre-registration form |
+| _(none)_ | News listing, News article, Competition detail |
+
+**No mockup = use design judgment.** Match the site's established visual language (colors, spacing, typography, shell components). Do not invent new patterns.
+
+**Implementation may be ahead of mockups.** Some features are live that don't appear in any mockup (e.g. the mega-menu on interior pages). Do not remove or regress features just because a mockup doesn't show them.
+
 ## Verification
 
 - Run `npm test`.
 - Run `npm run build`.
 - If you touched localized UI, verify language switching in the browser for at least one interior page and the homepage.
+- **Use browser/screenshot tools to visually confirm changes before claiming a fix is complete.** Build the site and capture screenshots of affected pages; don't rely solely on code inspection.
+
+## CHECKLIST.md
+
+`CHECKLIST.md` tracks 56 UI/UX refinement items. Treat it as a starting point, not ground truth:
+
+- Items marked ✅ may not actually be complete — verify in code before trusting the status.
+- Items marked ⚠️ (partial) are known to be incomplete.
+- After finishing any work, update `CHECKLIST.md` to reflect the actual current state.
 
 ## Customer Feedback Loop
 
@@ -49,7 +74,7 @@ A multi-agent workflow for processing UI/UX feedback against HTML mockups. Uses 
 1. **Triage** (orchestrator) — collect feedback, identify mockup refs and affected routes
 2. **Analysis** (analyst subagent) — compare mockup HTML/CSS vs implementation, produce `.opencode/feedback/analysis-YYYY-MM-DD.md`
 3. **Implementation** (implementer subagents) — fix approved batches, one commit per batch
-4. **Verification** (fresh verifier subagent) — independently confirm fixes match mockups
+4. **Verification** (fresh verifier subagent) — independently confirm fixes match mockups, using screenshots
 
 ### Artifacts
 
@@ -64,3 +89,4 @@ A multi-agent workflow for processing UI/UX feedback against HTML mockups. Uses 
 - Minimal changes only — fix what's specified, don't refactor surroundings
 - One commit per coherent batch, message format: `fix(ui): [theme] — FB-NNN, FB-NNN`
 - Run `npm run build` after each batch before proceeding
+- Capture screenshots of affected pages after implementation; include in report
