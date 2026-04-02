@@ -2,8 +2,6 @@
 
 Innovation bridge between Latin America and China. Built with Astro 5, Keystatic CMS, and Tailwind CSS.
 
-**Live site:** https://bruehstdio.github.io/latamchina-tech/
-
 ---
 
 ## Quick Start
