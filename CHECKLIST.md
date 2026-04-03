@@ -8,12 +8,12 @@
 | **2** | Confirm Roboto is the font site-wide | ⏳ Pending | Roboto is base font; some sections use Outfit/DM Sans — leave for later review |
 | **3** | Language switcher in gray, reduced font size | ✅ Done | |
 | **4** | Language switcher: show selected lang, no menu resize on open; EN/中文/BR in red, hover shows full name in white | ✅ Done | Fixed: added `data-lang-active-code` span, labels always visible with opacity transition |
-| **5** | Reduce mega submenu height by ~50px | ⚠️ Needs visual QA | Mockup sets explicit `height: 260px`; current is content-driven with tighter padding (20/22 vs 36/40). Likely looks correct but needs visual confirmation |
+| **5** | Reduce mega submenu height by ~50px | ✅ Done | FB-006: Set `height: 260px`, padding `36px 58px 40px`, gap `48px` on `.site-mega-grid` to match mockup |
 | **6** | Video: better resolution needed | ⏳ Waiting on user | User needs to provide a higher-res video file |
 | **7** | "Accelerating Innovation" block lower, buttons at page bottom | ✅ Done | |
 | **8** | Card stacking smoother, animated speed change | ✅ Done | |
 | **9** | Competition area: red on left (Startup), blue on right (Corporate) | ✅ Done | Fixed: swapped themes in all 3 locale files |
-| **10** | News cards: match design in mockup/news-card.png | ✅ Done | Fixed: left-edge accent stripe instead of full gradient border |
+| **10** | News cards: match design in mockup/news-card.png | ✅ Done | FB-001: Removed border/shadow/min-height, tightened gap to 14px, padding to 16px 16px 14px, flush accent stripe |
 | **11** | Footer: match design in mockup/footer-index.png | ✅ Done | Fixed: social icon order (WeChat, Instagram, LinkedIn, WhatsApp), sizes, subscribe pill button |
 | **12** | Footer: WhatsApp icon outlined, next to WeChat | ✅ Done | Fixed with item 11 |
 | **13** | Footer: newsletter/social area positioning, button sizes | ✅ Done | Fixed with item 11 |
@@ -28,21 +28,21 @@
 | **17** | Interior nav positioning | ✅ Done | Fixed: applied same 3-part centered layout as homepage (`flex: 0 0 200px` on brand/lang, `flex: 1` centered nav) |
 | **18** | Mega menu layout: match mockup HTML `mockup/1 - LATAMCHINATECH_desktop v 1million.htm` | ✅ Done | Fixed: added layout variants (standard, two-cards, events) with conditional rendering |
 | **19** | Mega menu content for all 5 sections (Advisory, Competitions, Events, Programs, Network) | ✅ Done | Fixed: updated all 3 locale files with mockup-matched content |
-| **20** | STATUS/FOCUS filter pills: check against `mockup/3 - Challenges__Competitions_v7.htm` | ✅ Done | Fixed: pill padding `8px 17px`, font-size `14px`, label font-size `11px` |
+| **20** | STATUS/FOCUS filter pills: check against `mockup/3 - Challenges__Competitions_v7.htm` | ✅ Done | Re-verified (FB-002): active pill now uses white fill + `font-weight: 500`, uniform hover (`rgba(0,0,0,.05)`), tone-specific hover fills removed |
 | **21** | Small dot on top-left label (eyebrow area) | ✅ Done | Fixed: dot gap tightened from 10px to 8px |
 | **22** | Tab fonts larger and bold | ✅ Done | |
 | **23** | "Featured Competition" text in Startup tab + red star | ✅ Done | Re-verified: startup featured tag now comes from competition content as "Featured Competition" |
 | **24** | Blue star on "Featured Challenge" in Corporate tab | ✅ Done | |
 | **25** | Pulsing red dot next to "Open Now", font reduced 1pt | ✅ Done | |
 | **26** | Filter: smaller font, more rounded | ✅ Done | |
-| **27** | Featured card: preview text in black, title less bold | ✅ Done | |
-| **28** | Featured card: footer elements on one line (nowrap) | ✅ Done | |
-| **29** | Cards taller; OPEN/FUTURE/CLOSED badges with distinct icons and solid colored backgrounds | ✅ Done | |
+| **27** | Featured card: preview text in black, title less bold | ✅ Done | Re-verified (FB-003): updated to mockup-exact featured card values (radius `20px`, margin `20px 0`, title `26px/800`, accent `3px`, hover lift/shadow) |
+| **28** | Featured card: footer elements on one line (nowrap) | ✅ Done | Re-verified (FB-003): footer now uses `justify-content: space-between` with `padding-top: 16px`; status typography aligned to mockup |
+| **29** | Cards taller; OPEN/FUTURE/CLOSED badges with distinct icons and solid colored backgrounds | ✅ Done | Re-verified (FB-004): card image area `height: 260px`, badge/prize/body/footer sizing matched mockup, CTA converted to themed pill button |
 | **30** | "View Competition" in competition tab, "View Challenge" in challenge tab | ✅ Done | Updated competition collection locale CTA copy by track (startup=competition, corporate=challenge) |
 | **31** | Category priority with industry-specific pastel icon on each card | ✅ Done | |
 | **32** | "Load More" button: smaller font, red icon, gray outline/font | ✅ Done | |
 | **33** | "View Programs" button: white icon/text, red-orange gradient | ✅ Done | |
-| **34** | Footer: aligned with homepage, "Subscribe on Substack" visible | ✅ Done | Re-reviewed: interior footer now includes homepage-style WeChat QR treatment + localized scan label |
+| **34** | Footer: aligned with homepage, "Subscribe on Substack" visible | ✅ Done | Re-reviewed (FB-005): interior footer now uses dark homepage-aligned palette + updated footer copy/column labels across locales |
 | **35** | Footer: remove gray divider line AND bottom note text | ✅ Done | Re-verified: legacy bottom note row removed and the gray divider is no longer rendered |
 | **36** | Replace footer title with "NEWSLETTER" | ✅ Done | |
 | **37** | Colored stripe bar at page bottom | ✅ Done | |
@@ -87,8 +87,8 @@
 
 | Status | Count | Items |
 |---|---|---|
-| ✅ Done | 51 | 1, 3, 4, 7–15, 17–46, 48–56 |
-| ⚠️ Partial / Needs attention | 1 | 5 |
+| ✅ Done | 52 | 1, 3–5, 7–15, 17–46, 48–56 |
+| ⚠️ Partial / Needs attention | 0 | |
 | ⏳ Waiting / Deferred | 3 | 2, 6, 47 |
 | N/A | 1 | 16 |
 

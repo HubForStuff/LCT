@@ -13,8 +13,8 @@
     { "label": "Rede", "href": "/" }
   ],
   "footer": {
-    "eyebrow": "Cresca conosco",
-    "titleHtml": "Receba investimento, conexoes<br />e cresca com a <span>LATAM CHINA TECH</span>",
+    "eyebrow": "Impulsione seu crescimento.",
+    "titleHtml": "Receba investimento, conexoes<br />e escale na America Latina e China",
     "buttonLabel": "Ver Programas",
     "buttonHref": "/",
     "newsletterTitle": "NEWSLETTER",
@@ -23,7 +23,7 @@
     "bottomNote": "Feito para fundadores, investidores e inovadores corporativos que conectam a America Latina e a China.",
     "columns": [
       {
-        "title": "Servicos",
+        "title": "Assessoria",
         "links": [
           { "label": "Investimento", "href": "/" },
           { "label": "Transferencia de Tecnologia", "href": "/" }
@@ -44,7 +44,7 @@
         ]
       },
       {
-        "title": "Expansao",
+        "title": "Programas",
         "links": [
           { "label": "Entrada em Mercado", "href": "/" },
           { "label": "Missoes de Negocios", "href": "/" }

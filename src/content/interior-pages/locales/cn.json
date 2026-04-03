@@ -13,8 +13,8 @@
     { "label": "网络", "href": "/" }
   ],
   "footer": {
-    "eyebrow": "与我们一起扩张",
-    "titleHtml": "获得资金、连接资源，<br />与 <span>LATAM CHINA TECH</span> 一起成长",
+    "eyebrow": "助力增长。",
+    "titleHtml": "获得资金、建立连接，<br />并在拉美与中国实现规模化",
     "buttonLabel": "查看项目",
     "buttonHref": "/",
     "newsletterTitle": "NEWSLETTER",
@@ -23,7 +23,7 @@
     "bottomNote": "为连接拉丁美洲与中国的创业者、投资人和企业创新者而打造。",
     "columns": [
       {
-        "title": "服务",
+        "title": "咨询",
         "links": [
           { "label": "投资", "href": "/" },
           { "label": "技术转移", "href": "/" }
@@ -44,7 +44,7 @@
         ]
       },
       {
-        "title": "扩张",
+        "title": "项目",
         "links": [
           { "label": "市场进入", "href": "/" },
           { "label": "商务考察", "href": "/" }

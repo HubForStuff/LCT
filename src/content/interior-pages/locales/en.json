@@ -13,8 +13,8 @@
     { "label": "Network", "href": "/" }
   ],
   "footer": {
-    "eyebrow": "Scale with us",
-    "titleHtml": "Get funded, connected,<br />and scale with <span>LATAM CHINA TECH</span>",
+    "eyebrow": "Fuel your growth.",
+    "titleHtml": "Get funded, connected,<br />and scale across LatAm &amp; China",
     "buttonLabel": "View Programs",
     "buttonHref": "/",
     "newsletterTitle": "NEWSLETTER",
@@ -23,7 +23,7 @@
     "bottomNote": "Built for founders, investors, and corporate innovators bridging Latin America and China.",
     "columns": [
       {
-        "title": "Services",
+        "title": "Advisory",
         "links": [
           { "label": "Investment", "href": "/" },
           { "label": "Tech Transfer", "href": "/" }
@@ -44,7 +44,7 @@
         ]
       },
       {
-        "title": "Expansion",
+        "title": "Programs",
         "links": [
           { "label": "Market Entry", "href": "/" },
           { "label": "Business Mission", "href": "/" }
