@@ -56,6 +56,7 @@ export type DesktopMenuCard = {
   title: string;
   body: string;
   cta: string;
+  href?: string;
 };
 
 export type DesktopMenuSection = {

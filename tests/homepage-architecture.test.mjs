@@ -33,6 +33,9 @@ test("homepage entrypoint stays thin and delegates content/rendering", () => {
 
 test("astro is configured with the keystatic integration", () => {
   const astroConfig = readProjectFile("astro.config.mjs");
+  const packageJson = JSON.parse(readProjectFile("package.json"));
+  const reactVersion = packageJson.dependencies?.react;
+  const reactDomVersion = packageJson.dependencies?.["react-dom"];
 
   assert.match(
     astroConfig,
@@ -43,6 +46,41 @@ test("astro is configured with the keystatic integration", () => {
     astroConfig,
     /keystatic\(\)/,
     "expected astro.config.mjs to register the keystatic integration",
+  );
+  assert.match(
+    astroConfig,
+    /@astrojs\/react/,
+    "expected astro.config.mjs to import @astrojs/react so Keystatic can render its React admin UI",
+  );
+  assert.match(
+    astroConfig,
+    /react\(\)/,
+    "expected astro.config.mjs to register the React renderer required by Keystatic",
+  );
+  assert.equal(
+    typeof packageJson.dependencies?.["@astrojs/react"],
+    "string",
+    "expected package.json to install @astrojs/react for the Keystatic admin UI",
+  );
+  assert.equal(
+    typeof reactVersion,
+    "string",
+    "expected package.json to install react for the Keystatic admin UI",
+  );
+  assert.equal(
+    typeof reactDomVersion,
+    "string",
+    "expected package.json to install react-dom for the Keystatic admin UI",
+  );
+  assert.equal(
+    reactVersion,
+    reactDomVersion,
+    "expected react and react-dom to stay pinned to the exact same version",
+  );
+  assert.doesNotMatch(
+    reactVersion,
+    /^[~^]/,
+    "expected react to be pinned exactly so Keystatic cannot pick up a mismatched version",
   );
 });
 

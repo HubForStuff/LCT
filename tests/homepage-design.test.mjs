@@ -104,6 +104,32 @@ test("homepage build matches the supplied design structure", () => {
     mobileGlowCount >= 3,
     `expected at least 3 mobile category glow layers, found ${mobileGlowCount}`,
   );
+
+  assert.match(
+    html,
+    /data-i18n="desktopMenuSections\.1\.card\.title">\s*Greater Tech Challenge 2025\s*</,
+    "expected the competitions submenu to surface the featured startup competition from the CMS",
+  );
+  assert.match(
+    html,
+    /data-i18n="desktopMenuSections\.1\.card2\.title">\s*China Market Entry Accelerator 2025\s*</,
+    "expected the competitions submenu to surface the featured corporate challenge from the CMS",
+  );
+  assert.match(
+    html,
+    /href="\/competitions\/greater-tech-challenge-2025\/"/,
+    "expected the startup submenu card to link to the highlighted competition detail page",
+  );
+  assert.match(
+    html,
+    /href="\/competitions\/china-market-entry-accelerator-2025\/"/,
+    "expected the corporate submenu card to link to the highlighted challenge detail page",
+  );
+  assert.doesNotMatch(
+    html,
+    /ByteDance Corporate Challenge|Registration Open/,
+    "expected the competitions submenu to stop rendering the old static card placeholders",
+  );
 });
 
 test("language switching localizes the homepage on desktop and mobile", async () => {

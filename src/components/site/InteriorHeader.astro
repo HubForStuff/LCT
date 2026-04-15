@@ -50,6 +50,8 @@ const {
         {navItems.map((item, index) => {
           const isActive = item.href === activeHref;
           const section = desktopMenuSections[index];
+          const primaryCardHref = section?.card.href ?? getDesktopMenuCardHref(index);
+          const secondaryCardHref = section?.card2?.href ?? getDesktopMenuCardHref(index);
 
           return (
             <li class="site-nav-item">
@@ -121,7 +123,7 @@ const {
                           {section.card.body}
                         </p>
                         <a
-                          href={getDesktopMenuCardHref(index)}
+                          href={primaryCardHref}
                           class="site-btn site-btn--primary site-btn--compact"
                           data-i18n={`desktopMenuSections.${index}.card.cta`}
                         >
@@ -136,7 +138,7 @@ const {
                           {section.card2?.body}
                         </p>
                         <a
-                          href={getDesktopMenuCardHref(index)}
+                          href={secondaryCardHref}
                           class="site-btn site-btn--primary site-btn--compact"
                           data-i18n={`desktopMenuSections.${index}.card2.cta`}
                         >

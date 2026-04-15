@@ -189,12 +189,11 @@ body.interior-body svg {
 .site-mega-grid {
   display: grid;
   grid-template-columns: 1.1fr 1fr 0.92fr;
-  gap: 48px;
-  height: 260px;
-  padding: 36px 58px 40px;
+  gap: 44px;
+  padding: 20px 42px 22px;
   overflow: hidden;
   border-radius: 0 0 24px 24px;
-  background: rgba(8, 8, 8, 0.96);
+  background: #080808;
   color: #fff;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.36);
 }

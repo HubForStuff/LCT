@@ -436,6 +436,7 @@ test("interior header supports homepage mega-menu layout variants", { concurrenc
       resolve(build.outDir, "competitions", "index.html"),
       "utf8",
     );
+    const interiorStyles = readProjectFile("src/styles/interior-pages.css");
 
     assert.match(
       competitionsHtml,
@@ -446,6 +447,26 @@ test("interior header supports homepage mega-menu layout variants", { concurrenc
       competitionsHtml,
       /data-i18n="desktopMenuSections\.1\.card2\.title"/,
       "expected the competitions mega menu to render the secondary card content",
+    );
+    assert.match(
+      competitionsHtml,
+      /data-i18n="desktopMenuSections\.1\.card\.title">\s*Greater Tech Challenge 2025\s*</,
+      "expected the interior competitions submenu to surface the featured startup competition",
+    );
+    assert.match(
+      competitionsHtml,
+      /data-i18n="desktopMenuSections\.1\.card2\.title">\s*China Market Entry Accelerator 2025\s*</,
+      "expected the interior competitions submenu to surface the featured corporate challenge",
+    );
+    assert.match(
+      competitionsHtml,
+      /href="\/competitions\/greater-tech-challenge-2025\/"/,
+      "expected the interior startup submenu card to link to the competition detail page",
+    );
+    assert.match(
+      competitionsHtml,
+      /href="\/competitions\/china-market-entry-accelerator-2025\/"/,
+      "expected the interior corporate submenu card to link to the challenge detail page",
     );
     assert.match(
       competitionsHtml,
@@ -461,6 +482,21 @@ test("interior header supports homepage mega-menu layout variants", { concurrenc
       competitionsHtml,
       /data-i18n="desktopMenuSections\.2\.events\.0\.title"/,
       "expected interior header events variant to localize event entries",
+    );
+    assert.match(
+      interiorStyles,
+      /\.site-mega-grid\s*\{[^}]*background:\s*#080808;[^}]*\}/s,
+      "expected the interior mega menu shell to use an opaque background instead of transparency",
+    );
+    assert.match(
+      interiorStyles,
+      /\.site-mega-grid\s*\{[^}]*gap:\s*44px;[^}]*padding:\s*20px 42px 22px;[^}]*\}/s,
+      "expected the interior mega menu shell to match the homepage submenu spacing and height",
+    );
+    assert.doesNotMatch(
+      interiorStyles,
+      /\.site-mega-grid\s*\{[^}]*height:\s*260px;[^}]*\}/s,
+      "expected the interior mega menu shell to avoid the old fixed taller height",
     );
   } finally {
     build.cleanup();

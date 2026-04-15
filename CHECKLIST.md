@@ -8,7 +8,7 @@
 | **2** | Confirm Roboto is the font site-wide | ⏳ Pending | Roboto is base font; some sections use Outfit/DM Sans — leave for later review |
 | **3** | Language switcher in gray, reduced font size | ✅ Done | |
 | **4** | Language switcher: show selected lang, no menu resize on open; EN/中文/BR in red, hover shows full name in white | ✅ Done | Fixed: added `data-lang-active-code` span, labels always visible with opacity transition |
-| **5** | Reduce mega submenu height by ~50px | ✅ Done | FB-006: Set `height: 260px`, padding `36px 58px 40px`, gap `48px` on `.site-mega-grid` to match mockup |
+| **5** | Reduce mega submenu height by ~50px | ✅ Done  - Submenu content updates via keystatic pending | FB-006: Set `height: 260px`, padding `36px 58px 40px`, gap `48px` on `.site-mega-grid` to match mockup |
 | **6** | Video: better resolution needed | ⏳ Waiting on user | User needs to provide a higher-res video file |
 | **7** | "Accelerating Innovation" block lower, buttons at page bottom | ✅ Done | |
 | **8** | Card stacking smoother, animated speed change | ✅ Done | |
