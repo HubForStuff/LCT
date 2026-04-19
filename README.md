@@ -111,4 +111,5 @@ MIT
 
 Pushes to `main` trigger automatic deployment to GitHub Pages via GitHub Actions.
 
+
 The build output (`dist/`) is a fully static site. Any static file server pointed at `dist/` will work.
