@@ -2085,7 +2085,7 @@ body.interior-body svg {
 }
 
 .site-footer-newsletter-row input {
-  width: 160px;
+  width: 200px;
   height: 38px;
   min-width: 0;
   padding: 0 14px;
@@ -2096,7 +2096,7 @@ body.interior-body svg {
 }
 
 .site-footer-newsletter-row input::placeholder {
-  color: rgba(0, 0, 0, 0.25);
+  color: rgba(0, 0, 0, 0.4);
 }
 
 .site-footer-subscribe {
@@ -2109,7 +2109,14 @@ body.interior-body svg {
   background: var(--site-red);
   color: #fff;
   font-size: 12px;
+  font-weight: 600;
   white-space: nowrap;
+}
+
+.site-footer-subscribe:hover,
+.site-footer-subscribe:focus,
+.site-footer-subscribe:visited {
+  color: #fff;
 }
 
 .site-footer-hero .site-btn--primary {
@@ -2183,9 +2190,9 @@ body.interior-body svg {
   justify-content: center;
   width: 34px;
   height: 34px;
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  border: 1px solid #e0e0e0;
   border-radius: 50%;
-  color: rgba(0, 0, 0, 0.38);
+  color: #616161;
   background: transparent;
   transition: border-color 0.16s ease, color 0.16s ease;
 }
