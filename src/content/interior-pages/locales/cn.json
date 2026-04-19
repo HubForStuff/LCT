@@ -94,7 +94,7 @@
         "id": "startup",
         "label": "创业竞赛",
         "count": 9,
-        "placeholderLabel": "更多项目将于 2025 年第三季度开放",
+        "placeholderLabel": "更多项目将于 2026 年第二季度开放",
         "featured": {
           "theme": "startup",
           "tag": "重点竞赛",
@@ -220,7 +220,7 @@
         "id": "corporate",
         "label": "企业挑战赛",
         "count": 5,
-        "placeholderLabel": "更多项目将于 2025 年第四季度开放",
+        "placeholderLabel": "更多项目将于 2026 年第二季度开放",
         "featured": {
           "theme": "corporate",
           "tag": "重点推荐",

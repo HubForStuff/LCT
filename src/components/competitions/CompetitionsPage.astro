@@ -13,6 +13,46 @@ interface Props {
 
 const { locale, siteSettings, currentLanguage } = Astro.props;
 const page = locale.page;
+
+const STATUS_FILTER_ICONS: Record<string, string> = {
+  open:
+    '<svg width="9" height="9" viewBox="0 0 9 9" aria-hidden="true"><circle cx="4.5" cy="4.5" r="3.5" fill="#22c55e"></circle></svg>',
+  future:
+    '<svg width="9" height="9" viewBox="0 0 9 9" fill="none" aria-hidden="true"><circle cx="4.5" cy="4.5" r="3.5" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="2 1.5"></circle></svg>',
+  closed:
+    '<svg width="9" height="9" viewBox="0 0 9 9" fill="none" aria-hidden="true"><rect x="1" y="1" width="7" height="7" rx="1.5" stroke="#94a3b8" stroke-width="1.5"></rect><line x1="3" y1="4.5" x2="6" y2="4.5" stroke="#94a3b8" stroke-width="1.5"></line></svg>',
+};
+
+const FOCUS_FILTER_ICONS: Record<string, string> = {
+  "deep-tech":
+    '<svg width="11" height="11" viewBox="0 0 13 13" fill="none" aria-hidden="true"><polygon points="6.5,1.5 11.5,11 1.5,11" stroke="#6366f1" stroke-width="1.6" fill="none"></polygon></svg>',
+  sustainability:
+    '<svg width="11" height="11" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M6.5 1.5C6.5 1.5 3 5 3 7.5a3.5 3.5 0 007 0c0-2.5-3.5-6-3.5-6z" stroke="#22c55e" stroke-width="1.6" fill="none"></path></svg>',
+  fintech:
+    '<svg width="11" height="11" viewBox="0 0 13 13" fill="none" aria-hidden="true"><rect x="2" y="4" width="9" height="7" rx="1.5" stroke="#3b82f6" stroke-width="1.5" fill="none"></rect><path d="M4.5 4V3a2 2 0 014 0v1" stroke="#3b82f6" stroke-width="1.5"></path></svg>',
+  agritech:
+    '<svg width="11" height="11" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M6.5 11.5V5M6.5 5C6.5 5 4 3 2 4c1.5 1.8 3 3.5 4.5 1zM6.5 5c0 0 2.5-2 4.5-1-1.5 1.8-3 3.5-4.5 1z" stroke="#16a34a" stroke-width="1.5" stroke-linecap="round"></path></svg>',
+  ai:
+    '<svg width="11" height="11" viewBox="0 0 13 13" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="2.2" stroke="#8b5cf6" stroke-width="1.5"></circle><path d="M6.5 1.5V3M6.5 10V11.5M1.5 6.5H3M10 6.5H11.5" stroke="#8b5cf6" stroke-width="1.4" stroke-linecap="round"></path></svg>',
+  healthtech:
+    '<svg width="11" height="11" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M6.5 11.5C6.5 11.5 2 8.5 2 5.5a2.8 2.8 0 015.5 0 2.8 2.8 0 015.5 0c0 3-6.5 6-6.5 6z" stroke="#f43f5e" stroke-width="1.5" fill="none"></path></svg>',
+  logistics:
+    '<svg width="11" height="11" viewBox="0 0 13 13" fill="none" aria-hidden="true"><rect x="1" y="5" width="7.5" height="5" rx="1" stroke="#f59e0b" stroke-width="1.4" fill="none"></rect><path d="M8.5 6.5h1.8l2 2.5v1H8.5V6.5z" stroke="#f59e0b" stroke-width="1.3" stroke-linejoin="round" fill="none"></path><circle cx="3.5" cy="11" r="1.1" stroke="#f59e0b" stroke-width="1.3"></circle><circle cx="10.2" cy="11" r="1.1" stroke="#f59e0b" stroke-width="1.3"></circle></svg>',
+  biotech:
+    '<svg width="11" height="11" viewBox="0 0 13 13" fill="none" aria-hidden="true"><ellipse cx="5.5" cy="6.5" rx="2.2" ry="4.5" stroke="#14b8a6" stroke-width="1.4" fill="none"></ellipse><ellipse cx="7.5" cy="6.5" rx="2.2" ry="4.5" stroke="#14b8a6" stroke-width="1.4" fill="none"></ellipse></svg>',
+  manufacturing:
+    '<svg width="11" height="11" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1.5 11L4.5 6.5l3 3L11 4l2 7H1.5z" stroke="#64748b" stroke-width="1.4" stroke-linejoin="round" fill="none"></path></svg>',
+};
+
+function getFilterIconMarkup(kind: "status" | "focus", value?: string): string {
+  if (!value) {
+    return "";
+  }
+
+  return kind === "status"
+    ? STATUS_FILTER_ICONS[value] ?? ""
+    : FOCUS_FILTER_ICONS[value] ?? "";
+}
 ---
 
 <div class="interior-page">
@@ -47,38 +87,52 @@ const page = locale.page;
         data-i18n-aria-label="page.filtersAriaLabel"
       >
         <span class="filter-group-label" data-i18n="page.statusLabel">{page.statusLabel}</span>
-        {page.statusFilters.map((filter, filterIndex) => (
-          <button
-            type="button"
-            class:list={[
-              "filter-pill",
-              `filter-pill--${filter.tone}`,
-              filter.active && "is-active",
-            ]}
-            data-status-filter={filter.value ?? filter.tone}
-          >
-            <span class="filter-pill-icon"></span>
-            <span data-i18n={`page.statusFilters.${filterIndex}.label`}>{filter.label}</span>
-          </button>
-        ))}
+        {page.statusFilters.map((filter, filterIndex) => {
+          const filterValue = filter.value ?? filter.tone;
+          const iconMarkup = getFilterIconMarkup("status", filterValue);
+
+          return (
+            <button
+              type="button"
+              class:list={[
+                "filter-pill",
+                `filter-pill--${filter.tone}`,
+                filter.active && "is-active",
+              ]}
+              data-status-filter={filterValue}
+            >
+              {iconMarkup && (
+                <span class="filter-pill-icon" aria-hidden="true" set:html={iconMarkup}></span>
+              )}
+              <span data-i18n={`page.statusFilters.${filterIndex}.label`}>{filter.label}</span>
+            </button>
+          );
+        })}
 
         <span class="filter-separator" aria-hidden="true"></span>
 
         <span class="filter-group-label" data-i18n="page.focusLabel">{page.focusLabel}</span>
-        {page.focusFilters.map((filter, filterIndex) => (
-          <button
-            type="button"
-            class:list={[
-              "filter-pill",
-              `filter-pill--${filter.tone}`,
-              filter.active && "is-active",
-            ]}
-            data-focus-filter={filter.value ?? filter.tone}
-          >
-            <span class="filter-pill-icon"></span>
-            <span data-i18n={`page.focusFilters.${filterIndex}.label`}>{filter.label}</span>
-          </button>
-        ))}
+        {page.focusFilters.map((filter, filterIndex) => {
+          const filterValue = filter.value ?? filter.tone;
+          const iconMarkup = getFilterIconMarkup("focus", filterValue);
+
+          return (
+            <button
+              type="button"
+              class:list={[
+                "filter-pill",
+                `filter-pill--${filter.tone}`,
+                filter.active && "is-active",
+              ]}
+              data-focus-filter={filterValue}
+            >
+              {iconMarkup && (
+                <span class="filter-pill-icon" aria-hidden="true" set:html={iconMarkup}></span>
+              )}
+              <span data-i18n={`page.focusFilters.${filterIndex}.label`}>{filter.label}</span>
+            </button>
+          );
+        })}
       </div>
 
       <div class="tab-bar">
@@ -141,15 +195,23 @@ const page = locale.page;
 
               <div class="featured-body">
                 <div>
-                  <div class="featured-tag-pill" data-i18n={`page.tabs.${tabIndex}.featured.tag`}>
-                    <span class:list={[
-                      "featured-star",
-                      tab.featured.theme === "corporate" && "featured-star--blue",
-                    ]}>&#9733;</span>
-                    {tab.featured.tag}
+                  <div class="featured-tag-pill">
+                    <span
+                      class:list={[
+                        "featured-star",
+                        tab.featured.theme === "corporate" && "featured-star--blue",
+                      ]}
+                      aria-hidden="true"
+                    >
+                      &#9733;
+                    </span>
+                    <span data-i18n={`page.tabs.${tabIndex}.featured.tag`}>{tab.featured.tag}</span>
                   </div>
-                  <div class="featured-category" data-i18n={`page.tabs.${tabIndex}.featured.category`}>
-                    {tab.featured.category}
+                  <div class="featured-category">
+                    <span class="featured-cat-dot" aria-hidden="true"></span>
+                    <span data-i18n={`page.tabs.${tabIndex}.featured.category`}>
+                      {tab.featured.category}
+                    </span>
                   </div>
                   <h2 class="featured-title">
                     <a
@@ -302,6 +364,7 @@ const page = locale.page;
   const tabPanels = Array.from(document.querySelectorAll("[data-tab-panel]"));
   const statusFilterButtons = Array.from(document.querySelectorAll("[data-status-filter]"));
   const focusFilterButtons = Array.from(document.querySelectorAll("[data-focus-filter]"));
+  const competitionSortSelect = document.getElementById("competitionSort");
   let activeStatusFilter = "all";
   let activeFocusFilter = "all";
 
@@ -368,8 +431,163 @@ const page = locale.page;
     }
   }
 
+  function getActivePanel() {
+    return tabPanels.find((panel) => !panel.hidden);
+  }
+
+  function parseCompetitionDate(rawValue) {
+    if (!rawValue) {
+      return Number.POSITIVE_INFINITY;
+    }
+
+    const chineseDateMatch = rawValue.match(/(\d{4})年\s*(\d{1,2})月\s*(\d{1,2})日/);
+    if (chineseDateMatch) {
+      return Date.UTC(
+        Number(chineseDateMatch[1]),
+        Number(chineseDateMatch[2]) - 1,
+        Number(chineseDateMatch[3]),
+      );
+    }
+
+    const normalizedValue = rawValue
+      .replace(/\./g, "")
+      .replace(/\u00a0/g, " ")
+      .trim()
+      .toLowerCase();
+
+    const monthLookup = {
+      jan: 0,
+      january: 0,
+      fev: 1,
+      feb: 1,
+      february: 1,
+      mar: 2,
+      march: 2,
+      abr: 3,
+      apr: 3,
+      april: 3,
+      mai: 4,
+      may: 4,
+      jun: 5,
+      june: 5,
+      jul: 6,
+      july: 6,
+      ago: 7,
+      aug: 7,
+      august: 7,
+      set: 8,
+      sep: 8,
+      sept: 8,
+      september: 8,
+      out: 9,
+      oct: 9,
+      october: 9,
+      nov: 10,
+      november: 10,
+      dez: 11,
+      dec: 11,
+      december: 11,
+    };
+
+    const monthFirstMatch = normalizedValue.match(/^([a-z]+)\s+(\d{1,2}),?\s+(\d{4})$/);
+    if (monthFirstMatch) {
+      const monthIndex = monthLookup[monthFirstMatch[1]];
+      if (monthIndex !== undefined) {
+        return Date.UTC(Number(monthFirstMatch[3]), monthIndex, Number(monthFirstMatch[2]));
+      }
+    }
+
+    const dayFirstMatch = normalizedValue.match(/^(\d{1,2})\s+([a-z]+)\s+(\d{4})$/);
+    if (dayFirstMatch) {
+      const monthIndex = monthLookup[dayFirstMatch[2]];
+      if (monthIndex !== undefined) {
+        return Date.UTC(Number(dayFirstMatch[3]), monthIndex, Number(dayFirstMatch[1]));
+      }
+    }
+
+    const parsedTimestamp = Date.parse(rawValue);
+    return Number.isFinite(parsedTimestamp) ? parsedTimestamp : Number.POSITIVE_INFINITY;
+  }
+
+  function parsePrizeValue(rawValue) {
+    if (!rawValue) {
+      return 0;
+    }
+
+    const priceMatch = rawValue
+      .replace(/,/g, "")
+      .toUpperCase()
+      .match(/\$?\s*([0-9]+(?:\.[0-9]+)?)\s*([KM]?)/);
+
+    if (!priceMatch) {
+      return 0;
+    }
+
+    const baseValue = Number(priceMatch[1]);
+    const multiplier = priceMatch[2] === "M" ? 1_000_000 : priceMatch[2] === "K" ? 1_000 : 1;
+
+    return baseValue * multiplier;
+  }
+
+  function readCardDeadline(card) {
+    const deadlineValue = card.querySelector(".ccard-deadline strong");
+    return parseCompetitionDate(deadlineValue?.textContent?.trim() || "");
+  }
+
+  function readCardPrize(card) {
+    const prizeValue = card.querySelector(".ccard-prize");
+    return parsePrizeValue(prizeValue?.textContent?.trim() || "");
+  }
+
+  function sortActivePanelCards() {
+    if (!(competitionSortSelect instanceof HTMLSelectElement)) {
+      return;
+    }
+
+    const activePanel = getActivePanel();
+    const grid = activePanel?.querySelector(".comp-grid");
+    if (!(activePanel instanceof HTMLElement) || !(grid instanceof HTMLElement)) {
+      return;
+    }
+
+    const cardElements = Array.from(grid.children).filter(
+      (child) => child instanceof HTMLElement && child.hasAttribute("data-filter-item"),
+    );
+    const auxiliaryElements = Array.from(grid.children).filter(
+      (child) => child instanceof HTMLElement && !child.hasAttribute("data-filter-item"),
+    );
+
+    if (cardElements.length === 0) {
+      return;
+    }
+
+    const originalOrder = new Map(cardElements.map((card, index) => [card, index]));
+    const visibleCards = cardElements.filter((card) => !card.hidden);
+    const hiddenCards = cardElements.filter((card) => card.hidden);
+    const sortedVisibleCards = [...visibleCards];
+
+    if (competitionSortSelect.selectedIndex === 0) {
+      sortedVisibleCards.sort((left, right) => {
+        const dateDifference = readCardDeadline(left) - readCardDeadline(right);
+        return dateDifference || (originalOrder.get(left) ?? 0) - (originalOrder.get(right) ?? 0);
+      });
+    } else if (competitionSortSelect.selectedIndex === 1) {
+      sortedVisibleCards.sort((left, right) => {
+        const prizeDifference = readCardPrize(right) - readCardPrize(left);
+        return prizeDifference || (originalOrder.get(left) ?? 0) - (originalOrder.get(right) ?? 0);
+      });
+    } else if (competitionSortSelect.selectedIndex === 2) {
+      sortedVisibleCards.reverse();
+    }
+
+    grid.replaceChildren(...sortedVisibleCards, ...hiddenCards, ...auxiliaryElements);
+  }
+
   tabTriggers.forEach((trigger) => {
-    trigger.addEventListener("click", () => activateTab(trigger.dataset.tabTrigger));
+    trigger.addEventListener("click", () => {
+      activateTab(trigger.dataset.tabTrigger);
+      sortActivePanelCards();
+    });
   });
 
   statusFilterButtons.forEach((button) => {
@@ -377,6 +595,7 @@ const page = locale.page;
       activeStatusFilter = button.dataset.statusFilter || "all";
       activateFilter(statusFilterButtons, activeStatusFilter, "is-active");
       applyFilters();
+      sortActivePanelCards();
       if (activeStatusFilter !== "all" && activeFocusFilter !== "all") {
         revealFirstVisibleItem();
       }
@@ -388,13 +607,21 @@ const page = locale.page;
       activeFocusFilter = button.dataset.focusFilter || "all";
       activateFilter(focusFilterButtons, activeFocusFilter, "is-active");
       applyFilters();
+      sortActivePanelCards();
       if (activeStatusFilter !== "all" && activeFocusFilter !== "all") {
         revealFirstVisibleItem();
       }
     });
   });
 
+  if (competitionSortSelect instanceof HTMLSelectElement) {
+    competitionSortSelect.addEventListener("change", () => {
+      sortActivePanelCards();
+    });
+  }
+
   applyFilters();
+  sortActivePanelCards();
 
   // Activate tab from URL query parameter
   const urlParams = new URLSearchParams(window.location.search);
@@ -406,6 +633,7 @@ const page = locale.page;
     if (matchingTrigger) {
       activateTab(tabParam);
       applyFilters();
+      sortActivePanelCards();
     }
   }
 </script>

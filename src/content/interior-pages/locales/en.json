@@ -94,7 +94,7 @@
         "id": "startup",
         "label": "Startup Competitions",
         "count": 9,
-        "placeholderLabel": "More Coming Q3 2025",
+        "placeholderLabel": "More Coming Q2 2026",
         "featured": {
           "theme": "startup",
           "tag": "Featured Competition",
@@ -220,7 +220,7 @@
         "id": "corporate",
         "label": "Corporate Challenges",
         "count": 5,
-        "placeholderLabel": "More Coming Q4 2025",
+        "placeholderLabel": "More Coming Q2 2026",
         "featured": {
           "theme": "corporate",
           "tag": "Featured Challenge",

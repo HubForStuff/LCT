@@ -94,7 +94,7 @@
         "id": "startup",
         "label": "Competicoes de Startups",
         "count": 9,
-        "placeholderLabel": "Mais oportunidades no 3o tri de 2025",
+        "placeholderLabel": "Mais oportunidades no 2o tri de 2026",
         "featured": {
           "theme": "startup",
           "tag": "Competicao em destaque",
@@ -220,7 +220,7 @@
         "id": "corporate",
         "label": "Desafios Corporativos",
         "count": 5,
-        "placeholderLabel": "Mais oportunidades no 4o tri de 2025",
+        "placeholderLabel": "Mais oportunidades no 2o tri de 2026",
         "featured": {
           "theme": "corporate",
           "tag": "Desafio em destaque",
