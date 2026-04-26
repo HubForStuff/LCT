@@ -615,6 +615,7 @@ body.interior-body svg {
   color: #000;
   font-size: 14px;
   font-weight: 400;
+  line-height: normal;
   white-space: nowrap;
   cursor: pointer;
   transition: background 0.15s, border-color 0.15s;

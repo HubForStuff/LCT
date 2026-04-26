@@ -28,7 +28,7 @@
 | **17** | Interior nav positioning | ✅ Done | Fixed: applied same 3-part centered layout as homepage (`flex: 0 0 200px` on brand/lang, `flex: 1` centered nav) |
 | **18** | Mega menu layout: match mockup HTML `mockup/1 - LATAMCHINATECH_desktop v 1million.htm` | ✅ Done | Fixed: added layout variants (standard, two-cards, events) with conditional rendering |
 | **19** | Mega menu content for all 5 sections (Advisory, Competitions, Events, Programs, Network) | ✅ Done | Fixed: updated all 3 locale files with mockup-matched content |
-| **20** | STATUS/FOCUS filter pills: check against `mockup/3 - Challenges__Competitions_v7.htm` | ✅ Done | Re-verified 2026-04-26: mockup pill sizing, `8px` filter bar gap, icon colors/opacity, active state, and hover-only treatment covered by browser/test assertions |
+| **20** | STATUS/FOCUS filter pills: check against `mockup/3 - Challenges__Competitions_v7.htm` | ✅ Done | Re-verified 2026-04-26: mockup pill sizing, `8px` filter bar gap, icon colors/opacity, active state, hover-only treatment, and 34px rendered pill height covered by browser/test assertions |
 | **21** | Small dot on top-left label (eyebrow area) | ✅ Done | Re-verified 2026-04-26: red dot renders before the localized eyebrow on `/competitions/` |
 | **22** | Tab fonts larger and bold | ✅ Done | Re-verified 2026-04-26: rendered tabs are `26px` / `800`; form-control font reset no longer overrides tab/filter/select typography |
 | **23** | "Featured Competition" text in Startup tab + red star | ✅ Done | Re-verified: startup featured tag now comes from competition content as "Featured Competition" |

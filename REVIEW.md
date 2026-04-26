@@ -17,6 +17,7 @@ NOTE: all missing items are already solved, and dont need to be covered at the m
   - [ ] e. Where does "Partner with us" lead? email link (like footer?)
 - [x] 20. status and foucs items needs to match the color, status and size to the mockup here  mockup/3%20-%20Challenges___Competitions_v7.htm, also only changes color on mouse hover. (Reviewed as not done)
   - 2026-04-26 note: Fixed/verified against `mockup/3 - Challenges___Competitions_v7.htm`; filter bar now uses the mockup gap, pill sizing, icon opacity, active state, and hover-only treatment. Covered by browser typography/filter assertions and screenshots.
+  - 2026-04-26 follow-up: The controls still rendered too tall because Tailwind's inherited `line-height: 1.5` made pills 39px high. Filter pills now pin `line-height: normal`, matching the mockup's 34px rendered height.
 - [x] 21. Open For Applications on top needs a red circle on the left (same mockup as 20.) (Reviewed as not done)
   - 2026-04-26 note: Verified the localized eyebrow renders the red dot at the left of the label on `/competitions/`.
 - [x] 22. Tabs under status and focus have a bigger font and bold (mockup as reference, same as 20.) (Reviewed as not done)
