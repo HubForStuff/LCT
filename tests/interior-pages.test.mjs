@@ -498,6 +498,11 @@ test("interior header supports homepage mega-menu layout variants", { concurrenc
       /\.site-mega-grid\s*\{[^}]*height:\s*260px;[^}]*\}/s,
       "expected the interior mega menu shell to avoid the old fixed taller height",
     );
+    assert.match(
+      interiorStyles,
+      /\.site-lang-menu\s*\{[^}]*top:\s*calc\(100% \+ 2px\);/s,
+      "expected the header language menu to stay close to the globe trigger",
+    );
   } finally {
     build.cleanup();
   }
@@ -595,8 +600,8 @@ test("interior footer matches homepage structure without legacy bottom note row"
     );
     assert.match(
       interiorStyles,
-      /\.site-lang--footer \.site-lang-menu\s*\{[^}]*bottom:\s*auto;[^}]*top:\s*calc\(100% \+ 8px\);/s,
-      "expected footer language menu to open below the icon like the competitions mockup",
+      /\.site-lang--footer \.site-lang-menu\s*\{[^}]*top:\s*auto;[^}]*bottom:\s*calc\(100% \+ 8px\);/s,
+      "expected footer language menu to open above the icon so it avoids the bottom stripe",
     );
   } finally {
     build.cleanup();

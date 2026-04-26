@@ -43,6 +43,7 @@ NOTE: all missing items are already solved, and dont need to be covered at the m
 - [x] 32. Change "MORE COMING Q3 2025" text to "More Coming Q2 2026" and change size (follows the mockup in 20.)
 - [x] 34. Footer should be with white background in the internal pages and have similar size and styles for all elements. Some extra details above
    - 2026-04-26 note: Interior footer now uses the white/black mockup treatment, red buttons with white text, mockup hero/newsletter/social sizing, divider, light WeChat popup, and footer language menu alignment.
+   - 2026-04-26 follow-up: Footer language dropdown now opens upward so it does not collide with the bottom gradient stripe. Header language dropdown gap was tightened so the menu sits directly under the globe trigger.
    - [x] 34.1. In both main page and internal pages footer newsletter label should be left aligned with Your Email input text, Subscribe on Substack round corners radius the same as the input text, social icons style should be the same in both and also left aligned with the Your email input text
    - [x] 34.2 - Language switcher in the footer should not display the selected language 
    - [x] 34.3 - footer links for socials and substack:  https://substack.com/@latamchinatech https://www.linkedin.com/company/30947367 https://www.instagram.com/andrequeme

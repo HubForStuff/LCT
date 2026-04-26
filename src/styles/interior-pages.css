@@ -384,7 +384,7 @@ body.interior-body svg {
 
 .site-lang-menu {
   position: absolute;
-  top: calc(100% + 10px);
+  top: calc(100% + 2px);
   right: 0;
   display: grid;
   gap: 0;
@@ -2277,8 +2277,8 @@ body.interior-body svg {
 .site-lang--footer .site-lang-menu {
   right: auto;
   left: 50%;
-  bottom: auto;
-  top: calc(100% + 8px);
+  top: auto;
+  bottom: calc(100% + 8px);
   min-width: 72px;
   padding: 6px;
   border: 1px solid rgba(0, 0, 0, 0.1);
