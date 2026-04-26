@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { execFileSync, spawnSync } from "node:child_process";
+import { execFileSync, spawn, spawnSync } from "node:child_process";
 
 const testDir = dirname(fileURLToPath(import.meta.url));
 const projectRoot = resolve(testDir, "..");
@@ -20,6 +20,23 @@ const buildSite = () => {
     0,
     `Astro build failed.\nSTDOUT:\n${build.stdout}\nSTDERR:\n${build.stderr}`,
   );
+};
+
+const waitForServer = async (port) => {
+  for (let attempt = 0; attempt < 50; attempt += 1) {
+    try {
+      const response = await fetch(`http://127.0.0.1:${port}/`);
+      if (response.ok) {
+        return;
+      }
+    } catch {
+      // keep retrying until the server is ready
+    }
+
+    await new Promise((resolveDelay) => setTimeout(resolveDelay, 100));
+  }
+
+  throw new Error(`Timed out waiting for local server on port ${port}`);
 };
 
 const runAgentBrowser = (args) =>
@@ -135,10 +152,17 @@ test("homepage build matches the supplied design structure", () => {
 test("language switching localizes the homepage on desktop and mobile", async () => {
   buildSite();
 
-  const homepageFileUrl = `file://${resolve(projectRoot, "dist", "index.html")}`;
+  const port = 5600 + Math.floor(Math.random() * 400);
+  const server = spawn("python3", ["-m", "http.server", String(port), "-d", "dist"], {
+    cwd: projectRoot,
+    stdio: "ignore",
+  });
+  const homepageUrl = `http://127.0.0.1:${port}/`;
   const session = `homepage-i18n-${Date.now()}`;
 
   try {
+    await waitForServer(port);
+
     try {
       runAgentBrowser(["--session", session, "close"]);
     } catch {
@@ -146,7 +170,7 @@ test("language switching localizes the homepage on desktop and mobile", async ()
     }
 
     runAgentBrowser(["--session", session, "set", "viewport", "1440", "900"]);
-    runAgentBrowser(["--allow-file-access", "--session", session, "open", homepageFileUrl]);
+    runAgentBrowser(["--session", session, "open", homepageUrl]);
     runAgentBrowser(["--session", session, "wait", "1000"]);
     runAgentBrowser([
       "--session",
@@ -202,6 +226,8 @@ test("language switching localizes the homepage on desktop and mobile", async ()
       "expected the mobile CTA to switch to Portuguese and persist after reload",
     );
   } finally {
+    server.kill("SIGTERM");
+
     try {
       runAgentBrowser(["--session", session, "close"]);
     } catch {
@@ -213,7 +239,12 @@ test("language switching localizes the homepage on desktop and mobile", async ()
 test("desktop mega menus stay within the viewport at narrow desktop widths", async () => {
   buildSite();
 
-  const homepageFileUrl = `file://${resolve(projectRoot, "dist", "index.html")}`;
+  const port = 6000 + Math.floor(Math.random() * 400);
+  const server = spawn("python3", ["-m", "http.server", String(port), "-d", "dist"], {
+    cwd: projectRoot,
+    stdio: "ignore",
+  });
+  const homepageUrl = `http://127.0.0.1:${port}/`;
   const session = `homepage-nav-${Date.now()}`;
 
   const getMenuBox = (selector) =>
@@ -229,6 +260,8 @@ test("desktop mega menus stay within the viewport at narrow desktop widths", asy
     })();
 
   try {
+    await waitForServer(port);
+
     try {
       runAgentBrowser(["--session", session, "close"]);
     } catch {
@@ -236,7 +269,7 @@ test("desktop mega menus stay within the viewport at narrow desktop widths", asy
     }
 
     runAgentBrowser(["--session", session, "set", "viewport", "1266", "768"]);
-    runAgentBrowser(["--allow-file-access", "--session", session, "open", homepageFileUrl]);
+    runAgentBrowser(["--session", session, "open", homepageUrl]);
     runAgentBrowser(["--session", session, "wait", "1000"]);
 
     const leftMenuBox = getMenuBox(".desk-nav-item:first-child .desk-mega");
@@ -259,6 +292,8 @@ test("desktop mega menus stay within the viewport at narrow desktop widths", asy
       `expected the last mega menu to stay within the right viewport edge, received ${JSON.stringify(rightMenuBox)}`,
     );
   } finally {
+    server.kill("SIGTERM");
+
     try {
       runAgentBrowser(["--session", session, "close"]);
     } catch {

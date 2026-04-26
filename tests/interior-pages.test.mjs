@@ -498,6 +498,11 @@ test("interior header supports homepage mega-menu layout variants", { concurrenc
       /\.site-mega-grid\s*\{[^}]*height:\s*260px;[^}]*\}/s,
       "expected the interior mega menu shell to avoid the old fixed taller height",
     );
+    assert.match(
+      interiorStyles,
+      /\.site-lang-menu\s*\{[^}]*top:\s*calc\(100% \+ 2px\);/s,
+      "expected the header language menu to stay close to the globe trigger",
+    );
   } finally {
     build.cleanup();
   }
@@ -573,6 +578,31 @@ test("interior footer matches homepage structure without legacy bottom note row"
       /\.site-wechat:hover \.site-wechat-popup,\s*\.site-wechat:focus-within \.site-wechat-popup\s*\{/s,
       "expected interior footer WeChat popup to be reachable on keyboard focus as well as hover",
     );
+    assert.match(
+      interiorStyles,
+      /\.site-footer-hero\s*\{[^}]*padding:\s*59px 0;/s,
+      "expected interior footer hero spacing to match the competitions mockup",
+    );
+    assert.match(
+      interiorStyles,
+      /\.site-footer-title\s*\{[^}]*font-size:\s*clamp\(26px,\s*2\.6vw,\s*40px\);/s,
+      "expected interior footer heading scale to match the competitions mockup",
+    );
+    assert.match(
+      interiorStyles,
+      /\.interior-page \.site-footer-newsletter-row input\[type="email"\]\s*\{[^}]*width:\s*150px;[^}]*height:\s*38px;/s,
+      "expected interior footer newsletter input sizing to match the competitions mockup",
+    );
+    assert.match(
+      interiorStyles,
+      /\.site-wechat-popup\s*\{[^}]*top:\s*50%;[^}]*right:\s*calc\(100% \+ 10px\);[^}]*background:\s*rgba\(255, 255, 255, 0\.95\);/s,
+      "expected interior footer WeChat popup to use the light side-aligned mockup treatment",
+    );
+    assert.match(
+      interiorStyles,
+      /\.site-lang--footer \.site-lang-menu\s*\{[^}]*top:\s*auto;[^}]*bottom:\s*calc\(100% \+ 8px\);/s,
+      "expected footer language menu to open above the icon so it avoids the bottom stripe",
+    );
   } finally {
     build.cleanup();
   }
@@ -642,18 +672,13 @@ test("competitions listing/detail Batch B polish matches approved copy and shell
 
     assert.match(
       startupPanelHtml,
-      />\s*View Competition\s*</i,
-      "expected startup competition CTAs to use competition wording",
+      />\s*Apply Now\s*</i,
+      "expected startup competition CTAs to use the reviewed Apply Now wording",
     );
     assert.doesNotMatch(
       startupPanelHtml,
       />\s*View Challenge\s*</i,
-      "expected startup competition CTAs to avoid challenge wording",
-    );
-    assert.match(
-      challengePanelHtml,
-      />\s*View Challenge\s*</i,
-      "expected challenge tab CTAs to keep challenge wording",
+      "expected startup competition CTAs to avoid legacy challenge wording",
     );
 
     assert.match(
@@ -681,6 +706,34 @@ test("competitions listing/detail Batch B polish matches approved copy and shell
       /\.competition-rich-card\s*\{[^}]*padding:\s*24px 26px;/s,
       "expected competition rich cards to use tighter spacing",
     );
+    assert.match(
+      interiorStyles,
+      /\.featured-footer\s*\{[^}]*justify-content:\s*space-between;[^}]*flex-wrap:\s*nowrap;/s,
+      "expected featured card footer to keep equal spacing on one row",
+    );
+    assert.doesNotMatch(
+      interiorStyles,
+      /\.featured-footer \.site-btn\s*\{[^}]*margin-left:\s*auto;/s,
+      "expected featured footer spacing to come from the row layout rather than pushing only the CTA",
+    );
+    assert.match(
+      competitionsHtml,
+      /class="ccard-category-icon"[^>]*>\s*<svg width="12" height="12"/,
+      "expected card category icons to use the mockup-sized card icon set",
+    );
+    assert.match(
+      interiorStyles,
+      /\.filters-bar\s*\{[^}]*gap:\s*8px;/s,
+      "expected filter groups to use the mockup 8px gap",
+    );
+
+    for (const expectedCardIconColor of ["#2563EB", "#7c3aed", "#d97706", "#0d9488", "#475569", "#dc2626"]) {
+      assert.match(
+        competitionsHtml,
+        new RegExp(`stroke="${expectedCardIconColor}"`, "i"),
+        `expected card category icons to include mockup color ${expectedCardIconColor}`,
+      );
+    }
   } finally {
     build.cleanup();
   }
@@ -889,6 +942,39 @@ test("competition filters work on the listing page, names link to detail pages, 
     runAgentBrowser(["--session", session, "set", "viewport", "1440", "900"]);
     runAgentBrowser(["--session", session, "open", `http://127.0.0.1:${port}/competitions/`]);
     runAgentBrowser(["--session", session, "wait", "1000"]);
+
+    const competitionControlStyles = JSON.parse(
+      JSON.parse(
+        runAgentBrowser([
+          "--session",
+          session,
+          "eval",
+          `JSON.stringify({
+            tabFontSize: getComputedStyle(document.querySelector(".tab")).fontSize,
+            tabFontWeight: getComputedStyle(document.querySelector(".tab")).fontWeight,
+            filterFontSize: getComputedStyle(document.querySelector(".filter-pill")).fontSize,
+            filterFontWeight: getComputedStyle(document.querySelector(".filter-pill")).fontWeight,
+            filterLineHeight: getComputedStyle(document.querySelector(".filter-pill")).lineHeight,
+            filterHeight: Math.round(document.querySelector(".filter-pill").getBoundingClientRect().height) + "px",
+            sortFontSize: getComputedStyle(document.querySelector(".sort-select")).fontSize,
+          })`,
+        ]),
+      ),
+    );
+
+    assert.deepEqual(
+      competitionControlStyles,
+      {
+        tabFontSize: "26px",
+        tabFontWeight: "800",
+        filterFontSize: "14px",
+        filterFontWeight: "500",
+        filterLineHeight: "normal",
+        filterHeight: "34px",
+        sortFontSize: "13px",
+      },
+      `expected competition controls to render mockup typography, received ${JSON.stringify(competitionControlStyles)}`,
+    );
 
     runAgentBrowser(["--session", session, "click", ".site-header .site-lang [data-lang-toggle]"]);
     runAgentBrowser(["--session", session, "click", ".site-header .site-lang [data-lang-option='BR']"]);
@@ -1151,6 +1237,110 @@ test("interior footer language switch localizes footer controls at runtime", { c
     runAgentBrowser(["--session", session, "set", "viewport", "1440", "1200"]);
     runAgentBrowser(["--session", session, "open", `http://127.0.0.1:${port}/news/`]);
     runAgentBrowser(["--session", session, "wait", "1000"]);
+
+    const footerHeroButtonStyle = JSON.parse(
+      JSON.parse(
+        runAgentBrowser([
+          "--session",
+          session,
+          "eval",
+          `JSON.stringify({
+            color: getComputedStyle(document.querySelector(".site-footer-hero-btn")).color,
+            markerColor: getComputedStyle(document.querySelector(".site-footer-hero-btn"), "::before").backgroundColor,
+          })`,
+        ]),
+      ),
+    );
+
+    assert.deepEqual(
+      footerHeroButtonStyle,
+      {
+        color: "rgb(255, 255, 255)",
+        markerColor: "rgb(255, 255, 255)",
+      },
+      `expected footer hero CTA text and dot to render white, received ${JSON.stringify(footerHeroButtonStyle)}`,
+    );
+
+    const footerNewsletterStyle = JSON.parse(
+      JSON.parse(
+        runAgentBrowser([
+          "--session",
+          session,
+          "eval",
+          `JSON.stringify((() => {
+            const input = document.querySelector(".site-footer-newsletter-row input");
+            const subscribe = document.querySelector(".site-footer-subscribe");
+            const inputStyle = getComputedStyle(input);
+            const subscribeStyle = getComputedStyle(subscribe);
+            const inputRect = input.getBoundingClientRect();
+
+            return {
+              input: {
+                width: inputRect.width,
+                height: inputRect.height,
+                padding: inputStyle.padding,
+                borderRadius: inputStyle.borderRadius,
+                backgroundColor: inputStyle.backgroundColor,
+                fontSize: inputStyle.fontSize,
+              },
+              subscribe: {
+                color: subscribeStyle.color,
+                backgroundColor: subscribeStyle.backgroundColor,
+              },
+            };
+          })())`,
+        ]),
+      ),
+    );
+
+    assert.deepEqual(
+      footerNewsletterStyle,
+      {
+        input: {
+          width: 150,
+          height: 38,
+          padding: "9px 14px",
+          borderRadius: "8px",
+          backgroundColor: "rgba(0, 0, 0, 0.03)",
+          fontSize: "14px",
+        },
+        subscribe: {
+          color: "rgb(255, 255, 255)",
+          backgroundColor: "rgb(255, 59, 0)",
+        },
+      },
+      `expected footer newsletter controls to keep mockup sizing and color, received ${JSON.stringify(footerNewsletterStyle)}`,
+    );
+
+    const footerSocialStyles = JSON.parse(
+      JSON.parse(
+        runAgentBrowser([
+          "--session",
+          session,
+          "eval",
+          `JSON.stringify(Array.from(document.querySelectorAll(".site-footer-socials .site-social-btn")).map((control) => {
+            const style = getComputedStyle(control);
+            return {
+              tag: control.tagName,
+              color: style.color,
+              borderColor: style.borderColor,
+            };
+          }))`,
+        ]),
+      ),
+    );
+
+    assert.deepEqual(
+      footerSocialStyles,
+      [
+        { tag: "BUTTON", color: "rgba(0, 0, 0, 0.38)", borderColor: "rgba(0, 0, 0, 0.12)" },
+        { tag: "A", color: "rgba(0, 0, 0, 0.38)", borderColor: "rgba(0, 0, 0, 0.12)" },
+        { tag: "A", color: "rgba(0, 0, 0, 0.38)", borderColor: "rgba(0, 0, 0, 0.12)" },
+        { tag: "A", color: "rgba(0, 0, 0, 0.38)", borderColor: "rgba(0, 0, 0, 0.12)" },
+      ],
+      `expected all footer social icons to use the muted mockup color, received ${JSON.stringify(footerSocialStyles)}`,
+    );
+
     runAgentBrowser(["--session", session, "click", ".site-footer-lang [data-lang-toggle]"]);
     runAgentBrowser(["--session", session, "click", ".site-footer-lang [data-lang-option='BR']"]);
     runAgentBrowser(["--session", session, "wait", "500"]);
