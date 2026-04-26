@@ -46,6 +46,7 @@ NOTE: all missing items are already solved, and dont need to be covered at the m
    - 2026-04-26 follow-up: Footer language dropdown now opens upward so it does not collide with the bottom gradient stripe. Header language dropdown gap was tightened so the menu sits directly under the globe trigger.
    - 2026-04-26 follow-up: Footer hero `View Programs` CTA now forces white text across link states, matching the mockup red button.
    - 2026-04-26 follow-up: Newsletter input and `Subscribe on Substack` now use higher-specificity footer selectors so the generic interior form/link rules no longer override the mockup compact grey input or white button text.
+   - 2026-04-26 follow-up: Footer social icon links now use higher-specificity social selectors so Instagram, LinkedIn, and WhatsApp match the muted mockup icon color instead of inheriting the page text color.
    - [x] 34.1. In both main page and internal pages footer newsletter label should be left aligned with Your Email input text, Subscribe on Substack round corners radius the same as the input text, social icons style should be the same in both and also left aligned with the Your email input text
    - [x] 34.2 - Language switcher in the footer should not display the selected language 
    - [x] 34.3 - footer links for socials and substack:  https://substack.com/@latamchinatech https://www.linkedin.com/company/30947367 https://www.instagram.com/andrequeme

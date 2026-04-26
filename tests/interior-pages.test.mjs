@@ -1312,6 +1312,35 @@ test("interior footer language switch localizes footer controls at runtime", { c
       `expected footer newsletter controls to keep mockup sizing and color, received ${JSON.stringify(footerNewsletterStyle)}`,
     );
 
+    const footerSocialStyles = JSON.parse(
+      JSON.parse(
+        runAgentBrowser([
+          "--session",
+          session,
+          "eval",
+          `JSON.stringify(Array.from(document.querySelectorAll(".site-footer-socials .site-social-btn")).map((control) => {
+            const style = getComputedStyle(control);
+            return {
+              tag: control.tagName,
+              color: style.color,
+              borderColor: style.borderColor,
+            };
+          }))`,
+        ]),
+      ),
+    );
+
+    assert.deepEqual(
+      footerSocialStyles,
+      [
+        { tag: "BUTTON", color: "rgba(0, 0, 0, 0.38)", borderColor: "rgba(0, 0, 0, 0.12)" },
+        { tag: "A", color: "rgba(0, 0, 0, 0.38)", borderColor: "rgba(0, 0, 0, 0.12)" },
+        { tag: "A", color: "rgba(0, 0, 0, 0.38)", borderColor: "rgba(0, 0, 0, 0.12)" },
+        { tag: "A", color: "rgba(0, 0, 0, 0.38)", borderColor: "rgba(0, 0, 0, 0.12)" },
+      ],
+      `expected all footer social icons to use the muted mockup color, received ${JSON.stringify(footerSocialStyles)}`,
+    );
+
     runAgentBrowser(["--session", session, "click", ".site-footer-lang [data-lang-toggle]"]);
     runAgentBrowser(["--session", session, "click", ".site-footer-lang [data-lang-option='BR']"]);
     runAgentBrowser(["--session", session, "wait", "500"]);

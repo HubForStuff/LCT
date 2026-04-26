@@ -2230,7 +2230,7 @@ body.interior-body svg {
   height: 80px;
 }
 
-.site-social-btn {
+.interior-page .site-footer-socials .site-social-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -2243,12 +2243,19 @@ body.interior-body svg {
   transition: border-color 0.16s ease, color 0.16s ease;
 }
 
-.site-social-btn:hover {
+.interior-page .site-footer-socials .site-social-btn,
+.interior-page .site-footer-socials .site-social-btn:link,
+.interior-page .site-footer-socials .site-social-btn:visited {
+  color: rgba(0, 0, 0, 0.38);
+}
+
+.interior-page .site-footer-socials .site-social-btn:hover,
+.interior-page .site-footer-socials .site-social-btn:focus {
   color: #111;
   border-color: #111;
 }
 
-.site-social-btn svg {
+.interior-page .site-footer-socials .site-social-btn svg {
   width: 15px;
   height: 15px;
 }
