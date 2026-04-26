@@ -2006,6 +2006,14 @@ body.interior-body svg {
   background: var(--site-red);
 }
 
+.site-footer-hero .site-footer-hero-btn,
+.site-footer-hero .site-footer-hero-btn:link,
+.site-footer-hero .site-footer-hero-btn:visited,
+.site-footer-hero .site-footer-hero-btn:hover,
+.site-footer-hero .site-footer-hero-btn:focus {
+  color: #fff;
+}
+
 .site-footer-hero-btn::before {
   background: #fff;
 }

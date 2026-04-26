@@ -1237,6 +1237,30 @@ test("interior footer language switch localizes footer controls at runtime", { c
     runAgentBrowser(["--session", session, "set", "viewport", "1440", "1200"]);
     runAgentBrowser(["--session", session, "open", `http://127.0.0.1:${port}/news/`]);
     runAgentBrowser(["--session", session, "wait", "1000"]);
+
+    const footerHeroButtonStyle = JSON.parse(
+      JSON.parse(
+        runAgentBrowser([
+          "--session",
+          session,
+          "eval",
+          `JSON.stringify({
+            color: getComputedStyle(document.querySelector(".site-footer-hero-btn")).color,
+            markerColor: getComputedStyle(document.querySelector(".site-footer-hero-btn"), "::before").backgroundColor,
+          })`,
+        ]),
+      ),
+    );
+
+    assert.deepEqual(
+      footerHeroButtonStyle,
+      {
+        color: "rgb(255, 255, 255)",
+        markerColor: "rgb(255, 255, 255)",
+      },
+      `expected footer hero CTA text and dot to render white, received ${JSON.stringify(footerHeroButtonStyle)}`,
+    );
+
     runAgentBrowser(["--session", session, "click", ".site-footer-lang [data-lang-toggle]"]);
     runAgentBrowser(["--session", session, "click", ".site-footer-lang [data-lang-option='BR']"]);
     runAgentBrowser(["--session", session, "wait", "500"]);
