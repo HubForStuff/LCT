@@ -590,7 +590,7 @@ test("interior footer matches homepage structure without legacy bottom note row"
     );
     assert.match(
       interiorStyles,
-      /\.site-footer-newsletter-row input\s*\{[^}]*width:\s*150px;[^}]*height:\s*38px;/s,
+      /\.interior-page \.site-footer-newsletter-row input\[type="email"\]\s*\{[^}]*width:\s*150px;[^}]*height:\s*38px;/s,
       "expected interior footer newsletter input sizing to match the competitions mockup",
     );
     assert.match(
@@ -1259,6 +1259,57 @@ test("interior footer language switch localizes footer controls at runtime", { c
         markerColor: "rgb(255, 255, 255)",
       },
       `expected footer hero CTA text and dot to render white, received ${JSON.stringify(footerHeroButtonStyle)}`,
+    );
+
+    const footerNewsletterStyle = JSON.parse(
+      JSON.parse(
+        runAgentBrowser([
+          "--session",
+          session,
+          "eval",
+          `JSON.stringify((() => {
+            const input = document.querySelector(".site-footer-newsletter-row input");
+            const subscribe = document.querySelector(".site-footer-subscribe");
+            const inputStyle = getComputedStyle(input);
+            const subscribeStyle = getComputedStyle(subscribe);
+            const inputRect = input.getBoundingClientRect();
+
+            return {
+              input: {
+                width: inputRect.width,
+                height: inputRect.height,
+                padding: inputStyle.padding,
+                borderRadius: inputStyle.borderRadius,
+                backgroundColor: inputStyle.backgroundColor,
+                fontSize: inputStyle.fontSize,
+              },
+              subscribe: {
+                color: subscribeStyle.color,
+                backgroundColor: subscribeStyle.backgroundColor,
+              },
+            };
+          })())`,
+        ]),
+      ),
+    );
+
+    assert.deepEqual(
+      footerNewsletterStyle,
+      {
+        input: {
+          width: 150,
+          height: 38,
+          padding: "9px 14px",
+          borderRadius: "8px",
+          backgroundColor: "rgba(0, 0, 0, 0.03)",
+          fontSize: "14px",
+        },
+        subscribe: {
+          color: "rgb(255, 255, 255)",
+          backgroundColor: "rgb(255, 59, 0)",
+        },
+      },
+      `expected footer newsletter controls to keep mockup sizing and color, received ${JSON.stringify(footerNewsletterStyle)}`,
     );
 
     runAgentBrowser(["--session", session, "click", ".site-footer-lang [data-lang-toggle]"]);

@@ -42,7 +42,7 @@
 | **31** | Category priority with industry-specific pastel icon on each card | ✅ Done | Fixed 2026-04-26: cards now use the mockup's 12px card icon SVGs/colors instead of reusing filter icons |
 | **32** | "Load More" button: smaller font, red icon, gray outline/font | ✅ Done | |
 | **33** | "View Programs" button: white icon/text, red-orange gradient | ✅ Done | |
-| **34** | Footer: aligned with homepage, "Subscribe on Substack" visible | ✅ Done | Re-reviewed 2026-04-26: interior footer now uses the white/black mockup treatment, red buttons with white text across link states, mockup sizing, divider, light WeChat popup, footer language menu opens upward, and header language menu sits close to the globe trigger |
+| **34** | Footer: aligned with homepage, "Subscribe on Substack" visible | ✅ Done | Re-reviewed 2026-04-26: interior footer now uses the white/black mockup treatment, red buttons with white text across link states, mockup sizing, divider, light WeChat popup, footer language menu opens upward, header language menu sits close to the globe trigger, and the newsletter input/button keep compact mockup computed styles despite generic interior form/link rules |
 | **35** | Footer: remove gray divider line AND bottom note text | ✅ Done | Re-verified: legacy bottom note row removed and the gray divider is no longer rendered |
 | **36** | Replace footer title with "NEWSLETTER" | ✅ Done | |
 | **37** | Colored stripe bar at page bottom | ✅ Done | |
