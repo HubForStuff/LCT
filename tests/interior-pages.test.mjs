@@ -573,6 +573,31 @@ test("interior footer matches homepage structure without legacy bottom note row"
       /\.site-wechat:hover \.site-wechat-popup,\s*\.site-wechat:focus-within \.site-wechat-popup\s*\{/s,
       "expected interior footer WeChat popup to be reachable on keyboard focus as well as hover",
     );
+    assert.match(
+      interiorStyles,
+      /\.site-footer-hero\s*\{[^}]*padding:\s*59px 0;/s,
+      "expected interior footer hero spacing to match the competitions mockup",
+    );
+    assert.match(
+      interiorStyles,
+      /\.site-footer-title\s*\{[^}]*font-size:\s*clamp\(26px,\s*2\.6vw,\s*40px\);/s,
+      "expected interior footer heading scale to match the competitions mockup",
+    );
+    assert.match(
+      interiorStyles,
+      /\.site-footer-newsletter-row input\s*\{[^}]*width:\s*150px;[^}]*height:\s*38px;/s,
+      "expected interior footer newsletter input sizing to match the competitions mockup",
+    );
+    assert.match(
+      interiorStyles,
+      /\.site-wechat-popup\s*\{[^}]*top:\s*50%;[^}]*right:\s*calc\(100% \+ 10px\);[^}]*background:\s*rgba\(255, 255, 255, 0\.95\);/s,
+      "expected interior footer WeChat popup to use the light side-aligned mockup treatment",
+    );
+    assert.match(
+      interiorStyles,
+      /\.site-lang--footer \.site-lang-menu\s*\{[^}]*bottom:\s*auto;[^}]*top:\s*calc\(100% \+ 8px\);/s,
+      "expected footer language menu to open below the icon like the competitions mockup",
+    );
   } finally {
     build.cleanup();
   }
@@ -642,18 +667,13 @@ test("competitions listing/detail Batch B polish matches approved copy and shell
 
     assert.match(
       startupPanelHtml,
-      />\s*View Competition\s*</i,
-      "expected startup competition CTAs to use competition wording",
+      />\s*Apply Now\s*</i,
+      "expected startup competition CTAs to use the reviewed Apply Now wording",
     );
     assert.doesNotMatch(
       startupPanelHtml,
       />\s*View Challenge\s*</i,
-      "expected startup competition CTAs to avoid challenge wording",
-    );
-    assert.match(
-      challengePanelHtml,
-      />\s*View Challenge\s*</i,
-      "expected challenge tab CTAs to keep challenge wording",
+      "expected startup competition CTAs to avoid legacy challenge wording",
     );
 
     assert.match(
@@ -681,6 +701,34 @@ test("competitions listing/detail Batch B polish matches approved copy and shell
       /\.competition-rich-card\s*\{[^}]*padding:\s*24px 26px;/s,
       "expected competition rich cards to use tighter spacing",
     );
+    assert.match(
+      interiorStyles,
+      /\.featured-footer\s*\{[^}]*justify-content:\s*space-between;[^}]*flex-wrap:\s*nowrap;/s,
+      "expected featured card footer to keep equal spacing on one row",
+    );
+    assert.doesNotMatch(
+      interiorStyles,
+      /\.featured-footer \.site-btn\s*\{[^}]*margin-left:\s*auto;/s,
+      "expected featured footer spacing to come from the row layout rather than pushing only the CTA",
+    );
+    assert.match(
+      competitionsHtml,
+      /class="ccard-category-icon"[^>]*>\s*<svg width="12" height="12"/,
+      "expected card category icons to use the mockup-sized card icon set",
+    );
+    assert.match(
+      interiorStyles,
+      /\.filters-bar\s*\{[^}]*gap:\s*8px;/s,
+      "expected filter groups to use the mockup 8px gap",
+    );
+
+    for (const expectedCardIconColor of ["#2563EB", "#7c3aed", "#d97706", "#0d9488", "#475569", "#dc2626"]) {
+      assert.match(
+        competitionsHtml,
+        new RegExp(`stroke="${expectedCardIconColor}"`, "i"),
+        `expected card category icons to include mockup color ${expectedCardIconColor}`,
+      );
+    }
   } finally {
     build.cleanup();
   }
@@ -889,6 +937,35 @@ test("competition filters work on the listing page, names link to detail pages, 
     runAgentBrowser(["--session", session, "set", "viewport", "1440", "900"]);
     runAgentBrowser(["--session", session, "open", `http://127.0.0.1:${port}/competitions/`]);
     runAgentBrowser(["--session", session, "wait", "1000"]);
+
+    const competitionControlStyles = JSON.parse(
+      JSON.parse(
+        runAgentBrowser([
+          "--session",
+          session,
+          "eval",
+          `JSON.stringify({
+            tabFontSize: getComputedStyle(document.querySelector(".tab")).fontSize,
+            tabFontWeight: getComputedStyle(document.querySelector(".tab")).fontWeight,
+            filterFontSize: getComputedStyle(document.querySelector(".filter-pill")).fontSize,
+            filterFontWeight: getComputedStyle(document.querySelector(".filter-pill")).fontWeight,
+            sortFontSize: getComputedStyle(document.querySelector(".sort-select")).fontSize,
+          })`,
+        ]),
+      ),
+    );
+
+    assert.deepEqual(
+      competitionControlStyles,
+      {
+        tabFontSize: "26px",
+        tabFontWeight: "800",
+        filterFontSize: "14px",
+        filterFontWeight: "500",
+        sortFontSize: "13px",
+      },
+      `expected competition controls to render mockup typography, received ${JSON.stringify(competitionControlStyles)}`,
+    );
 
     runAgentBrowser(["--session", session, "click", ".site-header .site-lang [data-lang-toggle]"]);
     runAgentBrowser(["--session", session, "click", ".site-header .site-lang [data-lang-option='BR']"]);

@@ -28,21 +28,21 @@
 | **17** | Interior nav positioning | ✅ Done | Fixed: applied same 3-part centered layout as homepage (`flex: 0 0 200px` on brand/lang, `flex: 1` centered nav) |
 | **18** | Mega menu layout: match mockup HTML `mockup/1 - LATAMCHINATECH_desktop v 1million.htm` | ✅ Done | Fixed: added layout variants (standard, two-cards, events) with conditional rendering |
 | **19** | Mega menu content for all 5 sections (Advisory, Competitions, Events, Programs, Network) | ✅ Done | Fixed: updated all 3 locale files with mockup-matched content |
-| **20** | STATUS/FOCUS filter pills: check against `mockup/3 - Challenges__Competitions_v7.htm` | ✅ Done | Re-verified (FB-002): active pill now uses white fill + `font-weight: 500`, uniform hover (`rgba(0,0,0,.05)`), tone-specific hover fills removed |
-| **21** | Small dot on top-left label (eyebrow area) | ✅ Done | Fixed: dot gap tightened from 10px to 8px |
-| **22** | Tab fonts larger and bold | ✅ Done | |
+| **20** | STATUS/FOCUS filter pills: check against `mockup/3 - Challenges__Competitions_v7.htm` | ✅ Done | Re-verified 2026-04-26: mockup pill sizing, `8px` filter bar gap, icon colors/opacity, active state, and hover-only treatment covered by browser/test assertions |
+| **21** | Small dot on top-left label (eyebrow area) | ✅ Done | Re-verified 2026-04-26: red dot renders before the localized eyebrow on `/competitions/` |
+| **22** | Tab fonts larger and bold | ✅ Done | Re-verified 2026-04-26: rendered tabs are `26px` / `800`; form-control font reset no longer overrides tab/filter/select typography |
 | **23** | "Featured Competition" text in Startup tab + red star | ✅ Done | Re-verified: startup featured tag now comes from competition content as "Featured Competition" |
 | **24** | Blue star on "Featured Challenge" in Corporate tab | ✅ Done | |
 | **25** | Pulsing red dot next to "Open Now", font reduced 1pt | ✅ Done | |
-| **26** | Filter: smaller font, more rounded | ✅ Done | |
+| **26** | Filter: smaller font, more rounded | ✅ Done | Re-verified 2026-04-26: sort select is functional and renders as compact `13px` rounded mockup pill |
 | **27** | Featured card: preview text in black, title less bold | ✅ Done | Re-verified (FB-003): updated to mockup-exact featured card values (radius `20px`, margin `20px 0`, title `26px/800`, accent `3px`, hover lift/shadow) |
-| **28** | Featured card: footer elements on one line (nowrap) | ✅ Done | Re-verified (FB-003): footer now uses `justify-content: space-between` with `padding-top: 16px`; status typography aligned to mockup |
+| **28** | Featured card: footer elements on one line (nowrap) | ✅ Done | Re-verified 2026-04-26: footer uses `justify-content: space-between`, `flex-wrap: nowrap`, and responsive wrap below narrow widths |
 | **29** | Cards taller; OPEN/FUTURE/CLOSED badges with distinct icons and solid colored backgrounds | ✅ Done | Re-verified (FB-004): card image area `height: 260px`, badge/prize/body/footer sizing matched mockup, CTA converted to themed pill button |
-| **30** | "View Competition" in competition tab, "View Challenge" in challenge tab | ✅ Done | Updated competition collection locale CTA copy by track (startup=competition, corporate=challenge) |
-| **31** | Category priority with industry-specific pastel icon on each card | ✅ Done | |
+| **30** | "View Competition" in competition tab, "View Challenge" in challenge tab | ✅ Done | Re-reviewed 2026-04-26: reviewed CTA copy is `Apply Now`, with white text in non-featured card buttons across link states |
+| **31** | Category priority with industry-specific pastel icon on each card | ✅ Done | Fixed 2026-04-26: cards now use the mockup's 12px card icon SVGs/colors instead of reusing filter icons |
 | **32** | "Load More" button: smaller font, red icon, gray outline/font | ✅ Done | |
 | **33** | "View Programs" button: white icon/text, red-orange gradient | ✅ Done | |
-| **34** | Footer: aligned with homepage, "Subscribe on Substack" visible | ✅ Done | Re-reviewed (FB-005): interior footer now uses dark homepage-aligned palette + updated footer copy/column labels across locales |
+| **34** | Footer: aligned with homepage, "Subscribe on Substack" visible | ✅ Done | Re-reviewed 2026-04-26: interior footer now uses the white/black mockup treatment, red buttons with white text, mockup sizing, divider, light WeChat popup, and footer language menu alignment |
 | **35** | Footer: remove gray divider line AND bottom note text | ✅ Done | Re-verified: legacy bottom note row removed and the gray divider is no longer rendered |
 | **36** | Replace footer title with "NEWSLETTER" | ✅ Done | |
 | **37** | Colored stripe bar at page bottom | ✅ Done | |
