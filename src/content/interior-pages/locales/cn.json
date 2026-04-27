@@ -2,6 +2,7 @@
   "ui": {
     "chooseLanguage": "选择语言",
     "homeLabel": "LATAM China Tech 首页",
+    "menu": "菜单",
     "newsletterEmail": "新闻简报邮箱",
     "newsletterPlaceholder": "请输入邮箱"
   },
@@ -315,12 +316,15 @@
   "preRegistrationPage": {
     "meta": {
       "htmlLang": "zh-CN",
-      "title": "竞赛申请表 | LATAM China Tech",
-      "description": "在 LATAM China Tech 的指导和申请支持下，提交标准化竞赛申请。"
+      "title": "竞赛预注册 | LATAM China Tech",
+      "description": "在 LATAM China Tech 的指导和申请支持下提交竞赛预注册。"
     },
-    "eyebrow": "申请开放中",
-    "titleHtml": "竞赛<br /><em>申请表</em>",
-    "subtitle": "请使用下方统一表单申请竞赛，我们的团队会协助你完成后续提交步骤。",
+    "eyebrow": "预注册开放",
+    "titleHtml": "竞赛<br /><em>预注册</em>",
+    "subtitle": "请选择下方竞赛，或从具体机会继续进入表单，我们的团队会协助你完成后续提交步骤。",
+    "selectedCompetitionEyebrow": "预注册开放",
+    "selectedTitleSuffix": "预注册",
+    "selectedSubtitleTemplate": "你正在为 {competition} 进行预注册。我们的团队将锁定该竞赛，并指导你完成后续提交步骤。",
     "formProgressLabel": "表单进度",
     "banner": {
       "badge": "预报名",
@@ -332,7 +336,7 @@
     },
     "guide": {
       "title": "申请指南与教程",
-      "description": "开始前，请下载我们的分步指南。内容涵盖竞赛要求、所需材料，以及如何准备更强跨境申请的建议。",
+      "description": "资源下载正在最后整理中。指南和教程资产可用后，下方控件将会启用。",
       "actions": [
         { "label": "下载 PDF 指南", "href": "#", "theme": "dark", "icon": "download" },
         { "label": "观看教程", "href": "#", "theme": "light", "icon": "play" }

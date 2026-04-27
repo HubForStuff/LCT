@@ -2,17 +2,36 @@
 interface Props {
   alt: string;
   className?: string;
+  variant?: "image" | "mobile-wordmark";
 }
 
-const { alt, className = "" } = Astro.props;
+const { alt, className = "", variant = "image" } = Astro.props;
 ---
 
-<img
-  src="/images/latam-china-tech-logo.png"
-  alt={alt}
-  class:list={["site-logo", className]}
-  width="3426"
-  height="2108"
-  loading="eager"
-  decoding="async"
-/>
+{variant === "mobile-wordmark" ? (
+  <svg
+    class:list={["site-logo", "home-logo--mobile-wordmark", className]}
+    width="140"
+    height="28"
+    viewBox="0 0 140 28"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    role="img"
+    aria-label={alt}
+    focusable="false"
+  >
+    <text x="0" y="14" font-family="Outfit, sans-serif" font-weight="800" font-size="11" fill="#FF2D00" letter-spacing="0.06em">LATAM</text>
+    <text x="46" y="14" font-family="Outfit, sans-serif" font-weight="800" font-size="11" fill="#FFFFFF" letter-spacing="0.06em">CHINA</text>
+    <text x="0" y="26" font-family="Outfit, sans-serif" font-weight="400" font-size="11" fill="rgba(255,255,255,0.85)" letter-spacing="0.18em">TECH</text>
+  </svg>
+) : (
+  <img
+    src="/images/latam-china-tech-logo.png"
+    alt={alt}
+    class:list={["site-logo", className]}
+    width="3426"
+    height="2108"
+    loading="eager"
+    decoding="async"
+  />
+)}

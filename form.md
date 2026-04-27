@@ -17,4 +17,4 @@ Remove write with ai button from fields.
 
 Our main idea is to have a subscription to an AI provider to submit the file and make the AI analyze the deck and extract the form information from it. As far as I am aware what we will need to do to make this work is something in the line of:
 
-1. Create a prompt outlining the instructions, provide the already completed form data and the pitch deck file (pdf or ppt) and ask the AI to anaylize and output the form contents as structured data so we can
+1. Create a prompt outlining the instructions, provide the already completed form data and the pitch deck file (pdf or ppt) and ask the AI to anaylize and output the form contents as structured data so we can add directly autocomplete the form's data.

@@ -115,6 +115,7 @@ function getCardFocusIcon(focusKeys: string[]): string {
     currentLanguage={currentLanguage}
     languageLabel={locale.ui.chooseLanguage}
     homeLabel={locale.ui.homeLabel}
+    menuLabel={locale.ui.menu}
     desktopMenuSections={locale.desktopMenuSections}
     navExploreLabel={locale.navExploreLabel}
   />
@@ -236,6 +237,8 @@ function getCardFocusIcon(focusKeys: string[]): string {
               data-filter-item
               data-status={tab.featured.statusTone}
               data-focuses={tab.featured.focusKeys.join(" ")}
+              data-sort-date={tab.featured.sortDate}
+              data-display-order={tab.featured.displayOrder}
             >
               <div class="featured-visual">
                 <div class="featured-visual-grid"></div>
@@ -332,6 +335,8 @@ function getCardFocusIcon(focusKeys: string[]): string {
                     data-filter-item
                     data-status={card.statusTone}
                     data-focuses={card.focusKeys.join(" ")}
+                    data-sort-date={card.sortDate}
+                    data-display-order={card.displayOrder}
                   >
                     <div class="ccard-image">
                       <div class="ccard-grid"></div>
@@ -593,8 +598,22 @@ function getCardFocusIcon(focusKeys: string[]): string {
   }
 
   function readCardDeadline(card) {
-    const deadlineValue = card.querySelector(".ccard-deadline strong");
-    return parseCompetitionDate(deadlineValue?.textContent?.trim() || "");
+    return parseCompetitionDate(card.dataset.sortDate || "");
+  }
+
+  function readCardStatusRank(card) {
+    const statusRank = {
+      open: 0,
+      future: 1,
+      closed: 2,
+    };
+
+    return statusRank[card.dataset.status] ?? 3;
+  }
+
+  function readCardDisplayOrder(card) {
+    const displayOrder = Number(card.dataset.displayOrder);
+    return Number.isFinite(displayOrder) ? displayOrder : Number.POSITIVE_INFINITY;
   }
 
   function readCardPrize(card) {
@@ -631,8 +650,17 @@ function getCardFocusIcon(focusKeys: string[]): string {
 
     if (competitionSortSelect.selectedIndex === 0) {
       sortedVisibleCards.sort((left, right) => {
+        const statusDifference = readCardStatusRank(left) - readCardStatusRank(right);
+        if (statusDifference) {
+          return statusDifference;
+        }
+
         const dateDifference = readCardDeadline(left) - readCardDeadline(right);
-        return dateDifference || (originalOrder.get(left) ?? 0) - (originalOrder.get(right) ?? 0);
+        return (
+          dateDifference ||
+          readCardDisplayOrder(left) - readCardDisplayOrder(right) ||
+          (originalOrder.get(left) ?? 0) - (originalOrder.get(right) ?? 0)
+        );
       });
     } else if (competitionSortSelect.selectedIndex === 1) {
       sortedVisibleCards.sort((left, right) => {
@@ -640,7 +668,10 @@ function getCardFocusIcon(focusKeys: string[]): string {
         return prizeDifference || (originalOrder.get(left) ?? 0) - (originalOrder.get(right) ?? 0);
       });
     } else if (competitionSortSelect.selectedIndex === 2) {
-      sortedVisibleCards.reverse();
+      sortedVisibleCards.sort((left, right) => {
+        const orderDifference = readCardDisplayOrder(right) - readCardDisplayOrder(left);
+        return orderDifference || (originalOrder.get(left) ?? 0) - (originalOrder.get(right) ?? 0);
+      });
     }
 
     grid.replaceChildren(...sortedVisibleCards, ...hiddenCards, ...auxiliaryElements);

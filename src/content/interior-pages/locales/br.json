@@ -2,6 +2,7 @@
   "ui": {
     "chooseLanguage": "Escolher idioma",
     "homeLabel": "Pagina inicial da LATAM China Tech",
+    "menu": "Menu",
     "newsletterEmail": "E-mail da newsletter",
     "newsletterPlaceholder": "Seu e-mail"
   },
@@ -315,12 +316,15 @@
   "preRegistrationPage": {
     "meta": {
       "htmlLang": "pt-BR",
-      "title": "Aplicacao de Competicao | LATAM China Tech",
-      "description": "Envie uma aplicacao padrao de competicao com orientacao e suporte da LATAM China Tech."
+      "title": "Pre-inscricao para Competicao | LATAM China Tech",
+      "description": "Envie uma pre-inscricao de competicao com orientacao e suporte da LATAM China Tech."
     },
-    "eyebrow": "Aplicacoes abertas",
-    "titleHtml": "Formulario de<br /><em>Aplicacao</em>",
-    "subtitle": "Use o formulario padrao abaixo para aplicar a uma competicao e nossa equipe vai orientar os proximos passos da sua submissao.",
+    "eyebrow": "Pre-inscricoes abertas",
+    "titleHtml": "Pre-inscricao para<br /><em>Competicao</em>",
+    "subtitle": "Selecione uma competicao abaixo ou continue a partir de uma oportunidade especifica e nossa equipe vai orientar os proximos passos da sua submissao.",
+    "selectedCompetitionEyebrow": "Pre-inscricao aberta",
+    "selectedTitleSuffix": "Pre-inscricao",
+    "selectedSubtitleTemplate": "Voce esta fazendo a pre-inscricao para {competition}. Nossa equipe mantera a competicao bloqueada e orientara os proximos passos da sua submissao.",
     "formProgressLabel": "Progresso do formulario",
     "banner": {
       "badge": "Pre-inscricao",
@@ -332,7 +336,7 @@
     },
     "guide": {
       "title": "Guia de candidatura e tutorial",
-      "description": "Antes de comecar, baixe nosso guia passo a passo. Ele cobre expectativas da competicao, materiais obrigatorios e dicas para preparar uma submissao cross-border mais forte.",
+      "description": "Os recursos para download estao sendo finalizados. Os controles abaixo serao ativados quando o guia e o tutorial estiverem disponiveis.",
       "actions": [
         { "label": "Baixar guia em PDF", "href": "#", "theme": "dark", "icon": "download" },
         { "label": "Assistir tutorial", "href": "#", "theme": "light", "icon": "play" }

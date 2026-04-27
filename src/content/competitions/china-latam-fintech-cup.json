@@ -8,6 +8,8 @@
   "accent": "warm",
   "featured": false,
   "order": 2,
+  "applicationOpensAt": "2025-03-15",
+  "applicationDeadlineAt": "2025-08-15",
   "watermark": "FIN",
   "value": "$200K",
   "focusTags": ["FinTech", "Payments", "Financial Inclusion"],

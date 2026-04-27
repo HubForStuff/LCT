@@ -2,6 +2,7 @@
   "ui": {
     "chooseLanguage": "Choose language",
     "homeLabel": "LATAM China Tech home",
+    "menu": "Menu",
     "newsletterEmail": "Newsletter email",
     "newsletterPlaceholder": "Your email"
   },
@@ -315,12 +316,15 @@
   "preRegistrationPage": {
     "meta": {
       "htmlLang": "en",
-      "title": "Competition Application | LATAM China Tech",
-      "description": "Submit a standard competition application with LATAM China Tech guidance and application support."
+      "title": "Competition Pre-Registration | LATAM China Tech",
+      "description": "Submit a competition pre-registration with LATAM China Tech guidance and application support."
     },
-    "eyebrow": "Applications Open",
-    "titleHtml": "Competition<br /><em>Application Form</em>",
-    "subtitle": "Use the standard form below to apply to a competition and our team will guide you through the next steps of your submission.",
+    "eyebrow": "Pre-Registration Open",
+    "titleHtml": "Competition<br /><em>Pre-Registration</em>",
+    "subtitle": "Select a competition below or continue from a specific opportunity and our team will guide you through the next steps of your submission.",
+    "selectedCompetitionEyebrow": "Pre-Registration Open",
+    "selectedTitleSuffix": "Pre-Registration",
+    "selectedSubtitleTemplate": "You are pre-registering for {competition}. Our team will keep the competition locked and guide you through the next steps of your submission.",
     "formProgressLabel": "Form progress",
     "banner": {
       "badge": "Pre-Registration",
@@ -332,7 +336,7 @@
     },
     "guide": {
       "title": "Application Guide & Tutorial",
-      "description": "Before you begin, download our step-by-step guide. It covers competition expectations, required materials, and tips for preparing a stronger cross-border submission.",
+      "description": "Resource downloads are being finalized. The controls below will be enabled when the guide and tutorial assets are available.",
       "actions": [
         { "label": "Download PDF Guide", "href": "#", "theme": "dark", "icon": "download" },
         { "label": "Watch Tutorial", "href": "#", "theme": "light", "icon": "play" }

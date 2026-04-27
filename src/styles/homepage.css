@@ -96,6 +96,13 @@
     object-fit: contain;
   }
 
+  .mobile-home .mob-brand-wordmark {
+    width: 140px;
+    height: 28px;
+    max-width: 54vw;
+    color: #fff;
+  }
+
   @keyframes home-logo-fade-in {
     from {
       opacity: 0;

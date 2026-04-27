@@ -18,6 +18,7 @@ interface Props {
   currentLanguage: string;
   languageLabel?: string;
   homeLabel?: string;
+  menuLabel?: string;
   desktopMenuSections?: DesktopMenuSection[];
   navExploreLabel?: string;
 }
@@ -29,6 +30,7 @@ const {
   currentLanguage,
   languageLabel = "Select language",
   homeLabel = siteSettings.siteName,
+  menuLabel = "Menu",
   desktopMenuSections = [],
   navExploreLabel = "Explore",
 } = Astro.props;
@@ -211,5 +213,105 @@ const {
       label={languageLabel}
       labelTranslationKey="ui.chooseLanguage"
     />
+
+    <button
+      type="button"
+      class="site-mobile-menu-btn"
+      id="mobileMenuBtn"
+      aria-label={menuLabel}
+      aria-expanded="false"
+      aria-controls="mobileMenu"
+      data-i18n-aria-label="ui.menu"
+    >
+      <span></span>
+    </button>
   </div>
+
+  <nav
+    class="site-mobile-menu"
+    id="mobileMenu"
+    aria-label={menuLabel}
+    data-i18n-aria-label="ui.menu"
+  >
+    <div class="site-mobile-menu-list">
+      {navItems.map((item, index) => {
+        const section = desktopMenuSections[index];
+        const isActive = item.href === activeHref;
+        const primaryCardHref = section?.card.href ?? getDesktopMenuCardHref(index);
+        const secondaryCardHref = section?.card2?.href ?? getDesktopMenuCardHref(index);
+
+        return (
+          <div class:list={["site-mobile-menu-item", "mob-menu-item", isActive && "is-open"]}>
+            <button
+              type="button"
+              class="site-mobile-menu-link"
+              data-mobile-accordion
+              aria-expanded={isActive ? "true" : "false"}
+            >
+              <span data-i18n={`navItems.${index}.label`}>{item.label}</span>
+              <span class="site-mobile-menu-arrow" aria-hidden="true">›</span>
+            </button>
+
+            <div class="site-mobile-menu-panel">
+              <a href={item.href} class="site-mobile-menu-primary">
+                <span data-i18n={`navItems.${index}.label`}>{item.label}</span>
+              </a>
+
+              {section?.layout === "events" && (
+                <div class="site-mobile-menu-links">
+                  {section.events?.map((event, eventIndex) => (
+                    <a href={getDesktopMenuLinkHref(index, eventIndex)} class="site-mobile-menu-sub-link">
+                      <span data-i18n={`desktopMenuSections.${index}.events.${eventIndex}.title`}>
+                        {event.title}
+                      </span>
+                      <small data-i18n={`desktopMenuSections.${index}.events.${eventIndex}.tag`}>
+                        {event.tag}
+                      </small>
+                    </a>
+                  ))}
+                </div>
+              )}
+
+              {section && section.layout !== "events" && (
+                <div class="site-mobile-menu-links">
+                  {section.links.map((link, linkIndex) => (
+                    <a href={getDesktopMenuLinkHref(index, linkIndex)} class="site-mobile-menu-sub-link">
+                      <span data-i18n={`desktopMenuSections.${index}.links.${linkIndex}.title`}>
+                        {link.title}
+                      </span>
+                      <small data-i18n={`desktopMenuSections.${index}.links.${linkIndex}.subtitle`}>
+                        {link.subtitle}
+                      </small>
+                    </a>
+                  ))}
+                </div>
+              )}
+
+              {section?.card && (
+                <a href={primaryCardHref} class="site-mobile-menu-card">
+                  <strong data-i18n={`desktopMenuSections.${index}.card.title`}>
+                    {section.card.title}
+                  </strong>
+                  <span data-i18n={`desktopMenuSections.${index}.card.cta`}>
+                    {section.card.cta}
+                  </span>
+                </a>
+              )}
+
+              {section?.card2 && (
+                <a href={secondaryCardHref} class="site-mobile-menu-card site-mobile-menu-card--alt">
+                  <strong data-i18n={`desktopMenuSections.${index}.card2.title`}>
+                    {section.card2.title}
+                  </strong>
+                  <span data-i18n={`desktopMenuSections.${index}.card2.cta`}>
+                    {section.card2.cta}
+                  </span>
+                </a>
+              )}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </nav>
 </header>

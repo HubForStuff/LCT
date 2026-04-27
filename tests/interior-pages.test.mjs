@@ -345,10 +345,10 @@ test("competitions and pre-registration pages build with the expected mockup con
       /href="\/competitions\/greater-tech-challenge-2025\/"/,
       "expected the competitions listing to link to generated detail pages",
     );
-    assert.match(
+    assert.doesNotMatch(
       competitionsHtml,
       /\[TEST DATA\]/i,
-      "expected the competitions listing to include clearly marked test data entries",
+      "expected the public competitions listing to exclude internal test data entries",
     );
 
     assert.match(
@@ -369,8 +369,8 @@ test("competitions and pre-registration pages build with the expected mockup con
 
     assert.match(
       preRegistrationHtml,
-      /Competition Application|Pre-Registration|Application Form/i,
-      "expected the shared competition application form heading",
+      /Competition\s*<br[^>]*>\s*<em>Pre-Registration<\/em>|Competition Pre-Registration/i,
+      "expected the shared competition pre-registration heading",
     );
     assert.match(
       preRegistrationHtml,
@@ -387,6 +387,16 @@ test("competitions and pre-registration pages build with the expected mockup con
       /Application Guide\s*&amp;\s*Tutorial|Application Guide\s*&\s*Tutorial/i,
       "expected the guide/tutorial callout",
     );
+    assert.doesNotMatch(
+      preRegistrationHtml,
+      /class="tutorial-actions"[\s\S]*href="#"/,
+      "expected placeholder pre-registration resource actions to avoid fake # links",
+    );
+    assert.match(
+      preRegistrationHtml,
+      /class="[^"]*site-btn--disabled[^"]*"[^>]*disabled/,
+      "expected unavailable pre-registration resources to render as disabled controls",
+    );
     assert.match(
       preRegistrationHtml,
       /Competition Information/i,
@@ -401,6 +411,16 @@ test("competitions and pre-registration pages build with the expected mockup con
       preRegistrationHtml,
       /Submit/i,
       "expected the final submit CTA",
+    );
+    assert.doesNotMatch(
+      preRegistrationHtml,
+      /\[TEST DATA\]/i,
+      "expected the pre-registration competition selector to exclude internal test data entries",
+    );
+    assert.equal(
+      existsSync(resolve(build.outDir, "competitions", "test-data-ai-sandbox", "index.html")),
+      false,
+      "expected internal test-data competition detail pages to stay out of the public build",
     );
 
     const benefitCount = (preRegistrationHtml.match(/benefit-item/g) ?? []).length;
@@ -450,6 +470,16 @@ test("competitions and pre-registration pages build with the expected mockup con
       newsArticleHtml,
       /Back/i,
       "expected the news detail page to include the back-to-list CTA",
+    );
+    assert.match(
+      newsArticleHtml,
+      /<a href="\/news\/" class="news-back-link">\s*<svg[\s\S]*?<\/svg>\s*<span data-i18n="articlePage\.backLabel">Back<\/span>\s*<\/a>/,
+      "expected the localized news back link label to live beside the preserved arrow icon",
+    );
+    assert.doesNotMatch(
+      newsArticleHtml,
+      /<a href="\/news\/" class="news-back-link" data-i18n="articlePage\.backLabel"/,
+      "expected localization to avoid replacing the entire news back link contents",
     );
     assert.match(
       newsArticleHtml,
@@ -575,6 +605,238 @@ test("interior header supports homepage mega-menu layout variants", { concurrenc
     );
   } finally {
     build.cleanup();
+  }
+});
+
+test("Batch D mobile shell and controls expose usable navigation affordances", { concurrency: false }, async () => {
+  const build = buildSite();
+  const port = 5300 + Math.floor(Math.random() * 500);
+  const session = `batch-d-mobile-${Date.now()}`;
+  const server = spawn(pythonExecutable, ["-m", "http.server", String(port), "-d", build.outDir], {
+    cwd: projectRoot,
+    stdio: "ignore",
+  });
+
+  try {
+    const competitionsHtml = readFileSync(
+      resolve(build.outDir, "competitions", "index.html"),
+      "utf8",
+    );
+    const homeHtml = readFileSync(resolve(build.outDir, "index.html"), "utf8");
+    const interiorStyles = readProjectFile("src/styles/interior-pages.css");
+    const homepageStyles = readProjectFile("src/styles/homepage.css");
+
+    assert.match(
+      competitionsHtml,
+      /id="mobileMenuBtn"/,
+      "expected interior pages to expose a mobile menu trigger",
+    );
+    assert.match(
+      competitionsHtml,
+      /class="site-mobile-menu"[^>]*id="mobileMenu"/,
+      "expected interior pages to render a mobile navigation panel",
+    );
+    assert.match(
+      competitionsHtml,
+      /data-mobile-accordion/,
+      "expected the interior mobile menu to reuse the shared accordion hook",
+    );
+    assert.match(
+      competitionsHtml,
+      /data-i18n="desktopMenuSections\.1\.links\.0\.title"/,
+      "expected interior mobile menu items to localize from the shared desktop menu sections",
+    );
+    assert.match(
+      competitionsHtml,
+      /href="\/advisory\/"[\s\S]*href="\/competitions\/"[\s\S]*href="\/events\/"[\s\S]*href="\/programs\/"[\s\S]*href="\/network\/"/,
+      "expected the interior mobile menu to include a path to each primary section",
+    );
+    assert.match(
+      interiorStyles,
+      /\.site-mobile-menu-btn\s*\{[^}]*display:\s*none;[^}]*\}/s,
+      "expected the interior mobile menu button to stay hidden on desktop",
+    );
+    assert.match(
+      interiorStyles,
+      /@media \(max-width:\s*980px\)[\s\S]*\.site-mobile-menu-btn\s*\{[^}]*display:\s*inline-flex;/s,
+      "expected the interior mobile menu button to appear at the mobile shell breakpoint",
+    );
+    assert.match(
+      interiorStyles,
+      /@media \(max-width:\s*720px\)[\s\S]*\.filters-bar\s*\{[^}]*flex-wrap:\s*nowrap;[^}]*overflow-x:\s*auto;/s,
+      "expected mobile competition filters to use one compact horizontal scroll row",
+    );
+    assert.match(
+      interiorStyles,
+      /@media \(max-width:\s*720px\)[\s\S]*\.tab\s*\{[^}]*font-size:\s*18px;/s,
+      "expected mobile competition tabs to use compact readable typography",
+    );
+    assert.match(
+      homeHtml,
+      /home-logo--mobile-wordmark/,
+      "expected the mobile homepage to render a wordmark-specific brand mark",
+    );
+    assert.match(
+      homepageStyles,
+      /\.mobile-home \.mob-brand-wordmark\s*\{[^}]*width:\s*140px;[^}]*height:\s*28px;/s,
+      "expected the mobile homepage wordmark to match the mockup dimensions",
+    );
+
+    await waitForServer(port);
+
+    try {
+      runAgentBrowser(["--session", session, "close"]);
+    } catch {
+      // session may not exist yet
+    }
+
+    runAgentBrowser(["--session", session, "set", "viewport", "390", "844"]);
+    runAgentBrowser(["--session", session, "open", `http://127.0.0.1:${port}/competitions/`]);
+    runAgentBrowser(["--session", session, "wait", "1000"]);
+
+    const closedMenuState = JSON.parse(
+      JSON.parse(
+        runAgentBrowser([
+          "--session",
+          session,
+          "eval",
+          `JSON.stringify((() => {
+            const button = document.getElementById("mobileMenuBtn");
+            const menu = document.getElementById("mobileMenu");
+            if (!button || !menu) {
+              throw new Error("Interior mobile menu controls not found");
+            }
+
+            const buttonStyle = getComputedStyle(button);
+            return {
+              buttonDisplay: buttonStyle.display,
+              expanded: button.getAttribute("aria-expanded"),
+              menuOpen: menu.classList.contains("is-open"),
+            };
+          })())`,
+        ]),
+      ),
+    );
+
+    assert.match(
+      closedMenuState.buttonDisplay,
+      /^(inline-)?flex$/,
+      `expected the interior mobile menu trigger to be visible at 390px, received ${JSON.stringify(closedMenuState)}`,
+    );
+    assert.equal(
+      closedMenuState.expanded,
+      "false",
+      `expected the interior mobile menu trigger to start collapsed, received ${JSON.stringify(closedMenuState)}`,
+    );
+    assert.equal(
+      closedMenuState.menuOpen,
+      false,
+      `expected the interior mobile menu panel to start closed, received ${JSON.stringify(closedMenuState)}`,
+    );
+
+    runAgentBrowser(["--session", session, "click", "#mobileMenuBtn"]);
+    runAgentBrowser(["--session", session, "wait", "250"]);
+
+    const openMenuState = JSON.parse(
+      JSON.parse(
+        runAgentBrowser([
+          "--session",
+          session,
+          "eval",
+          `JSON.stringify((() => {
+            const button = document.getElementById("mobileMenuBtn");
+            const menu = document.getElementById("mobileMenu");
+            return {
+              expanded: button?.getAttribute("aria-expanded") ?? "",
+              menuOpen: menu?.classList.contains("is-open") ?? false,
+              text: menu?.textContent ?? "",
+              primaryLinks: Array.from(menu?.querySelectorAll(".site-mobile-menu-primary") ?? []).map((link) => link.getAttribute("href")),
+            };
+          })())`,
+        ]),
+      ),
+    );
+
+    assert.equal(
+      openMenuState.expanded,
+      "true",
+      `expected the interior mobile menu trigger to track expanded state, received ${JSON.stringify(openMenuState)}`,
+    );
+    assert.equal(
+      openMenuState.menuOpen,
+      true,
+      `expected the interior mobile menu panel to open after tapping the trigger, received ${JSON.stringify(openMenuState)}`,
+    );
+    assert.match(
+      openMenuState.text,
+      /Advisory|Competitions|Events|Programs|Network/i,
+      `expected the open interior mobile menu to expose primary navigation text, received ${JSON.stringify(openMenuState)}`,
+    );
+    assert.deepEqual(
+      openMenuState.primaryLinks,
+      ["/advisory/", "/competitions/", "/events/", "/programs/", "/network/"],
+      `expected primary mobile menu links for every section, received ${JSON.stringify(openMenuState)}`,
+    );
+
+    const mobileControlState = JSON.parse(
+      JSON.parse(
+        runAgentBrowser([
+          "--session",
+          session,
+          "eval",
+          `JSON.stringify((() => {
+            const filters = document.querySelector(".filters-bar");
+            const tab = document.querySelector(".tab");
+            const tabGroup = document.querySelector(".tab-group");
+            const filtersStyle = getComputedStyle(filters);
+            const tabStyle = getComputedStyle(tab);
+            const tabGroupStyle = getComputedStyle(tabGroup);
+
+            return {
+              filtersHeight: Math.round(filters.getBoundingClientRect().height),
+              filtersFlexWrap: filtersStyle.flexWrap,
+              filtersOverflowX: filtersStyle.overflowX,
+              tabFontSize: tabStyle.fontSize,
+              tabOverflowX: tabGroupStyle.overflowX,
+            };
+          })())`,
+        ]),
+      ),
+    );
+
+    assert.equal(
+      mobileControlState.filtersFlexWrap,
+      "nowrap",
+      `expected mobile competition filters to stay in a compact horizontal row, received ${JSON.stringify(mobileControlState)}`,
+    );
+    assert.match(
+      mobileControlState.filtersOverflowX,
+      /auto|scroll/,
+      `expected mobile competition filters to scroll horizontally, received ${JSON.stringify(mobileControlState)}`,
+    );
+    assert.ok(
+      mobileControlState.filtersHeight <= 76,
+      `expected mobile competition filters to avoid taking several rows, received ${JSON.stringify(mobileControlState)}`,
+    );
+    assert.equal(
+      mobileControlState.tabFontSize,
+      "18px",
+      `expected mobile competition tabs to use compact typography, received ${JSON.stringify(mobileControlState)}`,
+    );
+    assert.match(
+      mobileControlState.tabOverflowX,
+      /auto|scroll/,
+      `expected mobile competition tabs to remain horizontally scrollable, received ${JSON.stringify(mobileControlState)}`,
+    );
+  } finally {
+    build.cleanup();
+    server.kill("SIGTERM");
+
+    try {
+      runAgentBrowser(["--session", session, "close"]);
+    } catch {
+      // ignore cleanup failures
+    }
   }
 });
 
@@ -757,6 +1019,16 @@ test("competitions listing/detail Batch B polish matches approved copy and shell
       "expected competition detail back link to use the muted treatment hook",
     );
     assert.match(
+      competitionDetailHtml,
+      /<a href="\/competitions\/" class="news-back-link news-back-link--muted">\s*<svg[\s\S]*?<\/svg>\s*<span data-i18n="detailPage\.backLabel">Back to competitions<\/span>\s*<\/a>/,
+      "expected the localized competition back link label to live beside the preserved arrow icon",
+    );
+    assert.doesNotMatch(
+      competitionDetailHtml,
+      /<a href="\/competitions\/" class="news-back-link news-back-link--muted" data-i18n="detailPage\.backLabel"/,
+      "expected localization to avoid replacing the entire competition back link contents",
+    );
+    assert.match(
       interiorStyles,
       /\.competition-hero-image-placeholder\s*\{[^}]*min-height:\s*320px;[^}]*border-radius:\s*24px;[^}]*background:/s,
       "expected competition detail hero placeholder to render as a visible media block",
@@ -796,8 +1068,18 @@ test("competitions listing/detail Batch B polish matches approved copy and shell
       /\.filters-bar\s*\{[^}]*gap:\s*8px;/s,
       "expected filter groups to use the mockup 8px gap",
     );
+    assert.match(
+      interiorStyles,
+      /\.form-progress\s*\{[^}]*display:\s*flex;[^}]*gap:\s*0;[^}]*background:\s*#f5f5f5;[^}]*border-radius:\s*12px;[^}]*overflow:\s*hidden;/s,
+      "expected pre-registration progress to use the connected segmented bar from the mockup",
+    );
+    assert.match(
+      interiorStyles,
+      /\.progress-step\.is-active\s*\{[^}]*background:\s*#000;[^}]*color:\s*#fff;/s,
+      "expected the active pre-registration segment to render black with white text",
+    );
 
-    for (const expectedCardIconColor of ["#2563EB", "#7c3aed", "#d97706", "#0d9488", "#475569", "#dc2626"]) {
+    for (const expectedCardIconColor of ["#2563EB", "#16a34a", "#0891b2", "#d97706", "#475569", "#dc2626"]) {
       assert.match(
         competitionsHtml,
         new RegExp(`stroke="${expectedCardIconColor}"`, "i"),
@@ -1086,8 +1368,35 @@ test("competition filters work on the listing page, names link to detail pages, 
     runAgentBrowser(["--session", session, "click", ".site-header .site-lang [data-lang-option='EN']"]);
     runAgentBrowser(["--session", session, "wait", "500"]);
 
-    runAgentBrowser(["--session", session, "click", "[data-status-filter='future']"]);
-    runAgentBrowser(["--session", session, "click", "[data-focus-filter='ai']"]);
+    const defaultCardOrder = JSON.parse(
+      JSON.parse(
+        runAgentBrowser([
+          "--session",
+          session,
+          "eval",
+          `JSON.stringify(Array.from(document.querySelectorAll("#panel-startup .comp-grid [data-filter-item]")).map((node) => ({
+            name: node.querySelector("[data-competition-name-link]")?.textContent?.trim() ?? "",
+            status: node.getAttribute("data-status"),
+            sortDate: node.getAttribute("data-sort-date"),
+          })))`,
+        ]),
+      ),
+    );
+    const firstClosedIndex = defaultCardOrder.findIndex((entry) => entry.status === "closed");
+
+    assert.equal(
+      defaultCardOrder.every((entry) => Boolean(entry.sortDate)),
+      true,
+      `expected public cards to expose machine-readable sort dates, received ${JSON.stringify(defaultCardOrder)}`,
+    );
+    assert.equal(
+      firstClosedIndex === -1 || defaultCardOrder.slice(firstClosedIndex).every((entry) => entry.status === "closed"),
+      true,
+      `expected default deadline sorting to keep closed cards last, received ${JSON.stringify(defaultCardOrder)}`,
+    );
+
+    runAgentBrowser(["--session", session, "click", "[data-status-filter='open']"]);
+    runAgentBrowser(["--session", session, "click", "[data-focus-filter='fintech']"]);
     runAgentBrowser(["--session", session, "wait", "300"]);
 
     const visibleCards = runAgentBrowser([
@@ -1157,13 +1466,13 @@ test("competition filters work on the listing page, names link to detail pages, 
     assert.match(visibleCards, /^1\s*$/, "expected the combined filters to leave exactly one visible startup competition");
     assert.match(
       filteredHeading,
-      /\[TEST DATA\].*AI/i,
-      "expected the future + AI filters to isolate the marked test-data entry",
+      /China-LATAM FinTech Cup/i,
+      "expected the open + fintech filters to isolate the public fintech competition",
     );
     assert.match(
       filteredHref,
-      /\/competitions\/test-data-ai-sandbox\//,
-      `expected the filtered startup link to point at the AI sandbox detail page, received ${filteredHref}`,
+      /\/competitions\/china-latam-fintech-cup\//,
+      `expected the filtered startup link to point at the fintech cup detail page, received ${filteredHref}`,
     );
     assert.equal(
       tabCountState.every((entry) => entry.renderedCount === String(entry.visibleCount)),
@@ -1184,7 +1493,7 @@ test("competition filters work on the listing page, names link to detail pages, 
 
     assert.match(
       detailHeading,
-      /\[TEST DATA\].*AI/i,
+      /China-LATAM FinTech Cup/i,
       "expected clicking the competition name to open the matching detail page",
     );
 
@@ -1192,7 +1501,7 @@ test("competition filters work on the listing page, names link to detail pages, 
       "--session",
       session,
       "open",
-      `http://127.0.0.1:${port}/pre-registration/?competition=test-data-ai-sandbox`,
+      `http://127.0.0.1:${port}/pre-registration/?competition=china-latam-fintech-cup`,
     ]);
     runAgentBrowser(["--session", session, "wait", "1000"]);
 
@@ -1203,11 +1512,87 @@ test("competition filters work on the listing page, names link to detail pages, 
       "text",
       "[data-selected-competition-name]",
     ]);
+    const selectedCompetitionFlow = JSON.parse(
+      JSON.parse(
+        runAgentBrowser([
+          "--session",
+          session,
+          "eval",
+          `JSON.stringify({
+            title: document.querySelector(".page-title")?.textContent?.trim() ?? "",
+            subtitle: document.querySelector(".page-subtitle")?.textContent?.trim() ?? "",
+            selectorHidden: document.querySelector("[data-competition-select-row]")?.hidden ?? false,
+            selectDisabled: document.querySelector("[data-competition-select]")?.disabled ?? false,
+          })`,
+        ]),
+      ),
+    );
 
     assert.match(
       selectedCompetition,
-      /\[TEST DATA\].*AI/i,
+      /China-LATAM FinTech Cup/i,
       "expected the application page to surface the selected competition name",
+    );
+    assert.match(
+      selectedCompetitionFlow.title,
+      /China-LATAM FinTech Cup[\s\S]*Pre-Registration/i,
+      `expected selected competition flow to personalize the page title, received ${JSON.stringify(selectedCompetitionFlow)}`,
+    );
+    assert.equal(
+      selectedCompetitionFlow.selectorHidden,
+      true,
+      `expected selected competition flow to hide the selector row, received ${JSON.stringify(selectedCompetitionFlow)}`,
+    );
+    assert.equal(
+      selectedCompetitionFlow.selectDisabled,
+      true,
+      `expected selected competition flow to lock the selected competition, received ${JSON.stringify(selectedCompetitionFlow)}`,
+    );
+
+    runAgentBrowser(["--session", session, "set", "viewport", "390", "844"]);
+    runAgentBrowser([
+      "--session",
+      session,
+      "open",
+      `http://127.0.0.1:${port}/pre-registration/?competition=china-latam-fintech-cup`,
+    ]);
+    runAgentBrowser(["--session", session, "wait", "1000"]);
+
+    const preregMobileLayout = JSON.parse(
+      JSON.parse(
+        runAgentBrowser([
+          "--session",
+          session,
+          "eval",
+          `JSON.stringify((() => {
+            const banner = document.querySelector(".prereg-banner");
+            const support = document.querySelector(".prereg-support-card");
+            const bannerStyle = getComputedStyle(banner);
+            const watermarkStyle = getComputedStyle(banner, "::after");
+            return {
+              bannerWidth: Math.round(banner.getBoundingClientRect().width),
+              supportWidth: Math.round(support.getBoundingClientRect().width),
+              flexDirection: bannerStyle.flexDirection,
+              watermarkDisplay: watermarkStyle.display,
+            };
+          })())`,
+        ]),
+      ),
+    );
+
+    assert.equal(
+      preregMobileLayout.flexDirection,
+      "column",
+      `expected mobile pre-registration banner content to stack, received ${JSON.stringify(preregMobileLayout)}`,
+    );
+    assert.equal(
+      preregMobileLayout.watermarkDisplay,
+      "none",
+      `expected mobile pre-registration banner watermark to be hidden, received ${JSON.stringify(preregMobileLayout)}`,
+    );
+    assert.ok(
+      preregMobileLayout.supportWidth >= 300 && preregMobileLayout.bannerWidth >= 340,
+      `expected mobile pre-registration banner/support card to use the available width, received ${JSON.stringify(preregMobileLayout)}`,
     );
   } finally {
     build.cleanup();
@@ -1305,6 +1690,67 @@ test("interior footer language switch localizes footer controls at runtime", { c
     }
 
     runAgentBrowser(["--session", session, "set", "viewport", "1440", "1200"]);
+    runAgentBrowser(["--session", session, "open", `http://127.0.0.1:${port}/news/`]);
+    runAgentBrowser(["--session", session, "wait", "1000"]);
+
+    const newsPrimaryButtonStyle = JSON.parse(
+      JSON.parse(
+        runAgentBrowser([
+          "--session",
+          session,
+          "eval",
+          `JSON.stringify({
+            color: getComputedStyle(document.querySelector(".news-featured-copy .site-btn--primary")).color,
+            markerColor: getComputedStyle(document.querySelector(".news-featured-copy .site-btn--primary"), "::before").backgroundColor,
+          })`,
+        ]),
+      ),
+    );
+
+    assert.deepEqual(
+      newsPrimaryButtonStyle,
+      {
+        color: "rgb(255, 255, 255)",
+        markerColor: "rgb(255, 255, 255)",
+      },
+      `expected interior primary CTA text and dot to render white, received ${JSON.stringify(newsPrimaryButtonStyle)}`,
+    );
+
+    runAgentBrowser(["--session", session, "open", `http://127.0.0.1:${port}/pre-registration/`]);
+    runAgentBrowser(["--session", session, "wait", "1000"]);
+
+    const preregDarkButtonStyle = JSON.parse(
+      JSON.parse(
+        runAgentBrowser([
+          "--session",
+          session,
+          "eval",
+          `JSON.stringify((() => {
+            const probe = document.createElement("a");
+            probe.href = "#";
+            probe.className = "site-btn site-btn--dark";
+            probe.textContent = "Dark CTA";
+            document.querySelector(".interior-page").appendChild(probe);
+            const result = {
+              color: getComputedStyle(probe).color,
+              markerColor: getComputedStyle(probe, "::before").backgroundColor,
+            };
+            probe.remove();
+            return result;
+          })())`,
+        ]),
+      ),
+    );
+
+    assert.deepEqual(
+      preregDarkButtonStyle,
+      {
+        color: "rgb(255, 255, 255)",
+        markerColor: "rgb(255, 255, 255)",
+      },
+      `expected interior dark CTA text and dot to render white, received ${JSON.stringify(preregDarkButtonStyle)}`,
+    );
+
     runAgentBrowser(["--session", session, "open", `http://127.0.0.1:${port}/news/`]);
     runAgentBrowser(["--session", session, "wait", "1000"]);
 

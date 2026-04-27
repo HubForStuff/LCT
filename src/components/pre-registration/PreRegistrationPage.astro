@@ -62,6 +62,7 @@ const aiTextareaFields = [
     currentLanguage={currentLanguage}
     languageLabel={locale.ui.chooseLanguage}
     homeLabel={locale.ui.homeLabel}
+    menuLabel={locale.ui.menu}
     desktopMenuSections={locale.desktopMenuSections}
     navExploreLabel={locale.navExploreLabel}
   />
@@ -70,17 +71,43 @@ const aiTextareaFields = [
     <section class="page-header">
       <div class="interior-wrap page-header-inner page-header-inner--split">
         <div>
-          <div class="page-eyebrow" data-i18n="page.eyebrow">
+          <div class="page-eyebrow">
             <span class="dot"></span>
-            {page.eyebrow}
+            <span data-prereg-page-eyebrow data-i18n="page.eyebrow">{page.eyebrow}</span>
           </div>
-          <h1 class="page-title" data-i18n-html="page.titleHtml" set:html={page.titleHtml}></h1>
+          <h1
+            class="page-title"
+            data-prereg-page-title
+            data-i18n-html="page.titleHtml"
+            set:html={page.titleHtml}
+          ></h1>
           <p class="selected-competition-context" data-selected-competition-context hidden>
             <span data-i18n="page.fields.selectedCompetition">{page.fields.selectedCompetition}</span>
             <strong data-selected-competition-name></strong>
           </p>
         </div>
-        <p class="page-subtitle" data-i18n="page.subtitle">{page.subtitle}</p>
+        <p class="page-subtitle" data-prereg-page-subtitle data-i18n="page.subtitle">{page.subtitle}</p>
+        <span
+          class="sr-only"
+          data-prereg-selected-eyebrow
+          data-i18n="page.selectedCompetitionEyebrow"
+        >
+          {page.selectedCompetitionEyebrow}
+        </span>
+        <span
+          class="sr-only"
+          data-prereg-selected-title-suffix
+          data-i18n="page.selectedTitleSuffix"
+        >
+          {page.selectedTitleSuffix}
+        </span>
+        <span
+          class="sr-only"
+          data-prereg-selected-subtitle-template
+          data-i18n="page.selectedSubtitleTemplate"
+        >
+          {page.selectedSubtitleTemplate}
+        </span>
       </div>
     </section>
 
@@ -124,18 +151,35 @@ const aiTextareaFields = [
 
         <div class="tutorial-actions">
           {page.guide.actions.map((action, actionIndex) => (
-            <a
-              href={action.href}
-              class:list={[
-                "site-btn",
-                action.theme === "dark" ? "site-btn--dark" : "site-btn--secondary",
-              ]}
-            >
-              <span class="resource-icon" aria-hidden="true">
-                {action.icon === "download" ? "↓" : "▶"}
-              </span>
-              <span data-i18n={`page.guide.actions.${actionIndex}.label`}>{action.label}</span>
-            </a>
+            action.href === "#" ? (
+              <button
+                type="button"
+                class:list={[
+                  "site-btn",
+                  action.theme === "dark" ? "site-btn--dark" : "site-btn--secondary",
+                  "site-btn--disabled",
+                ]}
+                disabled
+              >
+                <span class="resource-icon" aria-hidden="true">
+                  {action.icon === "download" ? "↓" : "▶"}
+                </span>
+                <span data-i18n={`page.guide.actions.${actionIndex}.label`}>{action.label}</span>
+              </button>
+            ) : (
+              <a
+                href={action.href}
+                class:list={[
+                  "site-btn",
+                  action.theme === "dark" ? "site-btn--dark" : "site-btn--secondary",
+                ]}
+              >
+                <span class="resource-icon" aria-hidden="true">
+                  {action.icon === "download" ? "↓" : "▶"}
+                </span>
+                <span data-i18n={`page.guide.actions.${actionIndex}.label`}>{action.label}</span>
+              </a>
+            )
           ))}
         </div>
       </div>
@@ -171,7 +215,7 @@ const aiTextareaFields = [
               </div>
             </div>
 
-            <div class="form-row">
+            <div class="form-row" data-competition-select-row>
               <label for="selectedCompetition">
                 <span data-i18n="page.fields.selectedCompetition">{page.fields.selectedCompetition}</span>{" "}
                 <span class="req">*</span>
@@ -659,8 +703,29 @@ const aiTextareaFields = [
 <script>
   const competitionSelect = document.querySelector("[data-competition-select]");
   const competitionHiddenInput = document.querySelector("[data-competition-hidden]");
+  const competitionSelectRow = document.querySelector("[data-competition-select-row]");
   const competitionContext = document.querySelector("[data-selected-competition-context]");
   const competitionName = document.querySelector("[data-selected-competition-name]");
+  const pageEyebrow = document.querySelector("[data-prereg-page-eyebrow]");
+  const pageTitle = document.querySelector("[data-prereg-page-title]");
+  const pageSubtitle = document.querySelector("[data-prereg-page-subtitle]");
+  const selectedEyebrow = document.querySelector("[data-prereg-selected-eyebrow]");
+  const selectedTitleSuffix = document.querySelector("[data-prereg-selected-title-suffix]");
+  const selectedSubtitleTemplate = document.querySelector("[data-prereg-selected-subtitle-template]");
+
+  function escapeHtml(value) {
+    return value.replace(/[&<>"']/g, (character) => {
+      const entities = {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;",
+      };
+
+      return entities[character] || character;
+    });
+  }
 
   function syncCompetitionSelection() {
     if (!(competitionSelect instanceof HTMLSelectElement) || !(competitionHiddenInput instanceof HTMLInputElement)) {
@@ -681,6 +746,11 @@ const aiTextareaFields = [
     }
 
     competitionHiddenInput.value = competitionSelect.value;
+    competitionSelect.disabled = Boolean(competitionSlug && competitionSelect.value);
+
+    if (competitionSelectRow instanceof HTMLElement) {
+      competitionSelectRow.hidden = Boolean(competitionSlug && competitionSelect.value);
+    }
 
     if (!(competitionContext instanceof HTMLElement) || !(competitionName instanceof HTMLElement)) {
       return;
@@ -688,9 +758,28 @@ const aiTextareaFields = [
 
     const selectedOption = competitionSelect.selectedOptions[0];
     const hasSelection = Boolean(competitionSelect.value && selectedOption);
+    const selectedLabel = selectedOption?.textContent?.trim() || "";
 
     competitionContext.hidden = !hasSelection;
-    competitionName.textContent = hasSelection ? selectedOption.textContent.trim() : "";
+    competitionName.textContent = hasSelection ? selectedLabel : "";
+
+    if (
+      hasSelection &&
+      competitionSlug &&
+      pageEyebrow instanceof HTMLElement &&
+      pageTitle instanceof HTMLElement &&
+      pageSubtitle instanceof HTMLElement &&
+      selectedEyebrow instanceof HTMLElement &&
+      selectedTitleSuffix instanceof HTMLElement &&
+      selectedSubtitleTemplate instanceof HTMLElement
+    ) {
+      const suffix = selectedTitleSuffix.textContent?.trim() || "";
+      const subtitleTemplate = selectedSubtitleTemplate.textContent?.trim() || "";
+
+      pageEyebrow.textContent = selectedEyebrow.textContent?.trim() || "";
+      pageTitle.innerHTML = `${escapeHtml(selectedLabel)}<br /><em>${escapeHtml(suffix)}</em>`;
+      pageSubtitle.textContent = subtitleTemplate.replace("{competition}", selectedLabel);
+    }
   }
 
   if (competitionSelect instanceof HTMLSelectElement) {

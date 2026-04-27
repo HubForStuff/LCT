@@ -8,6 +8,8 @@
   "accent": "warm",
   "featured": false,
   "order": 3,
+  "applicationOpensAt": "2025-04-01",
+  "applicationDeadlineAt": "2025-10-10",
   "watermark": "CLN",
   "value": "$300K",
   "focusTags": ["CleanTech", "Energy", "Grid"],

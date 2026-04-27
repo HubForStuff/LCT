@@ -9,6 +9,7 @@ export type InteriorPageMeta = {
 export type InteriorPageUi = {
   chooseLanguage: string;
   homeLabel: string;
+  menu: string;
   newsletterEmail: string;
   newsletterPlaceholder: string;
 };
@@ -128,6 +129,9 @@ export type PreRegistrationPageContent = {
   eyebrow: string;
   titleHtml: string;
   subtitle: string;
+  selectedCompetitionEyebrow: string;
+  selectedTitleSuffix: string;
+  selectedSubtitleTemplate: string;
   formProgressLabel: string;
   banner: {
     badge: string;

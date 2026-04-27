@@ -92,7 +92,19 @@ function localizeCompetitionEntry(
   };
 }
 
-async function getAllCompetitionEntries(): Promise<CompetitionCollectionEntry[]> {
+function isPublicCompetitionEntry(entry: CompetitionCollectionEntry): boolean {
+  return entry.draft !== true;
+}
+
+function getCompetitionSortDate(entry: CompetitionCollectionEntry): string {
+  if (entry.statusTone === "future") {
+    return entry.applicationOpensAt ?? entry.applicationDeadlineAt ?? "";
+  }
+
+  return entry.applicationDeadlineAt ?? entry.applicationOpensAt ?? "";
+}
+
+async function getAllCompetitionEntries(options: { includeDrafts?: boolean } = {}): Promise<CompetitionCollectionEntry[]> {
   const entries = (await keystaticReader.collections.competitions.all()) as {
     slug: string;
     entry: CompetitionCollectionEntry;
@@ -103,6 +115,7 @@ async function getAllCompetitionEntries(): Promise<CompetitionCollectionEntry[]>
       ...entry,
       slug,
     }))
+    .filter((entry) => options.includeDrafts || isPublicCompetitionEntry(entry))
     .sort((left, right) => left.order - right.order);
 }
 
@@ -129,6 +142,8 @@ function buildListingCard(entry: CompetitionLocalizedEntry) {
     deadlineValue: entry.localized.deadlineValue,
     ctaLabel: entry.localized.ctaLabel,
     accent: entry.accent,
+    sortDate: getCompetitionSortDate(entry),
+    displayOrder: entry.order,
   };
 }
 
@@ -150,6 +165,8 @@ function buildFeaturedCard(entry: CompetitionLocalizedEntry) {
     deadlineValue: entry.localized.deadlineValue,
     ctaLabel: entry.localized.ctaLabel,
     watermark: entry.watermark,
+    sortDate: getCompetitionSortDate(entry),
+    displayOrder: entry.order,
   };
 }
 
@@ -211,7 +228,8 @@ export async function getCompetitionFormOptionsByLocale(): Promise<
 }
 
 export async function getAllCompetitionSlugs(): Promise<string[]> {
-  return keystaticReader.collections.competitions.list();
+  const entries = await getAllCompetitionEntries();
+  return entries.map((entry) => entry.slug);
 }
 
 export async function getCompetitionsListingPageData(): Promise<CompetitionListingPageData> {

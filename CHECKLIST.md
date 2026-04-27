@@ -1,5 +1,11 @@
 # UI/UX Refinement Checklist — All 56 Items
 
+## Current Status Review — 2026-04-27
+
+The historical checklist is no longer sufficient as the sole source of truth. A fresh app review against the current build, stale customer feedback, and mockups found implementation items, including production-visible test competitions, interior CTA contrast regressions, missing mobile interior navigation, and pre-registration drift from the supplied mockup.
+
+The 2026-04-27 implementation pass has resolved TODO-001 through TODO-012 in `.opencode/feedback/current-status-todo-2026-04-27.md`. Current screenshot evidence lives in `.opencode/feedback/2026-04-27-implementation/shots/`.
+
 ## LANDING PAGE
 
 | # | Description | Status | Notes |
@@ -95,6 +101,22 @@
 ## Implementation notes — 2026-04-27
 
 - Missing static pages linked from the homepage, submenus, and interior shell are now generated from Keystatic-managed content: `/advisory/`, `/events/`, `/programs/`, and `/network/`.
+- Current-status TODOs TODO-001 through TODO-012 are implemented and verified against the relevant mockups/routes. Production-visible competition fixtures are draft-filtered, competition ordering is date-backed, shared interior CTA/back-link regressions are fixed, pre-registration matches the approved generic/selected-competition flow, and mobile shell/control/logo issues are addressed.
+
+## Visual verification list — 2026-04-27
+
+- Competitions desktop
+  Screenshot: `.opencode/feedback/2026-04-27-implementation/shots/competitions-desktop.png`
+- Competitions mobile and opened interior mobile menu
+  Screenshots: `.opencode/feedback/2026-04-27-implementation/shots/competitions-mobile.png`, `.opencode/feedback/2026-04-27-implementation/shots/competitions-mobile-menu.png`
+- Pre-registration desktop and mobile
+  Screenshots: `.opencode/feedback/2026-04-27-implementation/shots/pre-registration-desktop.png`, `.opencode/feedback/2026-04-27-implementation/shots/pre-registration-mobile.png`
+- News article and competition detail desktop
+  Screenshots: `.opencode/feedback/2026-04-27-implementation/shots/news-article-desktop.png`, `.opencode/feedback/2026-04-27-implementation/shots/competition-detail-desktop.png`
+- Homepage mobile and language-switch check
+  Screenshots: `.opencode/feedback/2026-04-27-implementation/shots/home-mobile.png`, `.opencode/feedback/2026-04-27-implementation/shots/home-mobile-cn.png`
+- Interior language-switch check
+  Screenshot: `.opencode/feedback/2026-04-27-implementation/shots/competitions-desktop-br.png`
 
 ## Visual verification list — 2026-04-01
 

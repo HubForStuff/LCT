@@ -44,9 +44,12 @@ export type CompetitionCollectionEntry = {
   slug: string;
   track: CompetitionTrack;
   statusTone: CompetitionStatusTone;
+  draft?: boolean;
   accent: CompetitionAccent;
   featured: boolean;
   order: number;
+  applicationOpensAt?: string;
+  applicationDeadlineAt?: string;
   watermark: string;
   value: string;
   focusTags: string[];
@@ -122,6 +125,8 @@ export type CompetitionListCard = CompetitionCard & {
   slug: string;
   statusTone: CompetitionStatusTone;
   focusKeys: string[];
+  sortDate: string;
+  displayOrder: number;
 };
 
 export type CompetitionListFeaturedCard = CompetitionFeaturedCard & {
@@ -129,6 +134,8 @@ export type CompetitionListFeaturedCard = CompetitionFeaturedCard & {
   slug: string;
   statusTone: CompetitionStatusTone;
   focusKeys: string[];
+  sortDate: string;
+  displayOrder: number;
 };
 
 export type CompetitionListingTab = Omit<CompetitionTab, "featured" | "cards"> & {
@@ -162,9 +169,12 @@ export type CompetitionLocalizedEntry = {
   slug: string;
   track: CompetitionTrack;
   statusTone: CompetitionStatusTone;
+  draft?: boolean;
   accent: CompetitionAccent;
   featured: boolean;
   order: number;
+  applicationOpensAt?: string;
+  applicationDeadlineAt?: string;
   watermark: string;
   value: string;
   focusTags: string[];

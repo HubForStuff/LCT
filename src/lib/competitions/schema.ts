@@ -69,6 +69,11 @@ export const competitionCollectionSchema = {
     ],
     defaultValue: "open",
   }),
+  draft: fields.checkbox({
+    label: "Hide from public pages",
+    description: "Use for fixtures, internal QA entries, or unpublished competition drafts.",
+    defaultValue: false,
+  }),
   accent: fields.select({
     label: "Card accent",
     options: [
@@ -84,6 +89,14 @@ export const competitionCollectionSchema = {
   order: fields.integer({
     label: "Display order",
     validation: { isRequired: true, min: 1 },
+  }),
+  applicationOpensAt: fields.date({
+    label: "Application opens at",
+    description: "Machine-readable date used for sorting future opportunities.",
+  }),
+  applicationDeadlineAt: fields.date({
+    label: "Application deadline at",
+    description: "Machine-readable date used for sorting open and closed opportunities.",
   }),
   watermark: requiredText("Watermark"),
   value: requiredText("Prize / value label"),

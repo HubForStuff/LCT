@@ -5,6 +5,7 @@
   },
   "track": "startup",
   "statusTone": "closed",
+  "draft": true,
   "accent": "warm",
   "featured": false,
   "order": 101,

@@ -29,7 +29,11 @@ const { locale, languages, siteSettings } = Astro.props;
       aria-label={locale.ui.homeLabel}
       data-i18n-aria-label="ui.homeLabel"
     >
-      <BrandLogo alt={siteSettings.siteName} className="mob-brand-image" />
+      <BrandLogo
+        alt={siteSettings.siteName}
+        className="mob-brand-wordmark"
+        variant="mobile-wordmark"
+      />
     </a>
 
     <div class="mob-nav-actions">
@@ -51,6 +55,8 @@ const { locale, languages, siteSettings } = Astro.props;
         class="mob-menu-btn"
         id="mobileMenuBtn"
         aria-label={locale.ui.menu}
+        aria-expanded="false"
+        aria-controls="mobileMenu"
         data-i18n-aria-label="ui.menu"
       >
         <span></span>

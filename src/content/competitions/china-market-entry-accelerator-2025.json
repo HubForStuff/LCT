@@ -8,6 +8,8 @@
   "accent": "cool",
   "featured": true,
   "order": 4,
+  "applicationOpensAt": "2025-04-01",
+  "applicationDeadlineAt": "2025-10-15",
   "watermark": "COR",
   "value": "Market Access",
   "focusTags": ["Corporate", "Market Entry", "Distribution"],

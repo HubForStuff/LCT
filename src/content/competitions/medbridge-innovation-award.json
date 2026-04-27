@@ -8,6 +8,8 @@
   "accent": "cool",
   "featured": false,
   "order": 6,
+  "applicationOpensAt": "2025-05-01",
+  "applicationDeadlineAt": "2025-12-01",
   "watermark": "MED",
   "value": "$250K",
   "focusTags": ["HealthTech", "BioTech", "Distribution"],

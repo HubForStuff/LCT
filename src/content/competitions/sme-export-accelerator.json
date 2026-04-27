@@ -8,6 +8,8 @@
   "accent": "cool",
   "featured": false,
   "order": 5,
+  "applicationOpensAt": "2025-04-01",
+  "applicationDeadlineAt": "9999-12-31",
   "watermark": "SME",
   "value": "Market Access",
   "focusTags": ["SME", "Export", "Trade"],

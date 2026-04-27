@@ -4,9 +4,14 @@ import SiteBrandLogo from "../site/BrandLogo.astro";
 interface Props {
   alt: string;
   className?: string;
+  variant?: "image" | "mobile-wordmark";
 }
 
-const { alt, className = "" } = Astro.props;
+const { alt, className = "", variant = "image" } = Astro.props;
 ---
 
-<SiteBrandLogo alt={alt} className={["home-logo", className].filter(Boolean).join(" ")} />
+<SiteBrandLogo
+  alt={alt}
+  className={["home-logo", className].filter(Boolean).join(" ")}
+  variant={variant}
+/>
