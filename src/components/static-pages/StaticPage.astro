@@ -1,0 +1,89 @@
+---
+import InteriorFooter from "../site/InteriorFooter.astro";
+import InteriorHeader from "../site/InteriorHeader.astro";
+
+import type { HomepageLocaleCode, SiteSettings } from "../../lib/homepage/types";
+import type { StaticPageRouteLocale } from "../../lib/static-pages/types";
+
+interface Props {
+  locale: StaticPageRouteLocale;
+  siteSettings: SiteSettings;
+  currentLanguage: HomepageLocaleCode;
+}
+
+const { locale, siteSettings, currentLanguage } = Astro.props;
+---
+
+<div class="interior-page">
+  <InteriorHeader
+    navItems={locale.navItems}
+    activeHref={locale.page.href}
+    siteSettings={siteSettings}
+    currentLanguage={currentLanguage}
+    languageLabel={locale.ui.chooseLanguage}
+    homeLabel={locale.ui.homeLabel}
+    desktopMenuSections={locale.desktopMenuSections}
+    navExploreLabel={locale.navExploreLabel}
+  />
+
+  <main>
+    <section class="page-header static-page-header">
+      <div class="interior-wrap page-header-inner page-header-inner--split">
+        <div>
+          <div class="page-eyebrow" data-i18n="page.eyebrow">
+            <span class="dot"></span>
+            {locale.page.eyebrow}
+          </div>
+          <h1 class="page-title static-page-title" data-i18n="page.title">{locale.page.title}</h1>
+        </div>
+        <p class="page-subtitle page-subtitle--wide page-subtitle--balanced" data-i18n="page.summary">
+          {locale.page.summary}
+        </p>
+      </div>
+    </section>
+
+    <section class="interior-wrap static-page-shell">
+      <div
+        class="static-page-hero-image"
+        role="img"
+        aria-label={locale.page.imageAlt}
+        data-i18n-aria-label="page.imageAlt"
+        style={`background-image:url('${locale.page.image}')`}
+      ></div>
+
+      <article class="news-article-body static-page-body" data-i18n-html="page.bodyHtml" set:html={locale.page.bodyHtml}></article>
+
+      <div class="static-page-section-grid">
+        {locale.page.sections.map((section, index) => (
+          <section class="static-page-section-card" id={section.id}>
+            <div class="static-page-section-eyebrow" data-i18n={`page.sections.${index}.eyebrow`}>
+              {section.eyebrow}
+            </div>
+            <h2 data-i18n={`page.sections.${index}.title`}>{section.title}</h2>
+            <div
+              class="static-page-section-body"
+              data-i18n-html={`page.sections.${index}.bodyHtml`}
+              set:html={section.bodyHtml}
+            ></div>
+            {section.ctaLabel && section.ctaHref && (
+              <a
+                href={section.ctaHref}
+                class="news-list-link news-list-link--muted static-page-section-link"
+                data-i18n={`page.sections.${index}.ctaLabel`}
+              >
+                {section.ctaLabel}
+              </a>
+            )}
+          </section>
+        ))}
+      </div>
+    </section>
+  </main>
+
+  <InteriorFooter
+    footer={locale.footer}
+    ui={locale.ui}
+    siteSettings={siteSettings}
+    currentLanguage={currentLanguage}
+  />
+</div>

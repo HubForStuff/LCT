@@ -1,0 +1,113 @@
+{
+  "slug": {
+    "name": "Events",
+    "slug": "events"
+  },
+  "order": 2,
+  "primaryImage": "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&w=1200",
+  "en": {
+    "eyebrow": "Events",
+    "title": "Events & Calendar",
+    "summary": "Curated trade fairs, expos, summits, and corridor briefings designed for practical cross-border deal flow.",
+    "imageAlt": "Conference audience watching a speaker on stage.",
+    "metaTitle": "Events & Calendar | LATAM China Tech",
+    "metaDescription": "Explore LATAM China Tech events, trade fairs, expos, and summits connecting Latin America and China.",
+    "bodyHtml": "<p>Our events are built for companies that need more than visibility. Every format is designed around qualified meetings, sector context, and follow-through after the room clears.</p><p><strong>Trade fairs and expos</strong> connect operators with buyers, distributors, governments, and investors who are active in the China-LATAM corridor.</p>",
+    "sections": [
+      {
+        "id": "trade-fairs-expos",
+        "eyebrow": "Exhibitions",
+        "title": "Trade fairs and expos",
+        "bodyHtml": "<p>Join curated exhibition programs where companies present products, schedule bilateral meetings, and receive market briefings before and after the event.</p>",
+        "ctaLabel": "Plan exhibition access",
+        "ctaHref": "#site-footer"
+      },
+      {
+        "id": "summits",
+        "eyebrow": "Summits",
+        "title": "Tech conferences and summits",
+        "bodyHtml": "<p>We convene founders, corporates, cities, investors, and operators for tactical sessions on market entry, industrial partnerships, AI, climate, healthcare, and logistics.</p>",
+        "ctaLabel": "Request summit details",
+        "ctaHref": "#site-footer"
+      },
+      {
+        "id": "calendar",
+        "eyebrow": "Calendar",
+        "title": "Upcoming corridor calendar",
+        "bodyHtml": "<p>The first public calendar will combine LATAM China Tech hosted programs with selected partner events. Until then, teams can request a private shortlist based on sector and market goals.</p>",
+        "ctaLabel": "Ask for the calendar",
+        "ctaHref": "#site-footer"
+      }
+    ]
+  },
+  "br": {
+    "eyebrow": "Eventos",
+    "title": "Eventos e calendario",
+    "summary": "Feiras, exposicoes, summits e briefings do corredor desenhados para gerar conexoes cross-border praticas.",
+    "imageAlt": "Publico de conferencia assistindo a uma apresentacao no palco.",
+    "metaTitle": "Eventos e calendario | LATAM China Tech",
+    "metaDescription": "Explore eventos, feiras, exposicoes e summits da LATAM China Tech conectando America Latina e China.",
+    "bodyHtml": "<p>Nossos eventos sao construidos para empresas que precisam de mais do que visibilidade. Cada formato prioriza reunioes qualificadas, contexto setorial e follow-up depois do encontro.</p><p><strong>Feiras e exposicoes</strong> conectam operadores com compradores, distribuidores, governos e investidores ativos no corredor China-LATAM.</p>",
+    "sections": [
+      {
+        "id": "trade-fairs-expos",
+        "eyebrow": "Exposicoes",
+        "title": "Feiras e exposicoes",
+        "bodyHtml": "<p>Participe de programas curatoriais onde empresas apresentam produtos, agendam reunioes bilaterais e recebem briefings de mercado antes e depois do evento.</p>",
+        "ctaLabel": "Planejar acesso a feiras",
+        "ctaHref": "#site-footer"
+      },
+      {
+        "id": "summits",
+        "eyebrow": "Summits",
+        "title": "Conferencias e summits de tecnologia",
+        "bodyHtml": "<p>Reunimos founders, corporates, cidades, investidores e operadores para sessoes praticas sobre entrada em mercado, parcerias industriais, AI, clima, saude e logistica.</p>",
+        "ctaLabel": "Solicitar detalhes",
+        "ctaHref": "#site-footer"
+      },
+      {
+        "id": "calendar",
+        "eyebrow": "Calendario",
+        "title": "Calendario do corredor",
+        "bodyHtml": "<p>O primeiro calendario publico combinara programas da LATAM China Tech com eventos selecionados de parceiros. Ate la, os times podem pedir uma shortlist privada por setor e mercado.</p>",
+        "ctaLabel": "Pedir calendario",
+        "ctaHref": "#site-footer"
+      }
+    ]
+  },
+  "cn": {
+    "eyebrow": "活动",
+    "title": "活动与日历",
+    "summary": "面向真实跨境合作的展会、博览会、峰会和走廊简报。",
+    "imageAlt": "会议观众正在观看舞台演讲。",
+    "metaTitle": "活动与日历 | LATAM China Tech",
+    "metaDescription": "探索 LATAM China Tech 连接拉美与中国的活动、展会、博览会和峰会。",
+    "bodyHtml": "<p>我们的活动不仅追求曝光，而是围绕高质量会议、行业语境和会后跟进设计。</p><p><strong>展会与博览会</strong>把企业与活跃在中国-拉美走廊的买家、分销商、政府和投资人连接起来。</p>",
+    "sections": [
+      {
+        "id": "trade-fairs-expos",
+        "eyebrow": "展览",
+        "title": "展会与博览会",
+        "bodyHtml": "<p>加入经过策划的展览项目，展示产品、安排双边会议，并在活动前后获得市场简报。</p>",
+        "ctaLabel": "规划参展",
+        "ctaHref": "#site-footer"
+      },
+      {
+        "id": "summits",
+        "eyebrow": "峰会",
+        "title": "技术会议与峰会",
+        "bodyHtml": "<p>我们召集创始人、企业、城市、投资人和运营者，围绕市场进入、产业合作、AI、气候、医疗和物流开展务实讨论。</p>",
+        "ctaLabel": "索取峰会信息",
+        "ctaHref": "#site-footer"
+      },
+      {
+        "id": "calendar",
+        "eyebrow": "日历",
+        "title": "走廊活动日历",
+        "bodyHtml": "<p>首个公开日历将整合 LATAM China Tech 主办项目和精选合作伙伴活动。在此之前，团队可以按行业和市场目标申请私密活动清单。</p>",
+        "ctaLabel": "获取日历",
+        "ctaHref": "#site-footer"
+      }
+    ]
+  }
+}

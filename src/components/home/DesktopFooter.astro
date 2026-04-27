@@ -1,5 +1,5 @@
 ---
-import { getFooterLinkHref } from "../../lib/homepage/links";
+import { getFooterCtaHref, getFooterLinkHref } from "../../lib/homepage/links";
 
 import type {
   HomepageLocaleContent,
@@ -30,7 +30,7 @@ const { locale, languages, siteSettings } = Astro.props;
         ></h2>
       </div>
       <a
-        href="#desktop-categories"
+        href={getFooterCtaHref()}
         class="desk-btn desk-btn--red desk-btn--large"
         data-i18n="footerCta.button"
       >

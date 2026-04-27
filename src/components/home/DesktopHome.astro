@@ -4,6 +4,7 @@ import DesktopNavigation from "./DesktopNavigation.astro";
 
 import {
   HOMEPAGE_ROUTE_TARGETS,
+  getCategoryCardHref,
   getCompetitionSectionHref,
   getNewsListingHref,
 } from "../../lib/homepage/links";
@@ -58,12 +59,11 @@ const { locale, languages, siteSettings } = Astro.props;
     <div class="desk-catblocks">
       {locale.categoryCards.map((card, index) => {
         const isLast = index === locale.categoryCards.length - 1;
-        const Tag = isLast ? "a" : "div";
         const themeClass = card.theme === "light" ? " desk-catblock--light" : "";
         return (
           <div class="desk-catblock-sticky-wrap" data-card-index={index}>
-            <Tag
-              href={isLast ? "#desktop-footer" : undefined}
+            <a
+              href={getCategoryCardHref(index)}
               class={`desk-catblock${themeClass}`}
             >
               <div class="desk-catblock-body">
@@ -77,7 +77,7 @@ const { locale, languages, siteSettings } = Astro.props;
                 )}
               </div>
               <div class={`desk-catblock-media desk-catblock-media--${index + 1}`}></div>
-            </Tag>
+            </a>
           </div>
         );
       })}

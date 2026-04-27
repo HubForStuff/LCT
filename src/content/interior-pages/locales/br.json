@@ -6,17 +6,17 @@
     "newsletterPlaceholder": "Seu e-mail"
   },
   "navItems": [
-    { "label": "Assessoria", "href": "/" },
+    { "label": "Assessoria", "href": "/advisory/" },
     { "label": "Competicoes e Desafios", "href": "/competitions/" },
-    { "label": "Eventos", "href": "/" },
-    { "label": "Programas", "href": "/" },
-    { "label": "Rede", "href": "/" }
+    { "label": "Eventos", "href": "/events/" },
+    { "label": "Programas", "href": "/programs/" },
+    { "label": "Rede", "href": "/network/" }
   ],
   "footer": {
     "eyebrow": "Impulsione seu crescimento.",
     "titleHtml": "Receba investimento, conexoes<br />e escale na America Latina e China",
     "buttonLabel": "Ver Programas",
-    "buttonHref": "/",
+    "buttonHref": "/programs/",
     "newsletterTitle": "NEWSLETTER",
     "newsletterButtonLabel": "Assinar no Substack",
     "scanWechat": "Escaneie no WeChat",
@@ -25,8 +25,8 @@
       {
         "title": "Assessoria",
         "links": [
-          { "label": "Investimento", "href": "/" },
-          { "label": "Transferencia de Tecnologia", "href": "/" }
+          { "label": "Investimento", "href": "/advisory/#investment-matchmaking" },
+          { "label": "Transferencia de Tecnologia", "href": "/advisory/#tech-transfer" }
         ]
       },
       {
@@ -39,15 +39,15 @@
       {
         "title": "Eventos",
         "links": [
-          { "label": "Feiras e Exposicoes", "href": "/" },
-          { "label": "Summits", "href": "/" }
+          { "label": "Feiras e Exposicoes", "href": "/events/#trade-fairs-expos" },
+          { "label": "Summits", "href": "/events/#summits" }
         ]
       },
       {
         "title": "Programas",
         "links": [
-          { "label": "Entrada em Mercado", "href": "/" },
-          { "label": "Missoes de Negocios", "href": "/" }
+          { "label": "Entrada em Mercado", "href": "/programs/#market-entry" },
+          { "label": "Missoes de Negocios", "href": "/programs/#business-mission" }
         ]
       }
     ]

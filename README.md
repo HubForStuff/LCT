@@ -26,6 +26,7 @@ Keystatic manages:
 - **Homepage content** — `src/content/homepage/` (locales: en / br / cn)
 - **Competitions** — `src/content/competitions/*.json`
 - **News articles** — `src/content/news/*.json`
+- **Static interior pages** — `src/content/static-pages/*.json`
 
 Interior-page localized strings live in `src/content/interior-pages/locales/` (en.json, br.json, cn.json) and are edited directly as JSON files.
 
@@ -49,6 +50,7 @@ src/
     competitions/[slug].astro   competition detail
     news/index.astro       news listing
     news/[slug].astro      article detail
+    [slug].astro           generated static pages
     pre-registration.astro pre-registration form
 
   components/
@@ -64,12 +66,14 @@ src/
     interior-pages/locales/  en.json, br.json, cn.json  (hand-edited JSON)
     competitions/       per-competition JSON files
     news/               per-article JSON files
+    static-pages/        generated static page JSON files
 
   lib/
     homepage/        data reader, schema, types, route links
     interior-pages/  locale bundle builder (reader.ts)
     competitions/    data reader & types
     news/            data reader & types
+    static-pages/    generated static page reader & types
 
   styles/
     homepage.css       homepage-specific styles
@@ -89,7 +93,7 @@ The `mockup/` folder contains the customer's final design intent as self-contain
 | `3 - Challenges___Competitions_v7.htm` | Competitions listing |
 | `4 - PRE registration_v13.html` | Pre-registration form |
 
-> News pages (listing and article) have **no mockup** — use design judgment consistent with the site's visual language.
+> News pages and the generated static pages have **no mockup** — use design judgment consistent with the site's visual language.
 
 ## Deploy
 

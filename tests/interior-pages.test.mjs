@@ -90,10 +90,12 @@ test("interior page route files stay thin and delegate rendering", { concurrency
   const preRegistrationRoute = resolve(projectRoot, "src/pages/pre-registration.astro");
   const newsIndexRoute = resolve(projectRoot, "src/pages/news/index.astro");
   const newsArticleRoute = resolve(projectRoot, "src/pages/news/[slug].astro");
+  const staticPageRoute = resolve(projectRoot, "src/pages/[slug].astro");
   const contentLocalesDir = resolve(projectRoot, "src/content/interior-pages/locales");
   const readerModule = resolve(projectRoot, "src/lib/interior-pages/reader.ts");
   const newsReaderModule = resolve(projectRoot, "src/lib/news/reader.ts");
   const competitionsReaderModule = resolve(projectRoot, "src/lib/competitions/reader.ts");
+  const staticPagesReaderModule = resolve(projectRoot, "src/lib/static-pages/reader.ts");
 
   assert.equal(existsSync(competitionsRoute), true, "expected competitions route to exist");
   assert.equal(
@@ -108,6 +110,7 @@ test("interior page route files stay thin and delegate rendering", { concurrency
   );
   assert.equal(existsSync(newsIndexRoute), true, "expected news index route to exist");
   assert.equal(existsSync(newsArticleRoute), true, "expected news article route to exist");
+  assert.equal(existsSync(staticPageRoute), true, "expected generated static page route to exist");
   assert.equal(
     existsSync(contentLocalesDir),
     true,
@@ -128,6 +131,11 @@ test("interior page route files stay thin and delegate rendering", { concurrency
     true,
     "expected competitions pages to use a dedicated Keystatic-backed reader",
   );
+  assert.equal(
+    existsSync(staticPagesReaderModule),
+    true,
+    "expected static pages to use a dedicated Keystatic-backed reader",
+  );
 
   const localeFiles = readdirSync(contentLocalesDir).filter((entry) => entry.endsWith(".json"));
   assert.deepEqual(
@@ -141,6 +149,7 @@ test("interior page route files stay thin and delegate rendering", { concurrency
   const preRegistrationSource = readProjectFile("src/pages/pre-registration.astro");
   const newsIndexSource = readProjectFile("src/pages/news/index.astro");
   const newsArticleSource = readProjectFile("src/pages/news/[slug].astro");
+  const staticPageSource = readProjectFile("src/pages/[slug].astro");
 
   assert.ok(
     competitionsSource.trim().split("\n").length < 80,
@@ -161,6 +170,10 @@ test("interior page route files stay thin and delegate rendering", { concurrency
   assert.ok(
     newsArticleSource.trim().split("\n").length < 120,
     "expected news article route to stay thin",
+  );
+  assert.ok(
+    staticPageSource.trim().split("\n").length < 120,
+    "expected generated static page route to stay thin",
   );
 
   assert.match(
@@ -189,6 +202,11 @@ test("interior page route files stay thin and delegate rendering", { concurrency
     "expected competition detail route to delegate to a reusable page component",
   );
   assert.match(
+    staticPageSource,
+    /StaticPage/,
+    "expected generated static page route to delegate to a reusable page component",
+  );
+  assert.match(
     competitionsSource,
     /interior-pages\.css/,
     "expected competitions route to import the dedicated interior stylesheet",
@@ -202,6 +220,11 @@ test("interior page route files stay thin and delegate rendering", { concurrency
     competitionDetailSource,
     /getCompetitionDetailPageData\(/,
     "expected competition detail route to load collection-backed content through the competitions reader",
+  );
+  assert.match(
+    staticPageSource,
+    /getStaticPageData\(/,
+    "expected generated static pages to load collection-backed content through the static pages reader",
   );
   assert.match(
     preRegistrationSource,
@@ -229,6 +252,11 @@ test("interior page route files stay thin and delegate rendering", { concurrency
     "expected news article route to include the shared localization client",
   );
   assert.match(
+    staticPageSource,
+    /LocalizationClient/,
+    "expected generated static page route to include the shared localization client",
+  );
+  assert.match(
     preRegistrationSource,
     /interior-pages\.css/,
     "expected pre-registration route to import the dedicated interior stylesheet",
@@ -243,8 +271,13 @@ test("interior page route files stay thin and delegate rendering", { concurrency
     /interior-pages\.css/,
     "expected news article route to import the shared interior stylesheet",
   );
+  assert.match(
+    staticPageSource,
+    /interior-pages\.css/,
+    "expected generated static page route to import the shared interior stylesheet",
+  );
   assert.doesNotMatch(
-    `${competitionsSource}\n${preRegistrationSource}\n${newsIndexSource}\n${newsArticleSource}`,
+    `${competitionsSource}\n${preRegistrationSource}\n${newsIndexSource}\n${newsArticleSource}\n${staticPageSource}`,
     /content\/interior-pages/,
     "expected the routes to avoid the old one-off interior content module",
   );
@@ -423,6 +456,43 @@ test("competitions and pre-registration pages build with the expected mockup con
       /Cross-border execution is no longer a side bet/i,
       "expected the news detail page to render article body content",
     );
+  } finally {
+    build.cleanup();
+  }
+});
+
+test("static pages build from Keystatic content and reuse the shared localization shell", { concurrency: false }, () => {
+  const build = buildSite();
+
+  try {
+    const expectedPages = [
+      ["advisory", /Advisory Services/i, /Investment matchmaking/i],
+      ["events", /Events\s*&amp;\s*Calendar|Events\s*&\s*Calendar/i, /Trade fairs and expos/i],
+      ["programs", /Programs/i, /Market entry/i],
+      ["network", /Network\s*&amp;\s*Partnerships|Network\s*&\s*Partnerships/i, /City partnerships/i],
+    ];
+
+    for (const [slug, titlePattern, bodyPattern] of expectedPages) {
+      const html = readFileSync(resolve(build.outDir, slug, "index.html"), "utf8");
+
+      assert.match(html, titlePattern, `expected /${slug}/ to render its page title`);
+      assert.match(html, bodyPattern, `expected /${slug}/ to render seeded body content`);
+      assert.match(
+        html,
+        /id="localized-content"/,
+        `expected /${slug}/ to ship the shared localized content payload`,
+      );
+      assert.match(
+        html,
+        /data-i18n-html="page\.bodyHtml"/,
+        `expected /${slug}/ body content to use shared localization hooks`,
+      );
+      assert.match(
+        html,
+        /Interior navigation|site-header|site-footer/,
+        `expected /${slug}/ to reuse the shared interior shell`,
+      );
+    }
   } finally {
     build.cleanup();
   }

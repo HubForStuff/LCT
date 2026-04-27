@@ -6,17 +6,17 @@
     "newsletterPlaceholder": "请输入邮箱"
   },
   "navItems": [
-    { "label": "咨询", "href": "/" },
+    { "label": "咨询", "href": "/advisory/" },
     { "label": "竞赛与挑战", "href": "/competitions/" },
-    { "label": "活动", "href": "/" },
-    { "label": "项目", "href": "/" },
-    { "label": "网络", "href": "/" }
+    { "label": "活动", "href": "/events/" },
+    { "label": "项目", "href": "/programs/" },
+    { "label": "网络", "href": "/network/" }
   ],
   "footer": {
     "eyebrow": "助力增长。",
     "titleHtml": "获得资金、建立连接，<br />并在拉美与中国实现规模化",
     "buttonLabel": "查看项目",
-    "buttonHref": "/",
+    "buttonHref": "/programs/",
     "newsletterTitle": "NEWSLETTER",
     "newsletterButtonLabel": "订阅 Substack",
     "scanWechat": "微信扫码",
@@ -25,8 +25,8 @@
       {
         "title": "咨询",
         "links": [
-          { "label": "投资", "href": "/" },
-          { "label": "技术转移", "href": "/" }
+          { "label": "投资", "href": "/advisory/#investment-matchmaking" },
+          { "label": "技术转移", "href": "/advisory/#tech-transfer" }
         ]
       },
       {
@@ -39,15 +39,15 @@
       {
         "title": "活动",
         "links": [
-          { "label": "展会与博览会", "href": "/" },
-          { "label": "峰会", "href": "/" }
+          { "label": "展会与博览会", "href": "/events/#trade-fairs-expos" },
+          { "label": "峰会", "href": "/events/#summits" }
         ]
       },
       {
         "title": "项目",
         "links": [
-          { "label": "市场进入", "href": "/" },
-          { "label": "商务考察", "href": "/" }
+          { "label": "市场进入", "href": "/programs/#market-entry" },
+          { "label": "商务考察", "href": "/programs/#business-mission" }
         ]
       }
     ]

@@ -1,0 +1,38 @@
+---
+import LocalizationClient from "../components/i18n/LocalizationClient.astro";
+import StaticPage from "../components/static-pages/StaticPage.astro";
+import Layout from "../layouts/Layout.astro";
+import { getAllStaticPageSlugs, getStaticPageData } from "../lib/static-pages/reader";
+import "../styles/interior-pages.css";
+
+export async function getStaticPaths() {
+  const slugs = await getAllStaticPageSlugs();
+
+  return slugs.map((slug) => ({
+    params: { slug },
+  }));
+}
+
+const slug = Astro.params.slug;
+
+if (!slug) {
+  throw new Error("Missing static page slug.");
+}
+
+const { defaultLanguage, defaultLocale, localizedContent, siteSettings } =
+  await getStaticPageData(slug);
+---
+
+<Layout
+  title={defaultLocale.meta.title}
+  description={defaultLocale.meta.description}
+  htmlLang={defaultLocale.meta.htmlLang}
+  bodyClass="interior-body"
+>
+  <StaticPage
+    locale={defaultLocale}
+    siteSettings={siteSettings}
+    currentLanguage={defaultLanguage}
+  />
+  <LocalizationClient defaultLanguage={defaultLanguage} localizedContent={localizedContent} />
+</Layout>

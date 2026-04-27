@@ -109,6 +109,13 @@ test("homepage build matches the supplied design structure", () => {
     /href="\/news\/"/,
     "expected the homepage insights section to link to the full news listing route",
   );
+  for (const href of ["/advisory/", "/events/", "/programs/", "/network/"]) {
+    assert.match(
+      html,
+      new RegExp(`href="${href}"`),
+      `expected the homepage navigation to link to ${href}`,
+    );
+  }
 
   const articleLinkCount = (html.match(/href="\/news\/[^"]+\/"/g) ?? []).length;
   assert.ok(

@@ -3,6 +3,7 @@ import { collection, config, singleton } from "@keystatic/core";
 import { competitionCollectionSchema } from "./src/lib/competitions/schema.ts";
 import { homepageLocaleSchema, siteSettingsSchema } from "./src/lib/homepage/schema.ts";
 import { newsCollectionSchema } from "./src/lib/news/schema.ts";
+import { staticPageCollectionSchema } from "./src/lib/static-pages/schema.ts";
 
 export default config({
   storage: {
@@ -22,6 +23,13 @@ export default config({
       format: "json",
       columns: ["publishedAt", "author", "featured"],
       schema: newsCollectionSchema,
+    }),
+    staticPages: collection({
+      label: "Static pages",
+      path: "src/content/static-pages/*",
+      format: "json",
+      columns: ["order"],
+      schema: staticPageCollectionSchema,
     }),
   },
   singletons: {

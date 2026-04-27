@@ -1,0 +1,113 @@
+{
+  "slug": {
+    "name": "Programs",
+    "slug": "programs"
+  },
+  "order": 3,
+  "primaryImage": "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200",
+  "en": {
+    "eyebrow": "Programs",
+    "title": "Programs",
+    "summary": "Market-entry cohorts, business missions, and applied support programs for companies ready to move from interest to execution.",
+    "imageAlt": "Program participants collaborating during a business workshop.",
+    "metaTitle": "Programs | LATAM China Tech",
+    "metaDescription": "Explore LATAM China Tech programs for market entry, business missions, and cross-border growth.",
+    "bodyHtml": "<p>Programs give companies a structured path from exploration to action. Each cohort combines market briefings, partner discovery, pitch preparation, and targeted introductions.</p><p><strong>Market entry</strong> support is practical by design: every milestone is tied to a decision, meeting, application, or commercial next step.</p>",
+    "sections": [
+      {
+        "id": "market-entry",
+        "eyebrow": "Market entry",
+        "title": "Market entry cohorts",
+        "bodyHtml": "<p>Cohorts help companies assess demand, validate positioning, and build the partner map needed before entering China or Latin America.</p><ul><li>Sector and city readiness briefings.</li><li>Partner and customer discovery.</li><li>Localized pitch and application support.</li></ul>",
+        "ctaLabel": "Request cohort fit",
+        "ctaHref": "#site-footer"
+      },
+      {
+        "id": "business-mission",
+        "eyebrow": "Business mission",
+        "title": "Delegations and business missions",
+        "bodyHtml": "<p>Mission programs combine curated meetings, ecosystem visits, investor sessions, and operational briefings for delegations that need high-context access.</p>",
+        "ctaLabel": "Plan a mission",
+        "ctaHref": "#site-footer"
+      },
+      {
+        "id": "cohort-8",
+        "eyebrow": "Cohort",
+        "title": "Cohort 8 now open",
+        "bodyHtml": "<p>The first-version cohort page is ready for live editing in Keystatic. Replace this placeholder with dates, selection criteria, and the final application path when the program opens.</p>",
+        "ctaLabel": "Apply through competitions",
+        "ctaHref": "/pre-registration/"
+      }
+    ]
+  },
+  "br": {
+    "eyebrow": "Programas",
+    "title": "Programas",
+    "summary": "Cohorts de entrada em mercado, missoes de negocios e programas aplicados para empresas prontas para sair do interesse e entrar na execucao.",
+    "imageAlt": "Participantes colaborando durante um workshop de negocios.",
+    "metaTitle": "Programas | LATAM China Tech",
+    "metaDescription": "Explore programas da LATAM China Tech para entrada em mercado, missoes de negocios e crescimento cross-border.",
+    "bodyHtml": "<p>Programas dao as empresas uma rota estruturada da exploracao para a acao. Cada cohort combina briefings de mercado, descoberta de parceiros, preparacao de pitch e introducoes direcionadas.</p><p>O suporte de <strong>entrada em mercado</strong> e pratico por desenho: cada marco leva a uma decisao, reuniao, aplicacao ou proximo passo comercial.</p>",
+    "sections": [
+      {
+        "id": "market-entry",
+        "eyebrow": "Entrada em mercado",
+        "title": "Cohorts de entrada em mercado",
+        "bodyHtml": "<p>Cohorts ajudam empresas a avaliar demanda, validar posicionamento e montar o mapa de parceiros antes de entrar na China ou na America Latina.</p><ul><li>Briefings de setor e cidade.</li><li>Descoberta de parceiros e clientes.</li><li>Suporte de pitch e aplicacao localizado.</li></ul>",
+        "ctaLabel": "Avaliar fit do cohort",
+        "ctaHref": "#site-footer"
+      },
+      {
+        "id": "business-mission",
+        "eyebrow": "Missao de negocios",
+        "title": "Delegacoes e missoes de negocios",
+        "bodyHtml": "<p>Missoes combinam reunioes curatoriais, visitas de ecossistema, sessoes com investidores e briefings operacionais para delegacoes que precisam de acesso qualificado.</p>",
+        "ctaLabel": "Planejar uma missao",
+        "ctaHref": "#site-footer"
+      },
+      {
+        "id": "cohort-8",
+        "eyebrow": "Cohort",
+        "title": "Cohort 8 aberto",
+        "bodyHtml": "<p>Esta primeira versao ja pode ser editada no Keystatic. Substitua este placeholder por datas, criterios de selecao e caminho final de aplicacao quando o programa abrir.</p>",
+        "ctaLabel": "Aplicar por competicoes",
+        "ctaHref": "/pre-registration/"
+      }
+    ]
+  },
+  "cn": {
+    "eyebrow": "项目",
+    "title": "项目",
+    "summary": "市场进入班、商务考察和应用型支持项目，帮助企业从兴趣阶段进入执行阶段。",
+    "imageAlt": "项目参与者正在商务工作坊中协作。",
+    "metaTitle": "项目 | LATAM China Tech",
+    "metaDescription": "探索 LATAM China Tech 的市场进入、商务考察和跨境增长项目。",
+    "bodyHtml": "<p>项目为企业提供从探索到行动的结构化路径。每个 cohort 都结合市场简报、伙伴发现、路演准备和定向引荐。</p><p><strong>市场进入</strong>支持以实际执行为核心：每个节点都对应一个决策、会议、申请或商业下一步。</p>",
+    "sections": [
+      {
+        "id": "market-entry",
+        "eyebrow": "市场进入",
+        "title": "市场进入 cohort",
+        "bodyHtml": "<p>Cohort 帮助企业评估需求、验证定位，并在进入中国或拉美之前建立伙伴地图。</p><ul><li>行业与城市准备度简报。</li><li>伙伴和客户发现。</li><li>本地化路演和申请支持。</li></ul>",
+        "ctaLabel": "评估 cohort 匹配度",
+        "ctaHref": "#site-footer"
+      },
+      {
+        "id": "business-mission",
+        "eyebrow": "商务考察",
+        "title": "代表团与商务考察",
+        "bodyHtml": "<p>商务考察项目结合定制会议、生态访问、投资人交流和运营简报，适合需要高语境接入的代表团。</p>",
+        "ctaLabel": "规划商务考察",
+        "ctaHref": "#site-footer"
+      },
+      {
+        "id": "cohort-8",
+        "eyebrow": "Cohort",
+        "title": "Cohort 8 开放中",
+        "bodyHtml": "<p>这个第一版本已可在 Keystatic 中编辑。项目开放后，可替换为正式日期、筛选标准和最终申请路径。</p>",
+        "ctaLabel": "通过竞赛申请",
+        "ctaHref": "/pre-registration/"
+      }
+    ]
+  }
+}

@@ -92,6 +92,10 @@
 | ⏳ Waiting / Deferred | 3 | 2, 6, 47 |
 | N/A | 1 | 16 |
 
+## Implementation notes — 2026-04-27
+
+- Missing static pages linked from the homepage, submenus, and interior shell are now generated from Keystatic-managed content: `/advisory/`, `/events/`, `/programs/`, and `/network/`.
+
 ## Visual verification list — 2026-04-01
 
 - Homepage competitions mega menu hover height / white submenu treatment  

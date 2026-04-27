@@ -1,0 +1,113 @@
+{
+  "slug": {
+    "name": "Network",
+    "slug": "network"
+  },
+  "order": 4,
+  "primaryImage": "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1200",
+  "en": {
+    "eyebrow": "Network",
+    "title": "Network & Partnerships",
+    "summary": "A curated network of cities, operators, founders, investors, speakers, and institutions active in China-LATAM technology exchange.",
+    "imageAlt": "Professionals networking after a cross-border technology event.",
+    "metaTitle": "Network & Partnerships | LATAM China Tech",
+    "metaDescription": "Explore the LATAM China Tech network of city partnerships, featured speakers, and ecosystem collaborators.",
+    "bodyHtml": "<p>The network exists to make cross-border collaboration easier to start and easier to sustain. We connect institutions, companies, and operators around shared commercial, policy, and innovation priorities.</p><p><strong>City partnerships</strong> and featured speakers are managed as living ecosystem assets, not one-off contact lists.</p>",
+    "sections": [
+      {
+        "id": "city-partnerships",
+        "eyebrow": "Cities",
+        "title": "City partnerships",
+        "bodyHtml": "<p>We support city-to-city technology exchange, delegation design, innovation programming, and corridor positioning for municipal and regional partners.</p>",
+        "ctaLabel": "Explore city partnerships",
+        "ctaHref": "#site-footer"
+      },
+      {
+        "id": "featured-speakers",
+        "eyebrow": "Voices",
+        "title": "Featured speakers",
+        "bodyHtml": "<p>LATAM China Tech curates founders, investors, operators, policymakers, and technical leaders for conferences, missions, panels, and private briefings.</p>",
+        "ctaLabel": "Request speakers",
+        "ctaHref": "#site-footer"
+      },
+      {
+        "id": "active-partners",
+        "eyebrow": "Partners",
+        "title": "120+ active partners",
+        "bodyHtml": "<p>Our first-version partner page is intentionally editable. Use Keystatic to replace this copy with named partner groups, logos, and live partnership criteria when approved.</p>",
+        "ctaLabel": "Partner with us",
+        "ctaHref": "#site-footer"
+      }
+    ]
+  },
+  "br": {
+    "eyebrow": "Rede",
+    "title": "Rede e parcerias",
+    "summary": "Uma rede curada de cidades, operadores, founders, investidores, palestrantes e instituicoes ativas no intercambio tecnologico China-LATAM.",
+    "imageAlt": "Profissionais fazendo networking depois de um evento de tecnologia cross-border.",
+    "metaTitle": "Rede e parcerias | LATAM China Tech",
+    "metaDescription": "Explore a rede da LATAM China Tech com parcerias entre cidades, palestrantes e colaboradores de ecossistema.",
+    "bodyHtml": "<p>A rede existe para tornar a colaboracao cross-border mais facil de iniciar e sustentar. Conectamos instituicoes, empresas e operadores em torno de prioridades comerciais, politicas e de inovacao.</p><p><strong>Parcerias entre cidades</strong> e speakers em destaque sao geridos como ativos vivos do ecossistema, nao como listas pontuais de contatos.</p>",
+    "sections": [
+      {
+        "id": "city-partnerships",
+        "eyebrow": "Cidades",
+        "title": "Parcerias entre cidades",
+        "bodyHtml": "<p>Apoiamos intercambio tecnologico cidade-a-cidade, desenho de delegacoes, programacao de inovacao e posicionamento de corredor para parceiros municipais e regionais.</p>",
+        "ctaLabel": "Explorar parcerias",
+        "ctaHref": "#site-footer"
+      },
+      {
+        "id": "featured-speakers",
+        "eyebrow": "Vozes",
+        "title": "Speakers em destaque",
+        "bodyHtml": "<p>A LATAM China Tech cura founders, investidores, operadores, policy makers e liderancas tecnicas para conferencias, missoes, paineis e briefings privados.</p>",
+        "ctaLabel": "Solicitar speakers",
+        "ctaHref": "#site-footer"
+      },
+      {
+        "id": "active-partners",
+        "eyebrow": "Parceiros",
+        "title": "Mais de 120 parceiros ativos",
+        "bodyHtml": "<p>Esta primeira versao da pagina de parceiros e intencionalmente editavel. Use o Keystatic para substituir por grupos, logos e criterios de parceria quando aprovados.</p>",
+        "ctaLabel": "Ser parceiro",
+        "ctaHref": "#site-footer"
+      }
+    ]
+  },
+  "cn": {
+    "eyebrow": "网络",
+    "title": "网络与伙伴关系",
+    "summary": "由城市、运营者、创始人、投资人、演讲嘉宾和机构组成的精选网络，服务于中国-拉美科技交流。",
+    "imageAlt": "跨境科技活动结束后，专业人士正在交流。",
+    "metaTitle": "网络与伙伴关系 | LATAM China Tech",
+    "metaDescription": "探索 LATAM China Tech 的城市合作、精选演讲嘉宾和生态伙伴网络。",
+    "bodyHtml": "<p>这个网络旨在让跨境合作更容易开始，也更容易持续。我们围绕共同的商业、政策和创新重点连接机构、企业和运营者。</p><p><strong>城市伙伴关系</strong>和精选演讲嘉宾会作为持续更新的生态资产管理，而不是一次性联系人列表。</p>",
+    "sections": [
+      {
+        "id": "city-partnerships",
+        "eyebrow": "城市",
+        "title": "城市伙伴关系",
+        "bodyHtml": "<p>我们支持城市之间的科技交流、代表团设计、创新活动策划，以及市级和区域伙伴的走廊定位。</p>",
+        "ctaLabel": "探索城市合作",
+        "ctaHref": "#site-footer"
+      },
+      {
+        "id": "featured-speakers",
+        "eyebrow": "声音",
+        "title": "精选演讲嘉宾",
+        "bodyHtml": "<p>LATAM China Tech 为会议、商务考察、圆桌和私密简报策划创始人、投资人、运营者、政策专家和技术领袖。</p>",
+        "ctaLabel": "申请演讲嘉宾",
+        "ctaHref": "#site-footer"
+      },
+      {
+        "id": "active-partners",
+        "eyebrow": "伙伴",
+        "title": "120+ 活跃伙伴",
+        "bodyHtml": "<p>这个第一版本的伙伴页面刻意保持可编辑。获得批准后，可在 Keystatic 中替换为正式伙伴类别、标识和合作标准。</p>",
+        "ctaLabel": "成为伙伴",
+        "ctaHref": "#site-footer"
+      }
+    ]
+  }
+}

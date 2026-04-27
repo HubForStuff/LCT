@@ -4,6 +4,8 @@ import BrandLogo from "./BrandLogo.astro";
 import {
   HOMEPAGE_ROUTE_TARGETS,
   getCompetitionSectionHref,
+  getFooterCtaHref,
+  getMobileCategoryCardHref,
   getMobileFooterLinkHref,
   getMobileMenuCardHref,
   getNewsListingHref,
@@ -158,7 +160,7 @@ const { locale, languages, siteSettings } = Astro.props;
   <section class="mob-section" id="mobile-categories">
     {locale.categoryCards.map((card, index) => (
       <a
-        href="#mobile-footer"
+        href={getMobileCategoryCardHref(index)}
         class={`mob-cat-card mob-reveal ${card.theme === "light" ? "mob-cat-card--white" : ""}`}
       >
         <div class="mob-cat-glow"></div>
@@ -224,7 +226,7 @@ const { locale, languages, siteSettings } = Astro.props;
       {locale.footerCta.eye}
     </div>
     <h2 data-i18n-html="footerCta.titleHtml" set:html={locale.footerCta.titleHtml}></h2>
-    <a href="#mobile-categories" class="mob-btn mob-btn--primary" data-i18n="footerCta.button">
+    <a href={getFooterCtaHref()} class="mob-btn mob-btn--primary" data-i18n="footerCta.button">
       {locale.footerCta.button}
     </a>
   </section>

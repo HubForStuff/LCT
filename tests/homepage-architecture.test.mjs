@@ -185,3 +185,53 @@ test("competitions content is modeled as a keystatic-managed collection", () => 
     `expected at least 6 seeded competition entries, found ${competitionEntries.length}`,
   );
 });
+
+test("static pages content is modeled as a keystatic-managed collection", () => {
+  const keystaticConfig = readProjectFile("keystatic.config.ts");
+  const staticPagesSchemaModule = resolve(projectRoot, "src/lib/static-pages/schema.ts");
+  const staticPagesReaderModule = resolve(projectRoot, "src/lib/static-pages/reader.ts");
+  const staticPagesContentDir = resolve(projectRoot, "src/content/static-pages");
+  const staticPageRoute = resolve(projectRoot, "src/pages/[slug].astro");
+  const staticPageComponent = resolve(projectRoot, "src/components/static-pages/StaticPage.astro");
+
+  assert.match(
+    keystaticConfig,
+    /collections:\s*\{[\s\S]*staticPages:\s*collection\s*\(/,
+    "expected keystatic.config.ts to register a staticPages collection",
+  );
+  assert.equal(
+    existsSync(staticPagesSchemaModule),
+    true,
+    "expected the static pages collection schema to live in src/lib/static-pages/schema.ts",
+  );
+  assert.equal(
+    existsSync(staticPagesReaderModule),
+    true,
+    "expected static pages reader helpers to live in src/lib/static-pages/reader.ts",
+  );
+  assert.equal(
+    existsSync(staticPageRoute),
+    true,
+    "expected a thin root dynamic route for generated static pages",
+  );
+  assert.equal(
+    existsSync(staticPageComponent),
+    true,
+    "expected static pages to delegate rendering to a reusable component",
+  );
+  assert.equal(
+    existsSync(staticPagesContentDir),
+    true,
+    "expected static page entries to be stored in src/content/static-pages",
+  );
+
+  const staticPageEntries = existsSync(staticPagesContentDir)
+    ? readdirSync(staticPagesContentDir).filter((entry) => !entry.startsWith(".")).sort()
+    : [];
+
+  assert.deepEqual(
+    staticPageEntries,
+    ["advisory.json", "events.json", "network.json", "programs.json"],
+    `expected seeded static page entries for advisory, events, network, and programs; found ${staticPageEntries.join(", ")}`,
+  );
+});

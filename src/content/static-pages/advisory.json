@@ -1,0 +1,137 @@
+{
+  "slug": {
+    "name": "Advisory",
+    "slug": "advisory"
+  },
+  "order": 1,
+  "primaryImage": "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1200",
+  "en": {
+    "eyebrow": "Advisory",
+    "title": "Advisory Services",
+    "summary": "Senior operator support for companies, investors, and institutions building across the Latin America and China corridor.",
+    "imageAlt": "Strategy team reviewing market expansion plans around a meeting table.",
+    "metaTitle": "Advisory Services | LATAM China Tech",
+    "metaDescription": "Explore LATAM China Tech advisory services for market entry, investment matchmaking, and technology transfer.",
+    "bodyHtml": "<p>LATAM China Tech advisory turns cross-border ambiguity into structured decisions. We help teams validate market assumptions, identify the right local partners, and prepare the operating plan needed before capital, distribution, or public-sector conversations begin.</p><p><strong>Investment matchmaking</strong>, technology transfer, and market-entry strategy are managed as one connected workstream so each introduction has a clear commercial reason to exist.</p>",
+    "sections": [
+      {
+        "id": "consulting",
+        "eyebrow": "Consulting",
+        "title": "Market and execution strategy",
+        "bodyHtml": "<p>We map customer segments, regulatory constraints, channel options, and launch risks before teams commit time or capital to a new market.</p><ul><li>Opportunity scans and go-to-market sequencing.</li><li>Partner and distributor shortlists.</li><li>Board-ready market-entry briefs.</li></ul>",
+        "ctaLabel": "Start with advisory",
+        "ctaHref": "#site-footer"
+      },
+      {
+        "id": "investment-matchmaking",
+        "eyebrow": "Capital",
+        "title": "Investment matchmaking",
+        "bodyHtml": "<p>We prepare founders and growth companies for high-context investor conversations, then match them with capital aligned to stage, sector, geography, and cross-border ambition.</p>",
+        "ctaLabel": "Discuss capital fit",
+        "ctaHref": "#site-footer"
+      },
+      {
+        "id": "tech-transfer",
+        "eyebrow": "Technology",
+        "title": "Technology transfer",
+        "bodyHtml": "<p>We support licensing, co-development, pilot packaging, and institutional introductions for teams moving intellectual property or applied technology between regions.</p>",
+        "ctaLabel": "Plan a transfer path",
+        "ctaHref": "#site-footer"
+      },
+      {
+        "id": "strategy-call",
+        "eyebrow": "Next step",
+        "title": "Book a strategy call",
+        "bodyHtml": "<p>Use the first conversation to clarify the market, timeline, and partner profile. The team will route the opportunity to the right advisor before proposing scope.</p>",
+        "ctaLabel": "Contact us",
+        "ctaHref": "#site-footer"
+      }
+    ]
+  },
+  "br": {
+    "eyebrow": "Assessoria",
+    "title": "Servicos de assessoria",
+    "summary": "Apoio de operadores seniores para empresas, investidores e instituicoes que constroem no corredor America Latina-China.",
+    "imageAlt": "Equipe de estrategia analisando planos de expansao em uma mesa de reuniao.",
+    "metaTitle": "Servicos de assessoria | LATAM China Tech",
+    "metaDescription": "Conheca os servicos de assessoria da LATAM China Tech para entrada em mercado, matchmaking de investimento e transferencia de tecnologia.",
+    "bodyHtml": "<p>A assessoria da LATAM China Tech transforma ambiguidade cross-border em decisoes estruturadas. Ajudamos equipes a validar hipoteses de mercado, identificar parceiros locais e preparar o plano operacional antes de conversas com capital, distribuicao ou governo.</p><p><strong>Matchmaking de investimento</strong>, transferencia de tecnologia e estrategia de entrada em mercado sao tratados como uma frente conectada para que cada introducao tenha uma razao comercial clara.</p>",
+    "sections": [
+      {
+        "id": "consulting",
+        "eyebrow": "Consultoria",
+        "title": "Estrategia de mercado e execucao",
+        "bodyHtml": "<p>Mapeamos segmentos de clientes, restricoes regulatorias, canais e riscos de lancamento antes que o time comprometa capital ou tempo em um novo mercado.</p><ul><li>Mapas de oportunidade e sequencia de go-to-market.</li><li>Shortlists de parceiros e distribuidores.</li><li>Briefs de entrada em mercado para diretoria.</li></ul>",
+        "ctaLabel": "Comecar pela assessoria",
+        "ctaHref": "#site-footer"
+      },
+      {
+        "id": "investment-matchmaking",
+        "eyebrow": "Capital",
+        "title": "Matchmaking de investimento",
+        "bodyHtml": "<p>Preparamos founders e empresas em crescimento para conversas com investidores de alto contexto e conectamos com capital alinhado a estagio, setor, geografia e ambicao cross-border.</p>",
+        "ctaLabel": "Discutir fit de capital",
+        "ctaHref": "#site-footer"
+      },
+      {
+        "id": "tech-transfer",
+        "eyebrow": "Tecnologia",
+        "title": "Transferencia de tecnologia",
+        "bodyHtml": "<p>Apoiamos licenciamento, co-desenvolvimento, desenho de pilotos e introducoes institucionais para equipes que movem propriedade intelectual ou tecnologia aplicada entre regioes.</p>",
+        "ctaLabel": "Planejar transferencia",
+        "ctaHref": "#site-footer"
+      },
+      {
+        "id": "strategy-call",
+        "eyebrow": "Proximo passo",
+        "title": "Agendar conversa estrategica",
+        "bodyHtml": "<p>Use a primeira conversa para esclarecer mercado, prazo e perfil de parceiro. O time encaminha a oportunidade para o advisor adequado antes de propor escopo.</p>",
+        "ctaLabel": "Fale conosco",
+        "ctaHref": "#site-footer"
+      }
+    ]
+  },
+  "cn": {
+    "eyebrow": "咨询",
+    "title": "咨询服务",
+    "summary": "为在拉美与中国之间拓展的企业、投资人和机构提供资深运营者支持。",
+    "imageAlt": "战略团队围绕会议桌讨论市场扩张计划。",
+    "metaTitle": "咨询服务 | LATAM China Tech",
+    "metaDescription": "了解 LATAM China Tech 在市场进入、投资对接和技术转移方面的咨询服务。",
+    "bodyHtml": "<p>LATAM China Tech 的咨询服务把跨境不确定性转化为结构化决策。我们帮助团队验证市场假设、识别本地伙伴，并在资本、渠道或公共部门对话之前准备执行计划。</p><p><strong>投资对接</strong>、技术转移和市场进入策略会作为一个连贯工作流推进，确保每一次介绍都有清晰的商业理由。</p>",
+    "sections": [
+      {
+        "id": "consulting",
+        "eyebrow": "咨询",
+        "title": "市场与执行策略",
+        "bodyHtml": "<p>在团队投入时间或资金进入新市场之前，我们会梳理客户群、监管限制、渠道选择和启动风险。</p><ul><li>机会扫描与进入顺序设计。</li><li>合作伙伴和分销渠道名单。</li><li>面向董事会的市场进入简报。</li></ul>",
+        "ctaLabel": "启动咨询",
+        "ctaHref": "#site-footer"
+      },
+      {
+        "id": "investment-matchmaking",
+        "eyebrow": "资本",
+        "title": "投资对接",
+        "bodyHtml": "<p>我们帮助创始人和成长型公司准备高质量投资人沟通，并根据阶段、行业、地域和跨境目标匹配合适资本。</p>",
+        "ctaLabel": "讨论资本匹配",
+        "ctaHref": "#site-footer"
+      },
+      {
+        "id": "tech-transfer",
+        "eyebrow": "技术",
+        "title": "技术转移",
+        "bodyHtml": "<p>我们支持许可、共同开发、试点包装和机构引荐，帮助团队在两地之间推动知识产权或应用技术落地。</p>",
+        "ctaLabel": "规划转移路径",
+        "ctaHref": "#site-footer"
+      },
+      {
+        "id": "strategy-call",
+        "eyebrow": "下一步",
+        "title": "预约战略沟通",
+        "bodyHtml": "<p>第一次沟通用于明确市场、时间线和伙伴画像。团队会先匹配合适顾问，再提出具体服务范围。</p>",
+        "ctaLabel": "联系我们",
+        "ctaHref": "#site-footer"
+      }
+    ]
+  }
+}

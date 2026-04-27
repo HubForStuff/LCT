@@ -6,17 +6,17 @@
     "newsletterPlaceholder": "Your email"
   },
   "navItems": [
-    { "label": "Advisory", "href": "/" },
+    { "label": "Advisory", "href": "/advisory/" },
     { "label": "Competitions & Challenges", "href": "/competitions/" },
-    { "label": "Events", "href": "/" },
-    { "label": "Programs", "href": "/" },
-    { "label": "Network", "href": "/" }
+    { "label": "Events", "href": "/events/" },
+    { "label": "Programs", "href": "/programs/" },
+    { "label": "Network", "href": "/network/" }
   ],
   "footer": {
     "eyebrow": "Fuel your growth.",
     "titleHtml": "Get funded, connected,<br />and scale across LatAm &amp; China",
     "buttonLabel": "View Programs",
-    "buttonHref": "/",
+    "buttonHref": "/programs/",
     "newsletterTitle": "NEWSLETTER",
     "newsletterButtonLabel": "Subscribe on Substack",
     "scanWechat": "Scan on WeChat",
@@ -25,8 +25,8 @@
       {
         "title": "Advisory",
         "links": [
-          { "label": "Investment", "href": "/" },
-          { "label": "Tech Transfer", "href": "/" }
+          { "label": "Investment", "href": "/advisory/#investment-matchmaking" },
+          { "label": "Tech Transfer", "href": "/advisory/#tech-transfer" }
         ]
       },
       {
@@ -39,15 +39,15 @@
       {
         "title": "Events",
         "links": [
-          { "label": "Trade Fairs & Expos", "href": "/" },
-          { "label": "Summits", "href": "/" }
+          { "label": "Trade Fairs & Expos", "href": "/events/#trade-fairs-expos" },
+          { "label": "Summits", "href": "/events/#summits" }
         ]
       },
       {
         "title": "Programs",
         "links": [
-          { "label": "Market Entry", "href": "/" },
-          { "label": "Business Mission", "href": "/" }
+          { "label": "Market Entry", "href": "/programs/#market-entry" },
+          { "label": "Business Mission", "href": "/programs/#business-mission" }
         ]
       }
     ]

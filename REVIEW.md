@@ -55,7 +55,8 @@ NOTE: all missing items are already solved, and dont need to be covered at the m
 
 # Static pages:
 
-- [ ] Create all the missing static pages linked in the home page and submenus. All of these pages content will be maanged using keystatic
+- [x] Create all the missing static pages linked in the home page and submenus. All of these pages content will be maanged using keystatic
+  - 2026-04-27 note: Added `/advisory/`, `/events/`, `/programs/`, and `/network/` as Keystatic-managed generated static pages and rewired homepage, submenu, interior nav, and footer links to the new routes.
 
 
 # Submenus
