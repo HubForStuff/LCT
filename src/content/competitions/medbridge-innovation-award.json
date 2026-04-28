@@ -32,7 +32,7 @@
     "eligibilityHtml": "<ul><li>Healthtech and biotech companies with a validated solution.</li><li>Teams pursuing channel development, co-development, or distribution in China.</li><li>Operators able to explain regulatory and commercial readiness.</li></ul>",
     "supportTitle": "What selected companies receive",
     "supportHtml": "<ul><li>Sector-specific introductions and narrative review.</li><li>Support refining competition materials for healthcare audiences.</li><li>Clearer preparation for investor, operator, and partner conversations.</li></ul>",
-    "processTitle": "Application flow",
+    "processTitle": "Opportunity roadmap",
     "processHtml": "<ol><li>Apply through the unified competition form.</li><li>Upload the main deck and any regulatory or product context that matters.</li><li>Work with the team on final packaging and submission readiness.</li></ol>",
     "applicationLabel": "Apply to this challenge"
   },
@@ -55,7 +55,7 @@
     "eligibilityHtml": "<ul><li>Empresas de healthtech e biotech com solucao validada.</li><li>Times buscando desenvolvimento de canal, co-desenvolvimento ou distribuicao na China.</li><li>Operadores capazes de explicar prontidao regulatoria e comercial.</li></ul>",
     "supportTitle": "O que as selecionadas recebem",
     "supportHtml": "<ul><li>Introducoes setoriais e revisao da narrativa.</li><li>Apoio para refinar materiais da competicao para audiencias de saude.</li><li>Preparacao mais clara para conversas com investidores, operadores e parceiros.</li></ul>",
-    "processTitle": "Fluxo de aplicacao",
+    "processTitle": "Roteiro da oportunidade",
     "processHtml": "<ol><li>Aplique pelo formulario unificado.</li><li>Envie deck principal e qualquer contexto regulatorio ou de produto relevante.</li><li>Trabalhe com a equipe na embalagem final e prontidao de submissao.</li></ol>",
     "applicationLabel": "Aplicar para este desafio"
   },
@@ -78,7 +78,7 @@
     "eligibilityHtml": "<ul><li>拥有已验证解决方案的健康科技和生物科技公司。</li><li>寻求渠道建设、联合开发或中国分销机会的团队。</li><li>能够说明监管与商业准备度的运营者。</li></ul>",
     "supportTitle": "入选团队可获得",
     "supportHtml": "<ul><li>行业引荐和叙事审阅支持。</li><li>帮助面向医疗受众优化竞赛材料。</li><li>更清晰地准备投资人、运营方和伙伴沟通。</li></ul>",
-    "processTitle": "申请流程",
+    "processTitle": "机会说明",
     "processHtml": "<ol><li>通过统一竞赛申请表提交。</li><li>上传主演示文档以及相关监管或产品背景材料。</li><li>与团队共同完善最终包装和提交准备。</li></ol>",
     "applicationLabel": "申请该竞赛"
   }

@@ -33,8 +33,8 @@
       {
         "title": "Competicoes",
         "links": [
-          { "label": "Competicoes de Startups", "href": "/pre-registration/" },
-          { "label": "Desafios Corporativos", "href": "/competitions/" }
+          { "label": "Competicoes de Startups", "href": "/competitions/?tab=startup" },
+          { "label": "Desafios Corporativos", "href": "/competitions/?tab=corporate" }
         ]
       },
       {
@@ -74,15 +74,23 @@
     ],
     "focusFilters": [
       { "label": "Todos os setores", "tone": "neutral", "active": true },
-      { "label": "Deep Tech", "tone": "violet" },
-      { "label": "Sustentabilidade", "tone": "green" },
-      { "label": "FinTech", "tone": "blue" },
-      { "label": "AgriTech", "tone": "green" },
       { "label": "AI", "tone": "violet" },
-      { "label": "HealthTech", "tone": "orange" },
-      { "label": "Logistica", "tone": "orange" },
-      { "label": "BioTech", "tone": "teal" },
-      { "label": "Manufatura", "tone": "closed" }
+      { "label": "Biotech", "tone": "teal" },
+      { "label": "Deep Tech", "tone": "violet" },
+      { "label": "Educacao", "tone": "orange" },
+      { "label": "Energia e Clima", "tone": "green" },
+      { "label": "Entretenimento", "tone": "orange" },
+      { "label": "Fintech", "tone": "blue" },
+      { "label": "Food & AgriTech", "tone": "green" },
+      { "label": "Healthtech", "tone": "orange" },
+      { "label": "Manufatura", "tone": "closed" },
+      { "label": "Marketplaces", "tone": "blue" },
+      { "label": "Midia e Comunidade", "tone": "violet" },
+      { "label": "Mobilidade", "tone": "orange" },
+      { "label": "Proptech", "tone": "teal" },
+      { "label": "Robotica", "tone": "closed" },
+      { "label": "Seguranca", "tone": "blue" },
+      { "label": "Outros", "tone": "neutral" }
     ],
     "sortOptions": [
       "Ordenar: prazo mais proximo",
@@ -316,27 +324,44 @@
   "preRegistrationPage": {
     "meta": {
       "htmlLang": "pt-BR",
-      "title": "Pre-inscricao para Competicao | LATAM China Tech",
-      "description": "Envie uma pre-inscricao de competicao com orientacao e suporte da LATAM China Tech."
+      "title": "Inscricao para Competicao | LATAM China Tech",
+      "description": "Envie uma inscricao de competicao com orientacao e suporte da LATAM China Tech."
     },
-    "eyebrow": "Pre-inscricoes abertas",
-    "titleHtml": "Pre-inscricao para<br /><em>Competicao</em>",
-    "subtitle": "Selecione uma competicao abaixo ou continue a partir de uma oportunidade especifica e nossa equipe vai orientar os proximos passos da sua submissao.",
-    "selectedCompetitionEyebrow": "Pre-inscricao aberta",
-    "selectedTitleSuffix": "Pre-inscricao",
-    "selectedSubtitleTemplate": "Voce esta fazendo a pre-inscricao para {competition}. Nossa equipe mantera a competicao bloqueada e orientara os proximos passos da sua submissao.",
+    "eyebrow": "Inscricoes abertas",
+    "titleHtml": "Inscricao para<br /><em>Competicao</em>",
+    "subtitle": "Pronto para aplicar? Preencha o formulario abaixo e nossa equipe orienta pessoalmente cada etapa da sua candidatura.",
+    "selectedCompetitionEyebrow": "Inscricoes abertas",
+    "selectedTitleSuffix": "Inscricao",
+    "selectedSubtitleTemplate": "Pronto para aplicar? Preencha o formulario abaixo e nossa equipe orienta pessoalmente cada etapa da sua candidatura.",
+    "defaultApplicationMode": "registration",
+    "applicationModes": {
+      "pre-registration": {
+        "statusLabel": "Pre-inscricao aberta",
+        "titleSuffix": "Pre-inscricao",
+        "selectedSubtitleTemplate": "Pronto para aplicar? Preencha o formulario abaixo e nossa equipe orienta pessoalmente cada etapa da sua candidatura.",
+        "bannerBadge": "Pre-inscricao aberta",
+        "bannerTitle": "Esta e uma pre-inscricao aberta"
+      },
+      "registration": {
+        "statusLabel": "Inscricoes abertas",
+        "titleSuffix": "Inscricao",
+        "selectedSubtitleTemplate": "Pronto para aplicar? Preencha o formulario abaixo e nossa equipe orienta pessoalmente cada etapa da sua candidatura.",
+        "bannerBadge": "Inscricoes abertas",
+        "bannerTitle": "Inscreva-se agora"
+      }
+    },
     "formProgressLabel": "Progresso do formulario",
     "banner": {
-      "badge": "Pre-inscricao",
-      "title": "Esta e uma pre-inscricao",
-      "descriptionHtml": "Envie este formulario e a <strong>LATAM CHINA TECH</strong> vai orientar pessoalmente toda a sua candidatura HICOOL: revisando seu envio, fortalecendo seu pitch e aumentando suas chances de vencer.",
+      "badge": "Inscricoes abertas",
+      "title": "Inscreva-se agora",
+      "descriptionHtml": "Envie este formulario e a <strong>LATAM CHINA TECH</strong> vai orientar pessoalmente toda a sua candidatura: revisando seu envio, fortalecendo seu pitch e aumentando suas chances de vencer.",
       "supportLabel": "Com apoio de",
       "supportName": "LATAM CHINA TECH",
-      "supportItems": ["Coaching de candidatura", "Introducoes de rede", "Guia do mercado chines"]
+      "supportItems": ["Revisao da candidatura", "Fortalecimento do pitch", "Orientacao de submissao"]
     },
     "guide": {
       "title": "Guia de candidatura e tutorial",
-      "description": "Os recursos para download estao sendo finalizados. Os controles abaixo serao ativados quando o guia e o tutorial estiverem disponiveis.",
+      "description": "Se precisar de suporte, baixe nosso guia em PDF passo a passo. Ele cobre regras da competicao, cronograma e dicas para uma candidatura vencedora. Esta disponivel em ingles, espanhol e portugues.",
       "actions": [
         { "label": "Baixar guia em PDF", "href": "#", "theme": "dark", "icon": "download" },
         { "label": "Assistir tutorial", "href": "#", "theme": "light", "icon": "play" }
@@ -354,12 +379,12 @@
       "applicantTitle": "Participante principal",
       "applicantSubtitle": "Dados pessoais do candidato lider.",
       "projectTitle": "Informacoes do projeto",
-      "projectSubtitle": "Conte-nos sobre sua startup. Use os prompts de apoio se quiser um primeiro rascunho mais rapido.",
+      "projectSubtitle": "Conte-nos sobre sua startup - se precisar, voce tambem pode usar IA como ferramenta para escrever cada secao mais rapido",
       "beijingTitle": "Plano de expansao e fit estrategico",
       "beijingSubtitle": "Explique como esta oportunidade se conecta a sua estrategia de entrada em mercado ou crescimento."
     },
     "notes": {
-      "applicant": "Instrucoes: o candidato principal deve ser o maior acionista pessoa fisica e estar disponivel para o roadshow das semifinais, caso seja selecionado.",
+      "applicant": "Instrucoes: o candidato principal deve ser o maior acionista da empresa, com 30% ou mais de participacao.",
       "beijing": "Importante: descreva com clareza o fit estrategico desta competicao, incluindo plano de expansao, parceria ou oportunidade cross-border."
     },
     "fields": {
@@ -372,7 +397,7 @@
       "projectIntroductionPlaceholder": "Descreva seu projeto em 30-50 palavras. Que problema ele resolve? Para quem ele serve?",
       "competitionField": "Area da competicao",
       "competitionFieldPlaceholder": "Selecione sua vertical principal",
-      "companyHeadquarters": "Onde fica a sede da sua empresa?",
+      "companyHeadquarters": "Sua empresa e uma entidade legalmente registrada?",
       "companyLocation": "Localizacao da empresa",
       "companyLocationPlaceholder": "Cidade, Pais (ex.: Sao Paulo, Brasil)",
       "companyFullName": "Nome completo da empresa",
@@ -394,7 +419,7 @@
       "linkedIn": "Perfil no LinkedIn",
       "linkedInPlaceholder": "https://linkedin.com/in/yourprofile",
       "email": "Endereco de e-mail",
-      "emailPlaceholder": "your@email.com",
+      "emailPlaceholder": "your@companyemail.com - Insira um endereco de e-mail valido para receber confirmacoes e atualizacoes.",
       "elevatorPitch": "Elevator pitch",
       "elevatorPitchHint": "Uma frase marcante",
       "elevatorPitchPlaceholder": "Adicione um pitch de uma frase para sua startup",
@@ -406,8 +431,10 @@
       "businessModelPlaceholder": "Explique como sua startup gera receita e sua estrategia de go-to-market.",
       "teamIntroduction": "Apresentacao da equipe",
       "teamIntroductionPlaceholder": "Apresente a equipe fundadora: trajetoria, experiencia e por que voces sao o time certo para executar esta visao.",
-      "investmentValue": "Potencial de investimento",
-      "investmentValuePlaceholder": "Descreva sua oportunidade de investimento: tracao atual, finanças, uso dos recursos e potencial de crescimento.",
+      "investmentValue": "Progresso ate agora",
+      "investmentValuePlaceholder": "Descreva o que sua empresa conquistou ate agora, como progresso do produto, usuarios, receita especifica e marcos importantes.",
+      "fundingAmountRequested": "Valor de financiamento solicitado",
+      "fundingAmountRequestedPlaceholder": "Informe o valor de financiamento solicitado e como o capital seria usado.",
       "pitchingDeck": "Pitch deck",
       "pitchingDeckHint": "PDF ou PPT, maximo de 20MB",
       "pitchingDeckUploadLabel": "Clique para enviar seu pitch deck",
@@ -427,22 +454,27 @@
     },
     "writeWithAiLabel": "Escrever com IA",
     "wordCountTarget": "Meta: 30-50 palavras",
-    "companyHeadquartersOptions": ["China", "Outros paises", "Empresa ainda nao constituida"],
+    "companyHeadquartersOptions": ["Registrada como empresa", "Ainda nao constituida como empresa"],
     "genderOptions": ["Masculino", "Feminino", "Outro"],
     "degreeOptions": ["Ensino medio", "Tecnologo", "Bacharelado", "Mestrado", "MBA", "Doutorado", "Outro"],
     "competitionFieldOptions": [
-      "Inteligencia Artificial e Machine Learning",
-      "FinTech e Financas Digitais",
-      "CleanTech e Sustentabilidade",
-      "BioTech e Ciencias da Vida",
-      "AgriTech e FoodTech",
-      "Manufatura Inteligente e Industria 4.0",
-      "EdTech e Futuro do Trabalho",
-      "HealthTech e MedTech",
-      "Mobilidade e Logistica",
-      "SaaS empresarial e cloud",
-      "Deep Tech e hardware",
-      "Outra vertical de tecnologia"
+      "AI",
+      "Biotech",
+      "Deep Tech",
+      "Educacao",
+      "Energia e Clima",
+      "Entretenimento",
+      "Fintech",
+      "Food & AgriTech",
+      "Healthtech",
+      "Manufatura",
+      "Marketplaces",
+      "Midia e Comunidade",
+      "Mobilidade",
+      "Proptech",
+      "Robotica",
+      "Seguranca",
+      "Outros"
     ],
     "benefits": [
       { "label": "Declaracao de politicas", "value": "policy", "short": "PD", "tone": "blue" },

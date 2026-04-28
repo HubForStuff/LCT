@@ -32,6 +32,7 @@ const detailCopyByCode = {
     deadlineLabel: "Timeline",
     trackLabel: "Track",
     focusLabel: "Focus",
+    registrationLabel: "Registration",
     applyLabel: "Apply now",
   },
   BR: {
@@ -40,6 +41,7 @@ const detailCopyByCode = {
     deadlineLabel: "Prazo",
     trackLabel: "Trilha",
     focusLabel: "Foco",
+    registrationLabel: "Inscricao",
     applyLabel: "Aplicar agora",
   },
   CN: {
@@ -48,38 +50,101 @@ const detailCopyByCode = {
     deadlineLabel: "时间",
     trackLabel: "赛道",
     focusLabel: "方向",
+    registrationLabel: "报名",
     applyLabel: "立即申请",
+  },
+} as const satisfies Record<HomepageLocaleCode, CompetitionDetailPageCopy>;
+
+const challengeDetailCopyByCode = {
+  EN: {
+    ...detailCopyByCode.EN,
+    backLabel: "Back to challenges",
+  },
+  BR: {
+    ...detailCopyByCode.BR,
+    backLabel: "Voltar para desafios",
+  },
+  CN: {
+    ...detailCopyByCode.CN,
+    backLabel: "返回挑战列表",
   },
 } as const satisfies Record<HomepageLocaleCode, CompetitionDetailPageCopy>;
 
 const statusFilterValues = ["all", "open", "future", "closed"] as const;
 const focusFilterValues = [
   "all",
-  "deep-tech",
-  "sustainability",
-  "fintech",
-  "agritech",
   "ai",
-  "healthtech",
-  "logistics",
   "biotech",
+  "deep-tech",
+  "education",
+  "energy-and-climate",
+  "entertainment",
+  "fintech",
+  "food-and-agritech",
+  "healthtech",
   "manufacturing",
+  "marketplaces",
+  "media-and-community",
+  "mobility",
+  "proptech",
+  "robotics",
+  "security",
+  "other",
 ] as const;
 
-function buildCompetitionHref(slug: string): string {
-  return `/competitions/${slug}/`;
+const fallbackDetailImages = {
+  startup: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1400",
+  corporate: "https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=1400",
+  academic: "https://images.pexels.com/photos/3184296/pexels-photo-3184296.jpeg?auto=compress&cs=tinysrgb&w=1400",
+} as const satisfies Record<CompetitionCollectionEntry["track"], string>;
+
+function buildCompetitionHref(entry: Pick<CompetitionCollectionEntry, "track" | "slug">): string {
+  return entry.track === "corporate" ? `/challenges/${entry.slug}/` : `/competitions/${entry.slug}/`;
+}
+
+function buildCompetitionListingHref(track: CompetitionCollectionEntry["track"]): string {
+  return track === "corporate" ? "/competitions/?tab=corporate" : "/competitions/?tab=startup";
 }
 
 function buildCompetitionApplicationHref(slug: string): string {
   return `/pre-registration/?competition=${slug}`;
 }
 
+function getCompetitionApplicationMode(
+  entry: CompetitionCollectionEntry,
+): NonNullable<CompetitionCollectionEntry["applicationMode"]> {
+  return entry.applicationMode ?? (entry.statusTone === "open" ? "registration" : "pre-registration");
+}
+
 function normalizeFocusKey(value: string): string {
-  return value
+  const normalized = value
     .toLowerCase()
     .replace(/&/g, "and")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
+
+  const aliases: Record<string, string> = {
+    agritech: "food-and-agritech",
+    "foodtech": "food-and-agritech",
+    "food-and-agritech": "food-and-agritech",
+    cleantech: "energy-and-climate",
+    energy: "energy-and-climate",
+    sustainability: "energy-and-climate",
+    grid: "energy-and-climate",
+    logistics: "mobility",
+    distribution: "marketplaces",
+    trade: "marketplaces",
+    export: "marketplaces",
+    sme: "marketplaces",
+    corporate: "marketplaces",
+    "market-entry": "marketplaces",
+    payments: "fintech",
+    "financial-inclusion": "fintech",
+    "financial-services": "fintech",
+    edtech: "education",
+  };
+
+  return aliases[normalized] ?? normalized;
 }
 
 function localizeCompetitionEntry(
@@ -128,7 +193,7 @@ function getTrackLabel(code: HomepageLocaleCode, track: CompetitionCollectionEnt
 
 function buildListingCard(entry: CompetitionLocalizedEntry) {
   return {
-    href: buildCompetitionHref(entry.slug),
+    href: buildCompetitionHref(entry),
     slug: entry.slug,
     category: entry.localized.category,
     name: entry.localized.name,
@@ -149,7 +214,7 @@ function buildListingCard(entry: CompetitionLocalizedEntry) {
 
 function buildFeaturedCard(entry: CompetitionLocalizedEntry) {
   return {
-    href: buildCompetitionHref(entry.slug),
+    href: buildCompetitionHref(entry),
     slug: entry.slug,
     theme: entry.track === "corporate" ? "corporate" : "startup",
     tag: entry.localized.featuredTag,
@@ -176,13 +241,15 @@ function buildCompetitionDetail(
 ): CompetitionDetail {
   return {
     slug: entry.slug,
-    href: buildCompetitionHref(entry.slug),
+    href: buildCompetitionHref(entry),
+    listingHref: buildCompetitionListingHref(entry.track),
     applicationHref: buildCompetitionApplicationHref(entry.slug),
     track: entry.track,
     trackLabel: getTrackLabel(code, entry.track),
     statusTone: entry.statusTone,
     watermark: entry.watermark,
     value: entry.value,
+    detailImage: entry.detailImage ?? fallbackDetailImages[entry.track],
     focusTags: entry.focusTags,
     category: entry.localized.category,
     name: entry.localized.name,
@@ -201,6 +268,7 @@ function buildCompetitionDetail(
     supportHtml: entry.localized.supportHtml,
     processTitle: entry.localized.processTitle,
     processHtml: entry.localized.processHtml,
+    featureImageAlt: entry.localized.featureImageAlt ?? `${entry.localized.name} feature image`,
     applicationLabel: entry.localized.applicationLabel,
   };
 }
@@ -221,6 +289,7 @@ export async function getCompetitionFormOptionsByLocale(): Promise<
           label: localizedEntry.localized.name,
           track: entry.track,
           statusTone: entry.statusTone,
+          applicationMode: getCompetitionApplicationMode(entry),
         };
       }),
     ]),
@@ -229,7 +298,12 @@ export async function getCompetitionFormOptionsByLocale(): Promise<
 
 export async function getAllCompetitionSlugs(): Promise<string[]> {
   const entries = await getAllCompetitionEntries();
-  return entries.map((entry) => entry.slug);
+  return entries.filter((entry) => entry.track !== "corporate").map((entry) => entry.slug);
+}
+
+export async function getAllChallengeSlugs(): Promise<string[]> {
+  const entries = await getAllCompetitionEntries();
+  return entries.filter((entry) => entry.track === "corporate").map((entry) => entry.slug);
 }
 
 export async function getCompetitionsListingPageData(): Promise<CompetitionListingPageData> {
@@ -325,7 +399,7 @@ export async function getCompetitionDetailPageData(slug: string): Promise<Compet
         desktopMenuSections: homepageLocale.desktopMenuSections,
         navExploreLabel: homepageLocale.navExploreLabel,
         listingPage: locale.competitionsPage,
-        detailPage: detailCopyByCode[code],
+        detailPage: localizedEntry.track === "corporate" ? challengeDetailCopyByCode[code] : detailCopyByCode[code],
         page: buildCompetitionDetail(localizedEntry, code),
       };
 

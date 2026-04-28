@@ -20,7 +20,7 @@
         "title": "Trade fairs and expos",
         "bodyHtml": "<p>Join curated exhibition programs where companies present products, schedule bilateral meetings, and receive market briefings before and after the event.</p>",
         "ctaLabel": "Plan exhibition access",
-        "ctaHref": "#site-footer"
+        "ctaHref": "#contact"
       },
       {
         "id": "summits",
@@ -28,7 +28,7 @@
         "title": "Tech conferences and summits",
         "bodyHtml": "<p>We convene founders, corporates, cities, investors, and operators for tactical sessions on market entry, industrial partnerships, AI, climate, healthcare, and logistics.</p>",
         "ctaLabel": "Request summit details",
-        "ctaHref": "#site-footer"
+        "ctaHref": "#contact"
       },
       {
         "id": "calendar",
@@ -36,7 +36,7 @@
         "title": "Upcoming corridor calendar",
         "bodyHtml": "<p>The first public calendar will combine LATAM China Tech hosted programs with selected partner events. Until then, teams can request a private shortlist based on sector and market goals.</p>",
         "ctaLabel": "Ask for the calendar",
-        "ctaHref": "#site-footer"
+        "ctaHref": "#contact"
       }
     ]
   },
@@ -55,7 +55,7 @@
         "title": "Feiras e exposicoes",
         "bodyHtml": "<p>Participe de programas curatoriais onde empresas apresentam produtos, agendam reunioes bilaterais e recebem briefings de mercado antes e depois do evento.</p>",
         "ctaLabel": "Planejar acesso a feiras",
-        "ctaHref": "#site-footer"
+        "ctaHref": "#contact"
       },
       {
         "id": "summits",
@@ -63,7 +63,7 @@
         "title": "Conferencias e summits de tecnologia",
         "bodyHtml": "<p>Reunimos founders, corporates, cidades, investidores e operadores para sessoes praticas sobre entrada em mercado, parcerias industriais, AI, clima, saude e logistica.</p>",
         "ctaLabel": "Solicitar detalhes",
-        "ctaHref": "#site-footer"
+        "ctaHref": "#contact"
       },
       {
         "id": "calendar",
@@ -71,7 +71,7 @@
         "title": "Calendario do corredor",
         "bodyHtml": "<p>O primeiro calendario publico combinara programas da LATAM China Tech com eventos selecionados de parceiros. Ate la, os times podem pedir uma shortlist privada por setor e mercado.</p>",
         "ctaLabel": "Pedir calendario",
-        "ctaHref": "#site-footer"
+        "ctaHref": "#contact"
       }
     ]
   },
@@ -90,7 +90,7 @@
         "title": "展会与博览会",
         "bodyHtml": "<p>加入经过策划的展览项目，展示产品、安排双边会议，并在活动前后获得市场简报。</p>",
         "ctaLabel": "规划参展",
-        "ctaHref": "#site-footer"
+        "ctaHref": "#contact"
       },
       {
         "id": "summits",
@@ -98,7 +98,7 @@
         "title": "技术会议与峰会",
         "bodyHtml": "<p>我们召集创始人、企业、城市、投资人和运营者，围绕市场进入、产业合作、AI、气候、医疗和物流开展务实讨论。</p>",
         "ctaLabel": "索取峰会信息",
-        "ctaHref": "#site-footer"
+        "ctaHref": "#contact"
       },
       {
         "id": "calendar",
@@ -106,7 +106,7 @@
         "title": "走廊活动日历",
         "bodyHtml": "<p>首个公开日历将整合 LATAM China Tech 主办项目和精选合作伙伴活动。在此之前，团队可以按行业和市场目标申请私密活动清单。</p>",
         "ctaLabel": "获取日历",
-        "ctaHref": "#site-footer"
+        "ctaHref": "#contact"
       }
     ]
   }

@@ -14,6 +14,9 @@ interface Props {
 const { locale, siteSettings, currentLanguage } = Astro.props;
 const page = locale.page;
 const competitionOptions = locale.competitionOptions;
+const applicationModeEntries = Object.entries(page.applicationModes);
+const defaultApplicationMode = page.defaultApplicationMode;
+const defaultApplicationModeCopy = page.applicationModes[defaultApplicationMode];
 
 const aiTextareaFields = [
   {
@@ -51,6 +54,13 @@ const aiTextareaFields = [
     placeholder: page.fields.investmentValuePlaceholder,
     placeholderKey: "page.fields.investmentValuePlaceholder",
   },
+  {
+    id: "fundingAmountRequested",
+    label: page.fields.fundingAmountRequested,
+    labelKey: "page.fields.fundingAmountRequested",
+    placeholder: page.fields.fundingAmountRequestedPlaceholder,
+    placeholderKey: "page.fields.fundingAmountRequestedPlaceholder",
+  },
 ] as const;
 ---
 
@@ -72,8 +82,13 @@ const aiTextareaFields = [
       <div class="interior-wrap page-header-inner page-header-inner--split">
         <div>
           <div class="page-eyebrow">
-            <span class="dot"></span>
-            <span data-prereg-page-eyebrow data-i18n="page.eyebrow">{page.eyebrow}</span>
+            <span class="dot page-status-dot"></span>
+            <span
+              data-prereg-page-eyebrow
+              data-i18n={`page.applicationModes.${defaultApplicationMode}.statusLabel`}
+            >
+              {defaultApplicationModeCopy.statusLabel}
+            </span>
           </div>
           <h1
             class="page-title"
@@ -89,49 +104,65 @@ const aiTextareaFields = [
         <p class="page-subtitle" data-prereg-page-subtitle data-i18n="page.subtitle">{page.subtitle}</p>
         <span
           class="sr-only"
-          data-prereg-selected-eyebrow
-          data-i18n="page.selectedCompetitionEyebrow"
+          data-prereg-default-application-mode
         >
-          {page.selectedCompetitionEyebrow}
+          {defaultApplicationMode}
         </span>
-        <span
-          class="sr-only"
-          data-prereg-selected-title-suffix
-          data-i18n="page.selectedTitleSuffix"
-        >
-          {page.selectedTitleSuffix}
-        </span>
-        <span
-          class="sr-only"
-          data-prereg-selected-subtitle-template
-          data-i18n="page.selectedSubtitleTemplate"
-        >
-          {page.selectedSubtitleTemplate}
-        </span>
+        {applicationModeEntries.map(([mode, copy]) => (
+          <span class="sr-only" data-prereg-mode-copy={mode}>
+            <span
+              data-prereg-mode-status-label
+              data-i18n={`page.applicationModes.${mode}.statusLabel`}
+            >
+              {copy.statusLabel}
+            </span>
+            <span
+              data-prereg-mode-title-suffix
+              data-i18n={`page.applicationModes.${mode}.titleSuffix`}
+            >
+              {copy.titleSuffix}
+            </span>
+            <span
+              data-prereg-mode-selected-subtitle-template
+              data-i18n={`page.applicationModes.${mode}.selectedSubtitleTemplate`}
+            >
+              {copy.selectedSubtitleTemplate}
+            </span>
+            <span
+              data-prereg-mode-banner-badge
+              data-i18n={`page.applicationModes.${mode}.bannerBadge`}
+            >
+              {copy.bannerBadge}
+            </span>
+            <span
+              data-prereg-mode-banner-title
+              data-i18n={`page.applicationModes.${mode}.bannerTitle`}
+            >
+              {copy.bannerTitle}
+            </span>
+          </span>
+        ))}
       </div>
     </section>
 
     <section class="interior-wrap pre-registration-shell">
       <div class="prereg-banner">
         <div class="prereg-banner-copy">
-          <div class="prereg-banner-badge" data-i18n="page.banner.badge">{page.banner.badge}</div>
-          <h2 data-i18n="page.banner.title">{page.banner.title}</h2>
+          <div
+            class="prereg-banner-badge"
+            data-prereg-banner-badge
+            data-i18n={`page.applicationModes.${defaultApplicationMode}.bannerBadge`}
+          >
+            {defaultApplicationModeCopy.bannerBadge}
+          </div>
+          <h2
+            data-prereg-banner-title
+            data-i18n={`page.applicationModes.${defaultApplicationMode}.bannerTitle`}
+          >
+            {defaultApplicationModeCopy.bannerTitle}
+          </h2>
           <p data-i18n-html="page.banner.descriptionHtml" set:html={page.banner.descriptionHtml}></p>
         </div>
-
-        <aside class="prereg-support-card">
-          <div class="prereg-support-label" data-i18n="page.banner.supportLabel">
-            {page.banner.supportLabel}
-          </div>
-          <div class="prereg-support-name" data-i18n="page.banner.supportName">
-            {page.banner.supportName}
-          </div>
-          <div class="prereg-support-items">
-            {page.banner.supportItems.map((item, itemIndex) => (
-              <span data-i18n={`page.banner.supportItems.${itemIndex}`}>{item}</span>
-            ))}
-          </div>
-        </aside>
       </div>
 
       <div class="tutorial-area">
@@ -221,11 +252,15 @@ const aiTextareaFields = [
                 <span class="req">*</span>
               </label>
               <select id="selectedCompetition" name="selectedCompetition" data-competition-select>
-                <option value="" data-i18n="page.fields.selectedCompetitionPlaceholder">
+                <option value="" disabled selected data-i18n="page.fields.selectedCompetitionPlaceholder">
                   {page.fields.selectedCompetitionPlaceholder}
                 </option>
                 {competitionOptions.map((option, optionIndex) => (
-                  <option value={option.slug} data-i18n={`competitionOptions.${optionIndex}.label`}>
+                  <option
+                    value={option.slug}
+                    data-application-mode={option.applicationMode}
+                    data-i18n={`competitionOptions.${optionIndex}.label`}
+                  >
                     {option.label}
                   </option>
                 ))}
@@ -276,7 +311,7 @@ const aiTextareaFields = [
                 <span class="req">*</span>
               </label>
               <select id="compField" name="compField">
-                <option value="" data-i18n="page.fields.competitionFieldPlaceholder">
+                <option value="" disabled selected data-i18n="page.fields.competitionFieldPlaceholder">
                   {page.fields.competitionFieldPlaceholder}
                 </option>
                 {page.competitionFieldOptions.map((option, optionIndex) => (
@@ -299,7 +334,6 @@ const aiTextareaFields = [
                       type="radio"
                       name="companyHeadquarters"
                       value={option}
-                      checked={optionIndex === 1}
                     />
                     <span data-i18n={`page.companyHeadquartersOptions.${optionIndex}`}>{option}</span>
                   </label>
@@ -323,12 +357,14 @@ const aiTextareaFields = [
 
             <div class="form-row">
               <label for="compFullName">
-                <span data-i18n="page.fields.companyFullName">{page.fields.companyFullName}</span>
+                <span data-i18n="page.fields.companyFullName">{page.fields.companyFullName}</span>{" "}
+                <span class="req">*</span>
               </label>
               <input
                 id="compFullName"
                 name="compFullName"
                 type="text"
+                required
                 placeholder={page.fields.companyFullNamePlaceholder}
                 data-i18n-placeholder="page.fields.companyFullNamePlaceholder"
               />
@@ -436,7 +472,7 @@ const aiTextareaFields = [
                   <span class="req">*</span>
                 </label>
                 <select id="degree" name="degree">
-                  <option value="" data-i18n="page.fields.highestDegreePlaceholder">
+                  <option value="" disabled selected data-i18n="page.fields.highestDegreePlaceholder">
                     {page.fields.highestDegreePlaceholder}
                   </option>
                   {page.degreeOptions.map((option, optionIndex) => (
@@ -612,7 +648,7 @@ const aiTextareaFields = [
                 <span class="req">*</span>
               </label>
               <select id="hearAbout" name="hearAbout">
-                <option value="" data-i18n="page.fields.hearAboutPlaceholder">
+                <option value="" disabled selected data-i18n="page.fields.hearAboutPlaceholder">
                   {page.fields.hearAboutPlaceholder}
                 </option>
                 {page.hearAboutOptions.map((option, optionIndex) => (
@@ -669,7 +705,7 @@ const aiTextareaFields = [
                 </span>
               </label>
               <select id="incorporationTimeline" name="incorporationTimeline">
-                <option value="" data-i18n="page.fields.incorporationTimelinePlaceholder">
+                <option value="" disabled selected data-i18n="page.fields.incorporationTimelinePlaceholder">
                   {page.fields.incorporationTimelinePlaceholder}
                 </option>
                 {page.incorporationTimelineOptions.map((option, optionIndex) => (
@@ -687,7 +723,7 @@ const aiTextareaFields = [
               <button type="button" class="site-btn site-btn--secondary" data-i18n="page.saveDraftLabel">
                 {page.saveDraftLabel}
               </button>
-              <button type="submit" class="site-btn site-btn--primary" data-i18n="page.submitLabel">
+              <button type="submit" class="site-btn site-btn--primary site-btn--submit" data-i18n="page.submitLabel">
                 {page.submitLabel}
               </button>
             </div>
@@ -709,9 +745,30 @@ const aiTextareaFields = [
   const pageEyebrow = document.querySelector("[data-prereg-page-eyebrow]");
   const pageTitle = document.querySelector("[data-prereg-page-title]");
   const pageSubtitle = document.querySelector("[data-prereg-page-subtitle]");
-  const selectedEyebrow = document.querySelector("[data-prereg-selected-eyebrow]");
-  const selectedTitleSuffix = document.querySelector("[data-prereg-selected-title-suffix]");
-  const selectedSubtitleTemplate = document.querySelector("[data-prereg-selected-subtitle-template]");
+  const defaultApplicationModeElement = document.querySelector("[data-prereg-default-application-mode]");
+  const bannerBadge = document.querySelector("[data-prereg-banner-badge]");
+  const bannerTitle = document.querySelector("[data-prereg-banner-title]");
+  const applicationModeCopyElements = Array.from(document.querySelectorAll("[data-prereg-mode-copy]"));
+
+  function getDefaultApplicationMode() {
+    return defaultApplicationModeElement?.textContent?.trim() || "registration";
+  }
+
+  function getApplicationModeCopy(mode) {
+    const fallbackMode = getDefaultApplicationMode();
+    const copyElement =
+      applicationModeCopyElements.find((element) => element.getAttribute("data-prereg-mode-copy") === mode) ||
+      applicationModeCopyElements.find((element) => element.getAttribute("data-prereg-mode-copy") === fallbackMode);
+
+    return {
+      statusLabel: copyElement?.querySelector("[data-prereg-mode-status-label]")?.textContent?.trim() || "",
+      titleSuffix: copyElement?.querySelector("[data-prereg-mode-title-suffix]")?.textContent?.trim() || "",
+      selectedSubtitleTemplate:
+        copyElement?.querySelector("[data-prereg-mode-selected-subtitle-template]")?.textContent?.trim() || "",
+      bannerBadge: copyElement?.querySelector("[data-prereg-mode-banner-badge]")?.textContent?.trim() || "",
+      bannerTitle: copyElement?.querySelector("[data-prereg-mode-banner-title]")?.textContent?.trim() || "",
+    };
+  }
 
   function escapeHtml(value) {
     return value.replace(/[&<>"']/g, (character) => {
@@ -759,9 +816,26 @@ const aiTextareaFields = [
     const selectedOption = competitionSelect.selectedOptions[0];
     const hasSelection = Boolean(competitionSelect.value && selectedOption);
     const selectedLabel = selectedOption?.textContent?.trim() || "";
+    const selectedApplicationMode =
+      selectedOption instanceof HTMLOptionElement
+        ? selectedOption.dataset.applicationMode || getDefaultApplicationMode()
+        : getDefaultApplicationMode();
+    const modeCopy = getApplicationModeCopy(selectedApplicationMode);
 
     competitionContext.hidden = !hasSelection;
     competitionName.textContent = hasSelection ? selectedLabel : "";
+
+    if (pageEyebrow instanceof HTMLElement && modeCopy.statusLabel) {
+      pageEyebrow.textContent = modeCopy.statusLabel;
+    }
+
+    if (bannerBadge instanceof HTMLElement && modeCopy.bannerBadge) {
+      bannerBadge.textContent = modeCopy.bannerBadge;
+    }
+
+    if (bannerTitle instanceof HTMLElement && modeCopy.bannerTitle) {
+      bannerTitle.textContent = modeCopy.bannerTitle;
+    }
 
     if (
       hasSelection &&
@@ -769,16 +843,11 @@ const aiTextareaFields = [
       pageEyebrow instanceof HTMLElement &&
       pageTitle instanceof HTMLElement &&
       pageSubtitle instanceof HTMLElement &&
-      selectedEyebrow instanceof HTMLElement &&
-      selectedTitleSuffix instanceof HTMLElement &&
-      selectedSubtitleTemplate instanceof HTMLElement
+      modeCopy.titleSuffix &&
+      modeCopy.selectedSubtitleTemplate
     ) {
-      const suffix = selectedTitleSuffix.textContent?.trim() || "";
-      const subtitleTemplate = selectedSubtitleTemplate.textContent?.trim() || "";
-
-      pageEyebrow.textContent = selectedEyebrow.textContent?.trim() || "";
-      pageTitle.innerHTML = `${escapeHtml(selectedLabel)}<br /><em>${escapeHtml(suffix)}</em>`;
-      pageSubtitle.textContent = subtitleTemplate.replace("{competition}", selectedLabel);
+      pageTitle.innerHTML = `${escapeHtml(selectedLabel)}<br /><em>${escapeHtml(modeCopy.titleSuffix)}</em>`;
+      pageSubtitle.textContent = modeCopy.selectedSubtitleTemplate.replace("{competition}", selectedLabel);
     }
   }
 

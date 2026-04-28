@@ -8,6 +8,35 @@ import { execFileSync, spawn, spawnSync } from "node:child_process";
 const testDir = dirname(fileURLToPath(import.meta.url));
 const projectRoot = resolve(testDir, "..");
 const distIndexPath = resolve(projectRoot, "dist", "index.html");
+const homepageCssPath = resolve(projectRoot, "src/styles/homepage.css");
+const localizationClientPath = resolve(projectRoot, "src/components/i18n/LocalizationClient.astro");
+
+const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+const getCssRuleDeclarations = (css, selector) => {
+  const match = css.match(new RegExp(`${escapeRegExp(selector)}\\s*\\{([^}]*)\\}`));
+
+  assert.ok(match, `expected to find CSS rule for ${selector}`);
+
+  return match[1]
+    .split(";")
+    .map((declaration) => declaration.trim())
+    .filter(Boolean)
+    .reduce((declarations, declaration) => {
+      const separatorIndex = declaration.indexOf(":");
+      assert.notEqual(separatorIndex, -1, `expected valid declaration in ${selector}: ${declaration}`);
+
+      const property = declaration.slice(0, separatorIndex).trim();
+      const value = declaration.slice(separatorIndex + 1).trim().replace(/\s+/g, " ");
+      declarations.set(property, value);
+
+      return declarations;
+    }, new Map());
+};
+
+const assertCssDeclaration = (declarations, property, expectedValue) => {
+  assert.equal(declarations.get(property), expectedValue, `expected ${property}: ${expectedValue}`);
+};
 
 const buildSite = () => {
   const build = spawnSync("npm", ["run", "build"], {
@@ -44,6 +73,123 @@ const runAgentBrowser = (args) =>
     cwd: projectRoot,
     encoding: "utf8",
   });
+
+test("homepage desktop header language controls match Batch A feedback", () => {
+  const css = readFileSync(homepageCssPath, "utf8");
+
+  const navInner = getCssRuleDeclarations(css, ".desktop-home .desk-nav-inner");
+  assertCssDeclaration(navInner, "gap", "0");
+
+  const nav = getCssRuleDeclarations(css, ".desktop-home .desk-nav-inner > nav");
+  assertCssDeclaration(nav, "justify-content", "flex-start");
+
+  const navList = getCssRuleDeclarations(css, ".desktop-home .desk-nav-list");
+  assertCssDeclaration(navList, "padding-left", "58px");
+
+  const langButton = getCssRuleDeclarations(css, ".desktop-home .desk-lang-btn");
+  assertCssDeclaration(langButton, "width", "36px");
+  assertCssDeclaration(langButton, "height", "36px");
+  assertCssDeclaration(langButton, "padding", "0");
+  assertCssDeclaration(langButton, "border-radius", "50%");
+  assertCssDeclaration(langButton, "color", "#555555");
+
+  const activeCode = getCssRuleDeclarations(css, ".desktop-home .desk-lang-active-code");
+  assertCssDeclaration(activeCode, "display", "none");
+
+  const langMenu = getCssRuleDeclarations(css, ".desktop-home .desk-lang-menu");
+  assertCssDeclaration(langMenu, "top", "calc(100% + 8px)");
+  assertCssDeclaration(langMenu, "min-width", "80px");
+  assertCssDeclaration(langMenu, "padding", "6px");
+  assertCssDeclaration(langMenu, "border-radius", "12px");
+  assertCssDeclaration(langMenu, "background", "rgba(8, 8, 8, 0.58)");
+  assertCssDeclaration(langMenu, "backdrop-filter", "blur(12px)");
+  assertCssDeclaration(langMenu, "transform", "translateY(-6px)");
+
+  const langOption = getCssRuleDeclarations(css, ".desktop-home .desk-lang-option");
+  assertCssDeclaration(langOption, "justify-content", "flex-start");
+  assertCssDeclaration(langOption, "gap", "6px");
+  assertCssDeclaration(langOption, "padding", "7px 12px");
+  assertCssDeclaration(langOption, "border-radius", "8px");
+  assertCssDeclaration(langOption, "font-size", "12px");
+  assertCssDeclaration(langOption, "font-weight", "600");
+  assertCssDeclaration(langOption, "color", "var(--desk-red)");
+
+  const langOptionLabel = getCssRuleDeclarations(css, ".desktop-home .desk-lang-option small");
+  assertCssDeclaration(langOptionLabel, "opacity", "0");
+  assertCssDeclaration(langOptionLabel, "max-width", "0");
+  assertCssDeclaration(langOptionLabel, "overflow", "hidden");
+
+  const langOptionHoverLabel = getCssRuleDeclarations(
+    css,
+    ".desktop-home .desk-lang-option:hover small",
+  );
+  assertCssDeclaration(langOptionHoverLabel, "opacity", "1");
+  assertCssDeclaration(langOptionHoverLabel, "max-width", "160px");
+});
+
+test("homepage desktop footer matches Batch B feedback", () => {
+  const css = readFileSync(homepageCssPath, "utf8");
+
+  const footerCta = getCssRuleDeclarations(css, ".desktop-home .desk-footer-cta-inner");
+  assertCssDeclaration(footerCta, "padding", "53px 88px");
+
+  const footerMain = getCssRuleDeclarations(css, ".desktop-home .desk-footer-main");
+  assertCssDeclaration(footerMain, "padding", "44px 88px 35px");
+
+  const footerLinks = getCssRuleDeclarations(css, ".desktop-home .desk-footer-group-links");
+  assertCssDeclaration(footerLinks, "gap", "7px");
+
+  const footerLink = getCssRuleDeclarations(css, ".desktop-home .desk-footer-group-links a");
+  assertCssDeclaration(footerLink, "font-size", "16px");
+  assertCssDeclaration(footerLink, "line-height", "1.15");
+
+  const newsletterInput = getCssRuleDeclarations(css, ".desktop-home .desk-footer-newsletter input");
+  assertCssDeclaration(newsletterInput, "width", "186px");
+  assertCssDeclaration(newsletterInput, "outline", "none");
+  assertCssDeclaration(newsletterInput, "transition", "border-color 0.18s ease");
+
+  const newsletterInputFocus = getCssRuleDeclarations(
+    css,
+    ".desktop-home .desk-footer-newsletter input:focus",
+  );
+  assertCssDeclaration(newsletterInputFocus, "border-color", "var(--desk-red)");
+  assertCssDeclaration(newsletterInputFocus, "box-shadow", "none");
+
+  const newsletterPlaceholder = getCssRuleDeclarations(
+    css,
+    ".desktop-home .desk-footer-newsletter input::placeholder",
+  );
+  assertCssDeclaration(newsletterPlaceholder, "color", "#8a8a8a");
+  assertCssDeclaration(newsletterPlaceholder, "font-size", "12px");
+
+  const subscribe = getCssRuleDeclarations(css, ".desktop-home .desk-footer-subscribe");
+  assertCssDeclaration(subscribe, "min-width", "170px");
+  assertCssDeclaration(subscribe, "font-size", "13px");
+
+  const wechatPopup = getCssRuleDeclarations(css, ".desktop-home .desk-wechat-popup");
+  assertCssDeclaration(wechatPopup, "right", "calc(100% + 12px)");
+  assertCssDeclaration(wechatPopup, "top", "-52px");
+  assertCssDeclaration(wechatPopup, "bottom", "auto");
+  assertCssDeclaration(wechatPopup, "transform", "translateX(8px)");
+
+  const wechatVisible = getCssRuleDeclarations(
+    css,
+    ".desktop-home .desk-wechat:hover .desk-wechat-popup,\n  .desktop-home .desk-wechat:focus-within .desk-wechat-popup",
+  );
+  assertCssDeclaration(wechatVisible, "transform", "translateX(0)");
+
+  const html = readFileSync(resolve(projectRoot, "src/components/home/DesktopFooter.astro"), "utf8");
+  assert.match(
+    html,
+    /class="desk-social-btn desk-social-btn--whatsapp"/,
+    "expected the footer WhatsApp link to expose the adjusted WhatsApp icon treatment",
+  );
+  assert.match(
+    html,
+    /M9\.5 8\.8/,
+    "expected the footer WhatsApp icon to include the inner phone mark from the proposed design",
+  );
+});
 
 test("homepage build matches the supplied design structure", () => {
   buildSite();
@@ -101,8 +247,13 @@ test("homepage build matches the supplied design structure", () => {
   );
   assert.match(
     html,
-    /href="\/pre-registration\/"/,
-    "expected the homepage to link into the pre-registration route",
+    /href="\/competitions\/\?tab=startup"/,
+    "expected the homepage startup competition link to activate the startup tab",
+  );
+  assert.match(
+    html,
+    /href="\/competitions\/\?tab=corporate"/,
+    "expected the homepage corporate challenge link to activate the corporate tab",
   );
   assert.match(
     html,
@@ -146,13 +297,82 @@ test("homepage build matches the supplied design structure", () => {
   );
   assert.match(
     html,
-    /href="\/competitions\/china-market-entry-accelerator-2025\/"/,
+    /href="\/challenges\/china-market-entry-accelerator-2025\/"/,
     "expected the corporate submenu card to link to the highlighted challenge detail page",
   );
   assert.doesNotMatch(
     html,
     /ByteDance Corporate Challenge|Registration Open/,
     "expected the competitions submenu to stop rendering the old static card placeholders",
+  );
+});
+
+test("Batch G homepage mobile competition cards and scroll header match feedback", () => {
+  buildSite();
+
+  const html = readFileSync(distIndexPath, "utf8");
+  const css = readFileSync(homepageCssPath, "utf8");
+  const localizationClient = readFileSync(localizationClientPath, "utf8");
+
+  assert.match(
+    html,
+    /mob-comp-card mob-comp-card--red[\s\S]*mob-comp-card mob-comp-card--blue/,
+    "expected the mobile competition cards to render left/red before right/blue",
+  );
+  assert.match(
+    css,
+    /@keyframes status-dot-pulse\s*\{/,
+    "expected homepage status dots to use a shared pulsing animation",
+  );
+  assert.match(
+    css,
+    /\.desktop-home \.desk-comp-badge::before\s*\{[^}]*animation:\s*status-dot-pulse 2\.6s ease-in-out infinite;/s,
+    "expected desktop competition status dots to pulse",
+  );
+  assert.match(
+    css,
+    /\.mobile-home \.mob-comp-card--red\s*\{[^}]*--status-dot-color:\s*var\(--mob-red\);[^}]*--status-pulse-glow:\s*rgba\(255,\s*45,\s*0,\s*0\.32\);/s,
+    "expected the left mobile competition card to use the red pulsing dot",
+  );
+  assert.match(
+    css,
+    /\.mobile-home \.mob-comp-card--blue\s*\{[^}]*--status-dot-color:\s*var\(--mob-blue\);[^}]*--status-pulse-glow:\s*rgba\(0,\s*34,\s*255,\s*0\.32\);/s,
+    "expected the right mobile competition card to use the blue pulsing dot",
+  );
+  assert.match(
+    css,
+    /\.mobile-home \.mob-comp-badge::before\s*\{[^}]*background:\s*var\(--status-dot-color\);[^}]*animation:\s*status-dot-pulse 2\.6s ease-in-out infinite;/s,
+    "expected mobile competition status dots to pulse with their card color",
+  );
+  assert.match(
+    css,
+    /\.mobile-home \.mob-comp-card\s*\{[^}]*background:\s*#fff;[^}]*color:\s*#000;/s,
+    "expected mobile competition cards to use the light-card treatment that keeps black text readable",
+  );
+  assert.match(
+    css,
+    /\.desktop-home \.desk-comp-square--red \.desk-comp-cta\s*\{[^}]*color:\s*#000;/s,
+    "expected the marked desktop competition CTA text to be black",
+  );
+  assert.match(
+    css,
+    /\.mobile-home \.mob-comp-cta\s*\{[^}]*color:\s*#000;/s,
+    "expected the marked mobile competition CTA text to be black",
+  );
+  assert.match(
+    css,
+    /\.mobile-home \.mob-nav\s*\{[^}]*transition:\s*background 0\.24s ease,\s*border-color 0\.24s ease,\s*box-shadow 0\.24s ease;/s,
+    "expected the mobile header to animate its transparent scroll state",
+  );
+  assert.match(
+    css,
+    /\.mobile-home \.mob-nav\.is-scroll-transparent\s*\{[^}]*background:\s*rgba\(5,\s*5,\s*7,\s*0\.18\);[^}]*border-bottom-color:\s*transparent;/s,
+    "expected the mobile header to become transparent on scroll down",
+  );
+  assert.match(
+    localizationClient,
+    /is-scroll-transparent/,
+    "expected the localization client to toggle the mobile header transparent-scroll class",
   );
 });
 

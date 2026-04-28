@@ -8,6 +8,13 @@ const requiredText = (label: string, multiline = false, description?: string) =>
     validation: { isRequired: true },
   });
 
+const optionalText = (label: string, multiline = false, description?: string) =>
+  fields.text({
+    label,
+    multiline,
+    description,
+  });
+
 const localizedCompetitionFields = (label: string) =>
   fields.object(
     {
@@ -33,8 +40,13 @@ const localizedCompetitionFields = (label: string) =>
       eligibilityHtml: requiredText("Eligibility HTML", true),
       supportTitle: requiredText("Support section title"),
       supportHtml: requiredText("Support HTML", true),
-      processTitle: requiredText("Process section title"),
-      processHtml: requiredText("Process HTML", true),
+      processTitle: requiredText("Feature section title"),
+      processHtml: requiredText(
+        "Feature body HTML",
+        true,
+        "Supports semantic HTML such as <p>, <ul>, <ol>, and <strong>.",
+      ),
+      featureImageAlt: optionalText("Feature image alt text"),
       applicationLabel: requiredText("Detail CTA label"),
     },
     { label },
@@ -69,6 +81,15 @@ export const competitionCollectionSchema = {
     ],
     defaultValue: "open",
   }),
+  applicationMode: fields.select({
+    label: "Application mode",
+    description: "Controls whether the shared form presents this opportunity as registration or pre-registration.",
+    options: [
+      { label: "Registration open", value: "registration" },
+      { label: "Pre-registration open", value: "pre-registration" },
+    ],
+    defaultValue: "registration",
+  }),
   draft: fields.checkbox({
     label: "Hide from public pages",
     description: "Use for fixtures, internal QA entries, or unpublished competition drafts.",
@@ -100,6 +121,10 @@ export const competitionCollectionSchema = {
   }),
   watermark: requiredText("Watermark"),
   value: requiredText("Prize / value label"),
+  detailImage: fields.url({
+    label: "Detail feature image URL",
+    description: "Optional image used in the text/photo area on competition and challenge detail pages.",
+  }),
   focusTags: fields.array(requiredText("Focus tag"), {
     label: "Focus tags",
     itemLabel: (props) => props.value || "Focus tag",

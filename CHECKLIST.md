@@ -6,6 +6,12 @@ The historical checklist is no longer sufficient as the sole source of truth. A 
 
 The 2026-04-27 implementation pass has resolved TODO-001 through TODO-012 in `.opencode/feedback/current-status-todo-2026-04-27.md`. Current screenshot evidence lives in `.opencode/feedback/2026-04-27-implementation/shots/`.
 
+## New Customer Feedback Intake — 2026-04-28
+
+Customer feedback from `feedback/v4_site updates.pptx` has been triaged in `.opencode/feedback/analysis-2026-04-28.md`.
+
+Status: Batches A-H are implemented and visually verified for FB-001 through FB-061. The completed statuses below reflect the older 56-item checklist; the only remaining waiting/deferred items are historical items outside the new PPT feedback scope.
+
 ## LANDING PAGE
 
 | # | Description | Status | Notes |
@@ -13,16 +19,16 @@ The 2026-04-27 implementation pass has resolved TODO-001 through TODO-012 in `.o
 | **1** | Nav layout: full width, 3-part split (logo \| centered nav \| switcher), logo & switcher same width | ✅ Done | Fixed: 3-part flex with `flex: 0 0 200px` on brand/lang, centered nav |
 | **2** | Confirm Roboto is the font site-wide | ⏳ Pending | Roboto is base font; some sections use Outfit/DM Sans — leave for later review |
 | **3** | Language switcher in gray, reduced font size | ✅ Done | |
-| **4** | Language switcher: show selected lang, no menu resize on open; EN/中文/BR in red, hover shows full name in white | ✅ Done | Fixed: added `data-lang-active-code` span, labels always visible with opacity transition |
+| **4** | Language switcher: show selected lang, no menu resize on open; EN/中文/BR in red, hover shows full name in white | ✅ Done | Re-verified 2026-04-28 for Batch A: closed trigger is a 36px `#555555` globe, compact menu uses 80px translucent mockup styling, and hover expands full labels only on the hovered option |
 | **5** | Reduce mega submenu height by ~50px | ✅ Done  - Submenu content updates via keystatic pending | FB-006: Set `height: 260px`, padding `36px 58px 40px`, gap `48px` on `.site-mega-grid` to match mockup |
 | **6** | Video: better resolution needed | ⏳ Waiting on user | User needs to provide a higher-res video file |
 | **7** | "Accelerating Innovation" block lower, buttons at page bottom | ✅ Done | |
 | **8** | Card stacking smoother, animated speed change | ✅ Done | |
 | **9** | Competition area: red on left (Startup), blue on right (Corporate) | ✅ Done | Fixed: swapped themes in all 3 locale files |
 | **10** | News cards: match design in mockup/news-card.png | ✅ Done | FB-001: Removed border/shadow/min-height, tightened gap to 14px, padding to 16px 16px 14px, flush accent stripe |
-| **11** | Footer: match design in mockup/footer-index.png | ✅ Done | Fixed: social icon order (WeChat, Instagram, LinkedIn, WhatsApp), sizes, subscribe pill button |
-| **12** | Footer: WhatsApp icon outlined, next to WeChat | ✅ Done | Fixed with item 11 |
-| **13** | Footer: newsletter/social area positioning, button sizes | ✅ Done | Fixed with item 11 |
+| **11** | Footer: match design in mockup/footer-index.png | ✅ Done | Re-verified 2026-04-28 for Batch B: footer content aligns to wider guide margins, content area is taller, link typography is tighter, and QR popup overlaps the lower stripe from the left side |
+| **12** | Footer: WhatsApp icon outlined, next to WeChat | ✅ Done | Re-verified 2026-04-28 for Batch B: WhatsApp control now uses the proposed outlined bubble plus inner phone mark |
+| **13** | Footer: newsletter/social area positioning, button sizes | ✅ Done | Re-verified 2026-04-28 for Batch B: newsletter input focus uses a thin red stroke, placeholder is smaller gray text, and subscribe CTA is wider/larger |
 | **14** | Footer: language switcher reduced width, no extra blank space | ✅ Done | Fixed: reduced menu width, label always visible with opacity |
 | **15** | Footer: WeChat QR 18% transparency, centered text | ✅ Done | |
 
@@ -100,7 +106,7 @@ The 2026-04-27 implementation pass has resolved TODO-001 through TODO-012 in `.o
 
 ## Implementation notes — 2026-04-27
 
-- Missing static pages linked from the homepage, submenus, and interior shell are now generated from Keystatic-managed content: `/advisory/`, `/events/`, `/programs/`, and `/network/`.
+- Missing static pages linked from the homepage, submenus, and interior shell are now generated from Keystatic-managed content: `/advisory/`, `/events/`, `/programs/`, `/network/`, and `/speakers/`.
 - Current-status TODOs TODO-001 through TODO-012 are implemented and verified against the relevant mockups/routes. Production-visible competition fixtures are draft-filtered, competition ordering is date-backed, shared interior CTA/back-link regressions are fixed, pre-registration matches the approved generic/selected-competition flow, and mobile shell/control/logo issues are addressed.
 
 ## Visual verification list — 2026-04-27
@@ -117,6 +123,26 @@ The 2026-04-27 implementation pass has resolved TODO-001 through TODO-012 in `.o
   Screenshots: `.opencode/feedback/2026-04-27-implementation/shots/home-mobile.png`, `.opencode/feedback/2026-04-27-implementation/shots/home-mobile-cn.png`
 - Interior language-switch check
   Screenshot: `.opencode/feedback/2026-04-27-implementation/shots/competitions-desktop-br.png`
+
+## Visual verification list — 2026-04-28
+
+- Batch A homepage desktop header, language menu closed/open/hover
+  Screenshots: `.opencode/feedback/screenshots/batch-a-homepage-header-closed.png`, `.opencode/feedback/screenshots/batch-a-homepage-language-open.png`, `.opencode/feedback/screenshots/batch-a-homepage-language-hover.png`
+- Batch B homepage desktop footer idle/input-focus/WeChat-popup
+  Screenshots: `.opencode/feedback/screenshots/batch-b-homepage-footer-idle.png`, `.opencode/feedback/screenshots/batch-b-homepage-footer-input-focus.png`, `.opencode/feedback/screenshots/batch-b-homepage-footer-wechat-open.png`
+- Batch E pre-registration default and selected competition application-mode states
+  Screenshots: `.opencode/feedback/screenshots/batch-e-pre-registration-default.png`, `.opencode/feedback/screenshots/batch-e-pre-registration-selected.png`
+- Batch F pre-registration form copy, controls, submit area, and BR language-switch spot check
+  Screenshots: `.opencode/feedback/screenshots/batch-f-pre-registration-top.png`, `.opencode/feedback/screenshots/batch-f-pre-registration-section-1-radio.png`, `.opencode/feedback/screenshots/batch-f-pre-registration-section-3-ai-benefits.png`, `.opencode/feedback/screenshots/batch-f-pre-registration-submit.png`, `.opencode/feedback/screenshots/batch-f-pre-registration-br-guide.png`
+- Batch D homepage competition menu, startup/corporate listing tabs, and challenge detail route
+  Screenshots: `.opencode/feedback/screenshots/batch-d-homepage-competitions-menu.png`, `.opencode/feedback/screenshots/batch-d-competitions-startup-tab.png`, `.opencode/feedback/screenshots/batch-d-competitions-corporate-tab.png`, `.opencode/feedback/screenshots/batch-d-challenge-detail.png`
+- Batch C static page anchor highlighting, dedicated speakers page, and contact target
+  Screenshots: `.opencode/feedback/screenshots/batch-c-network-target-highlight.png`, `.opencode/feedback/screenshots/batch-c-speakers-page.png`, `.opencode/feedback/screenshots/batch-c-contact-target.png`
+- Batch G mobile homepage competition status dots/transparent scroll header and news gradient cards
+  Screenshots: `.opencode/feedback/screenshots/batch-g-mobile-competitions-scroll.png`, `.opencode/feedback/screenshots/batch-g-news-gradient-cards.png`
+- Batch H competition/challenge detail redesign and white-page footer language switching
+  Screenshots: `.opencode/feedback/screenshots/batch-h-competition-detail-top.png`, `.opencode/feedback/screenshots/batch-h-competition-detail-feature.png`, `.opencode/feedback/screenshots/batch-h-challenge-detail.png`, `.opencode/feedback/screenshots/batch-h-footer-language-br.png`
+  Browser check: footer `BR` on a white challenge-detail page switched the footer subscribe label to `Assinar no Substack`, set `html[lang]` to `pt-BR`, and marked `BR` active.
 
 ## Visual verification list — 2026-04-01
 

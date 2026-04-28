@@ -32,7 +32,7 @@
     "eligibilityHtml": "<ul><li>Founders building B2B or B2B2C financial products.</li><li>Teams with a clear compliance or partnership path.</li><li>Products focused on inclusion, payments, FX, treasury, or credit infrastructure.</li></ul>",
     "supportTitle": "What selected teams receive",
     "supportHtml": "<ul><li>Exposure to fintech operators, investors, and ecosystem partners.</li><li>Structured feedback on cross-border market-entry positioning.</li><li>Support packaging the final submission and follow-up materials.</li></ul>",
-    "processTitle": "Application flow",
+    "processTitle": "Opportunity roadmap",
     "processHtml": "<ol><li>Choose this competition on the shared application form.</li><li>Submit your project, deck, and supporting materials.</li><li>Receive feedback and next-step coordination from the team.</li></ol>",
     "applicationLabel": "Apply to this challenge"
   },
@@ -55,7 +55,7 @@
     "eligibilityHtml": "<ul><li>Founders com produtos financeiros B2B ou B2B2C.</li><li>Times com caminho claro de compliance ou parceria.</li><li>Solucoes para inclusao, pagamentos, FX, tesouraria ou credito.</li></ul>",
     "supportTitle": "O que os selecionados recebem",
     "supportHtml": "<ul><li>Exposicao para operadores de fintech, investidores e parceiros de ecossistema.</li><li>Feedback estruturado sobre posicionamento cross-border.</li><li>Apoio para empacotar submissao final e materiais complementares.</li></ul>",
-    "processTitle": "Fluxo de aplicacao",
+    "processTitle": "Roteiro da oportunidade",
     "processHtml": "<ol><li>Escolha esta competicao no formulario padrao.</li><li>Envie projeto, deck e materiais complementares.</li><li>Receba feedback e coordenacao dos proximos passos.</li></ol>",
     "applicationLabel": "Aplicar para este desafio"
   },
@@ -78,7 +78,7 @@
     "eligibilityHtml": "<ul><li>构建 B2B 或 B2B2C 金融产品的创业者。</li><li>具有明确合规路径或合作伙伴策略的团队。</li><li>聚焦普惠金融、支付、外汇、司库或信用基础设施的方案。</li></ul>",
     "supportTitle": "入选团队可获得",
     "supportHtml": "<ul><li>接触金融科技运营者、投资人和生态伙伴。</li><li>获得跨境市场定位反馈。</li><li>在最终提交材料前获得整理与优化支持。</li></ul>",
-    "processTitle": "申请流程",
+    "processTitle": "机会说明",
     "processHtml": "<ol><li>在统一申请表中选择该竞赛。</li><li>提交项目介绍、演示材料和补充文件。</li><li>团队跟进反馈并安排下一步。</li></ol>",
     "applicationLabel": "申请该竞赛"
   }

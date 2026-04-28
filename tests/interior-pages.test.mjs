@@ -87,6 +87,7 @@ const buildSite = () => {
 test("interior page route files stay thin and delegate rendering", { concurrency: false }, () => {
   const competitionsRoute = resolve(projectRoot, "src/pages/competitions.astro");
   const competitionDetailRoute = resolve(projectRoot, "src/pages/competitions/[slug].astro");
+  const challengeDetailRoute = resolve(projectRoot, "src/pages/challenges/[slug].astro");
   const preRegistrationRoute = resolve(projectRoot, "src/pages/pre-registration.astro");
   const newsIndexRoute = resolve(projectRoot, "src/pages/news/index.astro");
   const newsArticleRoute = resolve(projectRoot, "src/pages/news/[slug].astro");
@@ -102,6 +103,11 @@ test("interior page route files stay thin and delegate rendering", { concurrency
     existsSync(competitionDetailRoute),
     true,
     "expected competition detail route to exist",
+  );
+  assert.equal(
+    existsSync(challengeDetailRoute),
+    true,
+    "expected challenge detail route aliases to exist",
   );
   assert.equal(
     existsSync(preRegistrationRoute),
@@ -146,6 +152,7 @@ test("interior page route files stay thin and delegate rendering", { concurrency
 
   const competitionsSource = readProjectFile("src/pages/competitions.astro");
   const competitionDetailSource = readProjectFile("src/pages/competitions/[slug].astro");
+  const challengeDetailSource = readProjectFile("src/pages/challenges/[slug].astro");
   const preRegistrationSource = readProjectFile("src/pages/pre-registration.astro");
   const newsIndexSource = readProjectFile("src/pages/news/index.astro");
   const newsArticleSource = readProjectFile("src/pages/news/[slug].astro");
@@ -162,6 +169,10 @@ test("interior page route files stay thin and delegate rendering", { concurrency
   assert.ok(
     competitionDetailSource.trim().split("\n").length < 120,
     "expected competition detail route to stay thin",
+  );
+  assert.ok(
+    challengeDetailSource.trim().split("\n").length < 120,
+    "expected challenge detail route to stay thin",
   );
   assert.ok(
     newsIndexSource.trim().split("\n").length < 80,
@@ -202,6 +213,11 @@ test("interior page route files stay thin and delegate rendering", { concurrency
     "expected competition detail route to delegate to a reusable page component",
   );
   assert.match(
+    challengeDetailSource,
+    /CompetitionDetailPage/,
+    "expected challenge detail route to reuse the competition detail component",
+  );
+  assert.match(
     staticPageSource,
     /StaticPage/,
     "expected generated static page route to delegate to a reusable page component",
@@ -220,6 +236,11 @@ test("interior page route files stay thin and delegate rendering", { concurrency
     competitionDetailSource,
     /getCompetitionDetailPageData\(/,
     "expected competition detail route to load collection-backed content through the competitions reader",
+  );
+  assert.match(
+    challengeDetailSource,
+    /getAllChallengeSlugs/,
+    "expected challenge detail routes to be generated from corporate challenge entries",
   );
   assert.match(
     staticPageSource,
@@ -300,10 +321,44 @@ test("competitions and pre-registration pages build with the expected mockup con
       ),
       "utf8",
     );
+    const challengeDetailPath = resolve(
+      build.outDir,
+      "challenges",
+      "china-market-entry-accelerator-2025",
+      "index.html",
+    );
+    const legacyChallengeDetailPath = resolve(
+      build.outDir,
+      "competitions",
+      "china-market-entry-accelerator-2025",
+      "index.html",
+    );
     const preRegistrationHtml = readFileSync(
       resolve(build.outDir, "pre-registration", "index.html"),
       "utf8",
     );
+    const homepageHtml = readFileSync(resolve(build.outDir, "index.html"), "utf8");
+    const enInteriorLocale = JSON.parse(readProjectFile("src/content/interior-pages/locales/en.json"));
+    const preRegistrationLocale = enInteriorLocale.preRegistrationPage;
+    const expectedIndustryOptions = [
+      "AI",
+      "Biotech",
+      "Deep Tech",
+      "Education",
+      "Energy & Climate",
+      "Entertainment",
+      "Fintech",
+      "Food & AgriTech",
+      "Healthtech",
+      "Manufacturing",
+      "Marketplaces",
+      "Media & Community",
+      "Mobility",
+      "Proptech",
+      "Robotics",
+      "Security",
+      "Other",
+    ];
     const newsIndexHtml = readFileSync(resolve(build.outDir, "news", "index.html"), "utf8");
     const newsArticleHtml = readFileSync(
       resolve(
@@ -345,6 +400,51 @@ test("competitions and pre-registration pages build with the expected mockup con
       /href="\/competitions\/greater-tech-challenge-2025\/"/,
       "expected the competitions listing to link to generated detail pages",
     );
+    assert.match(
+      homepageHtml,
+      /href="\/competitions\/\?tab=startup"/,
+      "expected homepage startup competition links to open the startup tab",
+    );
+    assert.match(
+      homepageHtml,
+      /href="\/competitions\/\?tab=corporate"/,
+      "expected homepage corporate challenge links to open the corporate tab",
+    );
+    assert.doesNotMatch(
+      homepageHtml,
+      /Innovation Challenges/,
+      "expected homepage/menu copy to use Corporate Challenges instead of Innovation Challenges",
+    );
+    assert.deepEqual(
+      enInteriorLocale.footer.columns[1].links.map((link) => link.href),
+      ["/competitions/?tab=startup", "/competitions/?tab=corporate"],
+      "expected interior footer competition links to open the relevant listing tab",
+    );
+    assert.deepEqual(
+      enInteriorLocale.competitionsPage.focusFilters.map((filter) => filter.label),
+      ["All Industries", ...expectedIndustryOptions],
+      "expected competitions focus filters to follow the requested industry taxonomy order",
+    );
+    assert.deepEqual(
+      preRegistrationLocale.competitionFieldOptions,
+      expectedIndustryOptions,
+      "expected pre-registration competition fields to match the competitions taxonomy",
+    );
+    assert.match(
+      competitionsHtml,
+      /href="\/challenges\/china-market-entry-accelerator-2025\/"/,
+      "expected corporate challenge cards to use challenge detail URLs",
+    );
+    assert.doesNotMatch(
+      competitionsHtml,
+      /href="\/competitions\/china-market-entry-accelerator-2025\/"/,
+      "expected corporate challenge cards to avoid competition detail URLs",
+    );
+    assert.doesNotMatch(
+      competitionsHtml,
+      /class="featured-category"/,
+      "expected the featured competition focus/category line to be removed",
+    );
     assert.doesNotMatch(
       competitionsHtml,
       /\[TEST DATA\]/i,
@@ -366,26 +466,72 @@ test("competitions and pre-registration pages build with the expected mockup con
       /href="\/pre-registration\/\?competition=greater-tech-challenge-2025"/,
       "expected the competition detail page CTA to pass the selected competition into the shared form route",
     );
+    assert.doesNotMatch(
+      competitionDetailHtml,
+      /class="competition-detail-category"/,
+      "expected competition detail pages to remove the category line above the hero",
+    );
+    assert.equal(
+      existsSync(challengeDetailPath),
+      true,
+      "expected corporate challenge detail pages to be generated under /challenges/",
+    );
+    assert.equal(
+      existsSync(legacyChallengeDetailPath),
+      false,
+      "expected corporate challenge detail pages to avoid the /competitions/ route",
+    );
+    const challengeDetailHtml = readFileSync(challengeDetailPath, "utf8");
+    assert.match(
+      challengeDetailHtml,
+      /Back to challenges/i,
+      "expected challenge detail pages to use challenge-specific back copy",
+    );
+    assert.match(
+      challengeDetailHtml,
+      /href="\/competitions\/\?tab=corporate"/,
+      "expected challenge detail back links to return to the corporate tab",
+    );
 
     assert.match(
       preRegistrationHtml,
-      /Competition\s*<br[^>]*>\s*<em>Pre-Registration<\/em>|Competition Pre-Registration/i,
-      "expected the shared competition pre-registration heading",
+      /Competition\s*<br[^>]*>\s*<em>Registration<\/em>|Competition Registration/i,
+      "expected the shared competition application heading to use registration copy",
     );
     assert.match(
       preRegistrationHtml,
-      /This is a Pre-Registration/i,
-      "expected the shared form to keep the original black-banner headline",
+      /Registration Open/i,
+      "expected the application status label to be registration-mode copy",
     );
     assert.match(
       preRegistrationHtml,
-      /Application coaching/i,
-      "expected the original black-banner support items to remain visible",
+      /Register now/i,
+      "expected the shared form banner headline to be customizable by application mode",
+    );
+    assert.match(
+      preRegistrationHtml,
+      /Submit this form and <strong>LATAM CHINA TECH<\/strong> will personally guide you through your full application: reviewing your submission, strengthening your pitch, and maximizing your chances of winning\./i,
+      "expected the banner body to use the generic application guidance copy",
+    );
+    assert.doesNotMatch(
+      preRegistrationHtml,
+      /full HICOOL application|Application coaching|prereg-support-card/i,
+      "expected the top banner support card and HICOOL-specific copy to be removed",
+    );
+    assert.match(
+      preRegistrationHtml,
+      /data-application-mode="registration"/,
+      "expected competition options to expose the content-managed registration mode",
     );
     assert.match(
       preRegistrationHtml,
       /Application Guide\s*&amp;\s*Tutorial|Application Guide\s*&\s*Tutorial/i,
       "expected the guide/tutorial callout",
+    );
+    assert.equal(
+      preRegistrationLocale.guide.description,
+      "If you need support, download our step-by-step PDF guide. It covers competition rules, timeline, and tips for a winning application. It's available in English, Spanish, and Portuguese.",
+      "expected the pre-registration guide copy to match Batch F feedback",
     );
     assert.doesNotMatch(
       preRegistrationHtml,
@@ -402,15 +548,70 @@ test("competitions and pre-registration pages build with the expected mockup con
       /Competition Information/i,
       "expected the first form section heading",
     );
+    assert.equal(
+      preRegistrationLocale.fields.companyHeadquarters,
+      "Is your company a legally registered entity?",
+      "expected the legal entity question to replace the headquarters question",
+    );
+    assert.deepEqual(
+      preRegistrationLocale.companyHeadquartersOptions,
+      ["Registered as a company", "Not yet established as a company"],
+      "expected the legal entity options to remove country choices",
+    );
+    assert.match(
+      preRegistrationHtml,
+      /<input[^>]*id="compFullName"[^>]*required/,
+      "expected Full Name of the Company to be required",
+    );
+    assert.equal(
+      preRegistrationLocale.notes.applicant,
+      "Instructions: The main applicant must be the company's largest shareholder, with 30% or more equity.",
+      "expected the applicant note to match Batch F feedback",
+    );
+    assert.equal(
+      preRegistrationLocale.fields.emailPlaceholder,
+      "your@companyemail.com - Enter a valid email address to receive confirmations and updates.",
+      "expected the email placeholder to match Batch F feedback",
+    );
     assert.match(
       preRegistrationHtml,
       /Project Information/i,
       "expected the form to retain the shared project-information section",
     );
+    assert.equal(
+      preRegistrationLocale.sections.projectSubtitle,
+      "Tell us about your startup - if you need, you can also use AI as a tool to help you write each section faster",
+      "expected the project information helper copy to match Batch F feedback",
+    );
+    assert.equal(
+      preRegistrationLocale.fields.investmentValue,
+      "Progress to Date",
+      "expected Investment Value to be renamed",
+    );
+    assert.equal(
+      preRegistrationLocale.fields.investmentValuePlaceholder,
+      "Describe what your company has achieved so far, such as product progress, users, specific revenue, and key milestones.",
+      "expected the Progress to Date placeholder to match Batch F feedback",
+    );
+    assert.equal(
+      preRegistrationLocale.fields.fundingAmountRequested,
+      "Funding Amount Requested",
+      "expected the new funding amount field to be content-managed",
+    );
+    assert.ok(
+      preRegistrationHtml.indexOf('id="fundingAmountRequested"') >
+        preRegistrationHtml.indexOf('id="investmentValue"'),
+      "expected Funding Amount Requested to render immediately after Progress to Date",
+    );
     assert.match(
       preRegistrationHtml,
-      /Submit/i,
-      "expected the final submit CTA",
+      /Submit application/i,
+      "expected the final submit CTA to use sentence case",
+    );
+    assert.match(
+      preRegistrationHtml,
+      /Save draft/i,
+      "expected the draft CTA to use sentence case",
     );
     assert.doesNotMatch(
       preRegistrationHtml,
@@ -427,6 +628,73 @@ test("competitions and pre-registration pages build with the expected mockup con
     assert.ok(
       benefitCount >= 8,
       `expected at least 8 benefit options, found ${benefitCount}`,
+    );
+
+    const interiorCss = readProjectFile("src/styles/interior-pages.css");
+    assert.match(
+      interiorCss,
+      /\.page-eyebrow \.page-status-dot\s*\{[^}]*animation:\s*pulse-dot 1\.8s ease-in-out infinite;/s,
+      "expected the pre-registration status dot to pulse",
+    );
+    assert.match(
+      interiorCss,
+      /\.form-row label,\s*\.label-like\s*\{[^}]*text-transform:\s*none;[^}]*letter-spacing:\s*0;/s,
+      "expected pre-registration form labels to render in sentence case",
+    );
+    assert.match(
+      interiorCss,
+      /::placeholder\s*\{[^}]*color:\s*#bfbfbf;/s,
+      "expected pre-registration placeholders to use the requested gray",
+    );
+    assert.match(
+      interiorCss,
+      /\.radio-pill input\s*\{[^}]*display:\s*none;/s,
+      "expected radio inputs to hide the native black circle",
+    );
+    assert.match(
+      interiorCss,
+      /\.radio-pill:has\(input:checked\)\s*\{[^}]*background:\s*#ebebeb;[^}]*border-color:\s*#888888;/s,
+      "expected selected radio pills to use the requested full-button gray state",
+    );
+    assert.match(
+      interiorCss,
+      /\.file-upload-icon\s*\{[^}]*font-size:\s*16px;/s,
+      "expected file upload icons to be reduced in size",
+    );
+    assert.match(
+      interiorCss,
+      /textarea\.has-ai\s*\{[^}]*padding-bottom:\s*52px;/s,
+      "expected textarea AI controls to avoid covering placeholder text",
+    );
+    assert.match(
+      interiorCss,
+      /\.benefit-item\s*\{[^}]*background:\s*#f7f7f7;[^}]*font-weight:\s*400;/s,
+      "expected benefit options to use a gray unbold base style",
+    );
+    assert.match(
+      interiorCss,
+      /\.benefit-item:hover \.benefit-icon\s*\{[^}]*opacity:\s*1;/s,
+      "expected benefit icons to become highlighted on hover",
+    );
+    assert.match(
+      interiorCss,
+      /\.submit-actions \.site-btn\s*\{[^}]*text-transform:\s*none;/s,
+      "expected submit controls to use sentence case styling",
+    );
+    assert.match(
+      interiorCss,
+      /\.submit-actions \.site-btn--secondary::before\s*\{[^}]*display:\s*none;/s,
+      "expected the save-draft button to remove the black dot",
+    );
+    assert.match(
+      interiorCss,
+      /\.submit-actions \.site-btn--primary\s*\{[^}]*min-width:\s*190px;/s,
+      "expected the red submit button to be wider",
+    );
+    assert.match(
+      interiorCss,
+      /\.submit-actions \.site-btn--primary::before\s*\{[^}]*animation:\s*pulse-white-dot 2\.8s ease-in-out infinite;/s,
+      "expected the submit button white dot to pulse slowly",
     );
 
     assert.match(
@@ -500,6 +768,7 @@ test("static pages build from Keystatic content and reuse the shared localizatio
       ["events", /Events\s*&amp;\s*Calendar|Events\s*&\s*Calendar/i, /Trade fairs and expos/i],
       ["programs", /Programs/i, /Market entry/i],
       ["network", /Network\s*&amp;\s*Partnerships|Network\s*&\s*Partnerships/i, /City partnerships/i],
+      ["speakers", /Featured Speakers/i, /flagship stages/i],
     ];
 
     for (const [slug, titlePattern, bodyPattern] of expectedPages) {
@@ -523,6 +792,91 @@ test("static pages build from Keystatic content and reuse the shared localizatio
         `expected /${slug}/ to reuse the shared interior shell`,
       );
     }
+  } finally {
+    build.cleanup();
+  }
+});
+
+test("Batch C static page anchors, contact CTAs, and prepared page links are wired", { concurrency: false }, () => {
+  const build = buildSite();
+
+  try {
+    const homeHtml = readFileSync(resolve(build.outDir, "index.html"), "utf8");
+    const networkHtml = readFileSync(resolve(build.outDir, "network", "index.html"), "utf8");
+    const speakersHtml = readFileSync(resolve(build.outDir, "speakers", "index.html"), "utf8");
+    const programsHtml = readFileSync(resolve(build.outDir, "programs", "index.html"), "utf8");
+    const interiorStyles = readProjectFile("src/styles/interior-pages.css");
+
+    assert.match(
+      homeHtml,
+      /href="\/speakers\/"/,
+      "expected Featured Speakers menu links to route to the dedicated speakers page",
+    );
+    assert.doesNotMatch(
+      homeHtml,
+      /href="\/network\/#featured-speakers"/,
+      "expected Featured Speakers to stop routing to the network section anchor",
+    );
+    assert.match(
+      homeHtml,
+      /href="\/events\/#trade-fairs-expos"[\s\S]*href="\/events\/#summits"/,
+      "expected event submenu links to route to the dedicated events page anchors",
+    );
+    assert.match(
+      homeHtml,
+      /href="\/programs\/#market-entry"[\s\S]*href="\/programs\/#business-mission"/,
+      "expected programs submenu links to route to standard programs page anchors",
+    );
+    assert.match(
+      homeHtml,
+      /href="\/network\/#city-partnerships"/,
+      "expected network city partnerships to route to the standard network page anchor",
+    );
+    assert.match(
+      speakersHtml,
+      /data-i18n-html="page\.bodyHtml"/,
+      "expected the dedicated speakers page to remain localizable through the shared static-page component",
+    );
+    assert.match(
+      networkHtml,
+      /href="#contact"/,
+      "expected static page CTAs to use the shared contact target",
+    );
+    assert.doesNotMatch(
+      networkHtml,
+      /href="#site-footer"/,
+      "expected static page CTAs not to point at the generic footer anchor",
+    );
+    assert.match(
+      networkHtml,
+      /id="contact"/,
+      "expected the interior footer to expose a shared contact target",
+    );
+    assert.match(
+      programsHtml,
+      /id="market-entry"[\s\S]*id="business-mission"/,
+      "expected submenu anchor targets to remain present on the programs page",
+    );
+    assert.match(
+      interiorStyles,
+      /\.static-page-section-card:target\s*\{[^}]*transform:\s*scale\(1\.015\);[^}]*border-color:\s*rgba\(255,\s*59,\s*0,\s*0\.42\);/s,
+      "expected anchored static page cards to enlarge and highlight when targeted",
+    );
+    assert.match(
+      interiorStyles,
+      /\.static-page-section-card\s*\{[^}]*display:\s*flex;[^}]*flex-direction:\s*column;/s,
+      "expected static page cards to align their CTAs with flex layout",
+    );
+    assert.match(
+      interiorStyles,
+      /\.static-page-section-link\s*\{[^}]*margin-top:\s*auto;/s,
+      "expected static page CTA links to align along a consistent horizontal line",
+    );
+    assert.match(
+      interiorStyles,
+      /\.static-page-section-link:hover,[\s\S]*?\.static-page-section-link:focus\s*\{[^}]*color:\s*#ff3b00;/s,
+      "expected static page CTA hover and focus states to turn red",
+    );
   } finally {
     build.cleanup();
   }
@@ -565,7 +919,7 @@ test("interior header supports homepage mega-menu layout variants", { concurrenc
     );
     assert.match(
       competitionsHtml,
-      /href="\/competitions\/china-market-entry-accelerator-2025\/"/,
+      /href="\/challenges\/china-market-entry-accelerator-2025\/"/,
       "expected the interior corporate submenu card to link to the challenge detail page",
     );
     assert.match(
@@ -1020,12 +1374,12 @@ test("competitions listing/detail Batch B polish matches approved copy and shell
     );
     assert.match(
       competitionDetailHtml,
-      /<a href="\/competitions\/" class="news-back-link news-back-link--muted">\s*<svg[\s\S]*?<\/svg>\s*<span data-i18n="detailPage\.backLabel">Back to competitions<\/span>\s*<\/a>/,
+      /<a href="\/competitions\/\?tab=startup" class="news-back-link news-back-link--muted">\s*<svg[\s\S]*?<\/svg>\s*<span data-i18n="detailPage\.backLabel">Back to competitions<\/span>\s*<\/a>/,
       "expected the localized competition back link label to live beside the preserved arrow icon",
     );
     assert.doesNotMatch(
       competitionDetailHtml,
-      /<a href="\/competitions\/" class="news-back-link news-back-link--muted" data-i18n="detailPage\.backLabel"/,
+      /<a href="\/competitions\/\?tab=startup" class="news-back-link news-back-link--muted" data-i18n="detailPage\.backLabel"/,
       "expected localization to avoid replacing the entire competition back link contents",
     );
     assert.match(
@@ -1091,6 +1445,97 @@ test("competitions listing/detail Batch B polish matches approved copy and shell
   }
 });
 
+test("Batch H competition detail pages move registration into meta grid and render editable feature media", { concurrency: false }, () => {
+  const build = buildSite();
+
+  try {
+    const competitionDetailHtml = readFileSync(
+      resolve(
+        build.outDir,
+        "competitions",
+        "greater-tech-challenge-2025",
+        "index.html",
+      ),
+      "utf8",
+    );
+    const challengeDetailHtml = readFileSync(
+      resolve(
+        build.outDir,
+        "challenges",
+        "china-market-entry-accelerator-2025",
+        "index.html",
+      ),
+      "utf8",
+    );
+    const schemaSource = readProjectFile("src/lib/competitions/schema.ts");
+    const typesSource = readProjectFile("src/lib/competitions/types.ts");
+    const interiorStyles = readProjectFile("src/styles/interior-pages.css");
+
+    assert.doesNotMatch(
+      competitionDetailHtml,
+      /class="competition-hero-card"/,
+      "expected competition detail pages to remove the upper-right hero registration card",
+    );
+    assert.doesNotMatch(
+      competitionDetailHtml,
+      />\s*Application flow\s*</i,
+      "expected the old Application flow card title to be removed",
+    );
+    assert.doesNotMatch(
+      competitionDetailHtml,
+      /data-i18n="detailPage\.trackLabel"/,
+      "expected the Track meta card to be removed from detail pages",
+    );
+    assert.match(
+      competitionDetailHtml,
+      /data-i18n="detailPage\.focusLabel"[\s\S]*class="competition-meta-card competition-register-card"/,
+      "expected the Focus card to move into the former track slot before the registration card",
+    );
+    assert.match(
+      competitionDetailHtml,
+      /class="competition-meta-card competition-register-card"[\s\S]*data-i18n="detailPage\.registrationLabel"[\s\S]*href="\/pre-registration\/\?competition=greater-tech-challenge-2025"/,
+      "expected registration CTA/value to live in the right-side meta card",
+    );
+    assert.match(
+      competitionDetailHtml,
+      /class="competition-rich-card competition-detail-feature-card"[\s\S]*class="competition-feature-media"/,
+      "expected the old process area to render as a text/photo feature section",
+    );
+    assert.match(
+      competitionDetailHtml,
+      /<strong>pitch narrative<\/strong>/,
+      "expected the editable feature text to support bold rich text",
+    );
+    assert.match(
+      challengeDetailHtml,
+      /class="competition-meta-card competition-register-card"[\s\S]*href="\/pre-registration\/\?competition=china-market-entry-accelerator-2025"/,
+      "expected corporate challenge detail pages to use the same moved registration card",
+    );
+    assert.match(
+      schemaSource,
+      /detailImage:\s*fields\.url/,
+      "expected competition detail feature images to be editable in the collection schema",
+    );
+    assert.match(
+      schemaSource,
+      /processHtml:\s*requiredText\(\s*"Feature body HTML"[\s\S]*<strong>/,
+      "expected the feature rich text field to document bold HTML support",
+    );
+    assert.match(
+      typesSource,
+      /detailImage\?:\s*string;/,
+      "expected the competition entry type to expose editable detail image URLs",
+    );
+    assert.match(
+      interiorStyles,
+      /\.competition-detail-feature-card\s*\{[^}]*display:\s*grid;[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\)\s*minmax\(300px,\s*0\.82fr\);/s,
+      "expected the detail feature card to use a text/photo layout",
+    );
+  } finally {
+    build.cleanup();
+  }
+});
+
 test("news Batch C styling hooks render and map to concrete muted/balanced CSS rules", { concurrency: false }, () => {
   const build = buildSite();
 
@@ -1137,6 +1582,11 @@ test("news Batch C styling hooks render and map to concrete muted/balanced CSS r
       interiorStyles,
       /\.news-list-link--muted\s*\{[^}]*font-size:\s*0\.74rem;[^}]*letter-spacing:\s*0\.12em;[^}]*color:\s*#64748b;/s,
       "expected related-content View All muted link to use the smaller gray treatment",
+    );
+    assert.match(
+      interiorStyles,
+      /\.news-list-card\s*\{[^}]*border:\s*1px solid transparent;[^}]*background:\s*linear-gradient\(180deg,\s*rgba\(255,\s*255,\s*255,\s*0\.96\)\s*0%,\s*rgba\(248,\s*250,\s*252,\s*0\.92\)\s*100%\) padding-box,\s*linear-gradient\(135deg,\s*var\(--site-red\)\s*0%,\s*var\(--site-blue\)\s*100%\) border-box;/s,
+      "expected news listing cards to use a red-to-blue gradient border stroke",
     );
   } finally {
     build.cleanup();
@@ -1535,8 +1985,13 @@ test("competition filters work on the listing page, names link to detail pages, 
     );
     assert.match(
       selectedCompetitionFlow.title,
-      /China-LATAM FinTech Cup[\s\S]*Pre-Registration/i,
+      /China-LATAM FinTech Cup[\s\S]*Registration/i,
       `expected selected competition flow to personalize the page title, received ${JSON.stringify(selectedCompetitionFlow)}`,
+    );
+    assert.match(
+      selectedCompetitionFlow.subtitle,
+      /Ready to apply\? Fill in the form below and our team personally guides you through every step of your application\./i,
+      `expected selected competition flow to use the generic application guidance subtitle, received ${JSON.stringify(selectedCompetitionFlow)}`,
     );
     assert.equal(
       selectedCompetitionFlow.selectorHidden,
@@ -1571,7 +2026,7 @@ test("competition filters work on the listing page, names link to detail pages, 
             const watermarkStyle = getComputedStyle(banner, "::after");
             return {
               bannerWidth: Math.round(banner.getBoundingClientRect().width),
-              supportWidth: Math.round(support.getBoundingClientRect().width),
+              supportExists: Boolean(support),
               flexDirection: bannerStyle.flexDirection,
               watermarkDisplay: watermarkStyle.display,
             };
@@ -1581,9 +2036,9 @@ test("competition filters work on the listing page, names link to detail pages, 
     );
 
     assert.equal(
-      preregMobileLayout.flexDirection,
-      "column",
-      `expected mobile pre-registration banner content to stack, received ${JSON.stringify(preregMobileLayout)}`,
+      preregMobileLayout.supportExists,
+      false,
+      `expected mobile pre-registration banner support card to be removed, received ${JSON.stringify(preregMobileLayout)}`,
     );
     assert.equal(
       preregMobileLayout.watermarkDisplay,
@@ -1591,8 +2046,8 @@ test("competition filters work on the listing page, names link to detail pages, 
       `expected mobile pre-registration banner watermark to be hidden, received ${JSON.stringify(preregMobileLayout)}`,
     );
     assert.ok(
-      preregMobileLayout.supportWidth >= 300 && preregMobileLayout.bannerWidth >= 340,
-      `expected mobile pre-registration banner/support card to use the available width, received ${JSON.stringify(preregMobileLayout)}`,
+      preregMobileLayout.bannerWidth >= 340,
+      `expected mobile pre-registration banner to use the available width, received ${JSON.stringify(preregMobileLayout)}`,
     );
   } finally {
     build.cleanup();

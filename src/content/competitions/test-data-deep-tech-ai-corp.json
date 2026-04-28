@@ -31,7 +31,7 @@
     "eligibilityHtml": "<ul><li>Internal QA only.</li></ul>",
     "supportTitle": "What selected teams receive",
     "supportHtml": "<ul><li>Nothing. This is test data.</li></ul>",
-    "processTitle": "Application flow",
+    "processTitle": "Opportunity roadmap",
     "processHtml": "<ol><li>Use this entry to validate Deep Tech and AI filter coverage.</li></ol>",
     "applicationLabel": "Apply to this challenge"
   },
@@ -54,7 +54,7 @@
     "eligibilityHtml": "<ul><li>Uso interno de QA apenas.</li></ul>",
     "supportTitle": "O que os selecionados recebem",
     "supportHtml": "<ul><li>Nada. Isto e dado de teste.</li></ul>",
-    "processTitle": "Fluxo de aplicacao",
+    "processTitle": "Roteiro da oportunidade",
     "processHtml": "<ol><li>Use esta entrada para validar cobertura dos filtros Deep Tech e AI.</li></ol>",
     "applicationLabel": "Aplicar para este desafio"
   },
@@ -77,7 +77,7 @@
     "eligibilityHtml": "<ul><li>仅供内部 QA 使用。</li></ul>",
     "supportTitle": "入选团队可获得",
     "supportHtml": "<ul><li>无。这是测试数据。</li></ul>",
-    "processTitle": "申请流程",
+    "processTitle": "机会说明",
     "processHtml": "<ol><li>使用此条目验证 Deep Tech 和 AI 筛选器覆盖。</li></ol>",
     "applicationLabel": "申请该竞赛"
   }

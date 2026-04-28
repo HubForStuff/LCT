@@ -15,6 +15,7 @@ import type {
 export type CompetitionTrack = "startup" | "corporate" | "academic";
 export type CompetitionStatusTone = "open" | "future" | "closed";
 export type CompetitionAccent = "warm" | "cool";
+export type CompetitionApplicationMode = "pre-registration" | "registration";
 
 export type CompetitionLocaleContent = {
   category: string;
@@ -37,6 +38,7 @@ export type CompetitionLocaleContent = {
   supportHtml: string;
   processTitle: string;
   processHtml: string;
+  featureImageAlt?: string;
   applicationLabel: string;
 };
 
@@ -44,6 +46,7 @@ export type CompetitionCollectionEntry = {
   slug: string;
   track: CompetitionTrack;
   statusTone: CompetitionStatusTone;
+  applicationMode?: CompetitionApplicationMode;
   draft?: boolean;
   accent: CompetitionAccent;
   featured: boolean;
@@ -52,6 +55,7 @@ export type CompetitionCollectionEntry = {
   applicationDeadlineAt?: string;
   watermark: string;
   value: string;
+  detailImage?: string;
   focusTags: string[];
   en: CompetitionLocaleContent;
   br: CompetitionLocaleContent;
@@ -64,18 +68,21 @@ export type CompetitionDetailPageCopy = {
   deadlineLabel: string;
   trackLabel: string;
   focusLabel: string;
+  registrationLabel: string;
   applyLabel: string;
 };
 
 export type CompetitionDetail = {
   slug: string;
   href: string;
+  listingHref: string;
   applicationHref: string;
   track: CompetitionTrack;
   trackLabel: string;
   statusTone: CompetitionStatusTone;
   watermark: string;
   value: string;
+  detailImage: string;
   focusTags: string[];
   category: string;
   name: string;
@@ -94,6 +101,7 @@ export type CompetitionDetail = {
   supportHtml: string;
   processTitle: string;
   processHtml: string;
+  featureImageAlt: string;
   applicationLabel: string;
 };
 
@@ -114,6 +122,7 @@ export type CompetitionFormOption = {
   label: string;
   track: CompetitionTrack;
   statusTone: CompetitionStatusTone;
+  applicationMode: CompetitionApplicationMode;
 };
 
 export type CompetitionFormRouteLocale = InteriorPageRouteLocale<PreRegistrationPageContent> & {
@@ -169,6 +178,7 @@ export type CompetitionLocalizedEntry = {
   slug: string;
   track: CompetitionTrack;
   statusTone: CompetitionStatusTone;
+  applicationMode?: CompetitionApplicationMode;
   draft?: boolean;
   accent: CompetitionAccent;
   featured: boolean;
@@ -177,6 +187,7 @@ export type CompetitionLocalizedEntry = {
   applicationDeadlineAt?: string;
   watermark: string;
   value: string;
+  detailImage?: string;
   focusTags: string[];
   localized: CompetitionLocaleContent;
 };

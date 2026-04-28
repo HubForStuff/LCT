@@ -31,7 +31,7 @@
     "eligibilityHtml": "<ul><li>Startups building factory software, sensing, robotics, quality, or industrial-data systems.</li><li>Teams able to show applied relevance in real production environments.</li><li>Founders with a clear manufacturing or supply-chain deployment story.</li></ul>",
     "supportTitle": "What selected teams receive",
     "supportHtml": "<ul><li>Exposure to industrial operators and ecosystem partners.</li><li>Feedback on positioning for advanced-manufacturing buyers.</li><li>Support packaging the final competition submission.</li></ul>",
-    "processTitle": "Application flow",
+    "processTitle": "Opportunity roadmap",
     "processHtml": "<ol><li>Submit through the shared application page when the next cycle opens.</li><li>Share industrial context, technical proof points, and traction.</li><li>Coordinate review and next-step preparation with the team.</li></ol>",
     "applicationLabel": "Apply to this challenge"
   },
@@ -54,7 +54,7 @@
     "eligibilityHtml": "<ul><li>Startups de software fabril, sensoriamento, robotica, qualidade ou dados industriais.</li><li>Times capazes de mostrar aplicacao em ambientes produtivos reais.</li><li>Founders com narrativa clara de implantacao em manufatura ou supply chain.</li></ul>",
     "supportTitle": "O que os selecionados recebem",
     "supportHtml": "<ul><li>Exposicao para operadores industriais e parceiros de ecossistema.</li><li>Feedback sobre posicionamento para compradores de manufatura avancada.</li><li>Apoio para empacotar a submissao final.</li></ul>",
-    "processTitle": "Fluxo de aplicacao",
+    "processTitle": "Roteiro da oportunidade",
     "processHtml": "<ol><li>Envie pelo formulario compartilhado quando o proximo ciclo abrir.</li><li>Compartilhe contexto industrial, provas tecnicas e tracao.</li><li>Coordene revisao e preparacao dos proximos passos com a equipe.</li></ol>",
     "applicationLabel": "Aplicar para este desafio"
   },
@@ -77,7 +77,7 @@
     "eligibilityHtml": "<ul><li>构建工厂软件、传感、机器人、质量检测或工业数据系统的创业公司。</li><li>能够展示真实生产环境应用价值的团队。</li><li>拥有清晰制造业或供应链部署路径的创始人。</li></ul>",
     "supportTitle": "入选团队可获得",
     "supportHtml": "<ul><li>接触工业运营方和生态伙伴的机会。</li><li>面向先进制造买家的定位反馈。</li><li>帮助整理最终竞赛提交材料。</li></ul>",
-    "processTitle": "申请流程",
+    "processTitle": "机会说明",
     "processHtml": "<ol><li>下一轮开放后通过统一申请页面提交。</li><li>说明工业背景、技术证明点和商业牵引力。</li><li>与团队协同完成审核和后续准备。</li></ol>",
     "applicationLabel": "申请该竞赛"
   }

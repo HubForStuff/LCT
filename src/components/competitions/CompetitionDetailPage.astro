@@ -30,44 +30,20 @@ const { locale, siteSettings, currentLanguage } = Astro.props;
   <main>
     <section class="page-header competition-detail-header">
       <div class="interior-wrap competition-detail-header-inner">
-        <a href="/competitions/" class="news-back-link news-back-link--muted">
+        <a href={locale.page.listingHref} class="news-back-link news-back-link--muted">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M19 12H5M12 19l-7-7 7-7" />
           </svg>
           <span data-i18n="detailPage.backLabel">{locale.detailPage.backLabel}</span>
         </a>
 
-        <div class="competition-detail-topline">
-          <div class="competition-detail-category" data-i18n="page.category">{locale.page.category}</div>
-          <div class="competition-top-focus-tags">
-            {locale.page.focusTags.map((tag) => (
-              <span class="competition-focus-tag">{tag}</span>
-            ))}
-          </div>
-        </div>
-
-        <div class="competition-hero-grid">
+        <div class="competition-hero-grid competition-hero-grid--single">
           <div>
             <h1 class="page-title competition-detail-title" data-i18n="page.name">{locale.page.name}</h1>
             <p class="page-subtitle page-subtitle--wide" data-i18n="page.detailSubtitle">
               {locale.page.detailSubtitle}
             </p>
           </div>
-
-          <aside class="competition-hero-card">
-            <div class="competition-hero-value">{locale.page.value}</div>
-            <div class="competition-hero-status">
-              <span class="status-dot"></span>
-              <span data-i18n="page.statusLabel">{locale.page.statusLabel}</span>
-            </div>
-            <a
-              href={locale.page.applicationHref}
-              class="site-btn site-btn--primary site-btn--compact"
-              data-i18n="page.applicationLabel"
-            >
-              {locale.page.applicationLabel}
-            </a>
-          </aside>
         </div>
       </div>
     </section>
@@ -98,13 +74,6 @@ const { locale, siteSettings, currentLanguage } = Astro.props;
         </article>
 
         <article class="competition-meta-card">
-          <div class="competition-meta-label" data-i18n="detailPage.trackLabel">
-            {locale.detailPage.trackLabel}
-          </div>
-          <div class="competition-meta-value" data-i18n="page.trackLabel">{locale.page.trackLabel}</div>
-        </article>
-
-        <article class="competition-meta-card">
           <div class="competition-meta-label" data-i18n="detailPage.focusLabel">
             {locale.detailPage.focusLabel}
           </div>
@@ -113,6 +82,20 @@ const { locale, siteSettings, currentLanguage } = Astro.props;
               <span class="competition-focus-tag">{tag}</span>
             ))}
           </div>
+        </article>
+
+        <article class="competition-meta-card competition-register-card">
+          <div class="competition-meta-label" data-i18n="detailPage.registrationLabel">
+            {locale.detailPage.registrationLabel}
+          </div>
+          <div class="competition-register-value" data-i18n="page.value">{locale.page.value}</div>
+          <a
+            href={locale.page.applicationHref}
+            class="site-btn site-btn--primary site-btn--compact"
+            data-i18n="page.applicationLabel"
+          >
+            {locale.page.applicationLabel}
+          </a>
         </article>
       </div>
 
@@ -132,15 +115,19 @@ const { locale, siteSettings, currentLanguage } = Astro.props;
         </article>
       </div>
 
-      <article class="competition-rich-card">
-        <h2 data-i18n="page.processTitle">{locale.page.processTitle}</h2>
-        <div class="competition-rich-body" data-i18n-html="page.processHtml" set:html={locale.page.processHtml}></div>
-
-        <div class="competition-detail-actions">
-          <a href={locale.page.applicationHref} class="site-btn site-btn--primary" data-i18n="detailPage.applyLabel">
-            {locale.detailPage.applyLabel}
-          </a>
+      <article class="competition-rich-card competition-detail-feature-card">
+        <div>
+          <h2 data-i18n="page.processTitle">{locale.page.processTitle}</h2>
+          <div class="competition-rich-body" data-i18n-html="page.processHtml" set:html={locale.page.processHtml}></div>
         </div>
+
+        <div
+          class="competition-feature-media"
+          role="img"
+          aria-label={locale.page.featureImageAlt}
+          data-i18n-aria-label="page.featureImageAlt"
+          style={`background-image:url('${locale.page.detailImage}')`}
+        ></div>
       </article>
     </section>
 

@@ -20,7 +20,7 @@
         "title": "Market and execution strategy",
         "bodyHtml": "<p>We map customer segments, regulatory constraints, channel options, and launch risks before teams commit time or capital to a new market.</p><ul><li>Opportunity scans and go-to-market sequencing.</li><li>Partner and distributor shortlists.</li><li>Board-ready market-entry briefs.</li></ul>",
         "ctaLabel": "Start with advisory",
-        "ctaHref": "#site-footer"
+        "ctaHref": "#contact"
       },
       {
         "id": "investment-matchmaking",
@@ -28,7 +28,7 @@
         "title": "Investment matchmaking",
         "bodyHtml": "<p>We prepare founders and growth companies for high-context investor conversations, then match them with capital aligned to stage, sector, geography, and cross-border ambition.</p>",
         "ctaLabel": "Discuss capital fit",
-        "ctaHref": "#site-footer"
+        "ctaHref": "#contact"
       },
       {
         "id": "tech-transfer",
@@ -36,7 +36,7 @@
         "title": "Technology transfer",
         "bodyHtml": "<p>We support licensing, co-development, pilot packaging, and institutional introductions for teams moving intellectual property or applied technology between regions.</p>",
         "ctaLabel": "Plan a transfer path",
-        "ctaHref": "#site-footer"
+        "ctaHref": "#contact"
       },
       {
         "id": "strategy-call",
@@ -44,7 +44,7 @@
         "title": "Book a strategy call",
         "bodyHtml": "<p>Use the first conversation to clarify the market, timeline, and partner profile. The team will route the opportunity to the right advisor before proposing scope.</p>",
         "ctaLabel": "Contact us",
-        "ctaHref": "#site-footer"
+        "ctaHref": "#contact"
       }
     ]
   },
@@ -63,7 +63,7 @@
         "title": "Estrategia de mercado e execucao",
         "bodyHtml": "<p>Mapeamos segmentos de clientes, restricoes regulatorias, canais e riscos de lancamento antes que o time comprometa capital ou tempo em um novo mercado.</p><ul><li>Mapas de oportunidade e sequencia de go-to-market.</li><li>Shortlists de parceiros e distribuidores.</li><li>Briefs de entrada em mercado para diretoria.</li></ul>",
         "ctaLabel": "Comecar pela assessoria",
-        "ctaHref": "#site-footer"
+        "ctaHref": "#contact"
       },
       {
         "id": "investment-matchmaking",
@@ -71,7 +71,7 @@
         "title": "Matchmaking de investimento",
         "bodyHtml": "<p>Preparamos founders e empresas em crescimento para conversas com investidores de alto contexto e conectamos com capital alinhado a estagio, setor, geografia e ambicao cross-border.</p>",
         "ctaLabel": "Discutir fit de capital",
-        "ctaHref": "#site-footer"
+        "ctaHref": "#contact"
       },
       {
         "id": "tech-transfer",
@@ -79,7 +79,7 @@
         "title": "Transferencia de tecnologia",
         "bodyHtml": "<p>Apoiamos licenciamento, co-desenvolvimento, desenho de pilotos e introducoes institucionais para equipes que movem propriedade intelectual ou tecnologia aplicada entre regioes.</p>",
         "ctaLabel": "Planejar transferencia",
-        "ctaHref": "#site-footer"
+        "ctaHref": "#contact"
       },
       {
         "id": "strategy-call",
@@ -87,7 +87,7 @@
         "title": "Agendar conversa estrategica",
         "bodyHtml": "<p>Use a primeira conversa para esclarecer mercado, prazo e perfil de parceiro. O time encaminha a oportunidade para o advisor adequado antes de propor escopo.</p>",
         "ctaLabel": "Fale conosco",
-        "ctaHref": "#site-footer"
+        "ctaHref": "#contact"
       }
     ]
   },
@@ -106,7 +106,7 @@
         "title": "市场与执行策略",
         "bodyHtml": "<p>在团队投入时间或资金进入新市场之前，我们会梳理客户群、监管限制、渠道选择和启动风险。</p><ul><li>机会扫描与进入顺序设计。</li><li>合作伙伴和分销渠道名单。</li><li>面向董事会的市场进入简报。</li></ul>",
         "ctaLabel": "启动咨询",
-        "ctaHref": "#site-footer"
+        "ctaHref": "#contact"
       },
       {
         "id": "investment-matchmaking",
@@ -114,7 +114,7 @@
         "title": "投资对接",
         "bodyHtml": "<p>我们帮助创始人和成长型公司准备高质量投资人沟通，并根据阶段、行业、地域和跨境目标匹配合适资本。</p>",
         "ctaLabel": "讨论资本匹配",
-        "ctaHref": "#site-footer"
+        "ctaHref": "#contact"
       },
       {
         "id": "tech-transfer",
@@ -122,7 +122,7 @@
         "title": "技术转移",
         "bodyHtml": "<p>我们支持许可、共同开发、试点包装和机构引荐，帮助团队在两地之间推动知识产权或应用技术落地。</p>",
         "ctaLabel": "规划转移路径",
-        "ctaHref": "#site-footer"
+        "ctaHref": "#contact"
       },
       {
         "id": "strategy-call",
@@ -130,7 +130,7 @@
         "title": "预约战略沟通",
         "bodyHtml": "<p>第一次沟通用于明确市场、时间线和伙伴画像。团队会先匹配合适顾问，再提出具体服务范围。</p>",
         "ctaLabel": "联系我们",
-        "ctaHref": "#site-footer"
+        "ctaHref": "#contact"
       }
     ]
   }

@@ -33,8 +33,8 @@
       {
         "title": "Competitions",
         "links": [
-          { "label": "Startup Competitions", "href": "/pre-registration/" },
-          { "label": "Corporate Challenges", "href": "/competitions/" }
+          { "label": "Startup Competitions", "href": "/competitions/?tab=startup" },
+          { "label": "Corporate Challenges", "href": "/competitions/?tab=corporate" }
         ]
       },
       {
@@ -74,15 +74,23 @@
     ],
     "focusFilters": [
       { "label": "All Industries", "tone": "neutral", "active": true },
-      { "label": "Deep Tech", "tone": "violet" },
-      { "label": "Sustainability", "tone": "green" },
-      { "label": "FinTech", "tone": "blue" },
-      { "label": "AgriTech", "tone": "green" },
       { "label": "AI", "tone": "violet" },
-      { "label": "HealthTech", "tone": "orange" },
-      { "label": "Logistics", "tone": "orange" },
-      { "label": "BioTech", "tone": "teal" },
-      { "label": "Manufacturing", "tone": "closed" }
+      { "label": "Biotech", "tone": "teal" },
+      { "label": "Deep Tech", "tone": "violet" },
+      { "label": "Education", "tone": "orange" },
+      { "label": "Energy & Climate", "tone": "green" },
+      { "label": "Entertainment", "tone": "orange" },
+      { "label": "Fintech", "tone": "blue" },
+      { "label": "Food & AgriTech", "tone": "green" },
+      { "label": "Healthtech", "tone": "orange" },
+      { "label": "Manufacturing", "tone": "closed" },
+      { "label": "Marketplaces", "tone": "blue" },
+      { "label": "Media & Community", "tone": "violet" },
+      { "label": "Mobility", "tone": "orange" },
+      { "label": "Proptech", "tone": "teal" },
+      { "label": "Robotics", "tone": "closed" },
+      { "label": "Security", "tone": "blue" },
+      { "label": "Other", "tone": "neutral" }
     ],
     "sortOptions": [
       "Sort: Deadline (nearest)",
@@ -316,27 +324,44 @@
   "preRegistrationPage": {
     "meta": {
       "htmlLang": "en",
-      "title": "Competition Pre-Registration | LATAM China Tech",
-      "description": "Submit a competition pre-registration with LATAM China Tech guidance and application support."
+      "title": "Competition Registration | LATAM China Tech",
+      "description": "Submit a competition registration with LATAM China Tech guidance and application support."
     },
-    "eyebrow": "Pre-Registration Open",
-    "titleHtml": "Competition<br /><em>Pre-Registration</em>",
-    "subtitle": "Select a competition below or continue from a specific opportunity and our team will guide you through the next steps of your submission.",
-    "selectedCompetitionEyebrow": "Pre-Registration Open",
-    "selectedTitleSuffix": "Pre-Registration",
-    "selectedSubtitleTemplate": "You are pre-registering for {competition}. Our team will keep the competition locked and guide you through the next steps of your submission.",
+    "eyebrow": "Registration Open",
+    "titleHtml": "Competition<br /><em>Registration</em>",
+    "subtitle": "Ready to apply? Fill in the form below and our team personally guides you through every step of your application.",
+    "selectedCompetitionEyebrow": "Registration Open",
+    "selectedTitleSuffix": "Registration",
+    "selectedSubtitleTemplate": "Ready to apply? Fill in the form below and our team personally guides you through every step of your application.",
+    "defaultApplicationMode": "registration",
+    "applicationModes": {
+      "pre-registration": {
+        "statusLabel": "Pre-registration open",
+        "titleSuffix": "Pre-Registration",
+        "selectedSubtitleTemplate": "Ready to apply? Fill in the form below and our team personally guides you through every step of your application.",
+        "bannerBadge": "Pre-registration open",
+        "bannerTitle": "This is a pre-registration open"
+      },
+      "registration": {
+        "statusLabel": "Registration Open",
+        "titleSuffix": "Registration",
+        "selectedSubtitleTemplate": "Ready to apply? Fill in the form below and our team personally guides you through every step of your application.",
+        "bannerBadge": "Registration Open",
+        "bannerTitle": "Register now"
+      }
+    },
     "formProgressLabel": "Form progress",
     "banner": {
-      "badge": "Pre-Registration",
-      "title": "This is a Pre-Registration",
-      "descriptionHtml": "Submit this form and <strong>LATAM CHINA TECH</strong> will personally guide you through your full HICOOL application: reviewing your submission, strengthening your pitch, and maximizing your chances of winning.",
+      "badge": "Registration Open",
+      "title": "Register now",
+      "descriptionHtml": "Submit this form and <strong>LATAM CHINA TECH</strong> will personally guide you through your full application: reviewing your submission, strengthening your pitch, and maximizing your chances of winning.",
       "supportLabel": "Supported by",
       "supportName": "LATAM CHINA TECH",
-      "supportItems": ["Application coaching", "Network introductions", "China market guide"]
+      "supportItems": ["Application review", "Pitch strengthening", "Submission guidance"]
     },
     "guide": {
       "title": "Application Guide & Tutorial",
-      "description": "Resource downloads are being finalized. The controls below will be enabled when the guide and tutorial assets are available.",
+      "description": "If you need support, download our step-by-step PDF guide. It covers competition rules, timeline, and tips for a winning application. It's available in English, Spanish, and Portuguese.",
       "actions": [
         { "label": "Download PDF Guide", "href": "#", "theme": "dark", "icon": "download" },
         { "label": "Watch Tutorial", "href": "#", "theme": "light", "icon": "play" }
@@ -354,12 +379,12 @@
       "applicantTitle": "Main Participant Applicant",
       "applicantSubtitle": "Personal details of the lead applicant.",
       "projectTitle": "Project Information",
-      "projectSubtitle": "Tell us about your startup. Use the helper prompts if you want a faster first draft.",
+      "projectSubtitle": "Tell us about your startup - if you need, you can also use AI as a tool to help you write each section faster",
       "beijingTitle": "Expansion Plan & Strategic Fit",
       "beijingSubtitle": "Tell us how this opportunity fits your market-entry or growth strategy."
     },
     "notes": {
-      "applicant": "Instructions: The main applicant should be the largest natural shareholder and be available for a semi-finals roadshow if selected.",
+      "applicant": "Instructions: The main applicant must be the company's largest shareholder, with 30% or more equity.",
       "beijing": "Important: Describe the strategic fit for this competition clearly, including any market-entry, partnership, or geographic expansion plans."
     },
     "fields": {
@@ -372,7 +397,7 @@
       "projectIntroductionPlaceholder": "Describe your project in 30-50 words. What problem does it solve? Who does it serve?",
       "competitionField": "Competition Field",
       "competitionFieldPlaceholder": "Select your primary tech vertical",
-      "companyHeadquarters": "Where is your company headquartered?",
+      "companyHeadquarters": "Is your company a legally registered entity?",
       "companyLocation": "Company Location",
       "companyLocationPlaceholder": "City, Country (e.g. São Paulo, Brazil)",
       "companyFullName": "Full Name of the Company",
@@ -394,7 +419,7 @@
       "linkedIn": "LinkedIn Profile",
       "linkedInPlaceholder": "https://linkedin.com/in/yourprofile",
       "email": "Email Address",
-      "emailPlaceholder": "your@email.com",
+      "emailPlaceholder": "your@companyemail.com - Enter a valid email address to receive confirmations and updates.",
       "elevatorPitch": "Elevator Pitch",
       "elevatorPitchHint": "One compelling sentence",
       "elevatorPitchPlaceholder": "Add a compelling one-sentence pitch for your startup",
@@ -406,8 +431,10 @@
       "businessModelPlaceholder": "Explain how your startup generates revenue and your go-to-market strategy.",
       "teamIntroduction": "Team Introduction",
       "teamIntroductionPlaceholder": "Introduce your founding team — backgrounds, expertise, and why you're the right team to execute this vision.",
-      "investmentValue": "Investment Value",
-      "investmentValuePlaceholder": "Describe your investment opportunity — current traction, financials, use of funds, and growth potential.",
+      "investmentValue": "Progress to Date",
+      "investmentValuePlaceholder": "Describe what your company has achieved so far, such as product progress, users, specific revenue, and key milestones.",
+      "fundingAmountRequested": "Funding Amount Requested",
+      "fundingAmountRequestedPlaceholder": "Tell us the funding amount you are requesting and how the capital would be used.",
       "pitchingDeck": "Pitching Deck",
       "pitchingDeckHint": "PDF or PPT, max 20MB",
       "pitchingDeckUploadLabel": "Click to upload your Pitch Deck",
@@ -427,22 +454,27 @@
     },
     "writeWithAiLabel": "Write with AI",
     "wordCountTarget": "Target: 30-50 words",
-    "companyHeadquartersOptions": ["China", "Other Countries", "Not yet established as a company"],
+    "companyHeadquartersOptions": ["Registered as a company", "Not yet established as a company"],
     "genderOptions": ["Male", "Female", "Other"],
     "degreeOptions": ["High School Diploma", "Associate Degree", "Bachelor's Degree", "Master's Degree", "MBA", "PhD / Doctorate", "Other"],
     "competitionFieldOptions": [
-      "Artificial Intelligence & Machine Learning",
-      "FinTech & Digital Finance",
-      "CleanTech & Sustainability",
-      "BioTech & Life Sciences",
-      "AgriTech & FoodTech",
-      "Smart Manufacturing & Industry 4.0",
-      "EdTech & Future of Work",
-      "HealthTech & MedTech",
-      "Mobility & Logistics",
-      "Enterprise SaaS & Cloud",
-      "Deep Tech & Hardware",
-      "Other Tech Vertical"
+      "AI",
+      "Biotech",
+      "Deep Tech",
+      "Education",
+      "Energy & Climate",
+      "Entertainment",
+      "Fintech",
+      "Food & AgriTech",
+      "Healthtech",
+      "Manufacturing",
+      "Marketplaces",
+      "Media & Community",
+      "Mobility",
+      "Proptech",
+      "Robotics",
+      "Security",
+      "Other"
     ],
     "benefits": [
       { "label": "Policy Declaration", "value": "policy", "short": "PD", "tone": "blue" },
@@ -478,8 +510,8 @@
       "Still evaluating the timeline"
     ],
     "submitNoteHtml": "By submitting, you confirm that the information is accurate and agree to be contacted by <strong>LATAM CHINA TECH</strong> for competition-specific follow-up and application support.",
-    "saveDraftLabel": "Save Draft",
-    "submitLabel": "Submit Application"
+    "saveDraftLabel": "Save draft",
+    "submitLabel": "Submit application"
   },
   "newsListingPage": {
     "meta": {

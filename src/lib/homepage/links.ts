@@ -2,9 +2,12 @@ export const HOMEPAGE_ROUTE_TARGETS = {
   home: "/",
   advisory: "/advisory/",
   competitions: "/competitions/",
+  startupCompetitions: "/competitions/?tab=startup",
+  corporateChallenges: "/competitions/?tab=corporate",
   events: "/events/",
   programs: "/programs/",
   network: "/network/",
+  speakers: "/speakers/",
   preRegistration: "/pre-registration/",
   news: "/news/",
 } as const;
@@ -33,7 +36,7 @@ const desktopMenuLinkTargets: Record<number, string[]> = {
   ],
   4: [
     `${HOMEPAGE_ROUTE_TARGETS.network}#city-partnerships`,
-    `${HOMEPAGE_ROUTE_TARGETS.network}#featured-speakers`,
+    HOMEPAGE_ROUTE_TARGETS.speakers,
   ],
 };
 
@@ -56,8 +59,8 @@ const footerLinkTargets: Record<number, string[]> = {
     `${HOMEPAGE_ROUTE_TARGETS.advisory}#tech-transfer`,
   ],
   1: [
-    HOMEPAGE_ROUTE_TARGETS.preRegistration,
-    HOMEPAGE_ROUTE_TARGETS.competitions,
+    HOMEPAGE_ROUTE_TARGETS.startupCompetitions,
+    HOMEPAGE_ROUTE_TARGETS.corporateChallenges,
   ],
   2: [
     `${HOMEPAGE_ROUTE_TARGETS.events}#trade-fairs-expos`,
@@ -72,8 +75,8 @@ const footerLinkTargets: Record<number, string[]> = {
 const mobileMenuCardTargets: Record<number, string[]> = {
   0: [HOMEPAGE_ROUTE_TARGETS.advisory],
   1: [
-    HOMEPAGE_ROUTE_TARGETS.competitions,
-    HOMEPAGE_ROUTE_TARGETS.preRegistration,
+    HOMEPAGE_ROUTE_TARGETS.startupCompetitions,
+    HOMEPAGE_ROUTE_TARGETS.corporateChallenges,
   ],
   2: [HOMEPAGE_ROUTE_TARGETS.events],
   3: [HOMEPAGE_ROUTE_TARGETS.network],
@@ -95,10 +98,10 @@ export function getDesktopMenuSectionHref(sectionIndex: number): string {
 export function getDesktopMenuLinkHref(sectionIndex: number, linkIndex: number): string {
   if (sectionIndex === 1) {
     if (linkIndex === 0) {
-      return HOMEPAGE_ROUTE_TARGETS.preRegistration;
+      return HOMEPAGE_ROUTE_TARGETS.startupCompetitions;
     }
 
-    return HOMEPAGE_ROUTE_TARGETS.competitions;
+    return HOMEPAGE_ROUTE_TARGETS.corporateChallenges;
   }
 
   return (
@@ -117,10 +120,10 @@ export function getDesktopMenuCardHref(sectionIndex: number): string {
 
 export function getCompetitionSectionHref(cardIndex: number): string {
   if (cardIndex === 0) {
-    return `${HOMEPAGE_ROUTE_TARGETS.competitions}?tab=startup`;
+    return HOMEPAGE_ROUTE_TARGETS.startupCompetitions;
   }
 
-  return `${HOMEPAGE_ROUTE_TARGETS.competitions}?tab=corporate`;
+  return HOMEPAGE_ROUTE_TARGETS.corporateChallenges;
 }
 
 export function getCategoryCardHref(cardIndex: number): string {

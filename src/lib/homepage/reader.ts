@@ -34,8 +34,8 @@ const competitionLocaleFieldByCode = {
 const isLocaleCode = (value: string): value is HomepageLocaleCode =>
   HOMEPAGE_LOCALE_CODES.includes(value as HomepageLocaleCode);
 
-function buildCompetitionHref(slug: string): string {
-  return `/competitions/${slug}/`;
+function buildCompetitionHref(entry: CompetitionMenuEntry): string {
+  return entry.track === "corporate" ? `/challenges/${entry.slug}/` : `/competitions/${entry.slug}/`;
 }
 
 function buildMenuCard(entry: CompetitionMenuEntry, code: HomepageLocaleCode): DesktopMenuCard {
@@ -45,7 +45,7 @@ function buildMenuCard(entry: CompetitionMenuEntry, code: HomepageLocaleCode): D
     title: localized.name,
     body: localized.description,
     cta: localized.ctaLabel,
-    href: buildCompetitionHref(entry.slug),
+    href: buildCompetitionHref(entry),
   };
 }
 

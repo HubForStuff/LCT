@@ -33,8 +33,8 @@
       {
         "title": "竞赛",
         "links": [
-          { "label": "创业竞赛", "href": "/pre-registration/" },
-          { "label": "企业挑战赛", "href": "/competitions/" }
+          { "label": "创业竞赛", "href": "/competitions/?tab=startup" },
+          { "label": "企业挑战赛", "href": "/competitions/?tab=corporate" }
         ]
       },
       {
@@ -74,15 +74,23 @@
     ],
     "focusFilters": [
       { "label": "全部行业", "tone": "neutral", "active": true },
-      { "label": "深科技", "tone": "violet" },
-      { "label": "可持续发展", "tone": "green" },
-      { "label": "金融科技", "tone": "blue" },
-      { "label": "农业科技", "tone": "green" },
       { "label": "AI", "tone": "violet" },
-      { "label": "健康科技", "tone": "orange" },
-      { "label": "物流", "tone": "orange" },
       { "label": "生物科技", "tone": "teal" },
-      { "label": "制造业", "tone": "closed" }
+      { "label": "深科技", "tone": "violet" },
+      { "label": "教育", "tone": "orange" },
+      { "label": "能源与气候", "tone": "green" },
+      { "label": "娱乐", "tone": "orange" },
+      { "label": "金融科技", "tone": "blue" },
+      { "label": "食品与农业科技", "tone": "green" },
+      { "label": "健康科技", "tone": "orange" },
+      { "label": "制造业", "tone": "closed" },
+      { "label": "市场平台", "tone": "blue" },
+      { "label": "媒体与社区", "tone": "violet" },
+      { "label": "出行", "tone": "orange" },
+      { "label": "地产科技", "tone": "teal" },
+      { "label": "机器人", "tone": "closed" },
+      { "label": "安全", "tone": "blue" },
+      { "label": "其他", "tone": "neutral" }
     ],
     "sortOptions": [
       "按截止时间排序（最近优先）",
@@ -316,27 +324,44 @@
   "preRegistrationPage": {
     "meta": {
       "htmlLang": "zh-CN",
-      "title": "竞赛预注册 | LATAM China Tech",
-      "description": "在 LATAM China Tech 的指导和申请支持下提交竞赛预注册。"
+      "title": "竞赛报名 | LATAM China Tech",
+      "description": "在 LATAM China Tech 的指导和申请支持下提交竞赛报名。"
     },
-    "eyebrow": "预注册开放",
-    "titleHtml": "竞赛<br /><em>预注册</em>",
-    "subtitle": "请选择下方竞赛，或从具体机会继续进入表单，我们的团队会协助你完成后续提交步骤。",
-    "selectedCompetitionEyebrow": "预注册开放",
-    "selectedTitleSuffix": "预注册",
-    "selectedSubtitleTemplate": "你正在为 {competition} 进行预注册。我们的团队将锁定该竞赛，并指导你完成后续提交步骤。",
+    "eyebrow": "报名开放",
+    "titleHtml": "竞赛<br /><em>报名</em>",
+    "subtitle": "准备申请了吗？请填写下方表单，我们的团队将亲自指导你完成申请的每一步。",
+    "selectedCompetitionEyebrow": "报名开放",
+    "selectedTitleSuffix": "报名",
+    "selectedSubtitleTemplate": "准备申请了吗？请填写下方表单，我们的团队将亲自指导你完成申请的每一步。",
+    "defaultApplicationMode": "registration",
+    "applicationModes": {
+      "pre-registration": {
+        "statusLabel": "预注册开放",
+        "titleSuffix": "预注册",
+        "selectedSubtitleTemplate": "准备申请了吗？请填写下方表单，我们的团队将亲自指导你完成申请的每一步。",
+        "bannerBadge": "预注册开放",
+        "bannerTitle": "这是一个开放预注册"
+      },
+      "registration": {
+        "statusLabel": "报名开放",
+        "titleSuffix": "报名",
+        "selectedSubtitleTemplate": "准备申请了吗？请填写下方表单，我们的团队将亲自指导你完成申请的每一步。",
+        "bannerBadge": "报名开放",
+        "bannerTitle": "立即报名"
+      }
+    },
     "formProgressLabel": "表单进度",
     "banner": {
-      "badge": "预报名",
-      "title": "这是一个预报名流程",
-      "descriptionHtml": "提交此表单后，<strong>LATAM CHINA TECH</strong> 将全程协助你完成 HICOOL 正式申请：审阅材料、强化路演表达，并尽可能提升你的获奖机会。",
+      "badge": "报名开放",
+      "title": "立即报名",
+      "descriptionHtml": "提交此表单后，<strong>LATAM CHINA TECH</strong> 将亲自指导你完成完整申请：审阅材料、强化路演表达，并尽可能提升你的获奖机会。",
       "supportLabel": "支持方",
       "supportName": "LATAM CHINA TECH",
-      "supportItems": ["申请辅导", "资源引荐", "中国市场指南"]
+      "supportItems": ["申请审阅", "路演强化", "提交指导"]
     },
     "guide": {
       "title": "申请指南与教程",
-      "description": "资源下载正在最后整理中。指南和教程资产可用后，下方控件将会启用。",
+      "description": "如需支持，请下载我们的分步 PDF 指南。它涵盖竞赛规则、时间线，以及打造优质申请的建议。指南提供英语、西班牙语和葡萄牙语版本。",
       "actions": [
         { "label": "下载 PDF 指南", "href": "#", "theme": "dark", "icon": "download" },
         { "label": "观看教程", "href": "#", "theme": "light", "icon": "play" }
@@ -354,12 +379,12 @@
       "applicantTitle": "主要申请人",
       "applicantSubtitle": "主申请人的个人信息。",
       "projectTitle": "项目信息",
-      "projectSubtitle": "请介绍你的创业项目。如果你想更快完成初稿，可以使用辅助提示。",
+      "projectSubtitle": "请介绍你的创业项目 - 如有需要，你也可以使用 AI 作为工具，更快撰写每个部分",
       "beijingTitle": "扩张计划与战略契合度",
       "beijingSubtitle": "请说明这次机会如何契合你的市场进入或增长策略。"
     },
     "notes": {
-      "applicant": "说明：主申请人应为最大自然人股东，并在入围后能够参加半决赛路演。",
+      "applicant": "说明：主申请人必须是公司最大股东，持有 30% 或以上股权。",
       "beijing": "重要提示：请清楚说明该竞赛与你的战略契合度，包括扩张计划、合作策略或你希望释放的跨境机会。"
     },
     "fields": {
@@ -372,7 +397,7 @@
       "projectIntroductionPlaceholder": "请用 30-50 个词描述你的项目。它解决什么问题？服务于谁？",
       "competitionField": "参赛领域",
       "competitionFieldPlaceholder": "选择你的主要技术赛道",
-      "companyHeadquarters": "你的公司总部位于哪里？",
+      "companyHeadquarters": "你的公司是否为合法注册实体？",
       "companyLocation": "公司所在地",
       "companyLocationPlaceholder": "城市，国家（例如：巴西圣保罗）",
       "companyFullName": "公司全称",
@@ -394,7 +419,7 @@
       "linkedIn": "LinkedIn 主页",
       "linkedInPlaceholder": "https://linkedin.com/in/yourprofile",
       "email": "邮箱地址",
-      "emailPlaceholder": "your@email.com",
+      "emailPlaceholder": "your@companyemail.com - 输入有效邮箱地址以接收确认和更新。",
       "elevatorPitch": "一句话路演",
       "elevatorPitchHint": "一句有说服力的话",
       "elevatorPitchPlaceholder": "用一句话概括你的创业项目亮点",
@@ -406,8 +431,10 @@
       "businessModelPlaceholder": "说明你的创业项目如何产生收入，以及你的市场进入策略。",
       "teamIntroduction": "团队介绍",
       "teamIntroductionPlaceholder": "介绍你的创始团队：背景、专长，以及为什么你们是最适合执行这一愿景的团队。",
-      "investmentValue": "投资价值",
-      "investmentValuePlaceholder": "介绍你的投资机会：当前进展、财务情况、资金用途和增长潜力。",
+      "investmentValue": "当前进展",
+      "investmentValuePlaceholder": "请描述你的公司目前已经取得的成果，例如产品进展、用户、具体收入和关键里程碑。",
+      "fundingAmountRequested": "申请融资金额",
+      "fundingAmountRequestedPlaceholder": "请说明你申请的融资金额以及资金用途。",
       "pitchingDeck": "路演材料",
       "pitchingDeckHint": "PDF 或 PPT，最大 20MB",
       "pitchingDeckUploadLabel": "点击上传你的 Pitch Deck",
@@ -427,22 +454,27 @@
     },
     "writeWithAiLabel": "用 AI 协助撰写",
     "wordCountTarget": "目标：30-50 个词",
-    "companyHeadquartersOptions": ["中国", "其他国家", "尚未成立公司"],
+    "companyHeadquartersOptions": ["已注册为公司", "尚未成立公司"],
     "genderOptions": ["男", "女", "其他"],
     "degreeOptions": ["高中", "大专", "本科", "硕士", "MBA", "博士", "其他"],
     "competitionFieldOptions": [
-      "人工智能与机器学习",
-      "金融科技与数字金融",
-      "清洁科技与可持续发展",
-      "生物科技与生命科学",
-      "农业科技与食品科技",
-      "智能制造与工业 4.0",
-      "教育科技与未来工作",
-      "健康科技与医疗科技",
-      "出行与物流",
-      "企业 SaaS 与云服务",
-      "深科技与硬科技",
-      "其他科技方向"
+      "AI",
+      "生物科技",
+      "深科技",
+      "教育",
+      "能源与气候",
+      "娱乐",
+      "金融科技",
+      "食品与农业科技",
+      "健康科技",
+      "制造业",
+      "市场平台",
+      "媒体与社区",
+      "出行",
+      "地产科技",
+      "机器人",
+      "安全",
+      "其他"
     ],
     "benefits": [
       { "label": "政策申报", "value": "policy", "short": "PD", "tone": "blue" },

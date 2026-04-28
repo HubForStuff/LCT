@@ -1,0 +1,113 @@
+{
+  "slug": {
+    "name": "Speakers",
+    "slug": "speakers"
+  },
+  "order": 5,
+  "primaryImage": "https://images.pexels.com/photos/3184302/pexels-photo-3184302.jpeg?auto=compress&cs=tinysrgb&w=1200",
+  "en": {
+    "eyebrow": "Speakers",
+    "title": "Featured Speakers",
+    "summary": "Curated founders, investors, operators, and public-sector leaders for conferences, missions, roundtables, and executive briefings.",
+    "imageAlt": "Speaker presenting to a business audience.",
+    "metaTitle": "Featured Speakers | LATAM China Tech",
+    "metaDescription": "Request featured speakers for China-LATAM technology events, delegations, and executive briefings.",
+    "bodyHtml": "<p>LATAM China Tech curates speakers who can translate cross-border technology, investment, and market-entry experience into practical insight for flagship stages and private rooms.</p><p>Each speaker shortlist is built around the audience, sector, market, and decision context of the event.</p>",
+    "sections": [
+      {
+        "id": "operator-voices",
+        "eyebrow": "Operators",
+        "title": "Operator and founder voices",
+        "bodyHtml": "<p>Bring founders, executives, investors, and ecosystem builders who can speak from direct China-LATAM execution experience.</p>",
+        "ctaLabel": "Request a speaker shortlist",
+        "ctaHref": "#contact"
+      },
+      {
+        "id": "stage-programming",
+        "eyebrow": "Programming",
+        "title": "Stage and panel design",
+        "bodyHtml": "<p>We help shape keynote, panel, roundtable, and mission-session formats so speakers are matched to the right audience and outcome.</p>",
+        "ctaLabel": "Plan stage programming",
+        "ctaHref": "#contact"
+      },
+      {
+        "id": "private-briefings",
+        "eyebrow": "Briefings",
+        "title": "Private executive briefings",
+        "bodyHtml": "<p>For investors, cities, corporates, and delegations, we organize smaller expert briefings with high-context market and sector perspectives.</p>",
+        "ctaLabel": "Request a briefing",
+        "ctaHref": "#contact"
+      }
+    ]
+  },
+  "br": {
+    "eyebrow": "Speakers",
+    "title": "Speakers em destaque",
+    "summary": "Founders, investidores, operadores e liderancas publicas curados para conferencias, missoes, roundtables e briefings executivos.",
+    "imageAlt": "Speaker apresentando para uma audiencia de negocios.",
+    "metaTitle": "Speakers em destaque | LATAM China Tech",
+    "metaDescription": "Solicite speakers para eventos, delegacoes e briefings executivos de tecnologia China-LATAM.",
+    "bodyHtml": "<p>A LATAM China Tech cura speakers que traduzem experiencia em tecnologia, investimento e entrada em mercado cross-border em insights praticos para grandes palcos e salas privadas.</p><p>Cada shortlist e montada a partir do publico, setor, mercado e contexto de decisao do evento.</p>",
+    "sections": [
+      {
+        "id": "operator-voices",
+        "eyebrow": "Operadores",
+        "title": "Vozes de operadores e founders",
+        "bodyHtml": "<p>Leve founders, executivos, investidores e construtores de ecossistema que falam a partir de experiencia real entre China e LATAM.</p>",
+        "ctaLabel": "Solicitar shortlist",
+        "ctaHref": "#contact"
+      },
+      {
+        "id": "stage-programming",
+        "eyebrow": "Programacao",
+        "title": "Desenho de palco e paineis",
+        "bodyHtml": "<p>Ajudamos a desenhar keynotes, paineis, roundtables e sessoes de missao para combinar speakers com o publico e o resultado certo.</p>",
+        "ctaLabel": "Planejar programacao",
+        "ctaHref": "#contact"
+      },
+      {
+        "id": "private-briefings",
+        "eyebrow": "Briefings",
+        "title": "Briefings executivos privados",
+        "bodyHtml": "<p>Para investidores, cidades, corporates e delegacoes, organizamos briefings menores com especialistas e alto contexto de mercado e setor.</p>",
+        "ctaLabel": "Solicitar briefing",
+        "ctaHref": "#contact"
+      }
+    ]
+  },
+  "cn": {
+    "eyebrow": "演讲嘉宾",
+    "title": "精选演讲嘉宾",
+    "summary": "为会议、商务考察、圆桌和高管简报策划创始人、投资人、运营者和公共部门负责人。",
+    "imageAlt": "演讲嘉宾正在向商务观众演讲。",
+    "metaTitle": "精选演讲嘉宾 | LATAM China Tech",
+    "metaDescription": "为中国-拉美科技活动、代表团和高管简报申请精选演讲嘉宾。",
+    "bodyHtml": "<p>LATAM China Tech 策划能够把跨境科技、投资和市场进入经验转化为实用洞察的演讲嘉宾，适用于旗舰舞台和私密交流场景。</p><p>每一份嘉宾名单都会围绕活动受众、行业、市场和决策语境设计。</p>",
+    "sections": [
+      {
+        "id": "operator-voices",
+        "eyebrow": "运营者",
+        "title": "运营者与创始人声音",
+        "bodyHtml": "<p>邀请创始人、高管、投资人和生态建设者，分享真实的中国-拉美执行经验。</p>",
+        "ctaLabel": "申请嘉宾名单",
+        "ctaHref": "#contact"
+      },
+      {
+        "id": "stage-programming",
+        "eyebrow": "策划",
+        "title": "舞台与圆桌设计",
+        "bodyHtml": "<p>我们协助设计主题演讲、圆桌、闭门会和商务考察环节，让嘉宾与受众及目标更匹配。</p>",
+        "ctaLabel": "规划活动内容",
+        "ctaHref": "#contact"
+      },
+      {
+        "id": "private-briefings",
+        "eyebrow": "简报",
+        "title": "高管闭门简报",
+        "bodyHtml": "<p>面向投资人、城市、企业和代表团，我们组织小范围专家简报，提供高语境的市场和行业视角。</p>",
+        "ctaLabel": "申请简报",
+        "ctaHref": "#contact"
+      }
+    ]
+  }
+}

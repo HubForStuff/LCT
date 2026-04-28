@@ -32,7 +32,7 @@
     "eligibilityHtml": "<ul><li>Startups in clean generation, storage, grid software, energy efficiency, or industrial decarbonization.</li><li>Teams with pilots, technical readiness, or clear commercial traction.</li><li>Founders ready to articulate deployment partners and market timing.</li></ul>",
     "supportTitle": "What selected teams receive",
     "supportHtml": "<ul><li>Access to sector-focused visibility and partner conversations.</li><li>Support refining market-entry messaging for investors and operators.</li><li>Hands-on review before final competition submission.</li></ul>",
-    "processTitle": "Application flow",
+    "processTitle": "Opportunity roadmap",
     "processHtml": "<ol><li>Submit through the unified competition application page.</li><li>Share your technology summary, market context, and supporting files.</li><li>Coordinate follow-up review with the LATAM China Tech team.</li></ol>",
     "applicationLabel": "Apply to this challenge"
   },
@@ -55,7 +55,7 @@
     "eligibilityHtml": "<ul><li>Startups em geracao limpa, storage, software de rede, eficiencia energetica ou descarbonizacao industrial.</li><li>Times com pilotos, maturidade tecnica ou tracao comercial inicial.</li><li>Founders prontos para explicar parceiros de implantacao e timing de mercado.</li></ul>",
     "supportTitle": "O que os selecionados recebem",
     "supportHtml": "<ul><li>Visibilidade setorial e conversas com parceiros.</li><li>Apoio para refinar narrativa de entrada em mercado.</li><li>Revisao pratica antes da submissao final.</li></ul>",
-    "processTitle": "Fluxo de aplicacao",
+    "processTitle": "Roteiro da oportunidade",
     "processHtml": "<ol><li>Envie pela pagina unificada de aplicacao.</li><li>Compartilhe resumo da tecnologia, contexto de mercado e arquivos de apoio.</li><li>Coordene o follow-up com a equipe LATAM China Tech.</li></ol>",
     "applicationLabel": "Aplicar para este desafio"
   },
@@ -78,7 +78,7 @@
     "eligibilityHtml": "<ul><li>从事清洁发电、储能、电网软件、能效或工业脱碳的创业公司。</li><li>具备试点、技术成熟度或初步商业牵引力的团队。</li><li>能够清晰说明部署伙伴和市场时机的创始人。</li></ul>",
     "supportTitle": "入选团队可获得",
     "supportHtml": "<ul><li>面向行业伙伴的曝光与交流机会。</li><li>市场进入叙事与定位优化支持。</li><li>正式提交前的材料审核建议。</li></ul>",
-    "processTitle": "申请流程",
+    "processTitle": "机会说明",
     "processHtml": "<ol><li>通过统一竞赛申请页面提交。</li><li>上传技术摘要、市场背景和支持文件。</li><li>与 LATAM China Tech 团队协调后续审核。</li></ol>",
     "applicationLabel": "申请该竞赛"
   }

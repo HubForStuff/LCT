@@ -31,7 +31,7 @@
     "eligibilityHtml": "<ul><li>Companies building logistics software, trade-finance tools, customs systems, or freight intelligence.</li><li>Teams with enterprise readiness and a clear operator-facing use case.</li><li>Applicants able to explain measurable efficiency or risk-reduction outcomes.</li></ul>",
     "supportTitle": "What selected companies receive",
     "supportHtml": "<ul><li>Introductions to logistics operators, partners, and corridor stakeholders.</li><li>Feedback on deployment readiness and market-entry sequencing.</li><li>Support packaging the final submission for the challenge cycle.</li></ul>",
-    "processTitle": "Application flow",
+    "processTitle": "Opportunity roadmap",
     "processHtml": "<ol><li>Register interest through the shared form.</li><li>Share your operational thesis, customer context, and supporting materials.</li><li>Continue into follow-up review when the cycle opens.</li></ol>",
     "applicationLabel": "Apply to this challenge"
   },
@@ -54,7 +54,7 @@
     "eligibilityHtml": "<ul><li>Empresas com software logistico, ferramentas de trade finance, sistemas aduaneiros ou inteligencia de frete.</li><li>Times com prontidao enterprise e caso de uso claro para operadores.</li><li>Aplicantes capazes de explicar ganhos de eficiencia ou reducao de risco.</li></ul>",
     "supportTitle": "O que as selecionadas recebem",
     "supportHtml": "<ul><li>Introducoes a operadores logisticos, parceiros e stakeholders do corredor.</li><li>Feedback sobre prontidao de implantacao e sequenciamento de entrada em mercado.</li><li>Apoio para empacotar a submissao final do ciclo.</li></ul>",
-    "processTitle": "Fluxo de aplicacao",
+    "processTitle": "Roteiro da oportunidade",
     "processHtml": "<ol><li>Registre interesse pelo formulario compartilhado.</li><li>Compartilhe tese operacional, contexto de clientes e materiais de apoio.</li><li>Siga para review quando o ciclo abrir.</li></ol>",
     "applicationLabel": "Aplicar para este desafio"
   },
@@ -77,7 +77,7 @@
     "eligibilityHtml": "<ul><li>构建物流软件、贸易融资工具、海关系统或货运智能平台的公司。</li><li>具备企业级准备度和明确运营方应用场景的团队。</li><li>能够说明可量化效率提升或风险下降结果的申请者。</li></ul>",
     "supportTitle": "入选企业可获得",
     "supportHtml": "<ul><li>对接物流运营方、伙伴和通道相关利益方。</li><li>关于部署准备度与市场进入节奏的反馈。</li><li>帮助整理该挑战周期的最终提交材料。</li></ul>",
-    "processTitle": "申请流程",
+    "processTitle": "机会说明",
     "processHtml": "<ol><li>通过统一表单登记意向。</li><li>说明运营逻辑、客户背景和支持材料。</li><li>在项目开放后进入后续审核。</li></ol>",
     "applicationLabel": "申请该竞赛"
   }

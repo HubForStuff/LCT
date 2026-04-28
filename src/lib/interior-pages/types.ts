@@ -124,6 +124,14 @@ export type BenefitOption = {
   tone: "blue" | "green" | "sand" | "lilac";
 };
 
+export type ApplicationModeCopy = {
+  statusLabel: string;
+  titleSuffix: string;
+  selectedSubtitleTemplate: string;
+  bannerBadge: string;
+  bannerTitle: string;
+};
+
 export type PreRegistrationPageContent = {
   meta: InteriorPageMeta;
   eyebrow: string;
@@ -132,6 +140,11 @@ export type PreRegistrationPageContent = {
   selectedCompetitionEyebrow: string;
   selectedTitleSuffix: string;
   selectedSubtitleTemplate: string;
+  defaultApplicationMode: "pre-registration" | "registration";
+  applicationModes: {
+    "pre-registration": ApplicationModeCopy;
+    registration: ApplicationModeCopy;
+  };
   formProgressLabel: string;
   banner: {
     badge: string;
@@ -207,6 +220,8 @@ export type PreRegistrationPageContent = {
     teamIntroductionPlaceholder: string;
     investmentValue: string;
     investmentValuePlaceholder: string;
+    fundingAmountRequested: string;
+    fundingAmountRequestedPlaceholder: string;
     pitchingDeck: string;
     pitchingDeckHint: string;
     pitchingDeckUploadLabel: string;

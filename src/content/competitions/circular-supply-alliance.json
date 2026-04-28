@@ -31,7 +31,7 @@
     "eligibilityHtml": "<ul><li>Manufacturers, operators, or technology providers working on circularity, materials reuse, or traceability.</li><li>Teams with enterprise partnerships or practical deployment pathways.</li><li>Applicants able to connect sustainability goals to measurable operating outcomes.</li></ul>",
     "supportTitle": "What selected companies receive",
     "supportHtml": "<ul><li>Access to corporate and ecosystem conversations around circular manufacturing.</li><li>Feedback on procurement, traceability, and operator messaging.</li><li>Guidance packaging submissions and follow-up materials.</li></ul>",
-    "processTitle": "Application flow",
+    "processTitle": "Opportunity roadmap",
     "processHtml": "<ol><li>Prepare through the shared application process for the next cycle.</li><li>Submit materials describing the supply challenge, operating model, and traction.</li><li>Work with the team to refine the final submission package.</li></ol>",
     "applicationLabel": "Apply to this challenge"
   },
@@ -54,7 +54,7 @@
     "eligibilityHtml": "<ul><li>Fabricantes, operadores ou provedores de tecnologia focados em circularidade, reuso de materiais ou rastreabilidade.</li><li>Times com parcerias enterprise ou caminhos praticos de implantacao.</li><li>Aplicantes capazes de ligar metas de sustentabilidade a resultados operacionais mensuraveis.</li></ul>",
     "supportTitle": "O que as selecionadas recebem",
     "supportHtml": "<ul><li>Acesso a conversas com corporates e ecossistema sobre manufatura circular.</li><li>Feedback sobre procurement, rastreabilidade e narrativa para operadores.</li><li>Orientacao para empacotar submissao e materiais de follow-up.</li></ul>",
-    "processTitle": "Fluxo de aplicacao",
+    "processTitle": "Roteiro da oportunidade",
     "processHtml": "<ol><li>Prepare-se pelo processo compartilhado para o proximo ciclo.</li><li>Envie materiais descrevendo o desafio de supply, modelo operacional e tracao.</li><li>Trabalhe com a equipe no refinamento da submissao final.</li></ol>",
     "applicationLabel": "Aplicar para este desafio"
   },
@@ -77,7 +77,7 @@
     "eligibilityHtml": "<ul><li>从事循环利用、材料再用或可追溯性的制造商、运营方或技术提供商。</li><li>拥有企业合作基础或明确部署路径的团队。</li><li>能够把可持续目标连接到可衡量运营结果的申请者。</li></ul>",
     "supportTitle": "入选企业可获得",
     "supportHtml": "<ul><li>参与围绕循环制造的企业与生态交流。</li><li>获得关于采购、追溯和运营方叙事的反馈。</li><li>帮助整理提交材料和后续跟进内容。</li></ul>",
-    "processTitle": "申请流程",
+    "processTitle": "机会说明",
     "processHtml": "<ol><li>为下一轮开放提前通过统一流程准备。</li><li>提交说明供应挑战、运营模型和牵引力的材料。</li><li>与团队一起完善最终提交包。</li></ol>",
     "applicationLabel": "申请该竞赛"
   }

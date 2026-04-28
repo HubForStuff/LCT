@@ -12,6 +12,7 @@
   "applicationDeadlineAt": "2025-10-15",
   "watermark": "COR",
   "value": "Market Access",
+  "detailImage": "https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=1400",
   "focusTags": ["Corporate", "Market Entry", "Distribution"],
   "en": {
     "category": "Corporate · Market Entry",
@@ -32,7 +33,7 @@
     "eligibilityHtml": "<ul><li>Established companies or scale-ups with a validated product and existing revenue.</li><li>Teams preparing for China-facing distribution, e-commerce, retail, or enterprise sales.</li><li>Operators that need a practical landing plan instead of generic market commentary.</li></ul>",
     "supportTitle": "What selected companies receive",
     "supportHtml": "<ul><li>Structured market-entry review and prioritization support.</li><li>Access to relevant channel, partner, and ecosystem conversations.</li><li>Guidance on packaging submissions, decks, and operating narrative.</li></ul>",
-    "processTitle": "Application flow",
+    "processTitle": "Opportunity roadmap",
     "processHtml": "<ol><li>Submit through the shared competition application form.</li><li>Share commercial context, product fit, and expansion objectives.</li><li>Continue with follow-up review and organizer-facing preparation.</li></ol>",
     "applicationLabel": "Apply to this challenge"
   },
@@ -55,7 +56,7 @@
     "eligibilityHtml": "<ul><li>Empresas estabelecidas ou scale-ups com produto validado e receita.</li><li>Times preparando distribuicao, e-commerce, varejo ou vendas enterprise na China.</li><li>Operadores que precisam de um plano pratico e nao apenas comentario generico de mercado.</li></ul>",
     "supportTitle": "O que as selecionadas recebem",
     "supportHtml": "<ul><li>Revisao estruturada de entrada em mercado e priorizacao.</li><li>Acesso a conversas com canais, parceiros e ecossistema.</li><li>Orientacao para empacotar submissao, deck e narrativa operacional.</li></ul>",
-    "processTitle": "Fluxo de aplicacao",
+    "processTitle": "Roteiro da oportunidade",
     "processHtml": "<ol><li>Envie pelo formulario padrao da competicao.</li><li>Compartilhe contexto comercial, aderencia do produto e objetivos de expansao.</li><li>Siga para revisao e preparacao orientada aos organizadores.</li></ol>",
     "applicationLabel": "Aplicar para este desafio"
   },
@@ -78,7 +79,7 @@
     "eligibilityHtml": "<ul><li>拥有已验证产品和现有收入的成熟企业或成长型公司。</li><li>准备在中国开展分销、电商、零售或企业销售的团队。</li><li>需要实操落地方案而不是泛泛市场评论的运营者。</li></ul>",
     "supportTitle": "入选企业可获得",
     "supportHtml": "<ul><li>结构化市场进入评估与优先级建议。</li><li>对接相关渠道、伙伴和生态资源。</li><li>帮助整理提交材料、演示文档和运营叙事。</li></ul>",
-    "processTitle": "申请流程",
+    "processTitle": "机会说明",
     "processHtml": "<ol><li>通过统一竞赛申请表提交。</li><li>说明商业背景、产品契合度和扩张目标。</li><li>继续完成后续审核和面向主办方的准备工作。</li></ol>",
     "applicationLabel": "申请该竞赛"
   }

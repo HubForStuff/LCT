@@ -20,7 +20,7 @@
         "title": "Market entry cohorts",
         "bodyHtml": "<p>Cohorts help companies assess demand, validate positioning, and build the partner map needed before entering China or Latin America.</p><ul><li>Sector and city readiness briefings.</li><li>Partner and customer discovery.</li><li>Localized pitch and application support.</li></ul>",
         "ctaLabel": "Request cohort fit",
-        "ctaHref": "#site-footer"
+        "ctaHref": "#contact"
       },
       {
         "id": "business-mission",
@@ -28,7 +28,7 @@
         "title": "Delegations and business missions",
         "bodyHtml": "<p>Mission programs combine curated meetings, ecosystem visits, investor sessions, and operational briefings for delegations that need high-context access.</p>",
         "ctaLabel": "Plan a mission",
-        "ctaHref": "#site-footer"
+        "ctaHref": "#contact"
       },
       {
         "id": "cohort-8",
@@ -55,7 +55,7 @@
         "title": "Cohorts de entrada em mercado",
         "bodyHtml": "<p>Cohorts ajudam empresas a avaliar demanda, validar posicionamento e montar o mapa de parceiros antes de entrar na China ou na America Latina.</p><ul><li>Briefings de setor e cidade.</li><li>Descoberta de parceiros e clientes.</li><li>Suporte de pitch e aplicacao localizado.</li></ul>",
         "ctaLabel": "Avaliar fit do cohort",
-        "ctaHref": "#site-footer"
+        "ctaHref": "#contact"
       },
       {
         "id": "business-mission",
@@ -63,7 +63,7 @@
         "title": "Delegacoes e missoes de negocios",
         "bodyHtml": "<p>Missoes combinam reunioes curatoriais, visitas de ecossistema, sessoes com investidores e briefings operacionais para delegacoes que precisam de acesso qualificado.</p>",
         "ctaLabel": "Planejar uma missao",
-        "ctaHref": "#site-footer"
+        "ctaHref": "#contact"
       },
       {
         "id": "cohort-8",
@@ -90,7 +90,7 @@
         "title": "市场进入 cohort",
         "bodyHtml": "<p>Cohort 帮助企业评估需求、验证定位，并在进入中国或拉美之前建立伙伴地图。</p><ul><li>行业与城市准备度简报。</li><li>伙伴和客户发现。</li><li>本地化路演和申请支持。</li></ul>",
         "ctaLabel": "评估 cohort 匹配度",
-        "ctaHref": "#site-footer"
+        "ctaHref": "#contact"
       },
       {
         "id": "business-mission",
@@ -98,7 +98,7 @@
         "title": "代表团与商务考察",
         "bodyHtml": "<p>商务考察项目结合定制会议、生态访问、投资人交流和运营简报，适合需要高语境接入的代表团。</p>",
         "ctaLabel": "规划商务考察",
-        "ctaHref": "#site-footer"
+        "ctaHref": "#contact"
       },
       {
         "id": "cohort-8",
