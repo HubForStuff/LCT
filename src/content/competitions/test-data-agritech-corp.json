@@ -5,13 +5,16 @@
   },
   "track": "corporate",
   "statusTone": "future",
+  "applicationMode": "pre-registration",
   "draft": true,
   "accent": "cool",
   "featured": false,
   "order": 199,
   "watermark": "TEST",
   "value": "$0",
-  "focusTags": ["AgriTech"],
+  "focusTags": [
+    "AgriTech"
+  ],
   "en": {
     "category": "[TEST DATA] AgriTech · Corporate",
     "name": "[TEST DATA] AgriTech Corporate Field Lab",

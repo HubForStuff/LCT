@@ -5,6 +5,7 @@
   },
   "track": "startup",
   "statusTone": "open",
+  "applicationMode": "registration",
   "accent": "warm",
   "featured": true,
   "order": 1,
@@ -13,7 +14,11 @@
   "watermark": "GTC",
   "value": "$500K",
   "detailImage": "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1400",
-  "focusTags": ["Deep Tech", "AI", "BioTech"],
+  "focusTags": [
+    "Deep Tech",
+    "AI",
+    "BioTech"
+  ],
   "en": {
     "category": "Deep Tech · Cross-Border",
     "name": "Greater Tech Challenge 2025",

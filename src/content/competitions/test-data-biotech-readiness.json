@@ -5,13 +5,17 @@
   },
   "track": "startup",
   "statusTone": "open",
+  "applicationMode": "registration",
   "draft": true,
   "accent": "warm",
   "featured": false,
   "order": 98,
   "watermark": "TEST",
   "value": "$0",
-  "focusTags": ["BioTech", "HealthTech"],
+  "focusTags": [
+    "BioTech",
+    "HealthTech"
+  ],
   "en": {
     "category": "[TEST DATA] BioTech · Validation",
     "name": "[TEST DATA] BioTech Readiness Sprint",

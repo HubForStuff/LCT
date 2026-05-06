@@ -5,13 +5,17 @@
   },
   "track": "startup",
   "statusTone": "closed",
+  "applicationMode": "pre-registration",
   "accent": "warm",
   "featured": false,
   "order": 5,
   "applicationDeadlineAt": "2025-03-14",
   "watermark": "MFG",
   "value": "$95K",
-  "focusTags": ["Manufacturing", "Deep Tech"],
+  "focusTags": [
+    "Manufacturing",
+    "Deep Tech"
+  ],
   "en": {
     "category": "Manufacturing · Deep Tech",
     "name": "Factory Frontier Award",

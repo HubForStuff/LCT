@@ -1281,8 +1281,8 @@ test("interior footer matches homepage structure without legacy bottom note row"
     );
     assert.match(
       interiorStyles,
-      /\.site-wechat-popup\s*\{[^}]*top:\s*50%;[^}]*right:\s*calc\(100% \+ 10px\);[^}]*background:\s*rgba\(255, 255, 255, 0\.95\);/s,
-      "expected interior footer WeChat popup to use the light side-aligned mockup treatment",
+      /\.site-wechat-popup\s*\{[^}]*top:\s*-84px;[^}]*right:\s*calc\(100% \+ 10px\);[^}]*background:\s*rgba\(255, 255, 255, 0\.95\);/s,
+      "expected interior footer WeChat popup to anchor its top to the email-input row above the icon",
     );
     assert.match(
       interiorStyles,

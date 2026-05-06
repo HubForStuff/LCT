@@ -5,13 +5,17 @@
   },
   "track": "corporate",
   "statusTone": "future",
+  "applicationMode": "pre-registration",
   "draft": true,
   "accent": "cool",
   "featured": false,
   "order": 103,
   "watermark": "TEST",
   "value": "$220K",
-  "focusTags": ["HealthTech", "BioTech"],
+  "focusTags": [
+    "HealthTech",
+    "BioTech"
+  ],
   "en": {
     "category": "[TEST DATA] HealthTech · Corporate",
     "name": "[TEST DATA] HealthTech Corporate Pipeline",

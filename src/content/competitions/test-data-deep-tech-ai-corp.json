@@ -5,13 +5,17 @@
   },
   "track": "corporate",
   "statusTone": "open",
+  "applicationMode": "pre-registration",
   "draft": true,
   "accent": "cool",
   "featured": false,
   "order": 198,
   "watermark": "TEST",
   "value": "$0",
-  "focusTags": ["Deep Tech", "AI"],
+  "focusTags": [
+    "Deep Tech",
+    "AI"
+  ],
   "en": {
     "category": "[TEST DATA] Deep Tech · AI",
     "name": "[TEST DATA] Deep Tech AI Corporate Lab",

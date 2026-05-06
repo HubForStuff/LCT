@@ -5,13 +5,17 @@
   },
   "track": "startup",
   "statusTone": "future",
+  "applicationMode": "registration",
   "draft": true,
   "accent": "warm",
   "featured": false,
   "order": 97,
   "watermark": "TEST",
   "value": "$0",
-  "focusTags": ["AI", "Deep Tech"],
+  "focusTags": [
+    "AI",
+    "Deep Tech"
+  ],
   "en": {
     "category": "[TEST DATA] AI · Validation",
     "name": "[TEST DATA] AI Sandbox Challenge",

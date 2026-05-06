@@ -11,7 +11,10 @@
   "order": 104,
   "watermark": "TEST",
   "value": "$75K",
-  "focusTags": ["Logistics", "Sustainability"],
+  "focusTags": [
+    "Logistics",
+    "Sustainability"
+  ],
   "en": {
     "category": "[TEST DATA] Logistics · Sustainability",
     "name": "[TEST DATA] Pacific Logistics Archive",

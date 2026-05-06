@@ -81,10 +81,10 @@ test("homepage desktop header language controls match Batch A feedback", () => {
   assertCssDeclaration(navInner, "gap", "0");
 
   const nav = getCssRuleDeclarations(css, ".desktop-home .desk-nav-inner > nav");
-  assertCssDeclaration(nav, "justify-content", "flex-start");
+  assertCssDeclaration(nav, "justify-content", "center");
 
   const navList = getCssRuleDeclarations(css, ".desktop-home .desk-nav-list");
-  assertCssDeclaration(navList, "padding-left", "58px");
+  assertCssDeclaration(navList, "margin-left", "80px");
 
   const langButton = getCssRuleDeclarations(css, ".desktop-home .desk-lang-btn");
   assertCssDeclaration(langButton, "width", "36px");
@@ -168,8 +168,9 @@ test("homepage desktop footer matches Batch B feedback", () => {
 
   const wechatPopup = getCssRuleDeclarations(css, ".desktop-home .desk-wechat-popup");
   assertCssDeclaration(wechatPopup, "right", "calc(100% + 12px)");
-  assertCssDeclaration(wechatPopup, "top", "-52px");
+  assertCssDeclaration(wechatPopup, "top", "-88px");
   assertCssDeclaration(wechatPopup, "bottom", "auto");
+  assertCssDeclaration(wechatPopup, "min-height", "184px");
   assertCssDeclaration(wechatPopup, "transform", "translateX(8px)");
 
   const wechatVisible = getCssRuleDeclarations(

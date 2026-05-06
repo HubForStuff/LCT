@@ -5,13 +5,17 @@
   },
   "track": "startup",
   "statusTone": "open",
+  "applicationMode": "registration",
   "draft": true,
   "accent": "warm",
   "featured": false,
   "order": 102,
   "watermark": "TEST",
   "value": "$130K",
-  "focusTags": ["Manufacturing", "Deep Tech"],
+  "focusTags": [
+    "Manufacturing",
+    "Deep Tech"
+  ],
   "en": {
     "category": "[TEST DATA] Manufacturing · Deep Tech",
     "name": "[TEST DATA] Manufacturing Open Track",

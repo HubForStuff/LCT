@@ -129,6 +129,7 @@ body.interior-body svg {
   height: 100%;
   padding: 0;
   margin: 0;
+  margin-left: 80px;
   list-style: none;
 }
 
@@ -2579,12 +2580,13 @@ textarea.has-ai {
 
 .site-wechat-popup {
   position: absolute;
-  top: 50%;
+  top: -84px;
   right: calc(100% + 10px);
   left: auto;
   bottom: auto;
-  width: 104px;
-  padding: 11px;
+  width: 122px;
+  min-height: 178px;
+  padding: 12px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 6px;
   background: rgba(255, 255, 255, 0.95);
@@ -2593,7 +2595,7 @@ textarea.has-ai {
   opacity: 0;
   pointer-events: none;
   z-index: 100;
-  transform: translateY(-50%) translateX(6px);
+  transform: translateX(6px);
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
@@ -2601,7 +2603,7 @@ textarea.has-ai {
 .site-wechat:focus-within .site-wechat-popup {
   opacity: 1;
   pointer-events: auto;
-  transform: translateY(-50%) translateX(0);
+  transform: translateX(0);
 }
 
 .site-wechat-title {

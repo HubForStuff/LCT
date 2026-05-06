@@ -5,13 +5,17 @@
   },
   "track": "startup",
   "statusTone": "future",
+  "applicationMode": "pre-registration",
   "accent": "warm",
   "featured": false,
   "order": 4,
   "applicationOpensAt": "2025-11-12",
   "watermark": "AGR",
   "value": "$140K",
-  "focusTags": ["AgriTech", "Sustainability"],
+  "focusTags": [
+    "AgriTech",
+    "Sustainability"
+  ],
   "en": {
     "category": "AgriTech · Sustainability",
     "name": "Andes Agri Systems Prize",

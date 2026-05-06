@@ -5,6 +5,7 @@
   },
   "track": "startup",
   "statusTone": "open",
+  "applicationMode": "registration",
   "accent": "warm",
   "featured": false,
   "order": 2,
@@ -12,7 +13,11 @@
   "applicationDeadlineAt": "2025-08-15",
   "watermark": "FIN",
   "value": "$200K",
-  "focusTags": ["FinTech", "Payments", "Financial Inclusion"],
+  "focusTags": [
+    "FinTech",
+    "Payments",
+    "Financial Inclusion"
+  ],
   "en": {
     "category": "FinTech",
     "name": "China-LATAM FinTech Cup",

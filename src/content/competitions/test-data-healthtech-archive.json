@@ -11,7 +11,10 @@
   "order": 101,
   "watermark": "TEST",
   "value": "$85K",
-  "focusTags": ["HealthTech", "AI"],
+  "focusTags": [
+    "HealthTech",
+    "AI"
+  ],
   "en": {
     "category": "[TEST DATA] HealthTech · AI",
     "name": "[TEST DATA] HealthTech Archive Award",

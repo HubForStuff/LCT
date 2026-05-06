@@ -5,6 +5,7 @@
   },
   "track": "startup",
   "statusTone": "open",
+  "applicationMode": "registration",
   "accent": "warm",
   "featured": false,
   "order": 3,
@@ -12,7 +13,11 @@
   "applicationDeadlineAt": "2025-10-10",
   "watermark": "CLN",
   "value": "$300K",
-  "focusTags": ["CleanTech", "Energy", "Grid"],
+  "focusTags": [
+    "CleanTech",
+    "Energy",
+    "Grid"
+  ],
   "en": {
     "category": "CleanTech",
     "name": "Clean Energy Sprint",

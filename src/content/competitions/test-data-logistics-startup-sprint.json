@@ -11,7 +11,9 @@
   "order": 197,
   "watermark": "TEST",
   "value": "$0",
-  "focusTags": ["Logistics"],
+  "focusTags": [
+    "Logistics"
+  ],
   "en": {
     "category": "[TEST DATA] Logistics · Startup",
     "name": "[TEST DATA] Logistics Startup Sprint",

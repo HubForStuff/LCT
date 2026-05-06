@@ -5,6 +5,7 @@
   },
   "track": "corporate",
   "statusTone": "open",
+  "applicationMode": "registration",
   "accent": "cool",
   "featured": false,
   "order": 5,
@@ -12,7 +13,11 @@
   "applicationDeadlineAt": "9999-12-31",
   "watermark": "SME",
   "value": "Market Access",
-  "focusTags": ["SME", "Export", "Trade"],
+  "focusTags": [
+    "SME",
+    "Export",
+    "Trade"
+  ],
   "en": {
     "category": "SME · Scale-Up",
     "name": "SME Export Accelerator",

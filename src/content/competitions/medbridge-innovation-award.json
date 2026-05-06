@@ -5,6 +5,7 @@
   },
   "track": "corporate",
   "statusTone": "open",
+  "applicationMode": "registration",
   "accent": "cool",
   "featured": false,
   "order": 6,
@@ -12,7 +13,11 @@
   "applicationDeadlineAt": "2025-12-01",
   "watermark": "MED",
   "value": "$250K",
-  "focusTags": ["HealthTech", "BioTech", "Distribution"],
+  "focusTags": [
+    "HealthTech",
+    "BioTech",
+    "Distribution"
+  ],
   "en": {
     "category": "HealthTech · Corporate",
     "name": "MedBridge Innovation Award",
