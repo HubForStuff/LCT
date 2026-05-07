@@ -2576,6 +2576,7 @@ textarea.has-ai {
 
 .site-wechat {
   position: relative;
+  z-index: 5;
 }
 
 .site-wechat-popup {

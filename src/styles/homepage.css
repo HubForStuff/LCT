@@ -1300,6 +1300,7 @@
 
   .desktop-home .desk-wechat {
     position: relative;
+    z-index: 5;
   }
 
   .desktop-home .desk-wechat-popup {
@@ -1316,6 +1317,7 @@
     background: rgba(12, 12, 12, 0.96);
     opacity: 0;
     pointer-events: none;
+    z-index: 100;
     transform: translateX(8px);
     transition: opacity 0.16s ease, transform 0.16s ease;
   }
