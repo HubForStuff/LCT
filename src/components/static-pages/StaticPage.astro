@@ -44,15 +44,21 @@ const { locale, siteSettings, currentLanguage } = Astro.props;
     </section>
 
     <section class="interior-wrap static-page-shell">
-      <div
-        class="static-page-hero-image"
-        role="img"
-        aria-label={locale.page.imageAlt}
-        data-i18n-aria-label="page.imageAlt"
-        style={`background-image:url('${locale.page.image}')`}
-      ></div>
+      {!locale.page.hideHero && (
+        <div
+          class="static-page-hero-image"
+          role="img"
+          aria-label={locale.page.imageAlt}
+          data-i18n-aria-label="page.imageAlt"
+          style={`background-image:url('${locale.page.image}')`}
+        ></div>
+      )}
 
-      <article class="news-article-body static-page-body" data-i18n-html="page.bodyHtml" set:html={locale.page.bodyHtml}></article>
+      <article
+        class={`static-page-body${locale.page.hideHero ? " static-page-body--plain" : " news-article-body"}`}
+        data-i18n-html="page.bodyHtml"
+        set:html={locale.page.bodyHtml}
+      ></article>
 
       <div class="static-page-section-grid">
         {locale.page.sections.map((section, index) => (

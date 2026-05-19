@@ -72,6 +72,12 @@ export const staticPageCollectionSchema = {
     label: "Display order",
     validation: { isRequired: true, min: 1 },
   }),
+  hideHero: fields.checkbox({
+    label: "Hide hero image and description card",
+    description:
+      "When enabled, the hero photo is removed and the body description renders without the surrounding card.",
+    defaultValue: false,
+  }),
   primaryImage: requiredUrl("Primary image URL"),
   en: localizedStaticPageFields("English"),
   br: localizedStaticPageFields("Português"),

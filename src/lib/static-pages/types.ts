@@ -29,6 +29,7 @@ export type StaticPageLocaleContent = {
 export type StaticPageCollectionEntry = {
   slug: string;
   order: number;
+  hideHero?: boolean;
   primaryImage: string;
   en: StaticPageLocaleContent;
   br: StaticPageLocaleContent;
@@ -39,6 +40,7 @@ export type StaticPage = StaticPageLocaleContent & {
   slug: string;
   href: string;
   image: string;
+  hideHero: boolean;
 };
 
 export type StaticPageRouteLocale = {

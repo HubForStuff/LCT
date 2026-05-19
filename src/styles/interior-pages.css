@@ -3338,6 +3338,45 @@ textarea.has-ai {
   color: #0f172a;
 }
 
+.static-page-body--plain {
+  padding: 0;
+  line-height: 1.82;
+  color: #1e293b;
+  font-size: 1.05rem;
+}
+
+.static-page-body--plain > :first-child {
+  margin-top: 0;
+}
+
+.static-page-body--plain > :last-child {
+  margin-bottom: 0;
+}
+
+.static-page-body--plain h2,
+.static-page-body--plain h3 {
+  margin: 30px 0 12px;
+  font-family: "Outfit", sans-serif;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #0f172a;
+}
+
+.static-page-body--plain p,
+.static-page-body--plain ul,
+.static-page-body--plain ol {
+  margin: 0 0 16px;
+}
+
+.static-page-body--plain ul,
+.static-page-body--plain ol {
+  padding-left: 20px;
+}
+
+.static-page-body--plain strong {
+  color: #0f172a;
+}
+
 .news-related-shell {
   padding: 34px;
 }

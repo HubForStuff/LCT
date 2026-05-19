@@ -55,6 +55,7 @@ function buildStaticPage(entry: StaticPageCollectionEntry, code: HomepageLocaleC
     slug: entry.slug,
     href: buildStaticPageHref(entry.slug),
     image: entry.primaryImage,
+    hideHero: Boolean(entry.hideHero),
   };
 }
 
