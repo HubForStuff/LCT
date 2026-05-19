@@ -1,6 +1,7 @@
 ---
 import InteriorFooter from "../site/InteriorFooter.astro";
 import InteriorHeader from "../site/InteriorHeader.astro";
+import ProgramTabs from "../programs/ProgramTabs.astro";
 
 import type { HomepageLocaleCode, SiteSettings } from "../../lib/homepage/types";
 import type { StaticPageRouteLocale } from "../../lib/static-pages/types";
@@ -60,30 +61,34 @@ const { locale, siteSettings, currentLanguage } = Astro.props;
         set:html={locale.page.bodyHtml}
       ></article>
 
-      <div class="static-page-section-grid">
-        {locale.page.sections.map((section, index) => (
-          <section class="static-page-section-card" id={section.id}>
-            <div class="static-page-section-eyebrow" data-i18n={`page.sections.${index}.eyebrow`}>
-              {section.eyebrow}
-            </div>
-            <h2 data-i18n={`page.sections.${index}.title`}>{section.title}</h2>
-            <div
-              class="static-page-section-body"
-              data-i18n-html={`page.sections.${index}.bodyHtml`}
-              set:html={section.bodyHtml}
-            ></div>
-            {section.ctaLabel && section.ctaHref && (
-              <a
-                href={section.ctaHref}
-                class="news-list-link news-list-link--muted static-page-section-link"
-                data-i18n={`page.sections.${index}.ctaLabel`}
-              >
-                {section.ctaLabel}
-              </a>
-            )}
-          </section>
-        ))}
-      </div>
+      {locale.programs && <ProgramTabs programs={locale.programs} />}
+
+      {!locale.programs && (
+        <div class="static-page-section-grid">
+          {locale.page.sections.map((section, index) => (
+            <section class="static-page-section-card" id={section.id}>
+              <div class="static-page-section-eyebrow" data-i18n={`page.sections.${index}.eyebrow`}>
+                {section.eyebrow}
+              </div>
+              <h2 data-i18n={`page.sections.${index}.title`}>{section.title}</h2>
+              <div
+                class="static-page-section-body"
+                data-i18n-html={`page.sections.${index}.bodyHtml`}
+                set:html={section.bodyHtml}
+              ></div>
+              {section.ctaLabel && section.ctaHref && (
+                <a
+                  href={section.ctaHref}
+                  class="news-list-link news-list-link--muted static-page-section-link"
+                  data-i18n={`page.sections.${index}.ctaLabel`}
+                >
+                  {section.ctaLabel}
+                </a>
+              )}
+            </section>
+          ))}
+        </div>
+      )}
     </section>
   </main>
 

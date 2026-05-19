@@ -1,0 +1,41 @@
+---
+import LocalizationClient from "../../components/i18n/LocalizationClient.astro";
+import ProgramDetailPage from "../../components/programs/ProgramDetailPage.astro";
+import Layout from "../../layouts/Layout.astro";
+import {
+  getAllProgramSlugs,
+  getProgramDetailPageData,
+} from "../../lib/programs/reader";
+import "../../styles/interior-pages.css";
+
+export async function getStaticPaths() {
+  const slugs = await getAllProgramSlugs();
+
+  return slugs.map((slug) => ({
+    params: { slug },
+  }));
+}
+
+const slug = Astro.params.slug;
+
+if (!slug) {
+  throw new Error("Missing program slug.");
+}
+
+const { defaultLanguage, defaultLocale, localizedContent, siteSettings } =
+  await getProgramDetailPageData(slug);
+---
+
+<Layout
+  title={defaultLocale.meta.title}
+  description={defaultLocale.meta.description}
+  htmlLang={defaultLocale.meta.htmlLang}
+  bodyClass="interior-body"
+>
+  <ProgramDetailPage
+    locale={defaultLocale}
+    siteSettings={siteSettings}
+    currentLanguage={defaultLanguage}
+  />
+  <LocalizationClient defaultLanguage={defaultLanguage} localizedContent={localizedContent} />
+</Layout>

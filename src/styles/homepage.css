@@ -259,7 +259,9 @@
   }
 
   .desktop-home .desk-mega-card {
-    align-self: start;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
     padding: 22px 20px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 18px;
@@ -278,9 +280,15 @@
     color: rgba(0, 0, 0, 0.72);
   }
 
-  /* Two-cards layout (Competitions) */
+  .desktop-home .desk-mega-card .desk-btn {
+    margin-top: auto;
+    align-self: flex-start;
+  }
+
+  /* Two-cards layout (Competitions, Programs) */
   .desktop-home .desk-mega-grid--two-cards {
     grid-template-columns: 1.1fr 1fr 1fr;
+    align-items: stretch;
   }
 
   /* Events layout */

@@ -5,6 +5,7 @@ import type {
   InteriorPageMeta,
   InteriorPageUi,
 } from "../interior-pages/types";
+import type { ProgramListingContent } from "../programs/types";
 
 export type StaticPageSection = {
   id: string;
@@ -51,6 +52,7 @@ export type StaticPageRouteLocale = {
   desktopMenuSections: DesktopMenuSection[];
   navExploreLabel: string;
   page: StaticPage;
+  programs?: ProgramListingContent;
 };
 
 export type StaticPageData = {

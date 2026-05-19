@@ -25,10 +25,16 @@ const staticPages = defineCollection({
   schema: z.any(),
 });
 
+const programs = defineCollection({
+  type: "data",
+  schema: z.any(),
+});
+
 export const collections = {
   homepage,
   "interior-pages": interiorPages,
   competitions,
   news,
   "static-pages": staticPages,
+  programs,
 };

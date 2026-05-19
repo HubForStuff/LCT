@@ -14,9 +14,12 @@ import {
   type SiteSettings,
 } from "./types";
 import { getHomepageNewsItemsByLocale } from "../news/reader";
+import { getProgramMenuCardsByLocale } from "../programs/reader";
+import type { ProgramMenuCardsByLocale } from "../programs/types";
 
 const keystaticReader = createReader(process.cwd(), keystaticConfig);
 const COMPETITIONS_MENU_SECTION_INDEX = 1;
+const PROGRAMS_MENU_SECTION_INDEX = 3;
 type CompetitionMenuEntry = CompetitionCollectionEntry & { slug: string };
 
 const localeReaders = {
@@ -107,28 +110,63 @@ function applyCompetitionMenuCards(
   };
 }
 
+function applyProgramMenuCards(
+  locale: HomepageLocaleContent,
+  menuCards: { marketEntry?: DesktopMenuCard; businessMission?: DesktopMenuCard },
+): HomepageLocaleContent {
+  const section = locale.desktopMenuSections[PROGRAMS_MENU_SECTION_INDEX];
+
+  if (!section) {
+    return locale;
+  }
+
+  if (!menuCards.marketEntry && !menuCards.businessMission) {
+    return locale;
+  }
+
+  const desktopMenuSections = [...locale.desktopMenuSections];
+  desktopMenuSections[PROGRAMS_MENU_SECTION_INDEX] = {
+    ...section,
+    layout: "two-cards",
+    card: menuCards.marketEntry ?? section.card,
+    card2: menuCards.businessMission ?? section.card2,
+  };
+
+  return {
+    ...locale,
+    desktopMenuSections,
+  };
+}
+
 export async function getHomepageData(): Promise<HomepageData> {
-  const [siteSettings, homepageNewsItems, competitionMenuCardsByLocale, localeEntries] = await Promise.all([
-    keystaticReader.singletons.siteSettings.readOrThrow() as Promise<SiteSettings>,
-    getHomepageNewsItemsByLocale(),
-    getCompetitionMenuCardsByLocale(),
-    Promise.all(
-      HOMEPAGE_LOCALE_CODES.map(async (code) => [
-        code,
-        (await localeReaders[code].readOrThrow()) as HomepageLocaleManagedContent,
-      ]),
-    ),
-  ]);
+  const [siteSettings, homepageNewsItems, competitionMenuCardsByLocale, programMenuCardsByLocale, localeEntries] =
+    await Promise.all([
+      keystaticReader.singletons.siteSettings.readOrThrow() as Promise<SiteSettings>,
+      getHomepageNewsItemsByLocale(),
+      getCompetitionMenuCardsByLocale(),
+      getProgramMenuCardsByLocale() as Promise<ProgramMenuCardsByLocale>,
+      Promise.all(
+        HOMEPAGE_LOCALE_CODES.map(
+          async (code): Promise<[HomepageLocaleCode, HomepageLocaleManagedContent]> => [
+            code,
+            (await localeReaders[code].readOrThrow()) as HomepageLocaleManagedContent,
+          ],
+        ),
+      ),
+    ]);
 
   const localizedContent = Object.fromEntries(
     localeEntries.map(([code, locale]) => [
       code,
-      applyCompetitionMenuCards(
-        {
-          ...locale,
-          newsItems: homepageNewsItems[code],
-        },
-        competitionMenuCardsByLocale[code],
+      applyProgramMenuCards(
+        applyCompetitionMenuCards(
+          {
+            ...locale,
+            newsItems: homepageNewsItems[code],
+          },
+          competitionMenuCardsByLocale[code],
+        ),
+        programMenuCardsByLocale[code],
       ),
     ]),
   ) as HomepageLocalizedContent;

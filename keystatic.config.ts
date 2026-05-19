@@ -3,6 +3,7 @@ import { collection, config, singleton } from "@keystatic/core";
 import { competitionCollectionSchema } from "./src/lib/competitions/schema.ts";
 import { homepageLocaleSchema, siteSettingsSchema } from "./src/lib/homepage/schema.ts";
 import { newsCollectionSchema } from "./src/lib/news/schema.ts";
+import { programCollectionSchema } from "./src/lib/programs/schema.ts";
 import { staticPageCollectionSchema } from "./src/lib/static-pages/schema.ts";
 
 export default config({
@@ -30,6 +31,13 @@ export default config({
       format: "json",
       columns: ["order"],
       schema: staticPageCollectionSchema,
+    }),
+    programs: collection({
+      label: "Programs",
+      path: "src/content/programs/*",
+      format: "json",
+      columns: ["track", "statusTone", "featured"],
+      schema: programCollectionSchema,
     }),
   },
   singletons: {

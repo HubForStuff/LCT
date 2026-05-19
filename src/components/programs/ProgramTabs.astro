@@ -1,0 +1,198 @@
+---
+import type { ProgramListingContent } from "../../lib/programs/types";
+
+interface Props {
+  programs: ProgramListingContent;
+}
+
+const { programs } = Astro.props;
+---
+
+<section class="program-tabs-shell" aria-label={programs.tabsAriaLabel}>
+  <div class="tab-bar program-tab-bar">
+    <div class="tab-group" role="tablist" aria-label={programs.tabsAriaLabel}>
+      {programs.tabs.map((tab, tabIndex) => (
+        <button
+          type="button"
+          class:list={["tab", `tab--${tab.id}`, tabIndex === 0 && "is-active"]}
+          role="tab"
+          aria-selected={tabIndex === 0 ? "true" : "false"}
+          aria-controls={`program-panel-${tab.id}`}
+          id={`program-tab-${tab.id}`}
+          data-program-tab-trigger={tab.id}
+        >
+          <span data-i18n={`programs.tabs.${tabIndex}.label`}>{tab.label}</span>
+          <span class="tab-count">{tab.count}</span>
+        </button>
+      ))}
+    </div>
+  </div>
+
+  {programs.tabs.map((tab, tabIndex) => (
+    <section
+      class:list={["tab-panel", "program-tab-panel", tabIndex === 0 && "is-active"]}
+      id={`program-panel-${tab.id}`}
+      role="tabpanel"
+      aria-labelledby={`program-tab-${tab.id}`}
+      data-program-tab-panel={tab.id}
+      hidden={tabIndex !== 0}
+    >
+      {tab.featured && (
+        <article class="featured-card featured-card--program">
+          <div class="featured-visual featured-visual--program">
+            <div class="featured-visual-grid"></div>
+            <div class="featured-accent"></div>
+          </div>
+
+          <div class="featured-body">
+            <div>
+              <div class="featured-tag-pill">
+                <span class="featured-star" aria-hidden="true">&#9733;</span>
+                <span data-i18n={`programs.tabs.${tabIndex}.featured.tag`}>
+                  {tab.featured.tag}
+                </span>
+              </div>
+              <h2 class="featured-title">
+                <a
+                  href={tab.featured.href}
+                  class="competition-name-link"
+                  data-i18n={`programs.tabs.${tabIndex}.featured.name`}
+                >
+                  {tab.featured.name}
+                </a>
+              </h2>
+              <p
+                class="featured-description"
+                data-i18n={`programs.tabs.${tabIndex}.featured.description`}
+              >
+                {tab.featured.description}
+              </p>
+            </div>
+
+            <div>
+              <div class="featured-value-row">
+                <div
+                  class:list={[
+                    "featured-value",
+                    !/^\$|\d/.test((tab.featured.value || "").trim()) && "featured-value--compact",
+                  ]}
+                  data-i18n={`programs.tabs.${tabIndex}.featured.value`}
+                >
+                  {tab.featured.value}
+                </div>
+                <div
+                  class="featured-value-caption"
+                  data-i18n={`programs.tabs.${tabIndex}.featured.valueCaption`}
+                >
+                  {tab.featured.valueCaption}
+                </div>
+              </div>
+
+              <div class="featured-footer">
+                <div class="featured-status">
+                  <span class="status-dot"></span>
+                  <span data-i18n={`programs.tabs.${tabIndex}.featured.status`}>
+                    {tab.featured.status}
+                  </span>
+                </div>
+                <div class="featured-deadline">
+                  <span data-i18n={`programs.tabs.${tabIndex}.featured.deadlinePrefix`}>
+                    {tab.featured.deadlinePrefix}
+                  </span>{" "}
+                  <strong data-i18n={`programs.tabs.${tabIndex}.featured.deadlineValue`}>
+                    {tab.featured.deadlineValue}
+                  </strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      )}
+
+      {tab.cards.length > 0 ? (
+        <div class="comp-grid program-grid">
+          {tab.cards.map((card, cardIndex) => (
+            <article class="pcard">
+              <div class="pcard-body">
+                <div
+                  class="pcard-category"
+                  data-i18n={`programs.tabs.${tabIndex}.cards.${cardIndex}.category`}
+                >
+                  {card.category}
+                </div>
+                <h3 class="pcard-name">
+                  <a
+                    href={card.href}
+                    class="competition-name-link"
+                    data-i18n={`programs.tabs.${tabIndex}.cards.${cardIndex}.name`}
+                  >
+                    {card.name}
+                  </a>
+                </h3>
+                <p
+                  class="pcard-description"
+                  data-i18n={`programs.tabs.${tabIndex}.cards.${cardIndex}.description`}
+                >
+                  {card.description}
+                </p>
+              </div>
+
+              <div class="pcard-footer">
+                <div class="pcard-meta-row">
+                  <div class="pcard-status">
+                    <span
+                      class:list={["pcard-status-dot", `pcard-status-dot--${card.statusTone}`]}
+                    ></span>
+                    <span data-i18n={`programs.tabs.${tabIndex}.cards.${cardIndex}.status`}>
+                      {card.status}
+                    </span>
+                  </div>
+                  <div class="pcard-deadline">
+                    <span data-i18n={`programs.tabs.${tabIndex}.cards.${cardIndex}.deadlinePrefix`}>
+                      {card.deadlinePrefix}
+                    </span>{" "}
+                    <strong data-i18n={`programs.tabs.${tabIndex}.cards.${cardIndex}.deadlineValue`}>
+                      {card.deadlineValue}
+                    </strong>
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        !tab.featured && (
+          <div class="empty-panel">
+            <h3 data-i18n="programs.emptyStateTitle">{programs.emptyStateTitle}</h3>
+            <p data-i18n="programs.emptyStateBody">{programs.emptyStateBody}</p>
+          </div>
+        )
+      )}
+    </section>
+  ))}
+</section>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>("[data-program-tab-trigger]").forEach((trigger) => {
+    trigger.addEventListener("click", () => {
+      const targetId = trigger.dataset.programTabTrigger;
+      if (!targetId) return;
+
+      document.querySelectorAll<HTMLButtonElement>("[data-program-tab-trigger]").forEach((other) => {
+        const isActive = other.dataset.programTabTrigger === targetId;
+        other.classList.toggle("is-active", isActive);
+        other.setAttribute("aria-selected", isActive ? "true" : "false");
+      });
+
+      document.querySelectorAll<HTMLElement>("[data-program-tab-panel]").forEach((panel) => {
+        const isActive = panel.dataset.programTabPanel === targetId;
+        panel.classList.toggle("is-active", isActive);
+        if (isActive) {
+          panel.removeAttribute("hidden");
+        } else {
+          panel.setAttribute("hidden", "");
+        }
+      });
+    });
+  });
+</script>

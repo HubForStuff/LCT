@@ -5,6 +5,7 @@ import keystaticConfig from "../../../keystatic.config.ts";
 import { getHomepageData } from "../homepage/reader";
 import { HOMEPAGE_LOCALE_CODES, type HomepageLocaleCode } from "../homepage/types";
 import { INTERIOR_LOCALES } from "../interior-pages/locales";
+import { getProgramListingContentByLocale } from "../programs/reader";
 
 import type {
   StaticPage,
@@ -64,7 +65,11 @@ export async function getAllStaticPageSlugs(): Promise<string[]> {
 }
 
 export async function getStaticPageData(slug: string): Promise<StaticPageData> {
-  const [homepageData, entries] = await Promise.all([getHomepageData(), getAllStaticPageEntries()]);
+  const [homepageData, entries, programListingByLocale] = await Promise.all([
+    getHomepageData(),
+    getAllStaticPageEntries(),
+    slug === "programs" ? getProgramListingContentByLocale() : Promise.resolve(undefined),
+  ]);
   const targetEntry = entries.find((entry) => entry.slug === slug);
 
   if (!targetEntry) {
@@ -89,6 +94,7 @@ export async function getStaticPageData(slug: string): Promise<StaticPageData> {
         desktopMenuSections: homepageLocale.desktopMenuSections,
         navExploreLabel: homepageLocale.navExploreLabel,
         page: buildStaticPage(targetEntry, code),
+        programs: programListingByLocale?.[code],
       };
 
       return [code, routeLocale];
