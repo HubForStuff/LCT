@@ -7,7 +7,8 @@ export const HOMEPAGE_ROUTE_TARGETS = {
   events: "/events/",
   programs: "/programs/",
   network: "/network/",
-  speakers: "/speakers/",
+  cityPartnerships: "/network/city-partnerships/",
+  featuredSpeakers: "/network/featured-speakers/",
   preRegistration: "/pre-registration/",
   news: "/news/",
 } as const;
@@ -35,8 +36,8 @@ const desktopMenuLinkTargets: Record<number, string[]> = {
     `${HOMEPAGE_ROUTE_TARGETS.programs}#business-mission`,
   ],
   4: [
-    `${HOMEPAGE_ROUTE_TARGETS.network}#city-partnerships`,
-    HOMEPAGE_ROUTE_TARGETS.speakers,
+    HOMEPAGE_ROUTE_TARGETS.cityPartnerships,
+    HOMEPAGE_ROUTE_TARGETS.featuredSpeakers,
   ],
 };
 
@@ -44,7 +45,7 @@ const desktopMenuCardTargets: Record<number, string> = {
   0: `${HOMEPAGE_ROUTE_TARGETS.advisory}#strategy-call`,
   2: `${HOMEPAGE_ROUTE_TARGETS.events}#calendar`,
   3: `${HOMEPAGE_ROUTE_TARGETS.programs}#cohort-8`,
-  4: `${HOMEPAGE_ROUTE_TARGETS.network}#active-partners`,
+  4: HOMEPAGE_ROUTE_TARGETS.network,
 };
 
 const categoryCardTargets = [

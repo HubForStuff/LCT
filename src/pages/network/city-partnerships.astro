@@ -1,0 +1,24 @@
+---
+import LocalizationClient from "../../components/i18n/LocalizationClient.astro";
+import NetworkListingPage from "../../components/network/NetworkListingPage.astro";
+import Layout from "../../layouts/Layout.astro";
+import { getCityPartnershipsData } from "../../lib/network/reader";
+import "../../styles/interior-pages.css";
+
+const { defaultLanguage, defaultLocale, localizedContent, siteSettings } =
+  await getCityPartnershipsData();
+---
+
+<Layout
+  title={defaultLocale.meta.title}
+  description={defaultLocale.meta.description}
+  htmlLang={defaultLocale.meta.htmlLang}
+  bodyClass="interior-body"
+>
+  <NetworkListingPage
+    locale={defaultLocale}
+    siteSettings={siteSettings}
+    currentLanguage={defaultLanguage}
+  />
+  <LocalizationClient defaultLanguage={defaultLanguage} localizedContent={localizedContent} />
+</Layout>

@@ -1,0 +1,21 @@
+{
+  "slug": {
+    "name": "Mariana Alves",
+    "slug": "mariana-alves"
+  },
+  "order": 1,
+  "thumbnail": "https://images.pexels.com/photos/3760263/pexels-photo-3760263.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "imageAlt": "Portrait of a featured speaker.",
+  "en": {
+    "name": "Mariana Alves",
+    "intro": "Cross-border venture investor focused on LATAM founders scaling hardware and climate startups into Chinese supply chains."
+  },
+  "br": {
+    "name": "Mariana Alves",
+    "intro": "Investidora de venture cross-border focada em founders da LATAM que escalam startups de hardware e clima nas cadeias chinesas."
+  },
+  "cn": {
+    "name": "Mariana Alves",
+    "intro": "专注于帮助拉美创始人将硬件与气候创业公司接入中国供应链的跨境风险投资人。"
+  }
+}

@@ -768,7 +768,6 @@ test("static pages build from Keystatic content and reuse the shared localizatio
       ["events", /Events\s*&amp;\s*Calendar|Events\s*&\s*Calendar/i, /Trade fairs and expos/i],
       ["programs", /Programs/i, /Market entry/i],
       ["network", /Network\s*&amp;\s*Partnerships|Network\s*&\s*Partnerships/i, /City partnerships/i],
-      ["speakers", /Featured Speakers/i, /flagship stages/i],
     ];
 
     for (const [slug, titlePattern, bodyPattern] of expectedPages) {
@@ -803,19 +802,18 @@ test("Batch C static page anchors, contact CTAs, and prepared page links are wir
   try {
     const homeHtml = readFileSync(resolve(build.outDir, "index.html"), "utf8");
     const networkHtml = readFileSync(resolve(build.outDir, "network", "index.html"), "utf8");
-    const speakersHtml = readFileSync(resolve(build.outDir, "speakers", "index.html"), "utf8");
     const programsHtml = readFileSync(resolve(build.outDir, "programs", "index.html"), "utf8");
     const interiorStyles = readProjectFile("src/styles/interior-pages.css");
 
     assert.match(
       homeHtml,
-      /href="\/speakers\/"/,
-      "expected Featured Speakers menu links to route to the dedicated speakers page",
+      /href="\/network\/featured-speakers\/"/,
+      "expected Featured Speakers menu links to route to the network sub-page",
     );
     assert.doesNotMatch(
       homeHtml,
-      /href="\/network\/#featured-speakers"/,
-      "expected Featured Speakers to stop routing to the network section anchor",
+      /href="\/speakers\/"/,
+      "expected the removed top-level speakers route to no longer be linked",
     );
     assert.match(
       homeHtml,
@@ -829,13 +827,8 @@ test("Batch C static page anchors, contact CTAs, and prepared page links are wir
     );
     assert.match(
       homeHtml,
-      /href="\/network\/#city-partnerships"/,
-      "expected network city partnerships to route to the standard network page anchor",
-    );
-    assert.match(
-      speakersHtml,
-      /data-i18n-html="page\.bodyHtml"/,
-      "expected the dedicated speakers page to remain localizable through the shared static-page component",
+      /href="\/network\/city-partnerships\/"/,
+      "expected network city partnerships to route to the network sub-page",
     );
     assert.match(
       networkHtml,
@@ -851,6 +844,21 @@ test("Batch C static page anchors, contact CTAs, and prepared page links are wir
       networkHtml,
       /id="contact"/,
       "expected the interior footer to expose a shared contact target",
+    );
+    assert.match(
+      networkHtml,
+      /href="\/network\/city-partnerships\/"/,
+      "expected the network hub to link to the city partnerships sub-page",
+    );
+    assert.match(
+      networkHtml,
+      /href="\/network\/featured-speakers\/"/,
+      "expected the network hub to link to the featured speakers sub-page",
+    );
+    assert.doesNotMatch(
+      networkHtml,
+      /id="active-partners"/,
+      "expected the network hub to drop the active partners section card",
     );
     assert.match(
       programsHtml,
@@ -2510,5 +2518,75 @@ test("news listing keeps metadata visible and separates the featured CTA from th
     } catch {
       // ignore cleanup failures
     }
+  }
+});
+
+test("Network sub-pages render Keystatic-driven city partnerships and speakers lists", { concurrency: false }, () => {
+  const build = buildSite();
+
+  try {
+    const cityHtml = readFileSync(
+      resolve(build.outDir, "network", "city-partnerships", "index.html"),
+      "utf8",
+    );
+    const speakersHtml = readFileSync(
+      resolve(build.outDir, "network", "featured-speakers", "index.html"),
+      "utf8",
+    );
+
+    // Localizable title + description
+    assert.match(
+      cityHtml,
+      /data-i18n="page\.title"[^>]*>\s*City Partnerships/,
+      "expected the city partnerships page title",
+    );
+    assert.match(
+      cityHtml,
+      /data-i18n="page\.description"/,
+      "expected the city partnerships description to be localizable",
+    );
+    assert.match(
+      speakersHtml,
+      /data-i18n="page\.title"[^>]*>\s*Featured Speakers/,
+      "expected the featured speakers page title",
+    );
+
+    // Seeded items render in the All-insights card style
+    assert.match(cityHtml, /news-list-card/, "expected city cards to reuse the All insights style");
+    assert.match(cityHtml, /Sao Paulo - Shenzhen Corridor/, "expected a seeded city partnership name");
+    assert.match(
+      cityHtml,
+      /data-i18n="items\.0\.name"/,
+      "expected city card names to be localizable",
+    );
+    assert.match(speakersHtml, /Mariana Alves/, "expected a seeded speaker name");
+    assert.match(
+      speakersHtml,
+      /data-i18n="items\.0\.intro"/,
+      "expected speaker intros to be localizable",
+    );
+
+    // Display-only: no meta footer, no tag pill
+    assert.doesNotMatch(cityHtml, /news-card-meta/, "expected no published/reading-time footer");
+    assert.doesNotMatch(cityHtml, /news-card-tag/, "expected no tag pill on network cards");
+    assert.doesNotMatch(speakersHtml, /news-card-meta/, "expected no footer on speaker cards");
+
+    // Optional thumbnail behavior
+    assert.match(
+      cityHtml,
+      /news-list-card--no-media/,
+      "expected text-only cards to use the no-media modifier",
+    );
+    assert.match(
+      cityHtml,
+      /news-card-media-layer/,
+      "expected thumbnailed cards to render a media layer",
+    );
+
+    // Shared localization shell
+    assert.match(cityHtml, /id="localized-content"/, "expected the shared localized content payload");
+    assert.match(speakersHtml, /id="localized-content"/, "expected the shared localized content payload");
+  } finally {
+    build.cleanup();
   }
 });

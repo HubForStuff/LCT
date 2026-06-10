@@ -231,7 +231,7 @@ test("static pages content is modeled as a keystatic-managed collection", () => 
 
   assert.deepEqual(
     staticPageEntries,
-    ["advisory.json", "events.json", "network.json", "programs.json", "speakers.json"],
-    `expected seeded static page entries for advisory, events, network, programs, and speakers; found ${staticPageEntries.join(", ")}`,
+    ["advisory.json", "events.json", "network.json", "programs.json"],
+    `expected seeded static page entries for advisory, events, network, and programs; found ${staticPageEntries.join(", ")}`,
   );
 });

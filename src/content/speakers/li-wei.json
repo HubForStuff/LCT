@@ -1,0 +1,21 @@
+{
+  "slug": {
+    "name": "Li Wei",
+    "slug": "li-wei"
+  },
+  "order": 3,
+  "thumbnail": null,
+  "imageAlt": "",
+  "en": {
+    "name": "Li Wei",
+    "intro": "Policy and ecosystem advisor on China-LATAM technology corridors, city diplomacy, and bilateral innovation programs."
+  },
+  "br": {
+    "name": "Li Wei",
+    "intro": "Consultor de politicas e ecossistema sobre corredores de tecnologia China-LATAM, diplomacia entre cidades e programas bilaterais de inovacao."
+  },
+  "cn": {
+    "name": "李伟",
+    "intro": "专注于中国—拉美技术走廊、城市外交与双边创新项目的政策与生态顾问。"
+  }
+}

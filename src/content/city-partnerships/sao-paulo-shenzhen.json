@@ -1,0 +1,21 @@
+{
+  "slug": {
+    "name": "Sao Paulo - Shenzhen Corridor",
+    "slug": "sao-paulo-shenzhen"
+  },
+  "order": 1,
+  "thumbnail": "https://images.pexels.com/photos/2901209/pexels-photo-2901209.jpeg?auto=compress&cs=tinysrgb&w=1200",
+  "imageAlt": "City skyline representing a cross-border city partnership.",
+  "en": {
+    "name": "Sao Paulo - Shenzhen Corridor",
+    "intro": "A working corridor for hardware, mobility, and cleantech pilots between Brazil's largest market and Shenzhen's manufacturing base."
+  },
+  "br": {
+    "name": "Corredor Sao Paulo - Shenzhen",
+    "intro": "Um corredor de trabalho para pilotos de hardware, mobilidade e cleantech entre o maior mercado do Brasil e a base industrial de Shenzhen."
+  },
+  "cn": {
+    "name": "圣保罗—深圳走廊",
+    "intro": "连接巴西最大市场与深圳制造基地的硬件、出行与清洁技术试点走廊。"
+  }
+}

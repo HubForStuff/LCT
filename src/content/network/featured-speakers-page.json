@@ -1,0 +1,23 @@
+{
+  "en": {
+    "eyebrow": "Network",
+    "title": "Featured Speakers",
+    "description": "Curated founders, investors, operators, and public-sector leaders for conferences, missions, roundtables, and executive briefings.",
+    "metaTitle": "Featured Speakers | LATAM China Tech",
+    "metaDescription": "Request featured speakers for China-LATAM technology events, delegations, and executive briefings."
+  },
+  "br": {
+    "eyebrow": "Rede",
+    "title": "Palestrantes em Destaque",
+    "description": "Founders, investidores, operadores e lideres do setor publico selecionados para conferencias, missoes, mesas-redondas e briefings executivos.",
+    "metaTitle": "Palestrantes em Destaque | LATAM China Tech",
+    "metaDescription": "Solicite palestrantes em destaque para eventos de tecnologia China-LATAM, delegacoes e briefings executivos."
+  },
+  "cn": {
+    "eyebrow": "网络",
+    "title": "特邀讲者",
+    "description": "为会议、考察、圆桌与高管闭门会精选的创始人、投资人、运营者与公共部门领袖。",
+    "metaTitle": "特邀讲者 | LATAM China Tech",
+    "metaDescription": "为中国—拉美科技活动、代表团与高管闭门会邀请特邀讲者。"
+  }
+}

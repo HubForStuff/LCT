@@ -30,6 +30,21 @@ const programs = defineCollection({
   schema: z.any(),
 });
 
+const cityPartnerships = defineCollection({
+  type: "data",
+  schema: z.any(),
+});
+
+const speakers = defineCollection({
+  type: "data",
+  schema: z.any(),
+});
+
+const network = defineCollection({
+  type: "data",
+  schema: z.any(),
+});
+
 export const collections = {
   homepage,
   "interior-pages": interiorPages,
@@ -37,4 +52,7 @@ export const collections = {
   news,
   "static-pages": staticPages,
   programs,
+  "city-partnerships": cityPartnerships,
+  speakers,
+  network,
 };

@@ -1,0 +1,21 @@
+{
+  "slug": {
+    "name": "Mexico City - Shenzhen Link",
+    "slug": "mexico-city-shenzhen"
+  },
+  "order": 3,
+  "thumbnail": null,
+  "imageAlt": "",
+  "en": {
+    "name": "Mexico City - Shenzhen Link",
+    "intro": "An emerging link focused on advanced manufacturing, EV supply chains, and nearshoring-aligned trade missions."
+  },
+  "br": {
+    "name": "Conexao Cidade do Mexico - Shenzhen",
+    "intro": "Uma conexao emergente focada em manufatura avancada, cadeias de suprimento de VEs e missoes comerciais alinhadas ao nearshoring."
+  },
+  "cn": {
+    "name": "墨西哥城—深圳连接",
+    "intro": "聚焦先进制造、电动车供应链与近岸外包导向贸易考察的新兴连接。"
+  }
+}

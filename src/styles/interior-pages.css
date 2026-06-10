@@ -3270,6 +3270,24 @@ textarea.has-ai {
   padding: 0 28px;
 }
 
+.news-list-card--static {
+  cursor: default;
+}
+
+.news-list-card--static:hover {
+  transform: none;
+  border-color: transparent;
+  box-shadow: 0 28px 60px rgba(15, 23, 42, 0.08);
+}
+
+.news-list-card--static .news-card-copy {
+  padding-bottom: 28px;
+}
+
+.news-list-card--no-media .news-list-card-inner {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .news-article-header .interior-wrap {
   display: grid;
   gap: 20px;

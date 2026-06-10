@@ -1,0 +1,21 @@
+{
+  "slug": {
+    "name": "Diego Fernandez",
+    "slug": "diego-fernandez"
+  },
+  "order": 2,
+  "thumbnail": "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "imageAlt": "Portrait of a featured speaker.",
+  "en": {
+    "name": "Diego Fernandez",
+    "intro": "Operator and former market-entry lead who has launched LATAM consumer brands across Greater China retail channels."
+  },
+  "br": {
+    "name": "Diego Fernandez",
+    "intro": "Operador e ex-lider de entrada em mercado que lancou marcas de consumo da LATAM nos canais de varejo da Grande China."
+  },
+  "cn": {
+    "name": "Diego Fernandez",
+    "intro": "曾主导市场进入的运营者，已将多个拉美消费品牌带入大中华区零售渠道。"
+  }
+}

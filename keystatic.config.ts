@@ -5,6 +5,10 @@ import { homepageLocaleSchema, siteSettingsSchema } from "./src/lib/homepage/sch
 import { newsCollectionSchema } from "./src/lib/news/schema.ts";
 import { programCollectionSchema } from "./src/lib/programs/schema.ts";
 import { staticPageCollectionSchema } from "./src/lib/static-pages/schema.ts";
+import {
+  networkListingCollectionSchema,
+  networkListingPageSchema,
+} from "./src/lib/network/schema.ts";
 
 export default config({
   storage: {
@@ -39,6 +43,20 @@ export default config({
       columns: ["track", "statusTone", "featured"],
       schema: programCollectionSchema,
     }),
+    cityPartnerships: collection({
+      label: "City partnerships",
+      path: "src/content/city-partnerships/*",
+      format: "json",
+      columns: ["order"],
+      schema: networkListingCollectionSchema,
+    }),
+    speakers: collection({
+      label: "Speakers",
+      path: "src/content/speakers/*",
+      format: "json",
+      columns: ["order"],
+      schema: networkListingCollectionSchema,
+    }),
   },
   singletons: {
     siteSettings: singleton({
@@ -64,6 +82,18 @@ export default config({
       path: "src/content/homepage/locales/cn",
       format: "json",
       schema: homepageLocaleSchema,
+    }),
+    cityPartnershipsPage: singleton({
+      label: "City partnerships page",
+      path: "src/content/network/city-partnerships-page",
+      format: "json",
+      schema: networkListingPageSchema(),
+    }),
+    featuredSpeakersPage: singleton({
+      label: "Featured speakers page",
+      path: "src/content/network/featured-speakers-page",
+      format: "json",
+      schema: networkListingPageSchema(),
     }),
   },
 });

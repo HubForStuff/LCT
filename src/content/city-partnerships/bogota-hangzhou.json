@@ -1,0 +1,21 @@
+{
+  "slug": {
+    "name": "Bogota - Hangzhou Exchange",
+    "slug": "bogota-hangzhou"
+  },
+  "order": 2,
+  "thumbnail": "https://images.pexels.com/photos/417344/pexels-photo-417344.jpeg?auto=compress&cs=tinysrgb&w=1200",
+  "imageAlt": "Urban view representing a city-to-city technology exchange.",
+  "en": {
+    "name": "Bogota - Hangzhou Exchange",
+    "intro": "Digital-economy and smart-city collaboration linking Colombia's capital with Hangzhou's platform and fintech ecosystem."
+  },
+  "br": {
+    "name": "Intercambio Bogota - Hangzhou",
+    "intro": "Colaboracao em economia digital e cidades inteligentes ligando a capital da Colombia ao ecossistema de plataformas e fintech de Hangzhou."
+  },
+  "cn": {
+    "name": "波哥大—杭州交流",
+    "intro": "连接哥伦比亚首都与杭州平台及金融科技生态的数字经济与智慧城市合作。"
+  }
+}

@@ -1,0 +1,91 @@
+---
+import InteriorFooter from "../site/InteriorFooter.astro";
+import InteriorHeader from "../site/InteriorHeader.astro";
+
+import type { HomepageLocaleCode, SiteSettings } from "../../lib/homepage/types";
+import type { NetworkListingRouteLocale } from "../../lib/network/types";
+
+interface Props {
+  locale: NetworkListingRouteLocale;
+  siteSettings: SiteSettings;
+  currentLanguage: HomepageLocaleCode;
+}
+
+const { locale, siteSettings, currentLanguage } = Astro.props;
+---
+
+<div class="interior-page">
+  <InteriorHeader
+    navItems={locale.navItems}
+    activeHref="/network/"
+    siteSettings={siteSettings}
+    currentLanguage={currentLanguage}
+    languageLabel={locale.ui.chooseLanguage}
+    homeLabel={locale.ui.homeLabel}
+    menuLabel={locale.ui.menu}
+    desktopMenuSections={locale.desktopMenuSections}
+    navExploreLabel={locale.navExploreLabel}
+  />
+
+  <main>
+    <section class="page-header">
+      <div class="interior-wrap page-header-inner page-header-inner--split">
+        <div>
+          <div class="page-eyebrow" data-i18n="page.eyebrow">
+            <span class="dot"></span>
+            {locale.page.eyebrow}
+          </div>
+          <h1 class="page-title" data-i18n="page.title">{locale.page.title}</h1>
+        </div>
+        <p class="page-subtitle page-subtitle--wide page-subtitle--balanced" data-i18n="page.description">
+          {locale.page.description}
+        </p>
+      </div>
+    </section>
+
+    <section class="interior-wrap news-list-shell">
+      {locale.items.length > 0 ? (
+        <div class="news-list-grid">
+          {locale.items.map((item, index) => (
+            <article
+              class:list={[
+                "news-list-card",
+                "news-list-card--static",
+                !item.thumbnail && "news-list-card--no-media",
+              ]}
+            >
+              <div class="news-list-card-inner">
+                <div class="news-card-copy">
+                  <h3 class="news-card-title" data-i18n={`items.${index}.name`}>{item.name}</h3>
+                  <p class="news-card-summary" data-i18n={`items.${index}.intro`}>{item.intro}</p>
+                </div>
+
+                {item.thumbnail && (
+                  <div
+                    class="news-card-media"
+                    role="img"
+                    aria-label={item.imageAlt}
+                    data-i18n-aria-label={`items.${index}.imageAlt`}
+                  >
+                    <div class="news-card-media-layer" style={`background-image:url('${item.thumbnail}')`}></div>
+                  </div>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <div class="news-empty-state">
+          <p>No entries yet.</p>
+        </div>
+      )}
+    </section>
+  </main>
+
+  <InteriorFooter
+    footer={locale.footer}
+    ui={locale.ui}
+    siteSettings={siteSettings}
+    currentLanguage={currentLanguage}
+  />
+</div>

@@ -21,23 +21,15 @@
         "title": "City partnerships",
         "bodyHtml": "<p>We support city-to-city technology exchange, delegation design, innovation programming, and corridor positioning for municipal and regional partners.</p>",
         "ctaLabel": "Explore city partnerships",
-        "ctaHref": "#contact"
+        "ctaHref": "/network/city-partnerships/"
       },
       {
         "id": "featured-speakers",
         "eyebrow": "Voices",
         "title": "Featured speakers",
         "bodyHtml": "<p>LATAM China Tech curates founders, investors, operators, policymakers, and technical leaders for conferences, missions, panels, and private briefings.</p>",
-        "ctaLabel": "Request speakers",
-        "ctaHref": "#contact"
-      },
-      {
-        "id": "active-partners",
-        "eyebrow": "Partners",
-        "title": "120+ active partners",
-        "bodyHtml": "<p>Our first-version partner page is intentionally editable. Use Keystatic to replace this copy with named partner groups, logos, and live partnership criteria when approved.</p>",
-        "ctaLabel": "Partner with us",
-        "ctaHref": "#contact"
+        "ctaLabel": "View featured speakers",
+        "ctaHref": "/network/featured-speakers/"
       }
     ]
   },
@@ -56,7 +48,7 @@
         "title": "Parcerias entre cidades",
         "bodyHtml": "<p>Apoiamos intercambio tecnologico cidade-a-cidade, desenho de delegacoes, programacao de inovacao e posicionamento de corredor para parceiros municipais e regionais.</p>",
         "ctaLabel": "Explorar parcerias",
-        "ctaHref": "#contact"
+        "ctaHref": "/network/city-partnerships/"
       },
       {
         "id": "featured-speakers",
@@ -64,15 +56,7 @@
         "title": "Speakers em destaque",
         "bodyHtml": "<p>A LATAM China Tech cura founders, investidores, operadores, policy makers e liderancas tecnicas para conferencias, missoes, paineis e briefings privados.</p>",
         "ctaLabel": "Solicitar speakers",
-        "ctaHref": "#contact"
-      },
-      {
-        "id": "active-partners",
-        "eyebrow": "Parceiros",
-        "title": "Mais de 120 parceiros ativos",
-        "bodyHtml": "<p>Esta primeira versao da pagina de parceiros e intencionalmente editavel. Use o Keystatic para substituir por grupos, logos e criterios de parceria quando aprovados.</p>",
-        "ctaLabel": "Ser parceiro",
-        "ctaHref": "#contact"
+        "ctaHref": "/network/featured-speakers/"
       }
     ]
   },
@@ -91,7 +75,7 @@
         "title": "城市伙伴关系",
         "bodyHtml": "<p>我们支持城市之间的科技交流、代表团设计、创新活动策划，以及市级和区域伙伴的走廊定位。</p>",
         "ctaLabel": "探索城市合作",
-        "ctaHref": "#contact"
+        "ctaHref": "/network/city-partnerships/"
       },
       {
         "id": "featured-speakers",
@@ -99,15 +83,7 @@
         "title": "精选演讲嘉宾",
         "bodyHtml": "<p>LATAM China Tech 为会议、商务考察、圆桌和私密简报策划创始人、投资人、运营者、政策专家和技术领袖。</p>",
         "ctaLabel": "申请演讲嘉宾",
-        "ctaHref": "#contact"
-      },
-      {
-        "id": "active-partners",
-        "eyebrow": "伙伴",
-        "title": "120+ 活跃伙伴",
-        "bodyHtml": "<p>这个第一版本的伙伴页面刻意保持可编辑。获得批准后，可在 Keystatic 中替换为正式伙伴类别、标识和合作标准。</p>",
-        "ctaLabel": "成为伙伴",
-        "ctaHref": "#contact"
+        "ctaHref": "/network/featured-speakers/"
       }
     ]
   }
