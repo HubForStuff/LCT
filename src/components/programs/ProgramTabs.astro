@@ -18,7 +18,7 @@ const { programs } = Astro.props;
           role="tab"
           aria-selected={tabIndex === 0 ? "true" : "false"}
           aria-controls={`program-panel-${tab.id}`}
-          id={`program-tab-${tab.id}`}
+          id={tab.id}
           data-program-tab-trigger={tab.id}
         >
           <span data-i18n={`programs.tabs.${tabIndex}.label`}>{tab.label}</span>
@@ -33,7 +33,7 @@ const { programs } = Astro.props;
       class:list={["tab-panel", "program-tab-panel", tabIndex === 0 && "is-active"]}
       id={`program-panel-${tab.id}`}
       role="tabpanel"
-      aria-labelledby={`program-tab-${tab.id}`}
+      aria-labelledby={tab.id}
       data-program-tab-panel={tab.id}
       hidden={tabIndex !== 0}
     >
@@ -173,26 +173,44 @@ const { programs } = Astro.props;
 </section>
 
 <script>
+  function activateProgramTab(targetId: string): boolean {
+    const triggers = document.querySelectorAll<HTMLButtonElement>("[data-program-tab-trigger]");
+    const exists = Array.from(triggers).some(
+      (trigger) => trigger.dataset.programTabTrigger === targetId,
+    );
+    if (!exists) return false;
+
+    triggers.forEach((other) => {
+      const isActive = other.dataset.programTabTrigger === targetId;
+      other.classList.toggle("is-active", isActive);
+      other.setAttribute("aria-selected", isActive ? "true" : "false");
+    });
+
+    document.querySelectorAll<HTMLElement>("[data-program-tab-panel]").forEach((panel) => {
+      const isActive = panel.dataset.programTabPanel === targetId;
+      panel.classList.toggle("is-active", isActive);
+      if (isActive) {
+        panel.removeAttribute("hidden");
+      } else {
+        panel.setAttribute("hidden", "");
+      }
+    });
+
+    return true;
+  }
+
   document.querySelectorAll<HTMLButtonElement>("[data-program-tab-trigger]").forEach((trigger) => {
     trigger.addEventListener("click", () => {
       const targetId = trigger.dataset.programTabTrigger;
-      if (!targetId) return;
-
-      document.querySelectorAll<HTMLButtonElement>("[data-program-tab-trigger]").forEach((other) => {
-        const isActive = other.dataset.programTabTrigger === targetId;
-        other.classList.toggle("is-active", isActive);
-        other.setAttribute("aria-selected", isActive ? "true" : "false");
-      });
-
-      document.querySelectorAll<HTMLElement>("[data-program-tab-panel]").forEach((panel) => {
-        const isActive = panel.dataset.programTabPanel === targetId;
-        panel.classList.toggle("is-active", isActive);
-        if (isActive) {
-          panel.removeAttribute("hidden");
-        } else {
-          panel.setAttribute("hidden", "");
-        }
-      });
+      if (targetId) activateProgramTab(targetId);
     });
   });
+
+  function activateFromHash() {
+    const hash = window.location.hash.replace(/^#/, "");
+    if (hash) activateProgramTab(hash);
+  }
+
+  activateFromHash();
+  window.addEventListener("hashchange", activateFromHash);
 </script>
