@@ -1,4 +1,7 @@
 ---
+import ContactModal from "../components/contact/ContactModal.astro";
+import "../styles/contact.css";
+
 export interface Props {
   title: string;
   description?: string;
@@ -31,5 +34,6 @@ const {
   </head>
   <body class={`antialiased ${bodyClass}`.trim()}>
     <slot />
+    <ContactModal />
   </body>
 </html>

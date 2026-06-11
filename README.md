@@ -117,3 +117,20 @@ Pushes to `main` trigger automatic deployment to GitHub Pages via GitHub Actions
 
 
 The build output (`dist/`) is a fully static site. Any static file server pointed at `dist/` will work.
+
+## Contact form
+
+The site-wide contact modal (opened by any "Contact us" / "Book a strategy call"
+link) submits to [Web3Forms](https://web3forms.com), which emails the team.
+
+To wire it up:
+
+1. Create a Web3Forms access key for your destination inbox (free; confirm via the
+   emailed link).
+2. Set `PUBLIC_WEB3FORMS_ACCESS_KEY` in the build environment (see `.env.example`).
+   The key is public-safe to ship in a static build.
+3. (Optional) Set `PUBLIC_HCAPTCHA_SITE_KEY` to enable hCaptcha on top of the
+   always-on honeypot.
+
+Without a real key the modal still renders and validates, but live submissions
+will return an error.
