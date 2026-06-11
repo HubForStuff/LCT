@@ -26,8 +26,8 @@
       {
         "title": "Assessoria",
         "links": [
-          { "label": "Investimento", "href": "/advisory/#investment-matchmaking" },
-          { "label": "Transferencia de Tecnologia", "href": "/advisory/#tech-transfer" }
+          { "label": "Investimento", "href": "/advisory/investment-matchmaking/" },
+          { "label": "Transferencia de Tecnologia", "href": "/advisory/tech-transfer/" }
         ]
       },
       {

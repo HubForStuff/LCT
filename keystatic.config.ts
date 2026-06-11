@@ -1,5 +1,6 @@
 import { collection, config, singleton } from "@keystatic/core";
 
+import { advisoryCollectionSchema } from "./src/lib/advisory/schema.ts";
 import { competitionCollectionSchema } from "./src/lib/competitions/schema.ts";
 import { homepageLocaleSchema, siteSettingsSchema } from "./src/lib/homepage/schema.ts";
 import { newsCollectionSchema } from "./src/lib/news/schema.ts";
@@ -42,6 +43,13 @@ export default config({
       format: "json",
       columns: ["track", "statusTone", "featured"],
       schema: programCollectionSchema,
+    }),
+    advisory: collection({
+      label: "Advisory services",
+      path: "src/content/advisory/*",
+      format: "json",
+      columns: ["order"],
+      schema: advisoryCollectionSchema,
     }),
     cityPartnerships: collection({
       label: "City partnerships",

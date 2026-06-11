@@ -1,0 +1,32 @@
+{
+  "slug": { "name": "Consulting", "slug": "consulting" },
+  "order": 1,
+  "thumbnail": "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=1200",
+  "thumbnailAlt": "Strategy team mapping a market-entry plan.",
+  "heroImage": "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  "heroImageAlt": "Advisors reviewing market expansion plans around a meeting table.",
+  "en": {
+    "eyebrow": "Consulting",
+    "title": "Market and execution strategy",
+    "summary": "Customer segments, regulatory constraints, channels, and launch risks mapped before you commit time or capital to a new market.",
+    "metaTitle": "Market & Execution Strategy | LATAM China Tech",
+    "metaDescription": "Advisory for market-entry strategy: opportunity scans, partner shortlists, and board-ready briefs across the LATAM-China corridor.",
+    "bodyHtml": "<p>We map customer segments, regulatory constraints, channel options, and launch risks before teams commit time or capital to a new market.</p><ul><li>Opportunity scans and go-to-market sequencing.</li><li>Partner and distributor shortlists.</li><li>Board-ready market-entry briefs.</li></ul>"
+  },
+  "br": {
+    "eyebrow": "Consultoria",
+    "title": "Estrategia de mercado e execucao",
+    "summary": "Segmentos de clientes, restricoes regulatorias, canais e riscos de lancamento mapeados antes de comprometer tempo ou capital.",
+    "metaTitle": "Estrategia de Mercado e Execucao | LATAM China Tech",
+    "metaDescription": "Assessoria de estrategia de entrada em mercado: mapas de oportunidade, shortlists de parceiros e briefs para diretoria no corredor LATAM-China.",
+    "bodyHtml": "<p>Mapeamos segmentos de clientes, restricoes regulatorias, canais e riscos de lancamento antes que o time comprometa capital ou tempo em um novo mercado.</p><ul><li>Mapas de oportunidade e sequencia de go-to-market.</li><li>Shortlists de parceiros e distribuidores.</li><li>Briefs de entrada em mercado para diretoria.</li></ul>"
+  },
+  "cn": {
+    "eyebrow": "咨询",
+    "title": "市场与执行策略",
+    "summary": "在投入时间或资金进入新市场之前，先梳理客户群、监管限制、渠道与启动风险。",
+    "metaTitle": "市场与执行策略 | LATAM China Tech",
+    "metaDescription": "市场进入策略咨询：机会扫描、合作伙伴名单与面向董事会的简报，覆盖拉美—中国走廊。",
+    "bodyHtml": "<p>在团队投入时间或资金进入新市场之前，我们会梳理客户群、监管限制、渠道选择和启动风险。</p><ul><li>机会扫描与进入顺序设计。</li><li>合作伙伴和分销渠道名单。</li><li>面向董事会的市场进入简报。</li></ul>"
+  }
+}

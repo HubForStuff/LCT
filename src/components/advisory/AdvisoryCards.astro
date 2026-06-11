@@ -1,0 +1,63 @@
+---
+import type { AdvisoryServiceCard } from "../../lib/advisory/types";
+import type { StaticPageSection } from "../../lib/static-pages/types";
+
+interface Props {
+  services: AdvisoryServiceCard[];
+  ctaSections?: StaticPageSection[];
+}
+
+const { services, ctaSections = [] } = Astro.props;
+---
+
+<div class="news-list-grid advisory-card-grid">
+  {services.map((service, index) => (
+    <a
+      href={service.href}
+      class:list={["news-list-card", !service.thumbnail && "news-list-card--no-media"]}
+    >
+      <div class="news-list-card-inner">
+        <div class="news-card-copy">
+          <div class="static-page-section-eyebrow" data-i18n={`advisoryServices.${index}.eyebrow`}>
+            {service.eyebrow}
+          </div>
+          <h3 class="news-card-title" data-i18n={`advisoryServices.${index}.title`}>{service.title}</h3>
+          <p class="news-card-summary" data-i18n={`advisoryServices.${index}.summary`}>{service.summary}</p>
+        </div>
+
+        {service.thumbnail && (
+          <div
+            class="news-card-media"
+            role="img"
+            aria-label={service.thumbnailAlt}
+            data-i18n-aria-label={`advisoryServices.${index}.thumbnailAlt`}
+          >
+            <div class="news-card-media-layer" style={`background-image:url('${service.thumbnail}')`}></div>
+          </div>
+        )}
+      </div>
+    </a>
+  ))}
+
+  {ctaSections.map((section, index) => (
+    <a
+      href={section.ctaHref ?? "#contact"}
+      id={section.id}
+      class="news-list-card news-list-card--no-media"
+    >
+      <div class="news-list-card-inner">
+        <div class="news-card-copy">
+          <div class="static-page-section-eyebrow" data-i18n={`page.sections.${index}.eyebrow`}>
+            {section.eyebrow}
+          </div>
+          <h3 class="news-card-title" data-i18n={`page.sections.${index}.title`}>{section.title}</h3>
+          <div
+            class="news-card-summary"
+            data-i18n-html={`page.sections.${index}.bodyHtml`}
+            set:html={section.bodyHtml}
+          ></div>
+        </div>
+      </div>
+    </a>
+  ))}
+</div>

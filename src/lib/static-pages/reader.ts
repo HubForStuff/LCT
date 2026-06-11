@@ -6,6 +6,7 @@ import { getHomepageData } from "../homepage/reader";
 import { HOMEPAGE_LOCALE_CODES, type HomepageLocaleCode } from "../homepage/types";
 import { INTERIOR_LOCALES } from "../interior-pages/locales";
 import { getProgramListingContentByLocale } from "../programs/reader";
+import { getAdvisoryServicesByLocale } from "../advisory/reader";
 
 import type {
   StaticPage,
@@ -65,10 +66,11 @@ export async function getAllStaticPageSlugs(): Promise<string[]> {
 }
 
 export async function getStaticPageData(slug: string): Promise<StaticPageData> {
-  const [homepageData, entries, programListingByLocale] = await Promise.all([
+  const [homepageData, entries, programListingByLocale, advisoryByLocale] = await Promise.all([
     getHomepageData(),
     getAllStaticPageEntries(),
     slug === "programs" ? getProgramListingContentByLocale() : Promise.resolve(undefined),
+    slug === "advisory" ? getAdvisoryServicesByLocale() : Promise.resolve(undefined),
   ]);
   const targetEntry = entries.find((entry) => entry.slug === slug);
 
@@ -95,6 +97,7 @@ export async function getStaticPageData(slug: string): Promise<StaticPageData> {
         navExploreLabel: homepageLocale.navExploreLabel,
         page: buildStaticPage(targetEntry, code),
         programs: programListingByLocale?.[code],
+        advisoryServices: advisoryByLocale?.[code],
       };
 
       return [code, routeLocale];

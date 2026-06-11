@@ -1,0 +1,32 @@
+{
+  "slug": { "name": "Technology Transfer", "slug": "tech-transfer" },
+  "order": 3,
+  "thumbnail": null,
+  "thumbnailAlt": "",
+  "heroImage": null,
+  "heroImageAlt": "",
+  "en": {
+    "eyebrow": "Technology",
+    "title": "Technology transfer",
+    "summary": "Licensing, co-development, pilot packaging, and institutional introductions for teams moving IP or applied technology between regions.",
+    "metaTitle": "Technology Transfer | LATAM China Tech",
+    "metaDescription": "Support for licensing, co-development, pilot packaging, and institutional introductions across the LATAM-China corridor.",
+    "bodyHtml": "<p>We support licensing, co-development, pilot packaging, and institutional introductions for teams moving intellectual property or applied technology between regions.</p>"
+  },
+  "br": {
+    "eyebrow": "Tecnologia",
+    "title": "Transferencia de tecnologia",
+    "summary": "Licenciamento, co-desenvolvimento, desenho de pilotos e introducoes institucionais para mover PI ou tecnologia entre regioes.",
+    "metaTitle": "Transferencia de Tecnologia | LATAM China Tech",
+    "metaDescription": "Apoio a licenciamento, co-desenvolvimento, pilotos e introducoes institucionais no corredor LATAM-China.",
+    "bodyHtml": "<p>Apoiamos licenciamento, co-desenvolvimento, desenho de pilotos e introducoes institucionais para equipes que movem propriedade intelectual ou tecnologia aplicada entre regioes.</p>"
+  },
+  "cn": {
+    "eyebrow": "技术",
+    "title": "技术转移",
+    "summary": "为在两地之间推动知识产权或应用技术落地的团队提供许可、共同开发、试点包装与机构引荐。",
+    "metaTitle": "技术转移 | LATAM China Tech",
+    "metaDescription": "在拉美—中国走廊提供许可、共同开发、试点包装与机构引荐支持。",
+    "bodyHtml": "<p>我们支持许可、共同开发、试点包装和机构引荐，帮助团队在两地之间推动知识产权或应用技术落地。</p>"
+  }
+}

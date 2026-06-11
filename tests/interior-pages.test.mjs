@@ -2590,3 +2590,79 @@ test("Network sub-pages render Keystatic-driven city partnerships and speakers l
     build.cleanup();
   }
 });
+
+test("Advisory hub renders Keystatic-driven service cards linking to detail pages", { concurrency: false }, () => {
+  const build = buildSite();
+
+  try {
+    const advisoryHtml = readFileSync(resolve(build.outDir, "advisory", "index.html"), "utf8");
+
+    assert.match(advisoryHtml, /news-list-card/, "expected advisory cards to reuse the All insights style");
+    assert.match(advisoryHtml, /href="\/advisory\/consulting\/"/, "expected a card linking to the consulting detail page");
+    assert.match(advisoryHtml, /href="\/advisory\/investment-matchmaking\/"/, "expected a card linking to the investment-matchmaking detail page");
+    assert.match(advisoryHtml, /href="\/advisory\/tech-transfer\/"/, "expected a card linking to the tech-transfer detail page");
+    assert.match(advisoryHtml, /data-i18n="advisoryServices\.0\.title"/, "expected advisory card titles to be localizable");
+    assert.match(advisoryHtml, /Market and execution strategy/, "expected a seeded advisory service title");
+
+    assert.doesNotMatch(advisoryHtml, /news-card-meta/, "expected no published/reading-time footer on advisory cards");
+    assert.doesNotMatch(advisoryHtml, /news-card-tag/, "expected no tag pill on advisory cards");
+
+    assert.match(advisoryHtml, /news-list-card--no-media/, "expected the text-only advisory card to use the no-media modifier");
+    assert.match(advisoryHtml, /news-card-media-layer/, "expected a thumbnailed advisory card to render a media layer");
+
+    assert.match(advisoryHtml, /id="strategy-call"/, "expected the strategy-call CTA to remain on the hub");
+    assert.doesNotMatch(advisoryHtml, /id="consulting"/, "expected the consulting section card to be gone from the hub");
+
+    // Strategy-call now renders in the same card style as the services (not a section card)
+    assert.doesNotMatch(advisoryHtml, /static-page-section-card/, "expected the strategy-call to render as a card, not a section card");
+    assert.match(
+      advisoryHtml,
+      /href="#contact"[^>]*id="strategy-call"[^>]*class="[^"]*news-list-card/,
+      "expected the strategy-call to be a news-list-card linking to #contact",
+    );
+  } finally {
+    build.cleanup();
+  }
+});
+
+test("Advisory detail pages render localized content with a back link", { concurrency: false }, () => {
+  const build = buildSite();
+
+  try {
+    const consultingHtml = readFileSync(
+      resolve(build.outDir, "advisory", "consulting", "index.html"),
+      "utf8",
+    );
+    const techTransferHtml = readFileSync(
+      resolve(build.outDir, "advisory", "tech-transfer", "index.html"),
+      "utf8",
+    );
+
+    assert.match(consultingHtml, /data-i18n="page\.title"[^>]*>\s*Market and execution strategy/, "expected the consulting detail title");
+    assert.match(consultingHtml, /data-i18n="page\.summary"/, "expected the consulting summary side text");
+
+    assert.match(consultingHtml, /data-i18n-html="page\.bodyHtml"/, "expected the detail body to render bodyHtml");
+    assert.match(consultingHtml, /id="localized-content"/, "expected the shared localized content payload");
+    assert.match(consultingHtml, /href="\/advisory\/"/, "expected a back link to the advisory hub");
+
+    assert.match(consultingHtml, /news-article-hero-image/, "expected consulting to render its hero image");
+    assert.doesNotMatch(techTransferHtml, /news-article-hero-image/, "expected tech-transfer (no hero) to omit the hero image");
+  } finally {
+    build.cleanup();
+  }
+});
+
+test("Advisory navigation points at service detail pages", { concurrency: false }, () => {
+  const build = buildSite();
+
+  try {
+    const homeHtml = readFileSync(resolve(build.outDir, "index.html"), "utf8");
+
+    assert.match(homeHtml, /href="\/advisory\/consulting\/"/, "expected the Advisory submenu to link to the consulting detail page");
+    assert.match(homeHtml, /href="\/advisory\/investment-matchmaking\/"/, "expected the Advisory submenu to link to the investment-matchmaking detail page");
+    assert.match(homeHtml, /href="\/advisory\/tech-transfer\/"/, "expected the Advisory submenu to link to the tech-transfer detail page");
+    assert.doesNotMatch(homeHtml, /href="\/advisory\/#consulting"/, "expected the old advisory section anchors to be gone");
+  } finally {
+    build.cleanup();
+  }
+});

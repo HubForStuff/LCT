@@ -26,8 +26,8 @@
       {
         "title": "咨询",
         "links": [
-          { "label": "投资", "href": "/advisory/#investment-matchmaking" },
-          { "label": "技术转移", "href": "/advisory/#tech-transfer" }
+          { "label": "投资", "href": "/advisory/investment-matchmaking/" },
+          { "label": "技术转移", "href": "/advisory/tech-transfer/" }
         ]
       },
       {

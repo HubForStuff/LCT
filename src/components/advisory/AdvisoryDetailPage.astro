@@ -1,0 +1,83 @@
+---
+import InteriorFooter from "../site/InteriorFooter.astro";
+import InteriorHeader from "../site/InteriorHeader.astro";
+
+import type { HomepageLocaleCode, SiteSettings } from "../../lib/homepage/types";
+import type { AdvisoryDetailRouteLocale } from "../../lib/advisory/types";
+
+interface Props {
+  locale: AdvisoryDetailRouteLocale;
+  siteSettings: SiteSettings;
+  currentLanguage: HomepageLocaleCode;
+}
+
+const { locale, siteSettings, currentLanguage } = Astro.props;
+const { page, detail } = locale;
+---
+
+<div class="interior-page">
+  <InteriorHeader
+    navItems={locale.navItems}
+    activeHref={page.listingHref}
+    siteSettings={siteSettings}
+    currentLanguage={currentLanguage}
+    languageLabel={locale.ui.chooseLanguage}
+    homeLabel={locale.ui.homeLabel}
+    menuLabel={locale.ui.menu}
+    desktopMenuSections={locale.desktopMenuSections}
+    navExploreLabel={locale.navExploreLabel}
+  />
+
+  <main>
+    <section class="page-header news-article-header">
+      <div class="interior-wrap">
+        <a href={page.listingHref} class="news-back-link news-back-link--muted">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
+          <span data-i18n="detail.backLabel">{detail.backLabel}</span>
+        </a>
+
+        <div class="page-header-inner page-header-inner--split">
+          <div>
+            <div class="page-eyebrow" data-i18n="page.eyebrow">
+              <span class="dot"></span>
+              {page.eyebrow}
+            </div>
+            <h1 class="page-title" data-i18n="page.title">{page.title}</h1>
+          </div>
+          <p class="page-subtitle page-subtitle--wide page-subtitle--balanced" data-i18n="page.summary">
+            {page.summary}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    {page.heroImage && (
+      <section class="interior-wrap">
+        <div
+          class="news-article-hero-image"
+          role="img"
+          aria-label={page.heroImageAlt}
+          data-i18n-aria-label="page.heroImageAlt"
+          style={`background-image:url('${page.heroImage}')`}
+        ></div>
+      </section>
+    )}
+
+    <section class="interior-wrap static-page-shell">
+      <article
+        class="static-page-body static-page-body--plain"
+        data-i18n-html="page.bodyHtml"
+        set:html={page.bodyHtml}
+      ></article>
+    </section>
+  </main>
+
+  <InteriorFooter
+    footer={locale.footer}
+    ui={locale.ui}
+    siteSettings={siteSettings}
+    currentLanguage={currentLanguage}
+  />
+</div>

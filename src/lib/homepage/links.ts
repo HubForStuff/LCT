@@ -23,9 +23,9 @@ const desktopSectionTargets = [
 
 const desktopMenuLinkTargets: Record<number, string[]> = {
   0: [
-    `${HOMEPAGE_ROUTE_TARGETS.advisory}#consulting`,
-    `${HOMEPAGE_ROUTE_TARGETS.advisory}#investment-matchmaking`,
-    `${HOMEPAGE_ROUTE_TARGETS.advisory}#tech-transfer`,
+    `${HOMEPAGE_ROUTE_TARGETS.advisory}consulting/`,
+    `${HOMEPAGE_ROUTE_TARGETS.advisory}investment-matchmaking/`,
+    `${HOMEPAGE_ROUTE_TARGETS.advisory}tech-transfer/`,
   ],
   2: [
     `${HOMEPAGE_ROUTE_TARGETS.events}#trade-fairs-expos`,
@@ -56,8 +56,8 @@ const categoryCardTargets = [
 
 const footerLinkTargets: Record<number, string[]> = {
   0: [
-    `${HOMEPAGE_ROUTE_TARGETS.advisory}#investment-matchmaking`,
-    `${HOMEPAGE_ROUTE_TARGETS.advisory}#tech-transfer`,
+    `${HOMEPAGE_ROUTE_TARGETS.advisory}investment-matchmaking/`,
+    `${HOMEPAGE_ROUTE_TARGETS.advisory}tech-transfer/`,
   ],
   1: [
     HOMEPAGE_ROUTE_TARGETS.startupCompetitions,

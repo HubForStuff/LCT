@@ -1,0 +1,32 @@
+{
+  "slug": { "name": "Investment Matchmaking", "slug": "investment-matchmaking" },
+  "order": 2,
+  "thumbnail": "https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=1200",
+  "thumbnailAlt": "Investors and founders in a working session.",
+  "heroImage": null,
+  "heroImageAlt": "",
+  "en": {
+    "eyebrow": "Capital",
+    "title": "Investment matchmaking",
+    "summary": "Founder and growth-company preparation for high-context investor conversations, matched to capital aligned with stage, sector, and geography.",
+    "metaTitle": "Investment Matchmaking | LATAM China Tech",
+    "metaDescription": "Investor readiness and capital matchmaking across stage, sector, geography, and cross-border ambition.",
+    "bodyHtml": "<p>We prepare founders and growth companies for high-context investor conversations, then match them with capital aligned to stage, sector, geography, and cross-border ambition.</p>"
+  },
+  "br": {
+    "eyebrow": "Capital",
+    "title": "Matchmaking de investimento",
+    "summary": "Preparacao de founders e empresas para conversas com investidores e conexao com capital alinhado a estagio, setor e geografia.",
+    "metaTitle": "Matchmaking de Investimento | LATAM China Tech",
+    "metaDescription": "Preparacao para investidores e matchmaking de capital por estagio, setor, geografia e ambicao cross-border.",
+    "bodyHtml": "<p>Preparamos founders e empresas em crescimento para conversas com investidores de alto contexto e conectamos com capital alinhado a estagio, setor, geografia e ambicao cross-border.</p>"
+  },
+  "cn": {
+    "eyebrow": "资本",
+    "title": "投资对接",
+    "summary": "帮助创始人与成长型公司准备高质量投资人沟通，并按阶段、行业与地域匹配合适资本。",
+    "metaTitle": "投资对接 | LATAM China Tech",
+    "metaDescription": "按阶段、行业、地域与跨境目标进行投资人准备与资本匹配。",
+    "bodyHtml": "<p>我们帮助创始人和成长型公司准备高质量投资人沟通，并根据阶段、行业、地域和跨境目标匹配合适资本。</p>"
+  }
+}

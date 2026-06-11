@@ -6,6 +6,7 @@ import type {
   InteriorPageUi,
 } from "../interior-pages/types";
 import type { ProgramListingContent } from "../programs/types";
+import type { AdvisoryServiceCard } from "../advisory/types";
 
 export type StaticPageSection = {
   id: string;
@@ -53,6 +54,7 @@ export type StaticPageRouteLocale = {
   navExploreLabel: string;
   page: StaticPage;
   programs?: ProgramListingContent;
+  advisoryServices?: AdvisoryServiceCard[];
 };
 
 export type StaticPageData = {

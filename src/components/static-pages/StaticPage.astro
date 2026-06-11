@@ -2,6 +2,7 @@
 import InteriorFooter from "../site/InteriorFooter.astro";
 import InteriorHeader from "../site/InteriorHeader.astro";
 import ProgramTabs from "../programs/ProgramTabs.astro";
+import AdvisoryCards from "../advisory/AdvisoryCards.astro";
 
 import type { HomepageLocaleCode, SiteSettings } from "../../lib/homepage/types";
 import type { StaticPageRouteLocale } from "../../lib/static-pages/types";
@@ -61,9 +62,13 @@ const { locale, siteSettings, currentLanguage } = Astro.props;
         set:html={locale.page.bodyHtml}
       ></article>
 
+      {locale.advisoryServices && locale.advisoryServices.length > 0 && (
+        <AdvisoryCards services={locale.advisoryServices} ctaSections={locale.page.sections} />
+      )}
+
       {locale.programs && <ProgramTabs programs={locale.programs} />}
 
-      {!locale.programs && (
+      {!locale.programs && !locale.advisoryServices && (
         <div class="static-page-section-grid">
           {locale.page.sections.map((section, index) => (
             <section class="static-page-section-card" id={section.id}>
