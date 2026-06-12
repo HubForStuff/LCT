@@ -452,7 +452,35 @@
       "incorporationTimelineHint": "请说明如果入选，你希望何时启动下一步。",
       "incorporationTimelinePlaceholder": "你计划何时推进？"
     },
-    "writeWithAiLabel": "用 AI 协助撰写",
+    "competitionTrackLabels": {
+      "startup": "创业竞赛",
+      "corporate": "企业挑战",
+      "academic": "学术创新"
+    },
+    "aiAssistance": {
+      "buttonLabel": "使用 AI 辅助填写表单",
+      "disabledLabel": "请先上传路演材料以使用 AI 辅助",
+      "loadingLabel": "正在分析材料...",
+      "disclosure": "使用 AI 辅助即表示你同意 LATAM CHINA TECH 可通过第三方 AI 服务处理你的路演材料和当前表单内容，用于生成申请草稿。AI 输出可能不完整或不准确。提交前请检查并编辑所有字段，并仅上传你有权分享的材料。",
+      "successMessage": "AI 草稿已添加。提交前请检查所有字段。",
+      "errorMessage": "AI 辅助暂时无法分析该文件。你仍可继续手动填写表单。",
+      "overwritePrompt": "AI 为你已填写的字段找到了建议内容。是否用 AI 草稿替换现有文本？",
+      "unsupportedFileMessage": "AI 辅助支持 PDF 和 PPTX 路演材料。你仍可手动提交该文件。"
+    },
+    "submission": {
+      "uploadPendingMessage": "正在上传文件...",
+      "submittingMessage": "正在提交申请...",
+      "successMessage": "申请已提交。我们的团队将与你联系并说明下一步。",
+      "errorMessage": "表单提交失败。请重试。",
+      "validationMessage": "请完成必填字段并上传路演材料（或粘贴材料链接）后再提交。"
+    },
+    "saveDraft": {
+      "hint": "草稿仅保存在此浏览器中（不保存文件）。",
+      "confirmation": "草稿已保存 ✓"
+    },
+    "deckLinkLabel": "或粘贴材料链接",
+    "deckLinkPlaceholder": "https://drive.google.com/...",
+    "deckLinkHint": "材料超过 20MB？请改为粘贴 Google Drive / Dropbox 链接。",
     "wordCountTarget": "目标：30-50 个词",
     "companyHeadquartersOptions": ["已注册为公司", "尚未成立公司"],
     "genderOptions": ["男", "女", "其他"],

@@ -239,7 +239,35 @@ export type PreRegistrationPageContent = {
     incorporationTimelineHint: string;
     incorporationTimelinePlaceholder: string;
   };
-  writeWithAiLabel: string;
+  competitionTrackLabels: {
+    startup: string;
+    corporate: string;
+    academic: string;
+  };
+  aiAssistance: {
+    buttonLabel: string;
+    disabledLabel: string;
+    loadingLabel: string;
+    disclosure: string;
+    successMessage: string;
+    errorMessage: string;
+    overwritePrompt: string;
+    unsupportedFileMessage: string;
+  };
+  submission: {
+    uploadPendingMessage: string;
+    submittingMessage: string;
+    successMessage: string;
+    errorMessage: string;
+    validationMessage: string;
+  };
+  saveDraft: {
+    hint: string;
+    confirmation: string;
+  };
+  deckLinkLabel: string;
+  deckLinkPlaceholder: string;
+  deckLinkHint: string;
   wordCountTarget: string;
   companyHeadquartersOptions: string[];
   genderOptions: string[];

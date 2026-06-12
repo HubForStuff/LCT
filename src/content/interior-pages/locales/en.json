@@ -452,7 +452,35 @@
       "incorporationTimelineHint": "Use this to tell us when you expect to activate the next step after selection.",
       "incorporationTimelinePlaceholder": "When do you plan to move forward?"
     },
-    "writeWithAiLabel": "Write with AI",
+    "competitionTrackLabels": {
+      "startup": "Startup Competition",
+      "corporate": "Corporate Challenge",
+      "academic": "Academic Innovation"
+    },
+    "aiAssistance": {
+      "buttonLabel": "Fill Form With AI Assistance",
+      "disabledLabel": "Upload a pitch deck to use AI Assistance",
+      "loadingLabel": "Analyzing deck...",
+      "disclosure": "By using AI Assistance, you agree that LATAM CHINA TECH may process your pitch deck and current form inputs through third-party AI providers to generate draft application text. AI output may be incomplete or inaccurate. Please review and edit all fields before submitting, and only upload materials you are authorized to share.",
+      "successMessage": "AI draft added. Please review every field before submitting.",
+      "errorMessage": "AI Assistance could not analyze this file. You can continue filling the form manually.",
+      "overwritePrompt": "AI found suggestions for fields you already filled. Replace existing text with the AI draft?",
+      "unsupportedFileMessage": "AI Assistance supports PDF and PPTX decks. You can still submit this file manually."
+    },
+    "submission": {
+      "uploadPendingMessage": "Uploading files...",
+      "submittingMessage": "Submitting application...",
+      "successMessage": "Application submitted. Our team will contact you with next steps.",
+      "errorMessage": "We could not submit the form. Please try again.",
+      "validationMessage": "Please complete the required fields and upload a pitch deck (or paste a deck link) before submitting."
+    },
+    "saveDraft": {
+      "hint": "Drafts are saved in this browser only (files aren't saved).",
+      "confirmation": "Draft saved ✓"
+    },
+    "deckLinkLabel": "Or paste a deck link",
+    "deckLinkPlaceholder": "https://drive.google.com/...",
+    "deckLinkHint": "Deck over 20MB? Paste a Google Drive / Dropbox link instead.",
     "wordCountTarget": "Target: 30-50 words",
     "companyHeadquartersOptions": ["Registered as a company", "Not yet established as a company"],
     "genderOptions": ["Male", "Female", "Other"],

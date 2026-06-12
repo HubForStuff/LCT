@@ -452,7 +452,35 @@
       "incorporationTimelineHint": "Use este campo para indicar quando voce espera ativar o proximo passo se for selecionado.",
       "incorporationTimelinePlaceholder": "Quando voce pretende avancar?"
     },
-    "writeWithAiLabel": "Escrever com IA",
+    "competitionTrackLabels": {
+      "startup": "Competicao de Startups",
+      "corporate": "Desafio Corporativo",
+      "academic": "Inovacao Academica"
+    },
+    "aiAssistance": {
+      "buttonLabel": "Preencher formulario com assistencia de IA",
+      "disabledLabel": "Envie um pitch deck para usar a assistencia de IA",
+      "loadingLabel": "Analisando o deck...",
+      "disclosure": "Ao usar a Assistencia com IA, voce concorda que a LATAM CHINA TECH podera processar seu pitch deck e os dados ja preenchidos no formulario por meio de provedores terceiros de IA para gerar um rascunho da candidatura. O resultado da IA pode estar incompleto ou impreciso. Revise e edite todos os campos antes de enviar, e envie apenas materiais que voce tem autorizacao para compartilhar.",
+      "successMessage": "Rascunho de IA adicionado. Revise todos os campos antes de enviar.",
+      "errorMessage": "A Assistencia com IA nao conseguiu analisar este arquivo. Voce pode continuar preenchendo manualmente.",
+      "overwritePrompt": "A IA encontrou sugestoes para campos que voce ja preencheu. Substituir o texto existente pelo rascunho da IA?",
+      "unsupportedFileMessage": "A Assistencia com IA suporta decks em PDF e PPTX. Voce ainda pode enviar este arquivo manualmente."
+    },
+    "submission": {
+      "uploadPendingMessage": "Enviando arquivos...",
+      "submittingMessage": "Enviando candidatura...",
+      "successMessage": "Candidatura enviada. Nossa equipe entrara em contato com os proximos passos.",
+      "errorMessage": "Nao foi possivel enviar o formulario. Tente novamente.",
+      "validationMessage": "Preencha os campos obrigatorios e envie um pitch deck antes de submeter."
+    },
+    "saveDraft": {
+      "hint": "Os rascunhos sao salvos apenas neste navegador (arquivos nao sao salvos).",
+      "confirmation": "Rascunho salvo ✓"
+    },
+    "deckLinkLabel": "Ou cole um link do deck",
+    "deckLinkPlaceholder": "https://drive.google.com/...",
+    "deckLinkHint": "Deck com mais de 20MB? Cole um link do Google Drive / Dropbox.",
     "wordCountTarget": "Meta: 30-50 palavras",
     "companyHeadquartersOptions": ["Registrada como empresa", "Ainda nao constituida como empresa"],
     "genderOptions": ["Masculino", "Feminino", "Outro"],

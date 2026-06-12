@@ -4,6 +4,7 @@ import InteriorHeader from "../site/InteriorHeader.astro";
 
 import type { HomepageLocaleCode, SiteSettings } from "../../lib/homepage/types";
 import type { CompetitionFormRouteLocale } from "../../lib/competitions/types";
+import { PREREG_ENDPOINT, AI_ASSISTANCE_ENABLED } from "../../lib/pre-registration/config";
 
 interface Props {
   locale: CompetitionFormRouteLocale;
@@ -232,7 +233,8 @@ const aiTextareaFields = [
       </div>
 
       <div class="form-wrap">
-        <form class="pre-reg-form" method="post" enctype="multipart/form-data">
+        <form class="pre-reg-form" method="post" enctype="multipart/form-data" data-prereg-form data-endpoint={PREREG_ENDPOINT}>
+          <input type="checkbox" class="prereg-honeypot" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
           <section class="form-section" id="section-1">
             <div class="form-section-header">
               <div class="form-section-number">1</div>
@@ -298,12 +300,44 @@ const aiTextareaFields = [
                   placeholder={page.fields.projectIntroductionPlaceholder}
                   data-i18n-placeholder="page.fields.projectIntroductionPlaceholder"
                 ></textarea>
-                <button type="button" class="ai-btn" data-i18n="page.writeWithAiLabel">
-                  {page.writeWithAiLabel}
-                </button>
               </div>
               <div class="word-count" data-i18n="page.wordCountTarget">{page.wordCountTarget}</div>
             </div>
+
+            <div class="form-row">
+              <label for="deckFile">
+                <span data-i18n="page.fields.pitchingDeck">{page.fields.pitchingDeck}</span>{" "}
+                <span class="req">*</span>{" "}
+                <span class="hint" data-i18n="page.fields.pitchingDeckHint">
+                  {page.fields.pitchingDeckHint}
+                </span>
+              </label>
+              <label class="file-upload-area" for="deckFile">
+                <input id="deckFile" name="deckFile" type="file" accept=".pdf,.ppt,.pptx" data-deck-file-input />
+                <span class="file-upload-icon">↑</span>
+                <span class="file-upload-label" data-i18n="page.fields.pitchingDeckUploadLabel">{page.fields.pitchingDeckUploadLabel}</span>
+                <span class="file-upload-sub" data-i18n="page.fields.pitchingDeckUploadSubtext">{page.fields.pitchingDeckUploadSubtext}</span>
+                <span class="file-upload-selected" data-deck-file-status hidden></span>
+              </label>
+            </div>
+
+            <div class="form-row">
+              <label for="deckLink">
+                <span data-i18n="page.deckLinkLabel">{page.deckLinkLabel}</span>{" "}
+                <span class="hint" data-i18n="page.deckLinkHint">{page.deckLinkHint}</span>
+              </label>
+              <input id="deckLink" name="deckLink" type="url" placeholder={page.deckLinkPlaceholder} data-i18n-placeholder="page.deckLinkPlaceholder" />
+            </div>
+
+            {AI_ASSISTANCE_ENABLED && (
+              <div class="form-row ai-assistance-panel" data-ai-assistance-panel>
+                <button type="button" class="site-btn site-btn--dark" data-ai-assistance-button data-i18n="page.aiAssistance.buttonLabel" disabled>
+                  {page.aiAssistance.buttonLabel}
+                </button>
+                <p class="ai-assistance-disclosure" data-i18n="page.aiAssistance.disclosure">{page.aiAssistance.disclosure}</p>
+                <p class="form-status" data-ai-assistance-status role="status" aria-live="polite"></p>
+              </div>
+            )}
 
             <div class="form-row">
               <label for="compField">
@@ -556,9 +590,6 @@ const aiTextareaFields = [
                   placeholder={page.fields.elevatorPitchPlaceholder}
                   data-i18n-placeholder="page.fields.elevatorPitchPlaceholder"
                 />
-                <button type="button" class="ai-btn" data-i18n="page.writeWithAiLabel">
-                  {page.writeWithAiLabel}
-                </button>
               </div>
             </div>
 
@@ -576,32 +607,9 @@ const aiTextareaFields = [
                     placeholder={field.placeholder}
                     data-i18n-placeholder={field.placeholderKey}
                   ></textarea>
-                  <button type="button" class="ai-btn" data-i18n="page.writeWithAiLabel">
-                    {page.writeWithAiLabel}
-                  </button>
                 </div>
               </div>
             ))}
-
-            <div class="form-row">
-              <label for="deckFile">
-                <span data-i18n="page.fields.pitchingDeck">{page.fields.pitchingDeck}</span>{" "}
-                <span class="req">*</span>{" "}
-                <span class="hint" data-i18n="page.fields.pitchingDeckHint">
-                  {page.fields.pitchingDeckHint}
-                </span>
-              </label>
-              <label class="file-upload-area" for="deckFile">
-                <input id="deckFile" name="deckFile" type="file" accept=".pdf,.ppt,.pptx" />
-                <span class="file-upload-icon">↑</span>
-                <span class="file-upload-label" data-i18n="page.fields.pitchingDeckUploadLabel">
-                  {page.fields.pitchingDeckUploadLabel}
-                </span>
-                <span class="file-upload-sub" data-i18n="page.fields.pitchingDeckUploadSubtext">
-                  {page.fields.pitchingDeckUploadSubtext}
-                </span>
-              </label>
-            </div>
 
             <div class="form-row">
               <label for="suppFile">
@@ -689,9 +697,6 @@ const aiTextareaFields = [
                   placeholder={page.fields.beijingPlanPlaceholder}
                   data-i18n-placeholder="page.fields.beijingPlanPlaceholder"
                 ></textarea>
-                <button type="button" class="ai-btn" data-i18n="page.writeWithAiLabel">
-                  {page.writeWithAiLabel}
-                </button>
               </div>
             </div>
 
@@ -719,16 +724,18 @@ const aiTextareaFields = [
 
           <section class="submit-section">
             <p class="submit-note" data-i18n-html="page.submitNoteHtml" set:html={page.submitNoteHtml}></p>
+            <p class="form-status" data-prereg-status role="status" aria-live="polite"></p>
             <div class="submit-actions">
-              <button type="button" class="site-btn site-btn--secondary" data-i18n="page.saveDraftLabel">
-                {page.saveDraftLabel}
-              </button>
-              <button type="submit" class="site-btn site-btn--primary site-btn--submit" data-i18n="page.submitLabel">
-                {page.submitLabel}
-              </button>
+              <button type="button" class="site-btn site-btn--secondary" data-save-draft data-i18n="page.saveDraftLabel">{page.saveDraftLabel}</button>
+              <button type="submit" class="site-btn site-btn--primary site-btn--submit" data-prereg-submit data-i18n="page.submitLabel">{page.submitLabel}</button>
             </div>
+            <p class="save-draft-hint" data-save-draft-hint data-i18n="page.saveDraft.hint">{page.saveDraft.hint}</p>
+            <p class="save-draft-confirmation" data-save-draft-confirmation hidden></p>
           </section>
         </form>
+        <div class="prereg-success-panel" data-prereg-success hidden>
+          <h2 data-i18n="page.submission.successMessage">{page.submission.successMessage}</h2>
+        </div>
       </div>
     </section>
   </main>
@@ -860,6 +867,174 @@ const aiTextareaFields = [
       childList: true,
       subtree: true,
       characterData: true,
+    });
+  }
+
+  // ---- Pre-registration submission wiring ----
+  import { submitPreRegistration } from "../../lib/pre-registration/submit.mjs";
+  import { validateFileSizes, fileToBase64 } from "../../lib/pre-registration/files.mjs";
+
+  const preregForm = document.querySelector("[data-prereg-form]");
+  if (preregForm instanceof HTMLFormElement) {
+    const endpoint = preregForm.dataset.endpoint || "";
+    const statusEl = document.querySelector("[data-prereg-status]");
+    const submitBtn = preregForm.querySelector("[data-prereg-submit]");
+    const successPanel = document.querySelector("[data-prereg-success]");
+    const saveDraftBtn = document.querySelector("[data-save-draft]");
+    const draftConfirmEl = document.querySelector("[data-save-draft-confirmation]");
+    const DRAFT_KEY = "preRegistrationDraft";
+
+    const island = document.getElementById("localized-content");
+    const content = island ? JSON.parse(island.textContent || "{}") : {};
+    const lang = () => {
+      const code = window.localStorage.getItem("preferredLanguage") || "EN";
+      return content[code] ? code : (content.EN ? "EN" : Object.keys(content)[0]);
+    };
+    const copy = () => (content[lang()] && content[lang()].preRegistrationPage) || {};
+    const submissionCopy = () => copy().submission || {};
+    const draftCopy = () => copy().saveDraft || {};
+
+    const setStatus = (type, message) => {
+      if (!(statusEl instanceof HTMLElement)) return;
+      statusEl.textContent = message || "";
+      statusEl.className = `form-status${type ? ` form-status--${type}` : ""}`;
+    };
+
+    // ---- Draft persistence (localStorage; files are NOT persisted) ----
+    const draftableFields = () =>
+      Array.from(preregForm.elements).filter(
+        (el) =>
+          (el instanceof HTMLInputElement || el instanceof HTMLSelectElement || el instanceof HTMLTextAreaElement) &&
+          el.name && el.type !== "file" && el.name !== "botcheck",
+      );
+
+    const saveDraft = () => {
+      const data = {};
+      draftableFields().forEach((el) => {
+        if (el instanceof HTMLInputElement && (el.type === "checkbox" || el.type === "radio")) {
+          if (el.checked) { (data[el.name] = data[el.name] || []).push(el.value); }
+        } else {
+          data[el.name] = el.value;
+        }
+      });
+      try { window.localStorage.setItem(DRAFT_KEY, JSON.stringify(data)); } catch (_) {}
+      if (draftConfirmEl instanceof HTMLElement) {
+        draftConfirmEl.textContent = `${draftCopy().confirmation || "Draft saved"} ${new Date().toLocaleTimeString()}`;
+        draftConfirmEl.hidden = false;
+      }
+    };
+
+    const restoreDraft = () => {
+      let data;
+      try { data = JSON.parse(window.localStorage.getItem(DRAFT_KEY) || "null"); } catch (_) { data = null; }
+      if (!data) return;
+      draftableFields().forEach((el) => {
+        const saved = data[el.name];
+        if (saved === undefined) return;
+        if (el instanceof HTMLInputElement && (el.type === "checkbox" || el.type === "radio")) {
+          el.checked = Array.isArray(saved) && saved.includes(el.value);
+        } else {
+          el.value = saved;
+        }
+      });
+      const select = preregForm.querySelector("[data-competition-select]");
+      if (select instanceof HTMLSelectElement) select.dispatchEvent(new Event("change"));
+    };
+
+    if (saveDraftBtn instanceof HTMLElement) saveDraftBtn.addEventListener("click", saveDraft);
+    restoreDraft();
+
+    // ---- Required validation ----
+    const REQUIRED = [
+      "selectedCompetition", "projectName", "projectIntro", "compField", "companyHeadquarters",
+      "compLocation", "compFullName", "applicantName", "gender", "dob", "nationality",
+      "university", "degree", "wechat", "email", "elevatorPitch", "projectOverview",
+      "productFeatures", "businessModel", "teamIntroduction", "investmentValue",
+      "fundingAmountRequested", "hearAbout", "beijingPlan",
+    ];
+    const fieldValue = (name) => {
+      const els = preregForm.elements[name];
+      if (!els) return "";
+      if (els instanceof RadioNodeList) return els.value;
+      if (els instanceof HTMLInputElement && els.type === "radio") return els.checked ? els.value : "";
+      return (els.value || "").trim();
+    };
+    const validate = () => {
+      for (const name of REQUIRED) { if (!fieldValue(name)) return false; }
+      const benefits = preregForm.querySelectorAll('input[name="benefits"]:checked');
+      if (benefits.length === 0) return false;
+      const deck = preregForm.querySelector("[data-deck-file-input]");
+      const deckLink = fieldValue("deckLink");
+      const hasDeck = deck instanceof HTMLInputElement && deck.files && deck.files.length > 0;
+      if (!hasDeck && !deckLink) return false;
+      return true;
+    };
+
+    // ---- Submit ----
+    preregForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const sc = submissionCopy();
+      if (preregForm.querySelector('[name="botcheck"]')?.checked) { /* bot */ return; }
+      if (!validate()) { setStatus("error", sc.validationMessage || "Please complete required fields."); return; }
+
+      const deckInput = preregForm.querySelector("[data-deck-file-input]");
+      const suppInput = preregForm.querySelector('input[name="suppFile"]');
+      const deckFiles = deckInput instanceof HTMLInputElement && deckInput.files ? Array.from(deckInput.files) : [];
+      const suppFiles = suppInput instanceof HTMLInputElement && suppInput.files ? Array.from(suppInput.files) : [];
+      const sizeCheck = validateFileSizes([...deckFiles, ...suppFiles].map((f) => ({ name: f.name, size: f.size })));
+      if (!sizeCheck.ok) { setStatus("error", sizeCheck.error); return; }
+
+      if (submitBtn instanceof HTMLButtonElement) submitBtn.disabled = true;
+      setStatus("pending", sc.uploadPendingMessage || "Uploading...");
+
+      const fd = new FormData();
+      const append = (k, v) => fd.append(k, v == null ? "" : String(v));
+      const selectEl = preregForm.querySelector("[data-competition-select]");
+      const selectedOption = selectEl instanceof HTMLSelectElement ? selectEl.selectedOptions[0] : null;
+      append("submissionId", `prereg-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`);
+      append("language", lang());
+      append("competitionSlug", fieldValue("selectedCompetition"));
+      append("competitionName", selectedOption ? selectedOption.textContent.trim() : "");
+      ["projectName","projectIntro","compField","companyHeadquarters","compLocation","compFullName",
+       "officeAddress","applicantName","gender","dob","nationality","university","degree","wechat",
+       "linkedin","email","elevatorPitch","projectOverview","productFeatures","businessModel",
+       "teamIntroduction","investmentValue","fundingAmountRequested","hearAbout","beijingPlan",
+       "incorporationTimeline","deckLink"].forEach((name) => append(name, fieldValue(name)));
+      append("benefits", Array.from(preregForm.querySelectorAll('input[name="benefits"]:checked')).map((b) => b.value).join(", "));
+      append("userAgent", navigator.userAgent);
+      append("referrer", document.referrer);
+
+      try {
+        if (deckFiles[0]) {
+          setStatus("pending", sc.submittingMessage || "Submitting...");
+          append("deckFile_base64", await fileToBase64(deckFiles[0]));
+          append("deckFile_name", deckFiles[0].name);
+          append("deckFile_type", deckFiles[0].type);
+        }
+        append("suppFile_count", String(suppFiles.length));
+        for (let i = 0; i < suppFiles.length; i++) {
+          append(`suppFile_base64_${i}`, await fileToBase64(suppFiles[i]));
+          append(`suppFile_name_${i}`, suppFiles[i].name);
+          append(`suppFile_type_${i}`, suppFiles[i].type);
+        }
+      } catch (_) {
+        if (submitBtn instanceof HTMLButtonElement) submitBtn.disabled = false;
+        setStatus("error", sc.errorMessage || "We could not read your files. Please try again.");
+        return;
+      }
+
+      setStatus("pending", sc.submittingMessage || "Submitting...");
+      const result = await submitPreRegistration(endpoint, fd);
+      if (submitBtn instanceof HTMLButtonElement) submitBtn.disabled = false;
+
+      if (result.ok) {
+        try { window.localStorage.removeItem(DRAFT_KEY); } catch (_) {}
+        preregForm.hidden = true;
+        if (successPanel instanceof HTMLElement) successPanel.hidden = false;
+        setStatus("", "");
+      } else {
+        setStatus("error", sc.errorMessage || "We could not submit the form. Please try again.");
+      }
     });
   }
 </script>
