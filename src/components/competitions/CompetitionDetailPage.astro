@@ -40,9 +40,6 @@ const { locale, siteSettings, currentLanguage } = Astro.props;
         <div class="competition-hero-grid competition-hero-grid--single">
           <div>
             <h1 class="page-title competition-detail-title" data-i18n="page.name">{locale.page.name}</h1>
-            <p class="page-subtitle page-subtitle--wide" data-i18n="page.detailSubtitle">
-              {locale.page.detailSubtitle}
-            </p>
           </div>
         </div>
       </div>
@@ -55,12 +52,10 @@ const { locale, siteSettings, currentLanguage } = Astro.props;
     <section class="interior-wrap competition-detail-shell">
       <div class="competition-meta-grid">
         <article class="competition-meta-card">
-          <div class="competition-meta-label" data-i18n="detailPage.statusLabel">
-            {locale.detailPage.statusLabel}
+          <div class="competition-meta-label" data-i18n="detailPage.totalAwardLabel">
+            {locale.detailPage.totalAwardLabel}
           </div>
-          <div class:list={["competition-meta-value", `competition-meta-value--${locale.page.statusTone}`]}>
-            {locale.page.statusLabel}
-          </div>
+          <div class="competition-meta-value" data-i18n="page.value">{locale.page.value}</div>
         </article>
 
         <article class="competition-meta-card">
@@ -84,18 +79,13 @@ const { locale, siteSettings, currentLanguage } = Astro.props;
           </div>
         </article>
 
-        <article class="competition-meta-card competition-register-card">
-          <div class="competition-meta-label" data-i18n="detailPage.registrationLabel">
-            {locale.detailPage.registrationLabel}
+        <article class="competition-meta-card">
+          <div class="competition-meta-label" data-i18n="detailPage.statusLabel">
+            {locale.detailPage.statusLabel}
           </div>
-          <div class="competition-register-value" data-i18n="page.value">{locale.page.value}</div>
-          <a
-            href={locale.page.applicationHref}
-            class="site-btn site-btn--primary site-btn--compact"
-            data-i18n="page.applicationLabel"
-          >
-            {locale.page.applicationLabel}
-          </a>
+          <div class:list={["competition-meta-value", `competition-meta-value--${locale.page.statusTone}`]}>
+            {locale.page.statusLabel}
+          </div>
         </article>
       </div>
 
@@ -131,8 +121,17 @@ const { locale, siteSettings, currentLanguage } = Astro.props;
       </article>
     </section>
 
-    <div class="interior-wrap competition-detail-actions" style="padding-bottom: 48px;">
-      <a href="/competitions/" class="site-btn site-btn--secondary" data-i18n="detailPage.viewAllLabel">View All</a>
+    <div class="interior-wrap competition-detail-actions competition-detail-actions--center">
+      <a
+        href={locale.page.applicationHref}
+        class="site-btn site-btn--primary"
+        data-i18n="page.applicationLabel"
+      >
+        {locale.page.applicationLabel}
+      </a>
+      <a href="/competitions/" class="site-btn site-btn--secondary" data-i18n="detailPage.viewAllLabel">
+        {locale.detailPage.viewAllLabel}
+      </a>
     </div>
   </main>
 

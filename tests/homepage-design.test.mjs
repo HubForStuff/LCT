@@ -86,45 +86,38 @@ test("homepage desktop header language controls match Batch A feedback", () => {
   const navList = getCssRuleDeclarations(css, ".desktop-home .desk-nav-list");
   assertCssDeclaration(navList, "margin-left", "80px");
 
-  const langButton = getCssRuleDeclarations(css, ".desktop-home .desk-lang-btn");
-  assertCssDeclaration(langButton, "width", "36px");
-  assertCssDeclaration(langButton, "height", "36px");
+  // The homepage now renders the shared LanguageSwitcher (tone="dark"); its
+  // styling lives in the shared stylesheet. The globe box and SVG are IDENTICAL
+  // to the light interior control (Task 5 convergence) — only colours differ —
+  // and the button/menu use fixed widths so switching EN/CN/BR never reflows.
+  const switcherCss = readFileSync(
+    resolve(projectRoot, "src/styles/language-switcher.css"),
+    "utf8",
+  );
+
+  const langButton = getCssRuleDeclarations(switcherCss, ".site-lang-btn");
+  assertCssDeclaration(langButton, "width", "42px");
+  assertCssDeclaration(langButton, "height", "42px");
   assertCssDeclaration(langButton, "padding", "0");
   assertCssDeclaration(langButton, "border-radius", "50%");
-  assertCssDeclaration(langButton, "color", "#555555");
 
-  const activeCode = getCssRuleDeclarations(css, ".desktop-home .desk-lang-active-code");
-  assertCssDeclaration(activeCode, "display", "none");
+  const darkButton = getCssRuleDeclarations(switcherCss, ".site-lang--dark .site-lang-btn");
+  assertCssDeclaration(darkButton, "color", "rgba(255, 255, 255, 0.55)");
 
-  const langMenu = getCssRuleDeclarations(css, ".desktop-home .desk-lang-menu");
-  assertCssDeclaration(langMenu, "top", "calc(100% + 8px)");
-  assertCssDeclaration(langMenu, "min-width", "80px");
-  assertCssDeclaration(langMenu, "padding", "6px");
-  assertCssDeclaration(langMenu, "border-radius", "12px");
-  assertCssDeclaration(langMenu, "background", "rgba(8, 8, 8, 0.58)");
-  assertCssDeclaration(langMenu, "backdrop-filter", "blur(12px)");
-  assertCssDeclaration(langMenu, "transform", "translateY(-6px)");
+  const langMenu = getCssRuleDeclarations(switcherCss, ".site-lang-menu");
+  assertCssDeclaration(langMenu, "top", "calc(100% + 2px)");
+  assertCssDeclaration(langMenu, "width", "160px");
 
-  const langOption = getCssRuleDeclarations(css, ".desktop-home .desk-lang-option");
-  assertCssDeclaration(langOption, "justify-content", "flex-start");
-  assertCssDeclaration(langOption, "gap", "6px");
-  assertCssDeclaration(langOption, "padding", "7px 12px");
-  assertCssDeclaration(langOption, "border-radius", "8px");
-  assertCssDeclaration(langOption, "font-size", "12px");
-  assertCssDeclaration(langOption, "font-weight", "600");
-  assertCssDeclaration(langOption, "color", "var(--desk-red)");
+  const langOption = getCssRuleDeclarations(switcherCss, ".site-lang-option");
+  assertCssDeclaration(langOption, "color", "#fff");
 
-  const langOptionLabel = getCssRuleDeclarations(css, ".desktop-home .desk-lang-option small");
-  assertCssDeclaration(langOptionLabel, "opacity", "0");
-  assertCssDeclaration(langOptionLabel, "max-width", "0");
-  assertCssDeclaration(langOptionLabel, "overflow", "hidden");
-
-  const langOptionHoverLabel = getCssRuleDeclarations(
-    css,
-    ".desktop-home .desk-lang-option:hover small",
+  // The selected language keeps its is-active class for a11y/JS but carries no
+  // fixed highlight; only hover gives feedback.
+  assert.doesNotMatch(
+    switcherCss,
+    /\.site-lang-option\.is-active\s*\{[^}]*background/s,
+    "expected the selected language to have no highlight treatment",
   );
-  assertCssDeclaration(langOptionHoverLabel, "opacity", "1");
-  assertCssDeclaration(langOptionHoverLabel, "max-width", "160px");
 });
 
 test("homepage desktop footer matches Batch B feedback", () => {
@@ -212,8 +205,11 @@ test("homepage build matches the supplied design structure", () => {
   assert.match(html, /Fuel your growth/i, "expected the footer CTA copy");
   assert.match(html, /mobile-menu|mobileMenu/, "expected mobile navigation markup");
 
-  const categoryCardCount = (html.match(/cat-card|catblock/g) ?? []).length;
-  assert.ok(categoryCardCount >= 3, `expected at least 3 category cards, found ${categoryCardCount}`);
+  const sectionCalloutCount = (html.match(/class="[^"]*section-callout\b/g) ?? []).length;
+  assert.ok(
+    sectionCalloutCount >= 4,
+    `expected at least 4 section callouts, found ${sectionCalloutCount}`,
+  );
 
   const competitionCardCount = (html.match(/comp-card|comp-square/g) ?? []).length;
   assert.ok(
@@ -261,7 +257,8 @@ test("homepage build matches the supplied design structure", () => {
     /href="\/news\/"/,
     "expected the homepage insights section to link to the full news listing route",
   );
-  for (const href of ["/advisory/", "/events/", "/programs/", "/network/"]) {
+  // Network is temporarily unpublished; see tests/no-network-routes.test.mjs.
+  for (const href of ["/advisory/", "/events/", "/programs/"]) {
     assert.match(
       html,
       new RegExp(`href="${href}"`),
@@ -273,12 +270,6 @@ test("homepage build matches the supplied design structure", () => {
   assert.ok(
     articleLinkCount >= 3,
     `expected at least 3 homepage cards to link to news detail pages, found ${articleLinkCount}`,
-  );
-
-  const mobileGlowCount = (html.match(/mob-cat-glow/g) ?? []).length;
-  assert.ok(
-    mobileGlowCount >= 3,
-    `expected at least 3 mobile category glow layers, found ${mobileGlowCount}`,
   );
 
   assert.match(
@@ -306,6 +297,55 @@ test("homepage build matches the supplied design structure", () => {
     /ByteDance Corporate Challenge|Registration Open/,
     "expected the competitions submenu to stop rendering the old static card placeholders",
   );
+});
+
+test("landing page has four section callouts and no stacked cards", () => {
+  buildSite();
+
+  const html = readFileSync(distIndexPath, "utf8");
+
+  assert.doesNotMatch(html, /desk-catblock/, "stacked category cards must be gone");
+
+  const callouts = html.match(/class="(?:[^"]*\s)?section-callout(?:\s[^"]*)?"/g) ?? [];
+  assert.equal(callouts.length, 8, "expected four callouts on desktop and four on mobile");
+
+  // Network is deliberately excluded from the callouts ("disable the Network
+  // section temporarily"). The desktop mega-menu and mobile menu still link to
+  // /network/ until Task 4 strips them, so these assertions are scoped to the
+  // callout sections rather than the whole document — the whole-document href
+  // check below would pass even for a broken callout href, since /advisory/,
+  // /competitions/, /events/, and /programs/ all also appear in the mega-menu
+  // and footer markup.
+  const desktopCallouts = html.match(
+    /<section[^>]*id="desktop-categories"[\s\S]*?<\/section>/,
+  )?.[0];
+  assert.ok(desktopCallouts, "expected the desktop callout section to render");
+  assert.doesNotMatch(
+    desktopCallouts,
+    /href="\/network\//,
+    "Network is excluded from the desktop callouts",
+  );
+
+  const mobileCallouts = html.match(
+    /<section[^>]*id="mobile-categories"[\s\S]*?<\/section>/,
+  )?.[0];
+  assert.ok(mobileCallouts, "expected the mobile callout section to render");
+  assert.doesNotMatch(
+    mobileCallouts,
+    /href="\/network\//,
+    "Network is excluded from the mobile callouts",
+  );
+
+  for (const href of ["/advisory/", "/competitions/", "/events/", "/programs/"]) {
+    assert.ok(
+      desktopCallouts.includes(`href="${href}"`),
+      `desktop callout must link to ${href}`,
+    );
+    assert.ok(
+      mobileCallouts.includes(`href="${href}"`),
+      `mobile callout must link to ${href}`,
+    );
+  }
 });
 
 test("Batch G homepage mobile competition cards and scroll header match feedback", () => {
@@ -404,13 +444,13 @@ test("language switching localizes the homepage on desktop and mobile", async ()
       "--session",
       session,
       "eval",
-      "document.querySelector('.desk-lang [data-lang-toggle]')?.click()",
+      "document.querySelector('.desk-nav .site-lang [data-lang-toggle]')?.click()",
     ]);
     runAgentBrowser([
       "--session",
       session,
       "eval",
-      "document.querySelector('.desk-lang [data-lang-option=\"CN\"]')?.click()",
+      "document.querySelector('.desk-nav .site-lang [data-lang-option=\"CN\"]')?.click()",
     ]);
     runAgentBrowser(["--session", session, "wait", "400"]);
 

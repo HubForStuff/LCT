@@ -3,8 +3,10 @@
 // Deploy: bind to the destination spreadsheet, Deploy > New deployment > Web app,
 // Execute as: Me, Who has access: Anyone. Paste the /exec URL into PUBLIC_PREREG_SCRIPT_URL.
 // SHEET_COLUMNS MUST stay in sync with src/lib/pre-registration/sheet-columns.ts.
+// ELIGIBILITY_SHEET_COLUMNS MUST stay in sync with src/lib/eligibility/sheet-columns.ts.
 
 var SHEET_NAME = "Submissions";
+var ELIGIBILITY_SHEET_NAME = "Eligibility";
 var DRIVE_FOLDER_NAME = "Pre-Registration Uploads";
 
 var SHEET_COLUMNS = [
@@ -19,9 +21,42 @@ var SHEET_COLUMNS = [
   "Referrer", "Raw JSON"
 ];
 
+var ELIGIBILITY_SHEET_COLUMNS = [
+  "Submitted At",
+  "Submission ID",
+  "Language",
+  "Program Slug",
+  "Program Name",
+  "Name",
+  "Email",
+  "Company",
+  "Message"
+];
+
+// Route a submission to the correct sheet + column order based on its formType.
+// Absent / unknown formType falls back to the pre-registration Submissions sheet,
+// so existing pre-registration behaviour is preserved unchanged.
+function routeForFormType(formType) {
+  if (formType === "eligibility") {
+    return { sheetName: ELIGIBILITY_SHEET_NAME, columns: ELIGIBILITY_SHEET_COLUMNS };
+  }
+  return { sheetName: SHEET_NAME, columns: SHEET_COLUMNS };
+}
+
 function doPost(e) {
   try {
     var p = (e && e.parameter) || {};
+
+    if (p.formType === "eligibility") {
+      var eligibilityRow = [
+        new Date(),
+        p.submissionId || "", p.language || "", p.programSlug || "", p.programName || "",
+        p.name || "", p.email || "", p.company || "", p.message || ""
+      ];
+      appendRow_(routeForFormType(p.formType), eligibilityRow);
+      return json_({ ok: true });
+    }
+
     var folder = getUploadFolder_();
 
     var deckLink = String(p.deckLink || "");
@@ -50,17 +85,17 @@ function doPost(e) {
       JSON.stringify(p)
     ];
 
-    appendRow_(row);
+    appendRow_(routeForFormType(p.formType), row);
     return json_({ ok: true });
   } catch (err) {
     return json_({ ok: false, error: String(err && err.message ? err.message : err) });
   }
 }
 
-function appendRow_(row) {
+function appendRow_(route, row) {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var sheet = ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
-  if (sheet.getLastRow() === 0) sheet.appendRow(SHEET_COLUMNS);
+  var sheet = ss.getSheetByName(route.sheetName) || ss.insertSheet(route.sheetName);
+  if (sheet.getLastRow() === 0) sheet.appendRow(route.columns);
   sheet.appendRow(row);
 }
 

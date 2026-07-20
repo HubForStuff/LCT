@@ -1,4 +1,6 @@
 ---
+import LanguageSwitcher from "../site/LanguageSwitcher.astro";
+
 import { getFooterCtaHref, getFooterLinkHref } from "../../lib/homepage/links";
 
 import type {
@@ -164,33 +166,14 @@ const { locale, languages, siteSettings } = Astro.props;
       </div>
 
       <div class="desk-footer-lang">
-        <button
-          type="button"
-          class="desk-lang-btn desk-lang-btn--footer"
-          data-lang-toggle
-          aria-haspopup="true"
-          aria-expanded="false"
-          aria-label={locale.ui.chooseLanguage}
-          data-i18n-aria-label="ui.chooseLanguage"
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="2" y1="12" x2="22" y2="12"></line>
-            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-          </svg>
-        </button>
-        <div class="desk-lang-menu desk-lang-menu--footer" data-lang-menu>
-          {languages.map((language, index) => (
-            <button
-              type="button"
-              class={`desk-lang-option ${index === 0 ? "is-active" : ""}`}
-              data-lang-option={language.code}
-            >
-              <span>{language.code}</span>
-              <small>{language.label}</small>
-            </button>
-          ))}
-        </div>
+        <LanguageSwitcher
+          languages={languages}
+          currentLanguage={languages[0].code}
+          label={locale.ui.chooseLanguage}
+          labelTranslationKey="ui.chooseLanguage"
+          className="site-lang--footer"
+          tone="dark"
+        />
       </div>
     </div>
   </div>

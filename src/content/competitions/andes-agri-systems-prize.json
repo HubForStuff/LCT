@@ -37,7 +37,7 @@
     "supportHtml": "<ul><li>Visibility with operators, ecosystem partners, and innovation scouts.</li><li>Feedback on market-entry positioning and partner readiness.</li><li>Support preparing the final application narrative and materials.</li></ul>",
     "processTitle": "Opportunity roadmap",
     "processHtml": "<ol><li>Choose this competition in the shared form.</li><li>Submit your product summary, traction, and supporting materials.</li><li>Coordinate follow-up review with the LATAM China Tech team.</li></ol>",
-    "applicationLabel": "Apply to this challenge"
+    "applicationLabel": "Register Now"
   },
   "br": {
     "category": "AgriTech · Sustentabilidade",
@@ -60,7 +60,7 @@
     "supportHtml": "<ul><li>Visibilidade com operadores, parceiros e scouts de inovacao.</li><li>Feedback sobre posicionamento e prontidao para parceiros.</li><li>Apoio para preparar narrativa e materiais da candidatura final.</li></ul>",
     "processTitle": "Roteiro da oportunidade",
     "processHtml": "<ol><li>Escolha esta competicao no formulario compartilhado.</li><li>Envie resumo do produto, tracao e materiais de apoio.</li><li>Coordene o follow-up com a equipe LATAM China Tech.</li></ol>",
-    "applicationLabel": "Aplicar para este desafio"
+    "applicationLabel": "Registrar Agora"
   },
   "cn": {
     "category": "农业科技 · 可持续发展",
@@ -83,6 +83,6 @@
     "supportHtml": "<ul><li>面向运营方、生态伙伴和创新侦察方的曝光机会。</li><li>关于市场定位和合作准备度的反馈。</li><li>帮助整理最终申请叙事与提交材料。</li></ul>",
     "processTitle": "机会说明",
     "processHtml": "<ol><li>在统一申请表中选择该竞赛。</li><li>提交产品摘要、牵引力说明和支持材料。</li><li>与 LATAM China Tech 团队协同完成后续审核。</li></ol>",
-    "applicationLabel": "申请该竞赛"
+    "applicationLabel": "立即报名"
   }
 }

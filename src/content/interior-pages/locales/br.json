@@ -10,8 +10,7 @@
     { "label": "Assessoria", "href": "/advisory/" },
     { "label": "Competicoes e Desafios", "href": "/competitions/" },
     { "label": "Eventos", "href": "/events/" },
-    { "label": "Programas", "href": "/programs/" },
-    { "label": "Rede", "href": "/network/" }
+    { "label": "Programas", "href": "/programs/" }
   ],
   "footer": {
     "eyebrow": "Impulsione seu crescimento.",
@@ -505,18 +504,18 @@
       "Outros"
     ],
     "benefits": [
-      { "label": "Declaracao de politicas", "value": "policy", "short": "PD", "tone": "blue" },
-      { "label": "Servicos para talentos", "value": "talent", "short": "TS", "tone": "green" },
-      { "label": "Negocios e tributacao", "value": "tax", "short": "BT", "tone": "lilac" },
-      { "label": "Orientacao para listagem", "value": "listing", "short": "LG", "tone": "sand" },
-      { "label": "Investimento do fundo HICOOL", "value": "fund", "short": "HF", "tone": "green" },
-      { "label": "Assessoria financeira", "value": "fa", "short": "FA", "tone": "blue" },
-      { "label": "Conexao com VCs", "value": "vc", "short": "VC", "tone": "sand" },
-      { "label": "Conexao industrial", "value": "industrial", "short": "IM", "tone": "lilac" },
-      { "label": "Conexao com cenarios", "value": "scenario", "short": "SM", "tone": "blue" },
-      { "label": "Exposicao em feiras", "value": "exhibition", "short": "EX", "tone": "green" },
-      { "label": "Pitching", "value": "pitching", "short": "PT", "tone": "sand" },
-      { "label": "Branding", "value": "branding", "short": "BR", "tone": "lilac" }
+      { "label": "Declaracao de politicas", "value": "policy", "icon": "scroll-text", "tone": "blue" },
+      { "label": "Servicos para talentos", "value": "talent", "icon": "users", "tone": "green" },
+      { "label": "Negocios e tributacao", "value": "tax", "icon": "receipt", "tone": "lilac" },
+      { "label": "Orientacao para listagem", "value": "listing", "icon": "trending-up", "tone": "sand" },
+      { "label": "Investimento do fundo HICOOL", "value": "fund", "icon": "piggy-bank", "tone": "green" },
+      { "label": "Assessoria financeira", "value": "fa", "icon": "line-chart", "tone": "blue" },
+      { "label": "Conexao com VCs", "value": "vc", "icon": "handshake", "tone": "sand" },
+      { "label": "Conexao industrial", "value": "industrial", "icon": "factory", "tone": "lilac" },
+      { "label": "Conexao com cenarios", "value": "scenario", "icon": "map", "tone": "blue" },
+      { "label": "Exposicao em feiras", "value": "exhibition", "icon": "presentation", "tone": "green" },
+      { "label": "Pitching", "value": "pitching", "icon": "mic", "tone": "sand" },
+      { "label": "Branding", "value": "branding", "icon": "megaphone", "tone": "lilac" }
     ],
     "hearAboutOptions": [
       "Site da LATAM CHINA TECH",

@@ -1,5 +1,6 @@
 ---
 import BrandLogo from "./BrandLogo.astro";
+import LanguageSwitcher from "../site/LanguageSwitcher.astro";
 
 import {
   HOMEPAGE_ROUTE_TARGETS,
@@ -160,35 +161,12 @@ const { locale, languages, siteSettings } = Astro.props;
       </ul>
     </nav>
 
-    <div class="desk-lang">
-      <button
-        type="button"
-        class="desk-lang-btn"
-        data-lang-toggle
-        aria-haspopup="true"
-        aria-expanded="false"
-        aria-label={locale.ui.chooseLanguage}
-        data-i18n-aria-label="ui.chooseLanguage"
-      >
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <circle cx="12" cy="12" r="10"></circle>
-          <line x1="2" y1="12" x2="22" y2="12"></line>
-          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-        </svg>
-        <span class="desk-lang-active-code" data-lang-active-code>{languages[0].code}</span>
-      </button>
-      <div class="desk-lang-menu" data-lang-menu>
-        {languages.map((language, index) => (
-          <button
-            type="button"
-            class={`desk-lang-option ${index === 0 ? "is-active" : ""}`}
-            data-lang-option={language.code}
-          >
-            <span>{language.code}</span>
-            <small>{language.label}</small>
-          </button>
-        ))}
-      </div>
-    </div>
+    <LanguageSwitcher
+      languages={languages}
+      currentLanguage={languages[0].code}
+      label={locale.ui.chooseLanguage}
+      labelTranslationKey="ui.chooseLanguage"
+      tone="dark"
+    />
   </div>
 </header>

@@ -142,51 +142,36 @@
         "cta": "Apply Now"
       },
       "layout": "standard"
-    },
-    {
-      "label": "Network",
-      "links": [
-        {
-          "title": "City Partnerships",
-          "subtitle": "City-to-city tech exchange and ecosystem diplomacy"
-        },
-        {
-          "title": "Featured Speakers",
-          "subtitle": "Curated operators and founders for flagship stages"
-        }
-      ],
-      "note": "Not sure which fits?",
-      "noteLink": "Partner with us",
-      "description": "We broker ecosystem relationships between institutions, startups, and civic actors across the China-LATAM corridor, creating durable networks instead of one-off introductions.",
-      "card": {
-        "title": "120+ Active Partners",
-        "body": "Across 22 industries and both regions. Every match is rigorously assessed for compatibility.",
-        "cta": "Partner With Us"
-      },
-      "layout": "standard"
     }
   ],
-  "categoryCards": [
+  "sectionCallouts": [
     {
-      "eyebrow": "Expansion Programs",
-      "title": "From Exploration to Market Entry",
-      "description": "We take companies from curiosity to market presence - online exploration, boots-on-the-ground entry, and structured business missions in China and LATAM.",
-      "cta": "Explore Programs",
-      "theme": "dark"
-    },
-    {
-      "eyebrow": "Network",
-      "title": "City Partnerships & Featured Speakers",
-      "description": "We connect ecosystems across borders through city-to-city tech exchange, speaker networks, and 120+ active partners spanning China and Latin America.",
-      "cta": "Explore Network",
-      "theme": "light"
-    },
-    {
-      "eyebrow": "Advisory Services",
-      "title": "Strategic Guidance, Built to Execute",
-      "description": "From market entry strategy to tech transfer and investment matchmaking - expert advisory that turns ambition into traction across China and Latin America.",
+      "icon": "compass",
+      "title": "Advisory",
+      "description": "Strategic guidance for investors, operators, and institutions moving between China and Latin America. Corridor complexity translated into concrete next steps.",
       "cta": "Explore Advisory",
-      "theme": "dark"
+      "href": "/advisory/"
+    },
+    {
+      "icon": "trophy",
+      "title": "Competitions & Challenges",
+      "description": "Startup competitions and corporate-backed open innovation designed to surface high-potential founders and investable cross-border opportunities.",
+      "cta": "View Competitions",
+      "href": "/competitions/"
+    },
+    {
+      "icon": "calendar-days",
+      "title": "Events",
+      "description": "Trade fairs, expos, summits, and corridor briefings built for qualified meetings and follow-through after the room clears.",
+      "cta": "See Events",
+      "href": "/events/"
+    },
+    {
+      "icon": "rocket",
+      "title": "Programs",
+      "description": "From online exploration to boots-on-the-ground business missions, moving companies from initial interest to real market presence.",
+      "cta": "Browse Programs",
+      "href": "/programs/"
     }
   ],
   "competitionsSection": {
@@ -290,17 +275,6 @@
         {
           "title": "Trade Fairs, Expos & Summits",
           "description": "Curated events connecting LATAM and Chinese tech ecosystems face-to-face.",
-          "cta": "Learn More",
-          "theme": "red"
-        }
-      ]
-    },
-    {
-      "label": "Network",
-      "cards": [
-        {
-          "title": "City Partnerships & Speakers",
-          "description": "120+ active partners across 22 industries and a curated network of high-signal speakers.",
           "cta": "Learn More",
           "theme": "red"
         }

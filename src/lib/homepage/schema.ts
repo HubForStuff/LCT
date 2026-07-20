@@ -1,4 +1,5 @@
 import { fields } from "@keystatic/core";
+import { ICON_LABELS, ICON_PATHS } from "../../components/site/icons";
 
 const requiredText = (label: string, multiline = false) =>
   fields.text({
@@ -86,22 +87,23 @@ const desktopMenuSectionFields = fields.object(
   { label: "Desktop menu section" },
 );
 
-const categoryCardFields = fields.object(
+const sectionCalloutFields = fields.object(
   {
-    eyebrow: requiredText("Eyebrow"),
+    icon: fields.select({
+      label: "Icon",
+      // derive from ICON_PATHS, the actual source of truth
+      options: Object.keys(ICON_PATHS).map((value) => ({
+        label: ICON_LABELS[value] ?? value,
+        value,
+      })),
+      defaultValue: "compass",
+    }),
     title: requiredText("Title"),
     description: requiredText("Description", true),
     cta: requiredText("CTA"),
-    theme: fields.select({
-      label: "Theme",
-      options: [
-        { label: "Dark", value: "dark" },
-        { label: "Light", value: "light" },
-      ],
-      defaultValue: "dark",
-    }),
+    href: requiredText("Link target"),
   },
-  { label: "Category card" },
+  { label: "Section callout" },
 );
 
 const competitionCardFields = fields.object(
@@ -237,8 +239,8 @@ export const homepageLocaleSchema = {
   desktopMenuSections: fields.array(desktopMenuSectionFields, {
     label: "Desktop menu sections",
   }),
-  categoryCards: fields.array(categoryCardFields, {
-    label: "Category cards",
+  sectionCallouts: fields.array(sectionCalloutFields, {
+    label: "Section callouts",
   }),
   competitionsSection: fields.object(
     {

@@ -8,6 +8,7 @@ interface Props {
   labelTranslationKey?: string;
   className?: string;
   align?: "left" | "right";
+  tone?: "light" | "dark";
 }
 
 const {
@@ -17,10 +18,11 @@ const {
   labelTranslationKey,
   className = "",
   align = "right",
+  tone = "light",
 } = Astro.props;
 ---
 
-<div class:list={["site-lang", className, `site-lang--${align}`]}>
+<div class:list={["site-lang", className, `site-lang--${align}`, `site-lang--${tone}`]}>
   <button
     type="button"
     class="site-lang-btn"

@@ -12,6 +12,38 @@ Customer feedback from `feedback/v4_site updates.pptx` has been triaged in `.ope
 
 Status: Batches A-H are implemented and visually verified for FB-001 through FB-061. The completed statuses below reflect the older 56-item checklist; the only remaining waiting/deferred items are historical items outside the new PPT feedback scope.
 
+## July 16 2026 Customer Feedback
+
+Source: `July 16 2026 updates.docx`. Design: `docs/superpowers/specs/2026-07-17-july-16-feedback-design.md`. Plan: `docs/superpowers/plans/2026-07-17-july-16-feedback-refinements.md`. Branch: `feedback/2026-07-16-updates`.
+
+Refinements (Tasks 1–8) are implemented, each reviewed clean. Events (area H) is a separate, larger build not yet started — it needs its own plan from `mockup/5 - events_v11.htm`.
+
+| Area | Item | Status | Notes |
+|---|---|---|---|
+| Landing | Remove stacked cards; four section callouts (Advisory/Competitions/Events/Programs) | ✅ Done | Interim copy in final content shape; Andre to supply final text. Network deliberately excluded. `SectionCallouts.astro` + Lucide `Icon.astro`/`icons.ts`. |
+| Landing | Language icon same size/format across dark & light | ✅ Done | Homepage `.desk-lang` converged onto shared `LanguageSwitcher.astro` with a `tone` prop; one SVG serves both. |
+| Landing | Fixed-width language selector, header & footer | ✅ Done | `width` (not min-width); menu always lists all 3 langs, so no reflow on selection. |
+| Landing | Remove fixed highlight from selected language | ✅ Done | Desktop dropdown `.is-active` highlight removed, class kept for JS/a11y. Mobile bottom-sheet checkmark left as-is (open question — see below). |
+| Landing | Disable Network temporarily | ✅ Done | Fully unpublished: routes 404, all links removed, content kept for easy re-enable via `git revert`. |
+| Advisory | Cards white, gray border matching divider, radius = competition cards | ✅ Done | Scoped to `.advisory-card-grid` so the shared News card class is unaffected. |
+| Advisory | Remove text below title and on the right | ✅ Done | `summary` cleared, all 3 locales. |
+| Competitions | Detail: remove subtitle; cards Total Award / Timeline / Focus / Status; remove orange button; centered Register Now + View All at bottom | ✅ Done | Challenges share `CompetitionDetailPage.astro`, so both are covered. |
+| Challenges | Same card layout/styling as competition detail | ✅ Done | Structural — same template. |
+| Form | White benefit cards; icons replace letter initials; colorful; hover changes only border; remove gray placeholder | ✅ Done | 12 Lucide icons; four existing tones kept. |
+| Form | Narrow the "By submitting…" area; move drafts note under Save in grey | ✅ Done | `.submit-note` max-width 340px; `.save-draft-hint`. |
+| Programs | List: remove description and right-side text | ✅ Done | `summary` cleared, all 3 locales. |
+| Programs | Detail: competition style; no Award card; Check Eligibility → simplified form | ✅ Done | Links to `/eligibility/?program=<slug>`. |
+| Eligibility | New lightweight form (program qualification) | ✅ Done (code) | Code-complete but NOT live — `Code.gs` undeployed, `PUBLIC_PREREG_SCRIPT_URL` unset. |
+| Events | List (larger cards, filters, no highlighted event), detail, application form | ⬜ Not started | Separate plan; reuses the competitions list machinery per `mockup/5 - events_v11.htm`. |
+
+Open questions carried to the user:
+- Andre's final landing copy (interim text shipped in the final shape).
+- Mobile language bottom-sheet still shows a selected-language checkmark — likely not what "remove the fixed highlight" meant (that was desktop-framed), left as-is pending confirmation.
+- Selected benefit card is now signalled by border + bolder label only (no fill) — a literal reading of "hover changes only the border"; a stronger selected treatment is possible if wanted.
+- Events open items: "Book a Booth" and "Submit your event" destinations (mockup placeholders, absent from feedback); whether the event application sits behind a detail-page hop.
+
+Deploy dependency (pre-existing, blocks the eligibility form going live): deploy `scripts/apps-script/Code.gs` and set `PUBLIC_PREREG_SCRIPT_URL`.
+
 ## LANDING PAGE
 
 | # | Description | Status | Notes |

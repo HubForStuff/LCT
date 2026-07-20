@@ -142,51 +142,36 @@
         "cta": "Inscreva-se"
       },
       "layout": "standard"
-    },
-    {
-      "label": "Rede",
-      "links": [
-        {
-          "title": "Parcerias entre Cidades",
-          "subtitle": "Intercambio tecnologico e diplomacia de ecossistemas"
-        },
-        {
-          "title": "Palestrantes em Destaque",
-          "subtitle": "Operadores e fundadores curados para palcos principais"
-        }
-      ],
-      "note": "Nao sabe qual se encaixa?",
-      "noteLink": "Torne-se parceiro",
-      "description": "Conectamos instituicoes, startups e atores civicos ao longo do corredor China-LATAM, criando redes duradouras em vez de introducoes pontuais.",
-      "card": {
-        "title": "Mais de 120 parceiros ativos",
-        "body": "Em 22 setores e ambas as regioes. Cada parceria e rigorosamente avaliada por compatibilidade.",
-        "cta": "Torne-se Parceiro"
-      },
-      "layout": "standard"
     }
   ],
-  "categoryCards": [
+  "sectionCallouts": [
     {
-      "eyebrow": "Programas de Expansao",
-      "title": "Da exploracao a entrada em mercado",
-      "description": "Levamos empresas da curiosidade a presenca de mercado com exploracao online, entrada presencial e missoes estruturadas na China e na America Latina.",
-      "cta": "Explorar Programas",
-      "theme": "dark"
-    },
-    {
-      "eyebrow": "Rede",
-      "title": "Parcerias entre Cidades e Palestrantes",
-      "description": "Conectamos ecossistemas por meio de programas entre cidades, redes de palestrantes e mais de 120 parceiros ativos espalhados por China e America Latina.",
-      "cta": "Explorar Rede",
-      "theme": "light"
-    },
-    {
-      "eyebrow": "Servicos de Assessoria",
-      "title": "Orientacao estrategica para executar",
-      "description": "De estrategia de entrada a transferencia de tecnologia e matchmaking com investidores, oferecemos assessoria que transforma ambicao em tracao.",
+      "icon": "compass",
+      "title": "Assessoria",
+      "description": "Orientacao estrategica para investidores, operadores e instituicoes que transitam entre a China e a America Latina. Traduzimos a complexidade do corredor em proximos passos concretos.",
       "cta": "Explorar Assessoria",
-      "theme": "dark"
+      "href": "/advisory/"
+    },
+    {
+      "icon": "trophy",
+      "title": "Competicoes e Desafios",
+      "description": "Competicoes de startups e inovacao aberta patrocinada por corporacoes, desenhadas para revelar fundadores de alto potencial e oportunidades transfronteiricas investiveis.",
+      "cta": "Ver Competicoes",
+      "href": "/competitions/"
+    },
+    {
+      "icon": "calendar-days",
+      "title": "Eventos",
+      "description": "Feiras, expos, summits e briefings do corredor construidos para gerar reunioes qualificadas e continuidade depois que a sala se esvazia.",
+      "cta": "Ver Eventos",
+      "href": "/events/"
+    },
+    {
+      "icon": "rocket",
+      "title": "Programas",
+      "description": "Da exploracao online as missoes de negocios presenciais, levando empresas do interesse inicial a uma presenca real de mercado.",
+      "cta": "Conhecer Programas",
+      "href": "/programs/"
     }
   ],
   "competitionsSection": {
@@ -290,17 +275,6 @@
         {
           "title": "Feiras, Exposicoes e Summits",
           "description": "Eventos curados para conectar ecossistemas de tecnologia da LATAM e da China presencialmente.",
-          "cta": "Saiba mais",
-          "theme": "red"
-        }
-      ]
-    },
-    {
-      "label": "Rede",
-      "cards": [
-        {
-          "title": "Parcerias entre Cidades e Palestrantes",
-          "description": "Mais de 120 parceiros ativos em 22 industrias e uma rede curada de vozes de alto impacto.",
           "cta": "Saiba mais",
           "theme": "red"
         }

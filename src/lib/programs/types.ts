@@ -87,6 +87,9 @@ export type ProgramListingContent = {
 export type ProgramDetailCopy = {
   backLabel: string;
   viewAllLabel: string;
+  timelineLabel: string;
+  focusLabel: string;
+  statusLabel: string;
 };
 
 export type ProgramDetail = {
@@ -99,6 +102,7 @@ export type ProgramDetail = {
   detailImage?: string;
   applicationOpensAt?: string;
   applicationDeadlineAt?: string;
+  focusTags: string[];
 } & ProgramLocaleContent;
 
 export type ProgramDetailRouteLocale = {

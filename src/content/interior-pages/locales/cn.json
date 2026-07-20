@@ -10,8 +10,7 @@
     { "label": "咨询", "href": "/advisory/" },
     { "label": "竞赛与挑战", "href": "/competitions/" },
     { "label": "活动", "href": "/events/" },
-    { "label": "项目", "href": "/programs/" },
-    { "label": "网络", "href": "/network/" }
+    { "label": "项目", "href": "/programs/" }
   ],
   "footer": {
     "eyebrow": "助力增长。",
@@ -505,18 +504,18 @@
       "其他"
     ],
     "benefits": [
-      { "label": "政策申报", "value": "policy", "short": "PD", "tone": "blue" },
-      { "label": "人才服务", "value": "talent", "short": "TS", "tone": "green" },
-      { "label": "商业与税务支持", "value": "tax", "short": "BT", "tone": "lilac" },
-      { "label": "上市辅导", "value": "listing", "short": "LG", "tone": "sand" },
-      { "label": "HICOOL 基金投资", "value": "fund", "short": "HF", "tone": "green" },
-      { "label": "财务顾问", "value": "fa", "short": "FA", "tone": "blue" },
-      { "label": "VC 对接", "value": "vc", "short": "VC", "tone": "sand" },
-      { "label": "产业对接", "value": "industrial", "short": "IM", "tone": "lilac" },
-      { "label": "场景对接", "value": "scenario", "short": "SM", "tone": "blue" },
-      { "label": "展览展示", "value": "exhibition", "short": "EX", "tone": "green" },
-      { "label": "路演支持", "value": "pitching", "short": "PT", "tone": "sand" },
-      { "label": "品牌建设", "value": "branding", "short": "BR", "tone": "lilac" }
+      { "label": "政策申报", "value": "policy", "icon": "scroll-text", "tone": "blue" },
+      { "label": "人才服务", "value": "talent", "icon": "users", "tone": "green" },
+      { "label": "商业与税务支持", "value": "tax", "icon": "receipt", "tone": "lilac" },
+      { "label": "上市辅导", "value": "listing", "icon": "trending-up", "tone": "sand" },
+      { "label": "HICOOL 基金投资", "value": "fund", "icon": "piggy-bank", "tone": "green" },
+      { "label": "财务顾问", "value": "fa", "icon": "line-chart", "tone": "blue" },
+      { "label": "VC 对接", "value": "vc", "icon": "handshake", "tone": "sand" },
+      { "label": "产业对接", "value": "industrial", "icon": "factory", "tone": "lilac" },
+      { "label": "场景对接", "value": "scenario", "icon": "map", "tone": "blue" },
+      { "label": "展览展示", "value": "exhibition", "icon": "presentation", "tone": "green" },
+      { "label": "路演支持", "value": "pitching", "icon": "mic", "tone": "sand" },
+      { "label": "品牌建设", "value": "branding", "icon": "megaphone", "tone": "lilac" }
     ],
     "hearAboutOptions": [
       "LATAM CHINA TECH 官网",

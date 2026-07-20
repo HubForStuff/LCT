@@ -28,6 +28,15 @@ function buildStaticPageHref(slug: string): string {
   return `/${slug}/`;
 }
 
+/**
+ * A static page is published unless it explicitly opts out with `published: false`.
+ * Entries predating the flag omit it, so absence must mean published.
+ */
+function isPublished(entry: StaticPageCollectionEntry): boolean {
+  return entry.published !== false;
+}
+
+/** Returns only published entries — unpublished pages keep their content but get no route. */
 async function getAllStaticPageEntries(): Promise<StaticPageCollectionEntry[]> {
   const entries = (await keystaticReader.collections.staticPages.all()) as {
     slug: string;
@@ -39,6 +48,7 @@ async function getAllStaticPageEntries(): Promise<StaticPageCollectionEntry[]> {
       ...entry,
       slug,
     }))
+    .filter(isPublished)
     .sort((left, right) => left.order - right.order);
 }
 
@@ -62,7 +72,9 @@ function buildStaticPage(entry: StaticPageCollectionEntry, code: HomepageLocaleC
 }
 
 export async function getAllStaticPageSlugs(): Promise<string[]> {
-  return keystaticReader.collections.staticPages.list();
+  const entries = await getAllStaticPageEntries();
+
+  return entries.map((entry) => entry.slug);
 }
 
 export async function getStaticPageData(slug: string): Promise<StaticPageData> {

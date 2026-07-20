@@ -39,7 +39,7 @@
     "supportHtml": "<ul><li>Exposure to fintech operators, investors, and ecosystem partners.</li><li>Structured feedback on cross-border market-entry positioning.</li><li>Support packaging the final submission and follow-up materials.</li></ul>",
     "processTitle": "Opportunity roadmap",
     "processHtml": "<ol><li>Choose this competition on the shared application form.</li><li>Submit your project, deck, and supporting materials.</li><li>Receive feedback and next-step coordination from the team.</li></ol>",
-    "applicationLabel": "Apply to this challenge"
+    "applicationLabel": "Register Now"
   },
   "br": {
     "category": "FinTech",
@@ -62,7 +62,7 @@
     "supportHtml": "<ul><li>Exposicao para operadores de fintech, investidores e parceiros de ecossistema.</li><li>Feedback estruturado sobre posicionamento cross-border.</li><li>Apoio para empacotar submissao final e materiais complementares.</li></ul>",
     "processTitle": "Roteiro da oportunidade",
     "processHtml": "<ol><li>Escolha esta competicao no formulario padrao.</li><li>Envie projeto, deck e materiais complementares.</li><li>Receba feedback e coordenacao dos proximos passos.</li></ol>",
-    "applicationLabel": "Aplicar para este desafio"
+    "applicationLabel": "Registrar Agora"
   },
   "cn": {
     "category": "金融科技",
@@ -85,6 +85,6 @@
     "supportHtml": "<ul><li>接触金融科技运营者、投资人和生态伙伴。</li><li>获得跨境市场定位反馈。</li><li>在最终提交材料前获得整理与优化支持。</li></ul>",
     "processTitle": "机会说明",
     "processHtml": "<ol><li>在统一申请表中选择该竞赛。</li><li>提交项目介绍、演示材料和补充文件。</li><li>团队跟进反馈并安排下一步。</li></ol>",
-    "applicationLabel": "申请该竞赛"
+    "applicationLabel": "立即报名"
   }
 }

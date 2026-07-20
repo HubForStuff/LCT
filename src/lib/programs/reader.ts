@@ -82,15 +82,24 @@ const listingCopyByCode: Record<
 const detailCopyByCode: Record<HomepageLocaleCode, ProgramDetailCopy> = {
   EN: {
     backLabel: "Back to programs",
-    viewAllLabel: "View all programs",
+    viewAllLabel: "View All",
+    timelineLabel: "Timeline",
+    focusLabel: "Focus",
+    statusLabel: "Status",
   },
   BR: {
     backLabel: "Voltar para programas",
-    viewAllLabel: "Ver todos os programas",
+    viewAllLabel: "Ver Todos",
+    timelineLabel: "Prazo",
+    focusLabel: "Foco",
+    statusLabel: "Status",
   },
   CN: {
     backLabel: "返回项目列表",
-    viewAllLabel: "查看全部项目",
+    viewAllLabel: "查看全部",
+    timelineLabel: "时间",
+    focusLabel: "方向",
+    statusLabel: "状态",
   },
 };
 
@@ -105,7 +114,14 @@ function buildProgramListingHref(): string {
 }
 
 function buildProgramApplicationHref(slug: string): string {
-  return `/pre-registration/?program=${slug}`;
+  return `/eligibility/?program=${slug}`;
+}
+
+function buildProgramFocusTags(category: string): string[] {
+  return category
+    .split("·")
+    .map((part) => part.trim())
+    .filter(Boolean);
 }
 
 function getProgramSortDate(entry: ProgramCollectionEntry): string {
@@ -191,6 +207,7 @@ function buildDetail(
     detailImage: entry.detailImage,
     applicationOpensAt: entry.applicationOpensAt,
     applicationDeadlineAt: entry.applicationDeadlineAt,
+    focusTags: buildProgramFocusTags(l.category),
     ...l,
   };
 }
@@ -198,6 +215,27 @@ function buildDetail(
 export async function getAllProgramSlugs(): Promise<string[]> {
   const entries = await getAllProgramEntries();
   return entries.map((entry) => entry.slug);
+}
+
+export type ProgramFormOption = {
+  slug: string;
+  name: string;
+};
+
+export async function getProgramFormOptionsByLocale(): Promise<
+  Record<HomepageLocaleCode, ProgramFormOption[]>
+> {
+  const entries = await getAllProgramEntries();
+
+  return Object.fromEntries(
+    HOMEPAGE_LOCALE_CODES.map((code) => [
+      code,
+      entries.map((entry) => ({
+        slug: entry.slug,
+        name: localized(entry, code).name,
+      })),
+    ]),
+  ) as Record<HomepageLocaleCode, ProgramFormOption[]>;
 }
 
 export async function getProgramListingContentByLocale(): Promise<

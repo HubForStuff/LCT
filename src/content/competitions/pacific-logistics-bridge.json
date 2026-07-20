@@ -37,7 +37,7 @@
     "supportHtml": "<ul><li>Introductions to logistics operators, partners, and corridor stakeholders.</li><li>Feedback on deployment readiness and market-entry sequencing.</li><li>Support packaging the final submission for the challenge cycle.</li></ul>",
     "processTitle": "Opportunity roadmap",
     "processHtml": "<ol><li>Register interest through the shared form.</li><li>Share your operational thesis, customer context, and supporting materials.</li><li>Continue into follow-up review when the cycle opens.</li></ol>",
-    "applicationLabel": "Apply to this challenge"
+    "applicationLabel": "Register Now"
   },
   "br": {
     "category": "Logistica · FinTech",
@@ -60,7 +60,7 @@
     "supportHtml": "<ul><li>Introducoes a operadores logisticos, parceiros e stakeholders do corredor.</li><li>Feedback sobre prontidao de implantacao e sequenciamento de entrada em mercado.</li><li>Apoio para empacotar a submissao final do ciclo.</li></ul>",
     "processTitle": "Roteiro da oportunidade",
     "processHtml": "<ol><li>Registre interesse pelo formulario compartilhado.</li><li>Compartilhe tese operacional, contexto de clientes e materiais de apoio.</li><li>Siga para review quando o ciclo abrir.</li></ol>",
-    "applicationLabel": "Aplicar para este desafio"
+    "applicationLabel": "Registrar Agora"
   },
   "cn": {
     "category": "物流 · 金融科技",
@@ -83,6 +83,6 @@
     "supportHtml": "<ul><li>对接物流运营方、伙伴和通道相关利益方。</li><li>关于部署准备度与市场进入节奏的反馈。</li><li>帮助整理该挑战周期的最终提交材料。</li></ul>",
     "processTitle": "机会说明",
     "processHtml": "<ol><li>通过统一表单登记意向。</li><li>说明运营逻辑、客户背景和支持材料。</li><li>在项目开放后进入后续审核。</li></ol>",
-    "applicationLabel": "申请该竞赛"
+    "applicationLabel": "立即报名"
   }
 }

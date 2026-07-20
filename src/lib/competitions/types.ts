@@ -68,8 +68,10 @@ export type CompetitionDetailPageCopy = {
   deadlineLabel: string;
   trackLabel: string;
   focusLabel: string;
+  totalAwardLabel: string;
   registrationLabel: string;
   applyLabel: string;
+  viewAllLabel: string;
 };
 
 export type CompetitionDetail = {

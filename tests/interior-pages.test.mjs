@@ -458,8 +458,8 @@ test("competitions and pre-registration pages build with the expected mockup con
     );
     assert.match(
       competitionDetailHtml,
-      /Apply Now|Apply to this challenge/i,
-      "expected the competition detail page to include the application CTA",
+      /Register Now/i,
+      "expected the competition detail page to include the Register Now application CTA",
     );
     assert.match(
       competitionDetailHtml,
@@ -668,13 +668,13 @@ test("competitions and pre-registration pages build with the expected mockup con
     );
     assert.match(
       interiorCss,
-      /\.benefit-item\s*\{[^}]*background:\s*#f7f7f7;[^}]*font-weight:\s*400;/s,
-      "expected benefit options to use a gray unbold base style",
+      /\.benefit-item\s*\{[^}]*background:\s*#fff;[^}]*transition:\s*border-color[^;]*;/s,
+      "expected benefit cards to use a white background that transitions only the border",
     );
     assert.match(
       interiorCss,
-      /\.benefit-item:hover \.benefit-icon\s*\{[^}]*opacity:\s*1;/s,
-      "expected benefit icons to become highlighted on hover",
+      /\.benefit-item:hover\s*\{\s*border-color:\s*rgba\(0, 0, 0, 0\.32\);\s*\}/s,
+      "expected benefit card hover to change only the border",
     );
     assert.match(
       interiorCss,
@@ -767,7 +767,7 @@ test("static pages build from Keystatic content and reuse the shared localizatio
       ["advisory", /Advisory Services/i, /Investment matchmaking/i],
       ["events", /Events\s*&amp;\s*Calendar|Events\s*&\s*Calendar/i, /Trade fairs and expos/i],
       ["programs", /Programs/i, /Market entry/i],
-      ["network", /Network\s*&amp;\s*Partnerships|Network\s*&\s*Partnerships/i, /City partnerships/i],
+      // "network" is temporarily unpublished (published: false) and builds no route.
     ];
 
     for (const [slug, titlePattern, bodyPattern] of expectedPages) {
@@ -796,20 +796,38 @@ test("static pages build from Keystatic content and reuse the shared localizatio
   }
 });
 
+test("program detail has no award card and links to eligibility", { concurrency: false }, () => {
+  const build = buildSite();
+
+  try {
+    const html = readFileSync(
+      resolve(build.outDir, "programs", "market-entry-cohort-8", "index.html"),
+      "utf8",
+    );
+
+    assert.doesNotMatch(html, /Total Award/, "programs must not display cost");
+    assert.match(html, /href="\/eligibility\/\?program=market-entry-cohort-8"/);
+    assert.match(html, /Check Eligibility/);
+
+    // Competition-style meta grid: Timeline / Focus / Status (no Award).
+    assert.match(
+      html,
+      /Timeline[\s\S]*Focus[\s\S]*Status/,
+      "expected the meta grid to render Timeline, Focus, then Status in that order",
+    );
+  } finally {
+    build.cleanup();
+  }
+});
+
 test("Batch C static page anchors, contact CTAs, and prepared page links are wired", { concurrency: false }, () => {
   const build = buildSite();
 
   try {
     const homeHtml = readFileSync(resolve(build.outDir, "index.html"), "utf8");
-    const networkHtml = readFileSync(resolve(build.outDir, "network", "index.html"), "utf8");
     const programsHtml = readFileSync(resolve(build.outDir, "programs", "index.html"), "utf8");
     const interiorStyles = readProjectFile("src/styles/interior-pages.css");
 
-    assert.match(
-      homeHtml,
-      /href="\/network\/featured-speakers\/"/,
-      "expected Featured Speakers menu links to route to the network sub-page",
-    );
     assert.doesNotMatch(
       homeHtml,
       /href="\/speakers\/"/,
@@ -825,40 +843,23 @@ test("Batch C static page anchors, contact CTAs, and prepared page links are wir
       /href="\/programs\/#market-entry"[\s\S]*href="\/programs\/#business-mission"/,
       "expected programs submenu links to route to standard programs page anchors",
     );
+    // Network-specific link assertions removed: Network is temporarily unpublished.
+    // The generic static-page CTA/contact assertions below now run against /programs/,
+    // which is also a static page, so that coverage is retained rather than dropped.
     assert.match(
-      homeHtml,
-      /href="\/network\/city-partnerships\/"/,
-      "expected network city partnerships to route to the network sub-page",
-    );
-    assert.match(
-      networkHtml,
+      programsHtml,
       /href="#contact"/,
       "expected static page CTAs to use the shared contact target",
     );
     assert.doesNotMatch(
-      networkHtml,
+      programsHtml,
       /href="#site-footer"/,
       "expected static page CTAs not to point at the generic footer anchor",
     );
     assert.match(
-      networkHtml,
+      programsHtml,
       /id="contact"/,
       "expected the interior footer to expose a shared contact target",
-    );
-    assert.match(
-      networkHtml,
-      /href="\/network\/city-partnerships\/"/,
-      "expected the network hub to link to the city partnerships sub-page",
-    );
-    assert.match(
-      networkHtml,
-      /href="\/network\/featured-speakers\/"/,
-      "expected the network hub to link to the featured speakers sub-page",
-    );
-    assert.doesNotMatch(
-      networkHtml,
-      /id="active-partners"/,
-      "expected the network hub to drop the active partners section card",
     );
     assert.match(
       programsHtml,
@@ -961,7 +962,7 @@ test("interior header supports homepage mega-menu layout variants", { concurrenc
       "expected the interior mega menu shell to avoid the old fixed taller height",
     );
     assert.match(
-      interiorStyles,
+      readProjectFile("src/styles/language-switcher.css"),
       /\.site-lang-menu\s*\{[^}]*top:\s*calc\(100% \+ 2px\);/s,
       "expected the header language menu to stay close to the globe trigger",
     );
@@ -1010,7 +1011,7 @@ test("Batch D mobile shell and controls expose usable navigation affordances", {
     );
     assert.match(
       competitionsHtml,
-      /href="\/advisory\/"[\s\S]*href="\/competitions\/"[\s\S]*href="\/events\/"[\s\S]*href="\/programs\/"[\s\S]*href="\/network\/"/,
+      /href="\/advisory\/"[\s\S]*href="\/competitions\/"[\s\S]*href="\/events\/"[\s\S]*href="\/programs\/"/,
       "expected the interior mobile menu to include a path to each primary section",
     );
     assert.match(
@@ -1136,7 +1137,7 @@ test("Batch D mobile shell and controls expose usable navigation affordances", {
     );
     assert.deepEqual(
       openMenuState.primaryLinks,
-      ["/advisory/", "/competitions/", "/events/", "/programs/", "/network/"],
+      ["/advisory/", "/competitions/", "/events/", "/programs/"],
       `expected primary mobile menu links for every section, received ${JSON.stringify(openMenuState)}`,
     );
 
@@ -1259,7 +1260,7 @@ test("interior footer matches homepage structure without legacy bottom note row"
     );
     assert.match(
       competitionsHtml,
-      /class="site-lang site-lang--footer site-lang--right"/,
+      /class="site-lang site-lang--footer site-lang--right site-lang--light"/,
       "expected interior footer to keep shared footer language switcher",
     );
     assert.match(
@@ -1293,7 +1294,7 @@ test("interior footer matches homepage structure without legacy bottom note row"
       "expected interior footer WeChat popup to anchor its top to the email-input row above the icon",
     );
     assert.match(
-      interiorStyles,
+      readProjectFile("src/styles/language-switcher.css"),
       /\.site-lang--footer \.site-lang-menu\s*\{[^}]*top:\s*auto;[^}]*bottom:\s*calc\(100% \+ 8px\);/s,
       "expected footer language menu to open above the icon so it avoids the bottom stripe",
     );
@@ -1496,13 +1497,23 @@ test("Batch H competition detail pages move registration into meta grid and rend
     );
     assert.match(
       competitionDetailHtml,
-      /data-i18n="detailPage\.focusLabel"[\s\S]*class="competition-meta-card competition-register-card"/,
-      "expected the Focus card to move into the former track slot before the registration card",
+      /data-i18n="detailPage\.totalAwardLabel"[\s\S]*data-i18n="detailPage\.deadlineLabel"[\s\S]*data-i18n="detailPage\.focusLabel"[\s\S]*data-i18n="detailPage\.statusLabel"/,
+      "expected the meta grid to render Total Award, Timeline, Focus, then Status in that order",
+    );
+    assert.doesNotMatch(
+      competitionDetailHtml,
+      /competition-register-card/,
+      "expected the orange registration meta card to be removed entirely",
+    );
+    assert.doesNotMatch(
+      competitionDetailHtml,
+      /page-subtitle--wide" data-i18n="page\.detailSubtitle"/,
+      "expected the subtitle below the title to be removed",
     );
     assert.match(
       competitionDetailHtml,
-      /class="competition-meta-card competition-register-card"[\s\S]*data-i18n="detailPage\.registrationLabel"[\s\S]*href="\/pre-registration\/\?competition=greater-tech-challenge-2025"/,
-      "expected registration CTA/value to live in the right-side meta card",
+      /class="interior-wrap competition-detail-actions competition-detail-actions--center"[\s\S]*class="site-btn site-btn--primary"[\s\S]*data-i18n="page\.applicationLabel"[\s\S]*Register Now[\s\S]*class="site-btn site-btn--secondary"[\s\S]*data-i18n="detailPage\.viewAllLabel"/,
+      "expected a centered bottom action row with Register Now followed by the localized View All link",
     );
     assert.match(
       competitionDetailHtml,
@@ -1514,10 +1525,20 @@ test("Batch H competition detail pages move registration into meta grid and rend
       /<strong>pitch narrative<\/strong>/,
       "expected the editable feature text to support bold rich text",
     );
+    assert.doesNotMatch(
+      challengeDetailHtml,
+      /competition-register-card/,
+      "expected challenge detail pages to also drop the orange registration meta card",
+    );
     assert.match(
       challengeDetailHtml,
-      /class="competition-meta-card competition-register-card"[\s\S]*href="\/pre-registration\/\?competition=china-market-entry-accelerator-2025"/,
-      "expected corporate challenge detail pages to use the same moved registration card",
+      /class="interior-wrap competition-detail-actions competition-detail-actions--center"[\s\S]*class="site-btn site-btn--primary"[\s\S]*Register Now[\s\S]*class="site-btn site-btn--secondary"[\s\S]*data-i18n="detailPage\.viewAllLabel"/,
+      "expected challenge detail pages to render the same centered Register Now + View All row",
+    );
+    assert.doesNotMatch(
+      challengeDetailHtml,
+      /page-subtitle--wide" data-i18n="page\.detailSubtitle"/,
+      "expected challenge detail pages to also drop the subtitle below the title",
     );
     assert.match(
       schemaSource,
@@ -1538,6 +1559,21 @@ test("Batch H competition detail pages move registration into meta grid and rend
       interiorStyles,
       /\.competition-detail-feature-card\s*\{[^}]*display:\s*grid;[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\)\s*minmax\(300px,\s*0\.82fr\);/s,
       "expected the detail feature card to use a text/photo layout",
+    );
+    assert.match(
+      interiorStyles,
+      /\.competition-detail-actions--center\s*\{[^}]*display:\s*flex;[^}]*justify-content:\s*center;[^}]*align-items:\s*center;[^}]*gap:\s*16px;[^}]*padding-bottom:\s*48px;/s,
+      "expected the bottom action row to center its buttons via a dedicated CSS hook",
+    );
+    assert.doesNotMatch(
+      interiorStyles,
+      /\.competition-register-card\s*\{/,
+      "expected the orange register card CSS rule to be removed",
+    );
+    assert.doesNotMatch(
+      interiorStyles,
+      /\.competition-register-value\s*\{/,
+      "expected the orange register value CSS rule to be removed",
     );
   } finally {
     build.cleanup();
@@ -1669,7 +1705,7 @@ test("interior pages expose shared localization hooks and localize in the browse
       session,
       "get",
       "text",
-      ".competition-meta-label",
+      ".competition-meta-grid .competition-meta-card:last-child .competition-meta-label",
     ]);
 
     assert.match(
@@ -1680,7 +1716,7 @@ test("interior pages expose shared localization hooks and localize in the browse
     assert.match(
       competitionsFilter,
       /状态|阶段/u,
-      "expected the competition detail metadata to switch to Chinese",
+      "expected the competition detail metadata (Status card) to switch to Chinese",
     );
 
     runAgentBrowser([
@@ -2521,7 +2557,13 @@ test("news listing keeps metadata visible and separates the featured CTA from th
   }
 });
 
-test("Network sub-pages render Keystatic-driven city partnerships and speakers lists", { concurrency: false }, () => {
+// Network is temporarily unpublished: src/pages/network/*.astro were removed, so these
+// routes are not built. The components, lib readers, and content they cover are all kept,
+// so un-skipping this test is part of re-enabling Network (see tests/no-network-routes.test.mjs).
+test("Network sub-pages render Keystatic-driven city partnerships and speakers lists", {
+  concurrency: false,
+  skip: "Network temporarily unpublished; restore src/pages/network/*.astro to re-enable.",
+}, () => {
   const build = buildSite();
 
   try {
@@ -2662,6 +2704,66 @@ test("Advisory navigation points at service detail pages", { concurrency: false 
     assert.match(homeHtml, /href="\/advisory\/investment-matchmaking\/"/, "expected the Advisory submenu to link to the investment-matchmaking detail page");
     assert.match(homeHtml, /href="\/advisory\/tech-transfer\/"/, "expected the Advisory submenu to link to the tech-transfer detail page");
     assert.doesNotMatch(homeHtml, /href="\/advisory\/#consulting"/, "expected the old advisory section anchors to be gone");
+  } finally {
+    build.cleanup();
+  }
+});
+
+test("advisory cards are white with a light gray border, scoped away from news", { concurrency: false }, () => {
+  const css = readProjectFile("src/styles/interior-pages.css");
+  const scoped = css.match(/\.advisory-card-grid \.news-list-card \{[^}]*\}/);
+  assert.ok(scoped, "expected a .advisory-card-grid .news-list-card rule");
+  assert.match(scoped[0], /background:\s*#fff/, "advisory cards must be white");
+  assert.match(scoped[0], /border-radius:\s*18px/, "must match .ccard radius");
+  assert.doesNotMatch(scoped[0], /linear-gradient/, "gradient must be gone");
+  assert.match(
+    scoped[0],
+    /border:\s*1px solid rgba\(0,\s*0,\s*0,\s*0\.07\)/,
+    "expected the advisory card border to match the rgba(0,0,0,0.07) divider color",
+  );
+
+  const baseRule = css.match(/\n\.news-list-card \{[^}]*\}/);
+  assert.ok(baseRule, "expected the shared .news-list-card base rule to still exist");
+  assert.match(
+    baseRule[0],
+    /linear-gradient/,
+    "expected the shared News card rule to keep its gradient border/background untouched",
+  );
+});
+
+test("Advisory hub header drops the summary copy in every locale", { concurrency: false }, () => {
+  const advisoryContent = JSON.parse(readProjectFile("src/content/static-pages/advisory.json"));
+
+  for (const locale of ["en", "br", "cn"]) {
+    assert.equal(
+      advisoryContent[locale].summary,
+      "",
+      `expected the ${locale} advisory hub summary to be cleared`,
+    );
+  }
+
+  const build = buildSite();
+
+  try {
+    const advisoryHtml = readFileSync(resolve(build.outDir, "advisory", "index.html"), "utf8");
+    const newsIndexHtml = readFileSync(resolve(build.outDir, "news", "index.html"), "utf8");
+
+    const subtitleMatch = advisoryHtml.match(
+      /<p class="page-subtitle[^"]*" data-i18n="page\.summary">([\s\S]*?)<\/p>/,
+    );
+    assert.ok(subtitleMatch, "expected the advisory header subtitle element to still render");
+    assert.equal(
+      subtitleMatch[1].trim(),
+      "",
+      "expected the advisory header subtitle text to be empty",
+    );
+
+    // News page must not regress: its cards keep the gradient look, unaffected by the advisory scoping.
+    assert.match(
+      newsIndexHtml,
+      /class="news-list-card"/,
+      "expected the news listing to keep rendering plain news-list-card elements",
+    );
   } finally {
     build.cleanup();
   }

@@ -70,6 +70,21 @@ test("per-field 'Write with AI' buttons are removed", () => {
   assert.doesNotMatch(html, /class="ai-btn"/);
 });
 
+test("benefit options use icons, not letter initials", () => {
+  const en = JSON.parse(
+    readFileSync(
+      resolve(projectRoot, "src/content/interior-pages/locales/en.json"),
+      "utf8",
+    ),
+  );
+  const benefits = en.preRegistrationPage.benefits;
+  assert.equal(benefits.length, 12);
+  for (const b of benefits) {
+    assert.ok(b.icon, `${b.value} must have an icon`);
+    assert.equal(b.short, undefined, `${b.value} must not keep the letter initial`);
+  }
+});
+
 test("Code.gs SHEET_COLUMNS matches the canonical column order", () => {
   const gs = readFileSync(
     resolve(projectRoot, "scripts/apps-script/Code.gs"),

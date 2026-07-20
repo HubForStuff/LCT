@@ -41,7 +41,7 @@
     "processTitle": "Why this opportunity matters",
     "processHtml": "<p>Use this section to shape the <strong>pitch narrative</strong>, sector proof points, partner fit, and cross-border growth story that the judging team should understand first.</p><p>The LATAM China Tech team can keep this area updated with program photos, finalist guidance, and competition-specific notes as the opportunity evolves.</p>",
     "featureImageAlt": "Founders preparing a cross-border competition pitch.",
-    "applicationLabel": "Apply to this challenge"
+    "applicationLabel": "Register Now"
   },
   "br": {
     "category": "Deep Tech · Cross-Border",
@@ -65,7 +65,7 @@
     "processTitle": "Por que esta oportunidade importa",
     "processHtml": "<p>Use esta seção para estruturar a <strong>narrativa de pitch</strong>, provas do setor, fit com parceiros e historia de crescimento cross-border que os avaliadores devem entender primeiro.</p><p>A equipe LATAM China Tech pode manter esta area atualizada com fotos do programa, orientacoes para finalistas e notas especificas da competicao.</p>",
     "featureImageAlt": "Founders preparando um pitch de competicao cross-border.",
-    "applicationLabel": "Aplicar para este desafio"
+    "applicationLabel": "Registrar Agora"
   },
   "cn": {
     "category": "深科技 · 跨境",
@@ -89,6 +89,6 @@
     "processTitle": "为什么这个机会重要",
     "processHtml": "<p>在这里可重点呈现<strong>路演叙事</strong>、行业依据、伙伴匹配度和跨境增长逻辑，让评审团队先理解项目的核心优势。</p><p>LATAM China Tech 团队可以持续更新项目照片、决赛指导和该竞赛的专属说明。</p>",
     "featureImageAlt": "创始人正在准备跨境竞赛路演。",
-    "applicationLabel": "申请该竞赛"
+    "applicationLabel": "立即报名"
   }
 }

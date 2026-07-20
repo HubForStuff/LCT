@@ -39,7 +39,7 @@
     "supportHtml": "<ul><li>Sector-specific introductions and narrative review.</li><li>Support refining competition materials for healthcare audiences.</li><li>Clearer preparation for investor, operator, and partner conversations.</li></ul>",
     "processTitle": "Opportunity roadmap",
     "processHtml": "<ol><li>Apply through the unified competition form.</li><li>Upload the main deck and any regulatory or product context that matters.</li><li>Work with the team on final packaging and submission readiness.</li></ol>",
-    "applicationLabel": "Apply to this challenge"
+    "applicationLabel": "Register Now"
   },
   "br": {
     "category": "HealthTech · Corporate",
@@ -62,7 +62,7 @@
     "supportHtml": "<ul><li>Introducoes setoriais e revisao da narrativa.</li><li>Apoio para refinar materiais da competicao para audiencias de saude.</li><li>Preparacao mais clara para conversas com investidores, operadores e parceiros.</li></ul>",
     "processTitle": "Roteiro da oportunidade",
     "processHtml": "<ol><li>Aplique pelo formulario unificado.</li><li>Envie deck principal e qualquer contexto regulatorio ou de produto relevante.</li><li>Trabalhe com a equipe na embalagem final e prontidao de submissao.</li></ol>",
-    "applicationLabel": "Aplicar para este desafio"
+    "applicationLabel": "Registrar Agora"
   },
   "cn": {
     "category": "健康科技 · 企业",
@@ -85,6 +85,6 @@
     "supportHtml": "<ul><li>行业引荐和叙事审阅支持。</li><li>帮助面向医疗受众优化竞赛材料。</li><li>更清晰地准备投资人、运营方和伙伴沟通。</li></ul>",
     "processTitle": "机会说明",
     "processHtml": "<ol><li>通过统一竞赛申请表提交。</li><li>上传主演示文档以及相关监管或产品背景材料。</li><li>与团队共同完善最终包装和提交准备。</li></ol>",
-    "applicationLabel": "申请该竞赛"
+    "applicationLabel": "立即报名"
   }
 }

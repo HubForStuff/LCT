@@ -83,12 +83,12 @@ export type HeroContent = {
   ctas: string[];
 };
 
-export type CategoryCard = {
-  eyebrow: string;
+export type SectionCallout = {
+  icon: string;
   title: string;
   description: string;
   cta: string;
-  theme: "dark" | "light";
+  href: string;
 };
 
 export type CompetitionsSection = {
@@ -160,7 +160,7 @@ export type HomepageLocaleContent = {
   hero: HeroContent;
   navExploreLabel: string;
   desktopMenuSections: DesktopMenuSection[];
-  categoryCards: CategoryCard[];
+  sectionCallouts: SectionCallout[];
   competitionsSection: CompetitionsSection;
   competitionCards: CompetitionCard[];
   newsSection: NewsSection;

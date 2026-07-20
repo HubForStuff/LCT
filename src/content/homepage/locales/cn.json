@@ -142,51 +142,36 @@
         "cta": "立即申请"
       },
       "layout": "standard"
-    },
-    {
-      "label": "网络",
-      "links": [
-        {
-          "title": "城市合作",
-          "subtitle": "城市间科技交流与生态外交"
-        },
-        {
-          "title": "重点演讲者",
-          "subtitle": "为旗舰舞台精选运营者与创始人"
-        }
-      ],
-      "note": "不确定哪个适合？",
-      "noteLink": "成为伙伴",
-      "description": "我们连接机构、创业公司与公共生态参与者，构建长期有效的中拉网络，而不是一次性的介绍关系。",
-      "card": {
-        "title": "120+ 活跃合作伙伴",
-        "body": "覆盖 22 个行业和两大区域。每一次匹配都经过兼容性的严格评估。",
-        "cta": "成为合作伙伴"
-      },
-      "layout": "standard"
     }
   ],
-  "categoryCards": [
+  "sectionCallouts": [
     {
-      "eyebrow": "扩张项目",
-      "title": "从探索走向市场进入",
-      "description": "我们通过线上探索、实地进入与结构化商务考察，帮助企业从好奇走向在中国与拉美的真实市场存在。",
-      "cta": "探索项目",
-      "theme": "dark"
-    },
-    {
-      "eyebrow": "网络",
-      "title": "城市合作与精选演讲者",
-      "description": "通过城市级交流、演讲者网络以及覆盖 22 个行业的 120 多个活跃伙伴，我们把跨境生态真正连接起来。",
-      "cta": "探索网络",
-      "theme": "light"
-    },
-    {
-      "eyebrow": "咨询服务",
-      "title": "以执行为导向的战略支持",
-      "description": "从市场进入战略到技术转移与投融资对接，我们的咨询服务帮助企业把雄心转化为跨境增长。",
+      "icon": "compass",
+      "title": "咨询服务",
+      "description": "为往返于中国与拉美之间的投资者、企业与机构提供战略指导，把跨境走廊的复杂性转化为可执行的下一步。",
       "cta": "探索咨询",
-      "theme": "dark"
+      "href": "/advisory/"
+    },
+    {
+      "icon": "trophy",
+      "title": "竞赛与挑战",
+      "description": "创业竞赛与企业支持的开放式创新，旨在发掘高潜力创始人以及具备投资价值的跨境机会。",
+      "cta": "查看竞赛",
+      "href": "/competitions/"
+    },
+    {
+      "icon": "calendar-days",
+      "title": "活动",
+      "description": "贸易展、博览会、峰会与走廊简报，为高质量的会面而设计，并在活动结束后持续推进。",
+      "cta": "查看活动",
+      "href": "/events/"
+    },
+    {
+      "icon": "rocket",
+      "title": "项目",
+      "description": "从线上探索到实地商务考察，帮助企业从最初的兴趣走向真实的市场存在。",
+      "cta": "浏览项目",
+      "href": "/programs/"
     }
   ],
   "competitionsSection": {
@@ -290,17 +275,6 @@
         {
           "title": "展会、博览会与峰会",
           "description": "精选活动让拉美与中国的科技生态在线下真正相遇。",
-          "cta": "了解更多",
-          "theme": "red"
-        }
-      ]
-    },
-    {
-      "label": "网络",
-      "cards": [
-        {
-          "title": "城市合作与演讲者网络",
-          "description": "覆盖 22 个行业的 120 多个活跃伙伴，以及高信号的精选演讲者网络。",
           "cta": "了解更多",
           "theme": "red"
         }

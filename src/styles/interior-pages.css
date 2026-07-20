@@ -1,3 +1,5 @@
+@import "./language-switcher.css";
+
 :root {
   color-scheme: light;
 }
@@ -356,103 +358,9 @@ body.interior-body svg {
   font-size: 13px;
 }
 
-.site-lang {
-  position: relative;
-  flex: 0 0 200px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.site-lang-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 42px;
-  height: 42px;
-  padding: 0;
-  border: 0;
-  border-radius: 50%;
-  background: transparent;
-  color: rgba(0, 0, 0, 0.55);
-  cursor: pointer;
-  transition: color 0.16s ease, transform 0.16s ease;
-}
-
-.site-lang-btn svg {
-  width: 18px;
-  height: 18px;
-}
-
-.site-lang.is-open .site-lang-btn,
-.site-lang:hover .site-lang-btn,
-.site-lang:focus-within .site-lang-btn {
-  color: var(--site-ink);
-  transform: scale(1.06);
-}
-
-.site-lang-menu {
-  position: absolute;
-  top: calc(100% + 2px);
-  right: 0;
-  display: grid;
-  gap: 0;
-  min-width: 160px;
-  padding: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 16px;
-  background: rgba(8, 8, 8, 0.94);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transform: translateY(8px);
-  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
-}
-
-.site-lang--left .site-lang-menu {
-  right: auto;
-  left: 0;
-}
-
-.site-lang.is-open .site-lang-menu,
-.site-lang:hover .site-lang-menu,
-.site-lang:focus-within .site-lang-menu {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transform: translateY(0);
-}
-
-.site-lang-option {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  width: 100%;
-  padding: 10px 12px;
-  border: 0;
-  border-radius: 10px;
-  background: transparent;
-  color: #fff;
-  cursor: pointer;
-  text-align: left;
-}
-
-.site-lang-option small {
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.55);
-}
-
-.site-lang-option:hover,
-.site-lang-option.is-active {
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--site-red);
-}
-
-.site-lang-option.is-active small {
-  color: rgba(255, 255, 255, 0.75);
-}
+/* Language switcher styling lives in src/styles/language-switcher.css
+   (imported at the top of this file) so the shared control renders
+   identically on the dark homepage and the light interior pages. */
 
 .site-mobile-menu-btn {
   display: none;
@@ -1658,20 +1566,6 @@ body.interior-body svg {
   font-weight: 700;
 }
 
-.competition-register-card {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.competition-register-value {
-  font-size: 24px;
-  font-weight: 800;
-  line-height: 1.08;
-  letter-spacing: 0;
-  color: #0f172a;
-}
-
 .competition-detail-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1727,6 +1621,14 @@ body.interior-body svg {
   display: flex;
   justify-content: flex-start;
   margin-top: 24px;
+}
+
+.competition-detail-actions--center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 48px;
 }
 
 .pre-registration-shell {
@@ -2202,18 +2104,15 @@ textarea.has-ai {
   padding: 10px 12px;
   border: 1.5px solid rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  background: #f7f7f7;
+  background: #fff;
   color: #444;
   font-size: 12px;
   font-weight: 400;
-  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+  transition: border-color 0.18s ease;
 }
 
 .benefit-item:hover {
   border-color: rgba(0, 0, 0, 0.32);
-  background: #fff;
-  color: #111;
-  transform: translateY(-1px);
 }
 
 .benefit-item input {
@@ -2224,30 +2123,16 @@ textarea.has-ai {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   width: 24px;
   height: 24px;
   border-radius: 7px;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  opacity: 0.48;
-  transition: opacity 0.18s ease, filter 0.18s ease;
-}
-
-.benefit-item:hover .benefit-icon {
-  opacity: 1;
-  filter: saturate(1.35);
 }
 
 .benefit-item:has(input:checked) {
-  border-color: rgba(0, 0, 0, 0.36);
-  background: #ebebeb;
+  border-color: #111;
   color: #111;
-}
-
-.benefit-item:has(input:checked) .benefit-icon {
-  opacity: 1;
-  filter: saturate(1.5);
+  font-weight: 500;
 }
 
 .benefit-icon--blue {
@@ -2281,7 +2166,7 @@ textarea.has-ai {
 }
 
 .submit-note {
-  max-width: 440px;
+  max-width: 340px;
   margin: 0;
   font-size: 13px;
   line-height: 1.7;
@@ -2290,6 +2175,30 @@ textarea.has-ai {
 
 .submit-note strong {
   color: #111;
+}
+
+.submit-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.save-draft-hint {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--site-muted);
+  text-align: right;
+}
+
+.save-draft-confirmation {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #5e8b53;
+  text-align: right;
 }
 
 .submit-actions {
@@ -2696,60 +2605,7 @@ textarea.has-ai {
   }
 }
 
-.site-lang--footer .site-lang-btn {
-  width: 36px;
-  height: 36px;
-  color: rgba(0, 0, 0, 0.35);
-}
-
-.site-lang--footer .site-lang-btn:hover {
-  color: #111;
-}
-
-.site-lang--footer .site-lang-btn svg {
-  width: 16px;
-  height: 16px;
-}
-
-.site-lang--footer .site-lang-menu {
-  right: auto;
-  left: 50%;
-  top: auto;
-  bottom: calc(100% + 8px);
-  min-width: 72px;
-  padding: 6px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.97);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(12px);
-  transform: translateX(-50%) translateY(6px);
-}
-
-.site-lang--footer.is-open .site-lang-menu,
-.site-lang--footer:hover .site-lang-menu,
-.site-lang--footer:focus-within .site-lang-menu {
-  transform: translateX(-50%) translateY(0);
-}
-
-.site-lang--footer .site-lang-option {
-  justify-content: center;
-  padding: 6px 12px;
-  border-radius: 4px;
-  color: rgba(0, 0, 0, 0.5);
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.site-lang--footer .site-lang-option small {
-  display: none;
-}
-
-.site-lang--footer .site-lang-option:hover,
-.site-lang--footer .site-lang-option.is-active {
-  background: rgba(0, 0, 0, 0.05);
-  color: var(--site-red);
-}
+/* .site-lang--footer styling now lives in src/styles/language-switcher.css. */
 
 @media (max-width: 1320px) {
   .site-footer-grid {
@@ -3288,6 +3144,22 @@ textarea.has-ai {
   grid-template-columns: minmax(0, 1fr);
 }
 
+/* Advisory cards reuse the .news-list-card structure but must not inherit the
+   News gradient border/background. Scoped to .advisory-card-grid so the News
+   listing (which shares .news-list-card) is unaffected. */
+.advisory-card-grid .news-list-card {
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: none;
+}
+
+.advisory-card-grid .news-list-card:hover {
+  transform: none;
+  border-color: rgba(0, 0, 0, 0.14);
+  box-shadow: none;
+}
+
 .news-article-header .interior-wrap {
   display: grid;
   gap: 20px;
@@ -3738,45 +3610,6 @@ textarea.has-ai {
   margin: 0;
 }
 
-.program-detail-meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 18px;
-  margin-top: 6px;
-}
-
-.program-detail-meta-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.92rem;
-  color: #1e293b;
-}
-
-.program-detail-meta-item strong {
-  color: #0f172a;
-}
-
-.program-detail-status-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--site-muted, #94a3b8);
-}
-
-.program-detail-status-dot--open {
-  background: var(--site-red);
-}
-
-.program-detail-status-dot--future {
-  background: var(--site-blue);
-}
-
-.program-detail-status-dot--closed {
-  background: var(--site-muted, #94a3b8);
-}
-
 .program-detail-hero-image {
   min-height: 360px;
   border-radius: 32px;
@@ -3795,13 +3628,15 @@ textarea.has-ai {
   padding-bottom: 48px;
 }
 
+/* Program detail reuses the competition meta-card treatment, but with a
+   three-card grid (Timeline / Focus / Status) — no Award card. */
+.program-meta-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 @media (max-width: 720px) {
   .program-detail-hero-image {
     min-height: 220px;
     border-radius: 24px;
-  }
-
-  .program-detail-meta {
-    gap: 12px;
   }
 }

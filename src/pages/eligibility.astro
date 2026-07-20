@@ -1,12 +1,12 @@
 ---
-import LocalizationClient from "../../components/i18n/LocalizationClient.astro";
-import NetworkListingPage from "../../components/network/NetworkListingPage.astro";
-import Layout from "../../layouts/Layout.astro";
-import { getFeaturedSpeakersData } from "../../lib/network/reader";
-import "../../styles/interior-pages.css";
+import LocalizationClient from "../components/i18n/LocalizationClient.astro";
+import EligibilityPage from "../components/eligibility/EligibilityPage.astro";
+import Layout from "../layouts/Layout.astro";
+import { getEligibilityPageData } from "../lib/eligibility/reader";
+import "../styles/interior-pages.css";
 
 const { defaultLanguage, defaultLocale, localizedContent, siteSettings } =
-  await getFeaturedSpeakersData();
+  await getEligibilityPageData();
 ---
 
 <Layout
@@ -15,7 +15,7 @@ const { defaultLanguage, defaultLocale, localizedContent, siteSettings } =
   htmlLang={defaultLocale.meta.htmlLang}
   bodyClass="interior-body"
 >
-  <NetworkListingPage
+  <EligibilityPage
     locale={defaultLocale}
     siteSettings={siteSettings}
     currentLanguage={defaultLanguage}

@@ -20,7 +20,7 @@ const { defaultLanguage, localizedContent } = Astro.props;
   const localizationScript = document.getElementById("localized-content");
   const localizedContent = localizationScript ? JSON.parse(localizationScript.textContent || "{}") : {};
   const defaultLanguage = localizationScript?.dataset.defaultLanguage || "EN";
-  const languageMenuSelector = ".desk-lang, .desk-footer-lang, .site-lang";
+  const languageMenuSelector = ".desk-footer-lang, .site-lang";
 
   const validLanguage = (code) => (localizedContent[code] ? code : defaultLanguage);
 

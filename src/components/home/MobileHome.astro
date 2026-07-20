@@ -1,11 +1,11 @@
 ---
 import BrandLogo from "./BrandLogo.astro";
+import SectionCallouts from "./SectionCallouts.astro";
 
 import {
   HOMEPAGE_ROUTE_TARGETS,
   getCompetitionSectionHref,
   getFooterCtaHref,
-  getMobileCategoryCardHref,
   getMobileFooterLinkHref,
   getMobileMenuCardHref,
   getNewsListingHref,
@@ -163,20 +163,7 @@ const { locale, languages, siteSettings } = Astro.props;
 
   <div class="mob-divider"></div>
 
-  <section class="mob-section" id="mobile-categories">
-    {locale.categoryCards.map((card, index) => (
-      <a
-        href={getMobileCategoryCardHref(index)}
-        class={`mob-cat-card mob-reveal ${card.theme === "light" ? "mob-cat-card--white" : ""}`}
-      >
-        <div class="mob-cat-glow"></div>
-        <div class="mob-cat-eye" data-i18n={`categoryCards.${index}.eyebrow`}>{card.eyebrow}</div>
-        <h2 data-i18n={`categoryCards.${index}.title`}>{card.title}</h2>
-        <p data-i18n={`categoryCards.${index}.description`}>{card.description}</p>
-        <div class="mob-cat-cta" data-i18n={`categoryCards.${index}.cta`}>{card.cta}</div>
-      </a>
-    ))}
-  </section>
+  <SectionCallouts locale={locale} variant="mobile" />
 
   <section class="mob-section mob-section--tight" id="mobile-competitions">
     <div class="mob-section-eye" data-i18n="competitionsSection.eye">{locale.competitionsSection.eye}</div>

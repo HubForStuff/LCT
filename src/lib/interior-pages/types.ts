@@ -120,7 +120,7 @@ export type ProgressStep = {
 export type BenefitOption = {
   label: string;
   value: string;
-  short: string;
+  icon: string;
   tone: "blue" | "green" | "sand" | "lilac";
 };
 

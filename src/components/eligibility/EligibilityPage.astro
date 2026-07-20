@@ -1,0 +1,274 @@
+---
+import InteriorFooter from "../site/InteriorFooter.astro";
+import InteriorHeader from "../site/InteriorHeader.astro";
+
+import type { HomepageLocaleCode, SiteSettings } from "../../lib/homepage/types";
+import type { EligibilityRouteLocale } from "../../lib/eligibility/reader";
+import { PREREG_ENDPOINT } from "../../lib/pre-registration/config";
+
+interface Props {
+  locale: EligibilityRouteLocale;
+  siteSettings: SiteSettings;
+  currentLanguage: HomepageLocaleCode;
+}
+
+const { locale, siteSettings, currentLanguage } = Astro.props;
+const page = locale.page;
+const programOptions = locale.programOptions;
+---
+
+<div class="interior-page">
+  <InteriorHeader
+    navItems={locale.navItems}
+    activeHref="/programs/"
+    siteSettings={siteSettings}
+    currentLanguage={currentLanguage}
+    languageLabel={locale.ui.chooseLanguage}
+    homeLabel={locale.ui.homeLabel}
+    menuLabel={locale.ui.menu}
+    desktopMenuSections={locale.desktopMenuSections}
+    navExploreLabel={locale.navExploreLabel}
+  />
+
+  <main>
+    <section class="page-header">
+      <div class="interior-wrap page-header-inner page-header-inner--split">
+        <div>
+          <div class="page-eyebrow">
+            <span class="dot page-status-dot"></span>
+            <span data-i18n="page.eyebrow">{page.eyebrow}</span>
+          </div>
+          <h1 class="page-title" data-i18n="page.title">{page.title}</h1>
+          <p class="selected-competition-context" data-selected-program-context hidden>
+            <span data-i18n="page.selectedProgramLabel">{page.selectedProgramLabel}</span>
+            <strong data-selected-program-name></strong>
+          </p>
+        </div>
+        <p class="page-subtitle" data-i18n="page.subtitle">{page.subtitle}</p>
+      </div>
+    </section>
+
+    <section class="interior-wrap pre-registration-shell">
+      <div class="form-wrap">
+        <form class="pre-reg-form" method="post" data-eligibility-form data-endpoint={PREREG_ENDPOINT}>
+          <input type="checkbox" class="prereg-honeypot" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
+          <section class="form-section" id="section-1">
+            <div class="form-section-header">
+              <div class="form-section-number">1</div>
+              <div>
+                <h2 class="form-section-title" data-i18n="page.sectionTitle">{page.sectionTitle}</h2>
+                <p class="form-section-subtitle" data-i18n="page.sectionSubtitle">{page.sectionSubtitle}</p>
+              </div>
+            </div>
+
+            <div class="form-row" data-program-select-row>
+              <label for="program">
+                <span data-i18n="page.fields.program">{page.fields.program}</span>{" "}
+                <span class="req">*</span>
+              </label>
+              <select id="program" name="program" data-program-select>
+                <option value="" disabled selected data-i18n="page.fields.programPlaceholder">
+                  {page.fields.programPlaceholder}
+                </option>
+                {programOptions.map((option, optionIndex) => (
+                  <option value={option.slug} data-i18n={`programOptions.${optionIndex}.name`}>
+                    {option.name}
+                  </option>
+                ))}
+              </select>
+              <input type="hidden" name="programSlug" data-program-hidden />
+            </div>
+
+            <div class="form-row">
+              <label for="name">
+                <span data-i18n="page.fields.name">{page.fields.name}</span> <span class="req">*</span>
+              </label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                placeholder={page.fields.namePlaceholder}
+                data-i18n-placeholder="page.fields.namePlaceholder"
+              />
+            </div>
+
+            <div class="form-row">
+              <label for="email">
+                <span data-i18n="page.fields.email">{page.fields.email}</span> <span class="req">*</span>
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder={page.fields.emailPlaceholder}
+                data-i18n-placeholder="page.fields.emailPlaceholder"
+              />
+            </div>
+
+            <div class="form-row">
+              <label for="company">
+                <span data-i18n="page.fields.company">{page.fields.company}</span> <span class="req">*</span>
+              </label>
+              <input
+                id="company"
+                name="company"
+                type="text"
+                placeholder={page.fields.companyPlaceholder}
+                data-i18n-placeholder="page.fields.companyPlaceholder"
+              />
+            </div>
+
+            <div class="form-row">
+              <label for="message">
+                <span data-i18n="page.fields.message">{page.fields.message}</span>
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                placeholder={page.fields.messagePlaceholder}
+                data-i18n-placeholder="page.fields.messagePlaceholder"
+              ></textarea>
+            </div>
+          </section>
+
+          <section class="submit-section">
+            <div class="submit-side">
+              <p class="form-status" data-eligibility-status role="status" aria-live="polite"></p>
+              <div class="submit-actions">
+                <button type="submit" class="site-btn site-btn--primary site-btn--submit" data-eligibility-submit data-i18n="page.submitLabel">
+                  {page.submitLabel}
+                </button>
+              </div>
+            </div>
+          </section>
+        </form>
+        <div class="prereg-success-panel" data-eligibility-success hidden>
+          <h2 data-i18n="page.submission.successMessage">{page.submission.successMessage}</h2>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <InteriorFooter footer={locale.footer} ui={locale.ui} siteSettings={siteSettings} currentLanguage={currentLanguage} />
+</div>
+
+<script>
+  // ---- Program pre-fill from ?program=<slug> ----
+  const programSelect = document.querySelector("[data-program-select]");
+  const programHiddenInput = document.querySelector("[data-program-hidden]");
+  const programSelectRow = document.querySelector("[data-program-select-row]");
+  const programContext = document.querySelector("[data-selected-program-context]");
+  const programName = document.querySelector("[data-selected-program-name]");
+
+  function syncProgramSelection() {
+    if (!(programSelect instanceof HTMLSelectElement) || !(programHiddenInput instanceof HTMLInputElement)) {
+      return;
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const programSlug = params.get("program");
+
+    if (programSlug) {
+      const matchingOption = Array.from(programSelect.options).find(
+        (option) => option.value === programSlug,
+      );
+      if (matchingOption) programSelect.value = programSlug;
+    }
+
+    programHiddenInput.value = programSelect.value;
+
+    const locked = Boolean(programSlug && programSelect.value);
+    programSelect.disabled = locked;
+    if (programSelectRow instanceof HTMLElement) programSelectRow.hidden = locked;
+
+    if (programContext instanceof HTMLElement && programName instanceof HTMLElement) {
+      const selectedOption = programSelect.selectedOptions[0];
+      const hasSelection = Boolean(programSelect.value && selectedOption);
+      programContext.hidden = !hasSelection;
+      programName.textContent = hasSelection ? (selectedOption?.textContent?.trim() || "") : "";
+    }
+  }
+
+  if (programSelect instanceof HTMLSelectElement) {
+    syncProgramSelection();
+    programSelect.addEventListener("change", syncProgramSelection);
+    window.addEventListener("pageshow", syncProgramSelection);
+    const programObserver = new MutationObserver(syncProgramSelection);
+    programObserver.observe(programSelect, { childList: true, subtree: true, characterData: true });
+  }
+
+  // ---- Eligibility submission wiring ----
+  import { submitEligibility } from "../../lib/eligibility/submit.mjs";
+
+  const eligibilityForm = document.querySelector("[data-eligibility-form]");
+  if (eligibilityForm instanceof HTMLFormElement) {
+    const endpoint = eligibilityForm.dataset.endpoint || "";
+    const statusEl = document.querySelector("[data-eligibility-status]");
+    const submitBtn = eligibilityForm.querySelector("[data-eligibility-submit]");
+    const successPanel = document.querySelector("[data-eligibility-success]");
+
+    const island = document.getElementById("localized-content");
+    const content = island ? JSON.parse(island.textContent || "{}") : {};
+    const lang = () => {
+      const code = window.localStorage.getItem("preferredLanguage") || "EN";
+      return content[code] ? code : (content.EN ? "EN" : Object.keys(content)[0]);
+    };
+    const copy = () => (content[lang()] && content[lang()].page) || {};
+    const submissionCopy = () => copy().submission || {};
+
+    const setStatus = (type, message) => {
+      if (!(statusEl instanceof HTMLElement)) return;
+      statusEl.textContent = message || "";
+      statusEl.className = `form-status${type ? ` form-status--${type}` : ""}`;
+    };
+
+    const fieldValue = (name) => {
+      const el = eligibilityForm.elements[name];
+      if (!el) return "";
+      return ((el.value || "") + "").trim();
+    };
+
+    const validate = () =>
+      Boolean(fieldValue("program") && fieldValue("name") && fieldValue("email") && fieldValue("company"));
+
+    eligibilityForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const sc = submissionCopy();
+      if (eligibilityForm.querySelector('[name="botcheck"]')?.checked) return;
+      if (!validate()) {
+        setStatus("error", sc.validationMessage || "Please complete the required fields.");
+        return;
+      }
+
+      if (submitBtn instanceof HTMLButtonElement) submitBtn.disabled = true;
+      setStatus("pending", sc.submittingMessage || "Submitting...");
+
+      const selectEl = eligibilityForm.querySelector("[data-program-select]");
+      const selectedOption = selectEl instanceof HTMLSelectElement ? selectEl.selectedOptions[0] : null;
+
+      const fd = new FormData();
+      const append = (k, v) => fd.append(k, v == null ? "" : String(v));
+      append("formType", "eligibility");
+      append("submissionId", `eligibility-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`);
+      append("language", lang());
+      append("programSlug", fieldValue("program"));
+      append("programName", selectedOption ? (selectedOption.textContent || "").trim() : "");
+      append("name", fieldValue("name"));
+      append("email", fieldValue("email"));
+      append("company", fieldValue("company"));
+      append("message", fieldValue("message"));
+
+      const result = await submitEligibility(endpoint, fd);
+      if (submitBtn instanceof HTMLButtonElement) submitBtn.disabled = false;
+
+      if (result.ok) {
+        eligibilityForm.hidden = true;
+        if (successPanel instanceof HTMLElement) successPanel.hidden = false;
+        setStatus("", "");
+      } else {
+        setStatus("error", sc.errorMessage || "We could not submit the form. Please try again.");
+      }
+    });
+  }
+</script>

@@ -10,8 +10,7 @@
     { "label": "Advisory", "href": "/advisory/" },
     { "label": "Competitions & Challenges", "href": "/competitions/" },
     { "label": "Events", "href": "/events/" },
-    { "label": "Programs", "href": "/programs/" },
-    { "label": "Network", "href": "/network/" }
+    { "label": "Programs", "href": "/programs/" }
   ],
   "footer": {
     "eyebrow": "Fuel your growth.",
@@ -505,18 +504,18 @@
       "Other"
     ],
     "benefits": [
-      { "label": "Policy Declaration", "value": "policy", "short": "PD", "tone": "blue" },
-      { "label": "Talent Services", "value": "talent", "short": "TS", "tone": "green" },
-      { "label": "Business & Taxation", "value": "tax", "short": "BT", "tone": "lilac" },
-      { "label": "Listing Guidance", "value": "listing", "short": "LG", "tone": "sand" },
-      { "label": "HICOOL Fund Investment", "value": "fund", "short": "HF", "tone": "green" },
-      { "label": "Financial Advisory", "value": "fa", "short": "FA", "tone": "blue" },
-      { "label": "VC Matchmaking", "value": "vc", "short": "VC", "tone": "sand" },
-      { "label": "Industrial Matchmaking", "value": "industrial", "short": "IM", "tone": "lilac" },
-      { "label": "Scenario Matchmaking", "value": "scenario", "short": "SM", "tone": "blue" },
-      { "label": "Exhibition", "value": "exhibition", "short": "EX", "tone": "green" },
-      { "label": "Pitching", "value": "pitching", "short": "PT", "tone": "sand" },
-      { "label": "Branding", "value": "branding", "short": "BR", "tone": "lilac" }
+      { "label": "Policy Declaration", "value": "policy", "icon": "scroll-text", "tone": "blue" },
+      { "label": "Talent Services", "value": "talent", "icon": "users", "tone": "green" },
+      { "label": "Business & Taxation", "value": "tax", "icon": "receipt", "tone": "lilac" },
+      { "label": "Listing Guidance", "value": "listing", "icon": "trending-up", "tone": "sand" },
+      { "label": "HICOOL Fund Investment", "value": "fund", "icon": "piggy-bank", "tone": "green" },
+      { "label": "Financial Advisory", "value": "fa", "icon": "line-chart", "tone": "blue" },
+      { "label": "VC Matchmaking", "value": "vc", "icon": "handshake", "tone": "sand" },
+      { "label": "Industrial Matchmaking", "value": "industrial", "icon": "factory", "tone": "lilac" },
+      { "label": "Scenario Matchmaking", "value": "scenario", "icon": "map", "tone": "blue" },
+      { "label": "Exhibition", "value": "exhibition", "icon": "presentation", "tone": "green" },
+      { "label": "Pitching", "value": "pitching", "icon": "mic", "tone": "sand" },
+      { "label": "Branding", "value": "branding", "icon": "megaphone", "tone": "lilac" }
     ],
     "hearAboutOptions": [
       "LATAM CHINA TECH Website",

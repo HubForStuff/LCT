@@ -1,3 +1,5 @@
+@import "./language-switcher.css";
+
   :root {
     color-scheme: dark;
   }
@@ -356,150 +358,8 @@
     font-size: 13px;
   }
 
-  .desktop-home .desk-lang,
-  .desktop-home .desk-footer-lang {
-    position: relative;
-  }
-
-  .desktop-home .desk-lang {
-    flex: 0 0 200px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
-
-  .desktop-home .desk-lang-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    min-width: 36px;
-    height: 36px;
-    gap: 0;
-    padding: 0;
-    border: 0;
-    border-radius: 50%;
-    background: transparent;
-    color: #555555;
-    cursor: pointer;
-    transition: color 0.15s ease;
-  }
-
-  .desktop-home .desk-lang-btn:hover {
-    color: #fff;
-  }
-
-  .desktop-home .desk-lang-btn svg {
-    width: 16px;
-    height: 16px;
-    flex-shrink: 0;
-    transition: transform 0.15s ease;
-  }
-
-  .desktop-home .desk-lang-btn:hover svg {
-    transform: scale(1.18);
-  }
-
-  .desktop-home .desk-lang-active-code {
-    display: none;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.55);
-  }
-
-  .desktop-home .desk-lang-btn:hover .desk-lang-active-code {
-    color: #fff;
-  }
-
-  .desktop-home .desk-lang-menu {
-    position: absolute;
-    top: calc(100% + 8px);
-    right: 0;
-    min-width: 80px;
-    padding: 6px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 12px;
-    background: rgba(8, 8, 8, 0.58);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transform: translateY(-6px);
-    transition: opacity 0.18s ease, visibility 0.18s ease, transform 0.18s ease;
-    z-index: 9999;
-  }
-
-  .desktop-home .desk-lang.is-open .desk-lang-menu,
-  .desktop-home .desk-footer-lang.is-open .desk-lang-menu {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transform: translateY(0);
-  }
-
-  .desktop-home .desk-lang-menu--footer {
-    right: auto;
-    left: 50%;
-    top: auto;
-    bottom: calc(100% + 8px);
-    transform: translateX(-50%) translateY(6px);
-  }
-
-  .desktop-home .desk-footer-lang.is-open .desk-lang-menu--footer {
-    transform: translateX(-50%) translateY(0);
-  }
-
-  .desktop-home .desk-lang-option {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 6px;
-    width: 100%;
-    padding: 7px 12px;
-    border: 0;
-    border-radius: 8px;
-    background: transparent;
-    color: var(--desk-red);
-    cursor: pointer;
-    text-align: left;
-    white-space: nowrap;
-    font-size: 12px;
-    font-weight: 600;
-    transition: background 0.12s ease, color 0.12s ease;
-  }
-
-  .desktop-home .desk-lang-option span {
-    color: inherit;
-  }
-
-  .desktop-home .desk-lang-option small {
-    opacity: 0;
-    max-width: 0;
-    overflow: hidden;
-    color: #fff;
-    font-size: 11px;
-    font-weight: 400;
-    transition: opacity 0.18s ease, max-width 0.25s ease;
-  }
-
-  .desktop-home .desk-lang-option:hover,
-  .desktop-home .desk-lang-option.is-active {
-    background: rgba(255, 255, 255, 0.07);
-    color: var(--desk-red);
-  }
-
-  .desktop-home .desk-lang-option:hover small {
-    opacity: 1;
-    max-width: 160px;
-  }
-
-  .desktop-home .desk-lang-option.is-active small {
-    color: #fff;
-  }
+  /* Homepage language controls now use the shared LanguageSwitcher component
+     (tone="dark"); its styling lives in src/styles/language-switcher.css. */
 
   .desktop-home .desk-hero {
     position: relative;
@@ -623,72 +483,35 @@
   }
 
   .desktop-home .desk-categories {
-    padding-top: 80px;
-    padding-bottom: 0;
+    /* Clears the sticky 80px nav so the hero CTA's #desktop-categories jump
+       lands on the callouts instead of tucking them under the header.
+       padding-top/bottom already come from .desk-section above. */
+    scroll-margin-top: 80px;
   }
 
-  .desktop-home .desk-catblocks {
-    width: 100%;
-    max-width: 1600px;
-    margin: 0 auto;
-    padding: 0 58px;
-    display: flex;
-    flex-direction: column;
+  /* Section callouts — one card per section of the site. Reuses the bordered
+     dark-surface shell shared with the competition and news cards. */
+  .desktop-home .section-callouts-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 12px;
-    /* Extra padding gives the container enough scroll height
-       so the last card stays sticky while the section is visible */
-    padding-bottom: 10vh;
   }
 
-  /* The wrapper IS the sticky element — cards sit inside it.
-     Each wrapper sticks at a slightly lower top so the previous
-     card's title strip peeks above when covered. */
-  .desktop-home .desk-catblock-sticky-wrap {
-    position: sticky;
-    border-radius: 18px;
-  }
-
-  .desktop-home .desk-catblock-sticky-wrap:nth-child(1) {
-    top: 80px;
-    z-index: 1;
-  }
-  .desktop-home .desk-catblock-sticky-wrap:nth-child(2) {
-    top: 80px;
-    z-index: 2;
-  }
-  .desktop-home .desk-catblock-sticky-wrap:nth-child(3) {
-    top: 80px;
-    z-index: 3;
-  }
-
-  .desktop-home .desk-catblock {
+  .desktop-home .section-callout {
     position: relative;
     display: flex;
-    align-items: stretch;
-    min-height: 340px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 30px 26px 26px;
     border: 1px solid var(--desk-border);
     border-radius: 18px;
-    overflow: hidden;
     background: var(--desk-surface);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10);
     transition:
-      transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
-      box-shadow 0.65s cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: transform;
+      transform 0.22s ease,
+      border-color 0.22s ease;
   }
 
-  /* Scale-down effect for cards that have been scrolled past (covered by next card) */
-  .desktop-home .desk-catblock.is-stacked {
-    transform: scale(0.96);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-  }
-
-  .desktop-home .desk-catblock.is-stacked-deep {
-    transform: scale(0.92);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  }
-
-  .desktop-home .desk-catblock::before {
+  .desktop-home .section-callout::before {
     content: "";
     position: absolute;
     inset: 0 auto 0 0;
@@ -696,116 +519,72 @@
     border-radius: 18px 0 0 18px;
     background: linear-gradient(180deg, var(--desk-red), #ff8c00);
     opacity: 0;
-    transition: opacity 0.25s ease;
+    transition: opacity 0.22s ease;
   }
 
-  .desktop-home .desk-catblock-sticky-wrap:last-child .desk-catblock::before {
+  .desktop-home .section-callout:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.28);
+  }
+
+  .desktop-home .section-callout:hover::before {
     opacity: 1;
   }
 
-  .desktop-home .desk-catblock--light {
-    background: #fff;
-    color: #000;
-    border-color: rgba(0, 0, 0, 0.12);
-  }
-
-  .desktop-home .desk-catblock--light::before {
-    background: linear-gradient(180deg, var(--desk-blue), #00aaff);
-  }
-
-  .desktop-home .desk-catblock-body {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
+  .desktop-home .callout-icon {
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
-    flex: 1;
-    padding: 28px 32px;
-  }
-
-  .desktop-home .desk-catblock-eye {
-    margin-bottom: 14px;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
+    width: 44px;
+    height: 44px;
+    margin-bottom: 20px;
+    border: 1px solid var(--desk-border);
+    border-radius: 12px;
     color: var(--desk-red);
+    transition: border-color 0.22s ease;
   }
 
-  .desktop-home .desk-catblock--light .desk-catblock-eye {
-    color: rgba(0, 0, 0, 0.66);
+  .desktop-home .section-callout:hover .callout-icon {
+    border-color: rgba(255, 59, 0, 0.5);
   }
 
-  .desktop-home .desk-catblock-title {
-    margin: 0 0 8px;
-    font-size: clamp(24px, 2.2vw, 32px);
+  .desktop-home .callout-title {
+    margin: 0 0 10px;
+    font-size: clamp(20px, 1.5vw, 24px);
     font-weight: 700;
-    line-height: 1.08;
+    line-height: 1.1;
     letter-spacing: -0.01em;
   }
 
-  .desktop-home .desk-catblock-desc {
-    margin: 0 0 14px;
-    max-width: 560px;
-    font-size: 15px;
+  .desktop-home .callout-desc {
+    margin: 0 0 20px;
+    font-size: 14px;
     line-height: 1.6;
-    color: #fff;
-    opacity: 1;
-    transition: opacity 0.35s ease;
+    color: var(--desk-muted);
   }
 
-  /* Hide description when the card is covered by the next one */
-  .desktop-home .desk-catblock.is-stacked .desk-catblock-desc,
-  .desktop-home .desk-catblock.is-stacked-deep .desk-catblock-desc {
-    opacity: 0;
-  }
-
-  .desktop-home .desk-catblock--light .desk-catblock-desc {
-    color: rgba(0, 0, 0, 0.72);
-  }
-
-  .desktop-home .desk-catblock-cta {
+  .desktop-home .callout-cta {
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    margin-top: auto;
     font-size: 13px;
     font-weight: 700;
     color: var(--desk-red);
   }
 
-  .desktop-home .desk-catblock-cta::after,
+  .desktop-home .callout-cta::after {
+    content: "→";
+    transition: transform 0.22s ease;
+  }
+
+  .desktop-home .section-callout:hover .callout-cta::after {
+    transform: translateX(3px);
+  }
+
   .desktop-home .desk-section-link::after,
   .desktop-home .desk-comp-cta::after {
     content: "→";
-  }
-
-  .desktop-home .desk-catblock-media {
-    position: relative;
-    width: 35%;
-    min-width: 35%;
-    margin-left: -2%;
-    align-self: stretch;
-  }
-
-  .desktop-home .desk-catblock-media::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.12), transparent 24%),
-      radial-gradient(circle at 70% 78%, rgba(255, 255, 255, 0.12), transparent 28%);
-  }
-
-  .desktop-home .desk-catblock-media--1 {
-    background: linear-gradient(135deg, #ff3b00 0%, #cc1e8a 54%, #0015ff 100%);
-  }
-
-  .desktop-home .desk-catblock-media--2 {
-    background: linear-gradient(160deg, #ff6b35 0%, #e0204d 40%, #4020c0 100%);
-  }
-
-  .desktop-home .desk-catblock-media--3 {
-    background: linear-gradient(200deg, #ff1a1a 0%, #a020f0 55%, #003cff 100%);
   }
 
   .desktop-home .desk-section--alt {
@@ -1363,22 +1142,6 @@
     padding-top: 42px;
   }
 
-  .desktop-home .desk-lang-btn--footer {
-    color: rgba(255, 255, 255, 0.35);
-  }
-
-  .desktop-home .desk-lang-btn--footer:hover {
-    color: rgba(255, 255, 255, 0.55);
-  }
-
-  .desktop-home .desk-lang-menu--footer .desk-lang-option small {
-    display: none;
-  }
-
-  .desktop-home .desk-lang-menu--footer .desk-lang-option {
-    font-size: 12px;
-  }
-
   .mobile-home {
     --mob-red: #ff2d00;
     --mob-blue: #0022ff;
@@ -1843,11 +1606,24 @@
     letter-spacing: -0.03em;
   }
 
-  .mobile-home .mob-cat-card {
+  /* Clears the sticky 60px nav so the hero CTA's #mobile-categories jump
+     lands on the callouts instead of tucking them under the header. */
+  .mobile-home .mob-categories {
+    scroll-margin-top: 60px;
+  }
+
+  /* Section callouts — mobile shell. Stacked full-width cards matching the
+     mobile competition card treatment. */
+  .mobile-home .section-callouts-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .mobile-home .section-callout {
     position: relative;
     display: block;
-    margin-bottom: 14px;
-    padding: 32px 24px;
+    padding: 28px 24px;
     border: 1.5px solid rgba(255, 255, 255, 0.12);
     border-radius: 20px;
     background: var(--mob-surface);
@@ -1855,60 +1631,24 @@
     transition: transform 0.22s ease, box-shadow 0.22s ease;
   }
 
-  .mobile-home .mob-cat-card:hover {
-    transform: translateY(-6px);
+  .mobile-home .section-callout:active {
+    transform: translateY(-4px);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.36);
   }
 
-  .mobile-home .mob-cat-card:hover .mob-cat-glow {
-    opacity: 0.55;
-  }
-
-  .mobile-home .mob-cat-card--white {
-    background: #fff;
-    color: #000;
-    border-color: rgba(0, 0, 0, 0.15);
-  }
-
-  .mobile-home .mob-cat-glow {
-    position: absolute;
-    top: -30px;
-    right: -30px;
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    opacity: 0.35;
-    filter: blur(50px);
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-  }
-
-  .mobile-home #mobile-categories .mob-cat-card:nth-child(1) .mob-cat-glow {
-    background: var(--mob-red);
-  }
-
-  .mobile-home #mobile-categories .mob-cat-card:nth-child(2) .mob-cat-glow {
-    background: var(--mob-blue);
-  }
-
-  .mobile-home #mobile-categories .mob-cat-card:nth-child(3) .mob-cat-glow {
-    background: linear-gradient(135deg, var(--mob-red), var(--mob-blue));
-  }
-
-  .mobile-home .mob-cat-eye {
-    margin-bottom: 12px;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
+  .mobile-home .callout-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin-bottom: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 12px;
     color: var(--mob-red);
   }
 
-  .mobile-home .mob-cat-card--white .mob-cat-eye {
-    color: rgba(0, 0, 0, 0.68);
-  }
-
-  .mobile-home .mob-cat-card h2 {
+  .mobile-home .callout-title {
     margin: 0 0 10px;
     max-width: 82%;
     font-family: "Outfit", sans-serif;
@@ -1918,7 +1658,7 @@
     letter-spacing: -0.02em;
   }
 
-  .mobile-home .mob-cat-card p {
+  .mobile-home .callout-desc {
     margin: 0 0 16px;
     max-width: 86%;
     font-size: 14px;
@@ -1926,11 +1666,7 @@
     color: rgba(255, 255, 255, 0.85);
   }
 
-  .mobile-home .mob-cat-card--white p {
-    color: rgba(0, 0, 0, 0.75);
-  }
-
-  .mobile-home .mob-cat-cta {
+  .mobile-home .callout-cta {
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -1940,7 +1676,7 @@
     color: var(--mob-red);
   }
 
-  .mobile-home .mob-cat-cta::after {
+  .mobile-home .callout-cta::after {
     content: "→";
   }
 
@@ -2295,8 +2031,8 @@
       font-size: 15px;
     }
 
-    .desktop-home .desk-catblocks {
-      padding: 0 34px;
+    .desktop-home .section-callouts-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .desktop-home .desk-footer-cta-inner {

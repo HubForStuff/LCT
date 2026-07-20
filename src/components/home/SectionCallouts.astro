@@ -1,0 +1,47 @@
+---
+import Icon from "../site/Icon.astro";
+import type { HomepageLocaleContent } from "../../lib/homepage/types";
+
+interface Props {
+  locale: HomepageLocaleContent;
+  variant: "desktop" | "mobile";
+}
+
+const { locale, variant } = Astro.props;
+
+const isDesktop = variant === "desktop";
+
+/* The desktop and mobile shells own their own section chrome, but the callouts
+   themselves share the `.section-callout` class and are styled per shell via
+   `.desktop-home` / `.mobile-home` scoping — the same approach the existing
+   `.desk-section-eye, .mob-section-eye` rules already use. */
+const sectionId = isDesktop ? "desktop-categories" : "mobile-categories";
+const sectionClass = isDesktop
+  ? "desk-section desk-categories"
+  : "mob-section mob-categories";
+const calloutClass = isDesktop ? "section-callout" : "section-callout mob-reveal";
+const iconSize = isDesktop ? 24 : 22;
+---
+
+<section class={sectionClass} id={sectionId}>
+  <div class:list={[isDesktop && "desk-wrap"]}>
+    <div class="section-callouts-grid">
+      {locale.sectionCallouts.map((callout, index) => (
+        <a href={callout.href} class={calloutClass}>
+          <span class="callout-icon">
+            <Icon name={callout.icon} size={iconSize} />
+          </span>
+          <h2 class="callout-title" data-i18n={`sectionCallouts.${index}.title`}>
+            {callout.title}
+          </h2>
+          <p class="callout-desc" data-i18n={`sectionCallouts.${index}.description`}>
+            {callout.description}
+          </p>
+          <span class="callout-cta" data-i18n={`sectionCallouts.${index}.cta`}>
+            {callout.cta}
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

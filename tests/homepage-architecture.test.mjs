@@ -235,3 +235,27 @@ test("static pages content is modeled as a keystatic-managed collection", () => 
     `expected seeded static page entries for advisory, events, network, and programs; found ${staticPageEntries.join(", ")}`,
   );
 });
+
+test("homepage reuses the shared language switcher", () => {
+  const nav = readProjectFile("src/components/home/DesktopNavigation.astro");
+  assert.match(nav, /LanguageSwitcher/, "homepage nav must use the shared component");
+  assert.doesNotMatch(nav, /desk-lang-btn/, "hand-rolled switcher markup must be gone");
+
+  const footer = readProjectFile("src/components/home/DesktopFooter.astro");
+  assert.match(footer, /LanguageSwitcher/, "homepage footer must use the shared component");
+  assert.doesNotMatch(footer, /desk-lang-btn/, "hand-rolled footer switcher markup must be gone");
+});
+
+test("language switcher has a fixed width and no active highlight", () => {
+  // Switcher styling lives in a shared stylesheet so both the dark homepage
+  // and the light interior pages render the identical control.
+  const css = readProjectFile("src/styles/language-switcher.css");
+  const btn = css.match(/\.site-lang-btn \{[^}]*\}/);
+  assert.ok(btn && /width:\s*\d/.test(btn[0]), "switcher button needs an explicit width");
+  assert.match(css, /\.site-lang-menu \{[^}]*width:\s*\d/, "switcher menu needs a fixed width");
+  assert.doesNotMatch(
+    css,
+    /\.site-lang-option\.is-active \{[^}]*background/,
+    "no selected-language highlight",
+  );
+});

@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Events — LATAM China Tech</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--red:#FF3B00;--blue:#0015FF;--bg:#FFFFFF;--ink:#111111;--muted:#888888;--faint:#F5F5F5;--rule:rgba(0,0,0,0.08);--max:100%}
+html{scroll-behavior:smooth}
+body{font-family:'Roboto',sans-serif;background:#fff;color:#111;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1200px;margin:0 auto;padding:0 40px}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:'Roboto',sans-serif;font-size:12px;font-weight:400;padding:9px 20px;border-radius:99px;border:1.5px solid rgba(0,0,0,.22);cursor:pointer;transition:background .18s,border-color .18s,color .18s;text-decoration:none;color:#111;background:transparent;letter-spacing:.04em;white-space:nowrap}
+.btn:hover{border-color:#111;background:rgba(0,0,0,.05)}
+.btn::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.btn-red{background:var(--red);border-color:var(--red);color:#fff}
+.btn-red::before{background:#fff}
+.btn-red:hover{background:#e03200;border-color:#e03200;color:#fff}
+.btn-outline::before{background:var(--red)}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:900;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.08);transition:background .3s ease}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 40px;height:100px;display:flex;align-items:center;justify-content:space-between;gap:0}
+.nav-logo a{display:block}
+.nav-logo img{height:44px;width:auto;display:block}
+.nav-items{display:flex;align-items:stretch;height:100px;padding-left:58px}
+.ni{position:static}
+.ni>a{display:flex;align-items:center;height:100px;padding:0 16px;font-size:17px;font-weight:400;letter-spacing:.03em;color:#000;text-decoration:none;white-space:nowrap;position:relative;transition:color .3s ease}
+.ni>a::after{content:'';position:absolute;left:16px;bottom:24px;width:0%;height:1px;background-color:var(--red);transition:width .35s cubic-bezier(.4,0,.2,1)}
+.ni:hover>a::after{width:calc(100% - 32px)}
+.ni>a.active{color:#111;font-weight:500}
+.ni>a.active::after{width:calc(100% - 32px)}
+.lang-switcher{position:relative;display:flex;align-items:center}
+.lang-btn{display:flex;align-items:center;justify-content:center;background:transparent;border:none;cursor:pointer;padding:0;color:#555;transition:color .15s;border-radius:50%;width:36px;height:36px;flex-shrink:0}
+.lang-btn:hover{color:#000}
+.lang-btn:hover .lang-icon-wrap{transform:scale(1.18)}
+.lang-btn .lang-icon-wrap{display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .15s}
+.lang-dropdown{position:absolute;top:calc(100% + 8px);right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(0,0,0,.12);border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,.12);padding:6px;min-width:80px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .18s,visibility .18s,transform .18s;z-index:9999}
+.lang-switcher:hover .lang-dropdown,.lang-switcher:focus-within .lang-dropdown{opacity:1;visibility:visible;transform:translateY(0)}
+.lang-opt{display:flex;align-items:center;gap:6px;padding:7px 12px;font-size:12px;font-weight:600;color:var(--red);border-radius:8px;cursor:pointer;transition:background .12s,color .12s;white-space:nowrap}
+.lang-opt:hover{background:rgba(0,0,0,.04);color:var(--red)}
+.lang-opt.active{color:var(--red)}
+.lang-opt .lang-full{font-size:11px;font-weight:400;color:#000;opacity:0;max-width:0;overflow:hidden;transition:opacity .18s,max-width .25s}
+.lang-opt:hover .lang-full{opacity:1;max-width:160px}
+
+/* PAGE HEADER */
+.page-header{padding:64px 0 40px}
+.page-header-inner{display:flex;align-items:flex-end;justify-content:space-between;gap:32px}
+.page-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#000;margin-bottom:16px}
+.page-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--red);display:inline-block}
+.page-title{font-size:clamp(44px,5.2vw,74px);font-weight:800;letter-spacing:-.03em;line-height:.92;color:#000;white-space:nowrap}
+.page-title em{font-style:normal;color:#000}
+
+/* FILTERS */
+.filters-bar{padding:22px 0 20px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.filter-sep-dot{width:4px;height:4px;border-radius:50%;background:rgba(0,0,0,.25);flex-shrink:0;margin:0 4px}
+.filter-group-label{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#000;white-space:nowrap;margin-right:4px}
+.filter-pill{display:inline-flex;align-items:center;gap:7px;padding:8px 17px;border-radius:99px;border:1.5px solid rgba(0,0,0,.22);font-size:14px;font-weight:400;color:#000;cursor:pointer;transition:all .15s;white-space:nowrap;background:#fff}
+.filter-pill svg{opacity:.15;flex-shrink:0;transition:opacity .15s}
+.filter-pill:hover{background:rgba(0,0,0,.05);border-color:rgba(0,0,0,.22)}
+.filter-pill:hover svg{opacity:.4}
+.filter-pill.active{background:#fff;border:1.5px solid rgba(0,0,0,.22);color:#000;font-weight:500}
+.filter-pill.active svg{opacity:1}
+
+/* REGION DROPDOWN */
+.region-dropdown-wrap{position:relative;display:inline-flex;align-items:center}
+.region-dropdown-wrap .filter-pill{gap:6px}
+.region-dropdown-wrap .filter-pill svg.chevron{opacity:.4;transition:transform .18s}
+.region-dropdown-wrap.open .filter-pill svg.chevron{transform:rotate(180deg)}
+.region-panel{
+  position:absolute;top:calc(100% + 8px);left:0;z-index:600;
+  background:#fff;border:1.5px solid rgba(0,0,0,.12);border-radius:16px;
+  box-shadow:0 12px 40px rgba(0,0,0,.12);padding:16px 20px 20px;
+  min-width:260px;opacity:0;visibility:hidden;transform:translateY(-6px);
+  transition:opacity .18s,visibility .18s,transform .18s;
+}
+.region-dropdown-wrap.open .region-panel{opacity:1;visibility:visible;transform:translateY(0)}
+.rg-section{margin-bottom:14px}
+.rg-section:last-child{margin-bottom:0}
+.rg-section-label{font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#bbb;margin-bottom:6px}
+.rg-countries{display:flex;flex-wrap:wrap;gap:5px}
+.rg-pill{display:inline-flex;align-items:center;padding:4px 11px;border-radius:99px;border:1.5px solid rgba(0,0,0,.14);font-size:12px;font-weight:400;color:#555;cursor:pointer;transition:all .14s;white-space:nowrap;background:#fff}
+.rg-pill:hover{border-color:#111;color:#111}
+.rg-pill.active{font-weight:600}
+
+/* TAB BAR */
+.tab-bar{padding:20px 0 0;display:flex;align-items:flex-end;justify-content:space-between;gap:16px}
+.tab-group{display:flex;gap:0;border-bottom:2px solid var(--rule)}
+.tab{display:inline-flex;align-items:center;gap:8px;padding:10px 24px 12px;font-size:26px;font-weight:800;letter-spacing:-.025em;color:#000;cursor:pointer;position:relative;border-bottom:2px solid transparent;margin-bottom:-2px;transition:color .18s,border-color .18s;white-space:nowrap}
+.tab:hover{color:#111}
+.tab.active{color:#111;border-bottom-color:#111}
+.tab .tab-count{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;border-radius:99px;background:rgba(0,0,0,.07);color:#000;font-size:10px;font-weight:700;padding:0 6px}
+.tab.active .tab-count{background:#111;color:#fff}
+.tab-sort{display:flex;align-items:center;gap:12px;padding-bottom:12px}
+.sort-select{background:transparent;border:1px solid rgba(0,0,0,.12);border-radius:99px;color:#111;font-size:13px;padding:7px 18px;font-family:'Roboto',sans-serif;cursor:pointer;outline:none;transition:border-color .18s}
+.sort-select:hover{border-color:rgba(0,0,0,.45)}
+.sort-select option{background:#fff;color:#111}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+/* MONTH SEPARATOR */
+.month-sep{display:flex;align-items:center;gap:16px;padding:32px 0 8px;margin-top:8px}
+.month-sep:first-child{padding-top:20px}
+.month-sep-label{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#bbb;white-space:nowrap;flex-shrink:0}
+.month-sep-line{flex:1;height:1px;background:var(--rule)}
+
+/* GRID — 4 per row */
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:32px;margin-top:4px}
+
+/* CARD */
+.ccard{background:#fff;border:1.5px solid rgba(0,0,0,.12);border-radius:18px;overflow:hidden;cursor:pointer;transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column}
+.ccard:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.11)}
+
+/* card image */
+.ccard-img{height:140px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:linear-gradient(135deg,#000 0%,#2a2a2a 100%)}
+.ccard-img-wm{font-size:40px;font-weight:900;letter-spacing:-.04em;text-transform:uppercase;color:rgba(255,255,255,.1);user-select:none;z-index:1;position:relative}
+.ccard-img-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:20px 20px}
+.ccard-img-photo{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.35;z-index:0;transition:opacity .3s}
+.ccard:hover .ccard-img-photo{opacity:.5}
+
+/* badges */
+.ccard-badge{position:absolute;top:12px;left:12px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:99px;z-index:2;display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+.badge-open{background:var(--red);color:#fff}
+.badge-upcoming{background:rgba(0,21,255,.85);color:#fff}
+.badge-past{background:rgba(0,0,0,.45);color:#fff}
+.badge-open::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:#fff;flex-shrink:0;animation:blink 1.8s ease infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.badge-upcoming::before{content:'';display:inline-block;width:7px;height:7px;flex-shrink:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 9 9' fill='none'%3E%3Ccircle cx='4.5' cy='4.5' r='3.5' stroke='white' stroke-width='1.5' stroke-dasharray='2 1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center;background-size:contain}
+.badge-past::before{content:'';display:inline-block;width:7px;height:7px;flex-shrink:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 9 9' fill='none'%3E%3Crect x='1' y='1' width='7' height='7' rx='1.5' stroke='white' stroke-width='1.5'/%3E%3Cline x1='3' y1='4.5' x2='6' y2='4.5' stroke='white' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center;background-size:contain}
+
+.ccard-date-badge{position:absolute;top:12px;right:12px;z-index:2;background:#000;color:#fff;font-size:11px;font-weight:700;letter-spacing:.03em;padding:4px 10px;border-radius:99px;white-space:nowrap}
+
+/* card body */
+.ccard-body{padding:10px 14px 6px;flex:1;display:flex;flex-direction:column}
+.ccard-cat{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:5px;display:flex;align-items:center;gap:6px;color:#888}
+.ccard-cat svg{flex-shrink:0;opacity:.7;width:10px;height:10px}
+.ccard-name{font-size:14px;font-weight:800;letter-spacing:-.02em;line-height:1.15;color:#000;margin-bottom:5px}
+.ccard-desc{font-size:12px;line-height:1.5;color:#666;flex:1;margin-bottom:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ccard-footer{padding:8px 14px;border-top:1px solid rgba(0,0,0,.07);display:flex;align-items:center;justify-content:space-between;gap:8px}
+.ccard-location{font-size:12px;font-weight:500;color:#888;display:flex;align-items:center;gap:4px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ccard-location svg{flex-shrink:0;opacity:.4}
+.ccard-apply{display:inline-flex;align-items:center;gap:5px;color:#fff;border:none;border-radius:99px;font-size:11px;font-weight:800;letter-spacing:.04em;padding:6px 15px;cursor:pointer;transition:background .18s;text-decoration:none;background:var(--red);flex-shrink:0}
+.ccard-apply:hover{background:#e03200}
+.ccard-arrow{width:30px;height:30px;border-radius:50%;border:1.5px solid rgba(0,0,0,.18);display:flex;align-items:center;justify-content:center;font-size:13px;transition:all .18s;color:#bbb;flex-shrink:0}
+.ccard:hover .ccard-arrow{background:#111;color:#fff;border-color:#111}
+
+.ccard-placeholder{background:rgba(0,0,0,.02);border:1.5px dashed rgba(0,0,0,.1);border-radius:18px;display:flex;align-items:center;justify-content:center;min-height:180px;pointer-events:none}
+.ccard-placeholder-label{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#bbb}
+
+/* MORE EVENTS button */
+.more-events-wrap{text-align:center;padding:8px 0 60px}
+.more-events-btn{display:inline-flex;align-items:center;gap:8px;font-family:'Roboto',sans-serif;font-size:13px;font-weight:400;padding:11px 36px;border-radius:99px;border:1.5px solid rgba(0,0,0,.22);cursor:pointer;transition:background .18s,border-color .18s;text-decoration:none;color:#111;background:transparent;letter-spacing:.04em;white-space:nowrap}
+.more-events-btn::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--red);flex-shrink:0}
+.more-events-btn:hover{border-color:#111;background:rgba(0,0,0,.04)}
+
+/* FOOTER */
+footer{background:#fff;position:relative;padding:0;margin:0}
+footer::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to top,rgba(255,59,0,.04) 0%,rgba(0,21,255,.03) 50%,transparent 100%);pointer-events:none}
+.ft-stripe{height:4px;background:var(--red);position:relative;overflow:hidden}
+.ft-stripe::after{content:'';position:absolute;top:0;left:0;width:200%;height:100%;background:linear-gradient(90deg,var(--red) 0%,var(--blue) 25%,var(--red) 50%,var(--blue) 75%,var(--red) 100%);animation:stripe-slide 4s linear infinite}
+@keyframes stripe-slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ft-hero-bar{background:#fff;padding:59px 0;position:relative;overflow:hidden}
+.ft-hero-bar::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(255,59,0,.06) 0%,transparent 60%),radial-gradient(ellipse at 80% 50%,rgba(0,21,255,.04) 0%,transparent 60%);pointer-events:none}
+.ft-hero-bar .wrap{padding:0 40px}
+.ft-hero-inner{display:flex;align-items:center;justify-content:space-between;gap:40px;position:relative;z-index:1}
+.ft-hero-left{max-width:50%}
+.ft-hero-eyebrow{font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#000;margin-bottom:14px}
+.ft-hero-h{font-family:'Roboto',sans-serif;font-size:clamp(26px,2.6vw,40px);font-weight:700;letter-spacing:-.03em;line-height:1.05;color:#111;margin:0}
+.ft-hero-right{display:flex;gap:12px;flex-shrink:0;align-items:center}
+.ft-divider{height:1px;background:rgba(0,0,0,.06)}
+.ft-body{padding:52px 0 0;width:100%}
+.ft-grid{display:flex;flex-direction:column;gap:0;width:100%}
+.ft-nav-row{display:flex;align-items:flex-start;gap:64px;padding:52px 0 40px}
+.ft-nav-group-h{font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#111;margin-bottom:14px}
+.ft-nav-group-links{display:flex;flex-direction:column;gap:8px}
+.ft-nav-group-links a{font-size:17px;color:#000;text-decoration:none;transition:color .15s;white-space:nowrap}
+.ft-nav-group-links a:hover{color:var(--red)}
+.ft-email-i{background:rgba(0,0,0,.03);border:1px solid rgba(0,0,0,.12);border-radius:8px;color:#111;padding:9px 14px;font-family:'Roboto',sans-serif;font-size:14px;outline:none;transition:border-color .18s;box-sizing:border-box;height:38px}
+.ft-email-i:focus{border-color:var(--red)}
+.ft-email-i::placeholder{color:rgba(0,0,0,.25)}
+.ft-nl-btn{font-size:14px;font-weight:400;padding:9px 14px;background:var(--red);border:1px solid var(--red);color:#fff;border-radius:8px;cursor:pointer;transition:border-color .25s,box-shadow .25s;white-space:nowrap;box-sizing:border-box;height:38px}
+.ft-nl-btn:hover{box-shadow:0 0 0 2px var(--red)}
+.ft-socials{display:flex;gap:8px}
+.ft-soc{width:34px;height:34px;border-radius:50%;border:1px solid rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center;color:rgba(0,0,0,.38);cursor:pointer;transition:all .18s;text-decoration:none;font-size:14px;font-weight:600}
+.ft-soc:hover{border-color:#111;color:#111}
+.ft-soc-wc{position:relative;display:inline-block}
+.ft-soc-wc .ft-soc{cursor:pointer}
+.wc-qr-popup{position:absolute;top:50%;right:calc(100% + 10px);left:auto;bottom:auto;transform:translateY(-50%) translateX(6px);opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:100}
+.ft-soc-wc:hover .wc-qr-popup{opacity:1;transform:translateY(-50%) translateX(0);pointer-events:auto}
+.wc-qr-inner{background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-radius:6px;padding:11px;box-shadow:0 4px 16px rgba(0,0,0,.12);border:1px solid rgba(0,0,0,.1);text-align:center;min-width:95px}
+.wc-qr-title{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#000;margin-bottom:6px}
+.wc-qr-box{display:flex;justify-content:center;margin-bottom:5px}
+.ft-lang-switcher{position:relative;display:inline-flex;align-items:center}
+.ft-lang-btn{background:transparent;border:none;cursor:pointer;color:#555;padding:4px;display:flex;align-items:center;transition:color .15s}
+.ft-lang-btn:hover{color:#111}
+.ft-lang-btn .lang-icon-wrap{display:flex;align-items:center;justify-content:center;transition:transform .15s}
+.ft-lang-btn:hover .lang-icon-wrap{transform:scale(1.18)}
+.ft-lang-dropdown{position:absolute;bottom:auto;top:calc(100% + 2px);left:50%;right:auto;transform:translateX(-50%) translateY(6px);background:rgba(255,255,255,.97);border:1px solid rgba(0,0,0,.1);border-radius:8px;padding:6px;display:none;flex-direction:column;gap:2px;z-index:100;min-width:72px;backdrop-filter:blur(12px);box-shadow:0 4px 16px rgba(0,0,0,.1);opacity:0;transition:opacity .15s}
+.ft-lang-switcher:hover .ft-lang-dropdown,.ft-lang-switcher:focus-within .ft-lang-dropdown{display:flex;opacity:1;transform:translateX(-50%) translateY(0)}.ft-lang-switcher::after{content:"";position:absolute;top:100%;left:0;right:0;height:8px}
+.ft-lang-opt{padding:6px 12px;font-size:12px;font-weight:600;color:rgba(0,0,0,.5);cursor:pointer;border-radius:4px;text-align:center;transition:background .14s,color .14s}
+.ft-lang-opt:hover{background:rgba(0,0,0,.05);color:var(--red)}
+.ft-lang-opt.active{color:var(--red)}
+.ft-bottom-stripe{height:32px;background:var(--red);position:relative;overflow:hidden;margin:0;padding:0;width:100%;display:block}
+.ft-bottom-stripe::after{content:'';position:absolute;top:0;left:0;width:200%;height:100%;background:linear-gradient(90deg,var(--red) 0%,var(--blue) 25%,var(--red) 50%,var(--blue) 75%,var(--red) 100%);animation:stripe-slide 4s linear infinite}
+
+
+/* LATAM PASTEL COLORS — all distinct */
+/* CHINA CITY COLORS — all distinct from each other and from LATAM */
+
+
+/* BOOK A BOOTH button */
+.ccard-booth{display:inline-flex;align-items:center;gap:5px;color:var(--red);border:1.5px solid var(--red);border-radius:99px;font-size:11px;font-weight:700;letter-spacing:.04em;padding:5px 12px;cursor:pointer;transition:all .18s;text-decoration:none;background:transparent;flex-shrink:0}
+.ccard-booth:hover{background:var(--red);color:#fff}
+.ccard-footer-btns{display:flex;gap:6px;align-items:center;flex-shrink:0}
+
+/* IMAGE HOVER CROSSFADE */
+.ccard-img-photo2{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;z-index:0;transition:opacity .5s ease}
+.ccard:hover .ccard-img-photo{opacity:0;transition:opacity .5s ease}
+.ccard:hover .ccard-img-photo2{opacity:.45}
+
+
+
+/* CHINA CITY DROPDOWN */
+.china-dropdown-wrap{position:relative;display:inline-flex;align-items:center}
+.china-dropdown-wrap .filter-pill svg.chevron{opacity:.4;transition:transform .18s}
+.china-dropdown-wrap.open .filter-pill svg.chevron{transform:rotate(180deg)}
+.china-panel{position:absolute;top:calc(100% + 8px);left:0;z-index:500;background:#fff;border:1.5px solid rgba(0,0,0,.12);border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.12);padding:16px 20px 20px;min-width:220px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .18s,visibility .18s,transform .18s}
+.china-dropdown-wrap.open .china-panel{opacity:1;visibility:visible;transform:translateY(0)}
+
+
+/* LIST YOUR EVENT button */
+.ccard-list{display:inline-flex;align-items:center;gap:5px;color:#555;border:1.5px solid rgba(0,0,0,.18);border-radius:99px;font-size:11px;font-weight:600;letter-spacing:.03em;padding:5px 13px;cursor:pointer;transition:all .18s;text-decoration:none;background:#f8fafc;flex-shrink:0}
+.ccard-list:hover{background:#e2e8f0;border-color:#94a3b8;color:#1e293b}
+
+
+
+
+
+
+
+/* ── COUNTRY PILLS: border colour only, text unchanged ── */
+
+
+/* INDUSTRY PILLS — border always grey, text always dark, ONLY icon coloured on hover/active */
+.industry-pill{display:inline-flex;align-items:center;gap:5px;padding:5px 13px;border-radius:99px;border:1.5px solid rgba(0,0,0,.13);font-size:12px;font-weight:400;color:#333;cursor:pointer;transition:all .15s;white-space:nowrap;background:#fff}
+.industry-pill .isvg{flex-shrink:0;color:transparent;transition:color .2s}
+.industry-pill:hover{border-color:rgba(0,0,0,.18);color:#111}
+.industry-pill.active{border-color:rgba(0,0,0,.18);font-weight:600;color:#111}
+/* HOVER = very light (barely visible), ACTIVE = medium pastel */
+.industry-pill[data-val="all"]:hover .isvg{color:#d1d5db}.industry-pill[data-val="all"].active .isvg{color:#9ca3af}
+.industry-pill[data-val="AI"]:hover .isvg{color:#ddd6fe}.industry-pill[data-val="AI"].active .isvg{color:#a78bfa}
+.industry-pill[data-val="Biotech"]:hover .isvg{color:#ccfbf1}.industry-pill[data-val="Biotech"].active .isvg{color:#5eead4}
+.industry-pill[data-val="Deep Tech"]:hover .isvg{color:#e0e7ff}.industry-pill[data-val="Deep Tech"].active .isvg{color:#818cf8}
+.industry-pill[data-val="Education"]:hover .isvg{color:#fef9c3}.industry-pill[data-val="Education"].active .isvg{color:#fbbf24}
+.industry-pill[data-val="Energy & Climate"]:hover .isvg{color:#dcfce7}.industry-pill[data-val="Energy & Climate"].active .isvg{color:#4ade80}
+.industry-pill[data-val="Entertainment"]:hover .isvg{color:#fdf2f8}.industry-pill[data-val="Entertainment"].active .isvg{color:#f9a8d4}
+.industry-pill[data-val="Fintech"]:hover .isvg{color:#dbeafe}.industry-pill[data-val="Fintech"].active .isvg{color:#93c5fd}
+.industry-pill[data-val="Food & Agritech"]:hover .isvg{color:#fef9c3}.industry-pill[data-val="Food & Agritech"].active .isvg{color:#fde68a}
+.industry-pill[data-val="Healthtech"]:hover .isvg{color:#fee2e2}.industry-pill[data-val="Healthtech"].active .isvg{color:#fca5a5}
+.industry-pill[data-val="Manufacturing"]:hover .isvg{color:#f1f5f9}.industry-pill[data-val="Manufacturing"].active .isvg{color:#94a3b8}
+.industry-pill[data-val="Media"]:hover .isvg{color:#f5f3ff}.industry-pill[data-val="Media"].active .isvg{color:#c4b5fd}
+.industry-pill[data-val="Mobility"]:hover .isvg{color:#fef9c3}.industry-pill[data-val="Mobility"].active .isvg{color:#fcd34d}
+.industry-pill[data-val="Proptech"]:hover .isvg{color:#e0f2fe}.industry-pill[data-val="Proptech"].active .isvg{color:#7dd3fc}
+.industry-pill[data-val="Robotics"]:hover .isvg{color:#ecfeff}.industry-pill[data-val="Robotics"].active .isvg{color:#67e8f9}
+.industry-pill[data-val="Security"]:hover .isvg{color:#fef2f2}.industry-pill[data-val="Security"].active .isvg{color:#fca5a5}
+.industry-pill[data-val="Other"]:hover .isvg{color:#f1f5f9}.industry-pill[data-val="Other"].active .isvg{color:#cbd5e1}
+
+
+/* ── COUNTRY PILLS: border colour only when active, text always unchanged ── */
+
+
+
+
+
+/* ── COUNTRY PILLS: soft transparent pastel border ── */
+.rg-pill[data-country="Mexico"].active{border-color:rgba(245,180,50,0.45);border-width:2px;font-weight:600}
+.rg-pill[data-country="Belize"].active{border-color:rgba(100,210,140,0.4);border-width:2px;font-weight:600}
+.rg-pill[data-country="Costa Rica"].active{border-color:rgba(60,200,170,0.4);border-width:2px;font-weight:600}
+.rg-pill[data-country="El Salvador"].active{border-color:rgba(120,170,240,0.4);border-width:2px;font-weight:600}
+.rg-pill[data-country="Guatemala"].active{border-color:rgba(180,150,230,0.4);border-width:2px;font-weight:600}
+.rg-pill[data-country="Honduras"].active{border-color:rgba(240,140,170,0.4);border-width:2px;font-weight:600}
+.rg-pill[data-country="Nicaragua"].active{border-color:rgba(250,165,100,0.4);border-width:2px;font-weight:600}
+.rg-pill[data-country="Panama"].active{border-color:rgba(80,210,230,0.4);border-width:2px;font-weight:600}
+.rg-pill[data-country="Cuba"].active{border-color:rgba(245,210,90,0.4);border-width:2px;font-weight:600}
+.rg-pill[data-country="Dominican Republic"].active{border-color:rgba(240,120,120,0.4);border-width:2px;font-weight:600}
+.rg-pill[data-country="Haiti"].active{border-color:rgba(140,160,230,0.4);border-width:2px;font-weight:600}
+.rg-pill[data-country="Puerto Rico"].active{border-color:rgba(100,210,130,0.4);border-width:2px;font-weight:600}
+.rg-pill[data-country="Argentina"].active{border-color:rgba(100,195,240,0.4);border-width:2px;font-weight:600}
+.rg-pill[data-country="Bolivia"].active{border-color:rgba(240,195,70,0.4);border-width:2px;font-weight:600}
+.rg-pill[data-country="Brazil"].active{border-color:rgba(80,195,130,0.4);border-width:2px;font-weight:600}
+.rg-pill[data-country="Chile"].active{border-color:rgba(240,130,145,0.4);border-width:2px;font-weight:600}
+.rg-pill[data-country="Colombia"].active{border-color:rgba(235,215,60,0.4);border-width:2px;font-weight:600}
+.rg-pill[data-country="Ecuador"].active{border-color:rgba(245,170,90,0.4);border-width:2px;font-weight:600}
+.rg-pill[data-country="Guyana"].active{border-color:rgba(70,200,165,0.4);border-width:2px;font-weight:600}
+.rg-pill[data-country="Paraguay"].active{border-color:rgba(195,150,240,0.4);border-width:2px;font-weight:600}
+.rg-pill[data-country="Peru"].active{border-color:rgba(240,130,130,0.4);border-width:2px;font-weight:600}
+.rg-pill[data-country="Suriname"].active{border-color:rgba(100,230,245,0.4);border-width:2px;font-weight:600}
+.rg-pill[data-country="Uruguay"].active{border-color:rgba(150,185,245,0.4);border-width:2px;font-weight:600}
+.rg-pill[data-country="Venezuela"].active{border-color:rgba(230,140,245,0.4);border-width:2px;font-weight:600}
+.rg-pill[data-country="French Guiana"].active{border-color:rgba(140,235,165,0.4);border-width:2px;font-weight:600}
+.rg-pill[data-country="Beijing"].active{border-color:rgba(240,120,120,0.4);border-width:2px;font-weight:600}
+.rg-pill[data-country="Shenzhen"].active{border-color:rgba(90,210,150,0.4);border-width:2px;font-weight:600}
+.rg-pill[data-country="Shanghai"].active{border-color:rgba(110,160,240,0.4);border-width:2px;font-weight:600}
+.rg-pill[data-country="Chengdu"].active{border-color:rgba(245,205,90,0.4);border-width:2px;font-weight:600}
+.rg-pill[data-country="Hangzhou"].active{border-color:rgba(190,150,235,0.4);border-width:2px;font-weight:600}
+.rg-pill[data-country="Macau"].active{border-color:rgba(245,145,185,0.4);border-width:2px;font-weight:600}
+.rg-pill[data-country="Hong Kong"].active{border-color:rgba(250,175,110,0.4);border-width:2px;font-weight:600}
+.rg-pill[data-country="Taiwan"].active{border-color:rgba(100,230,215,0.4);border-width:2px;font-weight:600}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo"><a href="#"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAADWIAAAg8CAYAAAESXVx/AAAACXBIWXMAABcRAAAXEQHKJvM/AAAgAElEQVR4nOzdW5IbOZIF0EzZbKD20JvQXy29/nITtYdeQo5lSeyiKD7i4QDcgXPMZDPWJWWS8bq4ATD4/vn5+QYAFXyzlwCoQmgBUIbQAqAMoQVAGUILgDKEFgBlCC0AyhBaAJQhtAAoQ2gBUIbQAqAMoQVAGUILgDKEFgBlCC0AyhBaAJQhtAAoQ2gBUIbQAqAMoQVAGUILgDKEFgBlCC0AyhBaAJQhtAAoQ2gBUIbQAqAMoQVAGUILgDKEFgBlCC0AyhBaAJQhtAAoQ2gBUIbQAqAMoQVAGUILgDL+z64CGOz7++fdF/Dx+W7X/EpoAfTwKJjYRWgBRBFMzQktgD0E01BCC+CWYEpLaAFrEkwlCS1gXoJpOkILqEsoLUdoAbkJJq4ILWA8wcRGQgvoQzARQGgBcQQTjQktYB/BxEBCC" alt="LATAM China Tech" style="height:44px;width:auto;display:block;filter:brightness(0)"></a></div>
+    <div class="nav-items">
+      <div class="ni"><a href="#">Advisory</a></div>
+      <div class="ni"><a href="#">Competitions &amp; Challenges</a></div>
+      <div class="ni"><a href="#" class="active">Events</a></div>
+      <div class="ni"><a href="#">Programs</a></div>
+      <div class="ni"><a href="#">Network</a></div>
+    </div>
+    <div class="lang-switcher">
+      <button class="lang-btn" aria-label="Select Language">
+        <span class="lang-icon-wrap">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </span>
+      </button>
+      <div class="lang-dropdown">
+        <span class="lang-opt active">EN<span class="lang-full">English</span></span>
+        <span class="lang-opt">中文<span class="lang-full">Chinese</span></span>
+        <span class="lang-opt">BR<span class="lang-full">Portuguese</span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+  <div class="wrap">
+    <div class="page-header-inner">
+      <div>
+        <h1 class="page-title">Events</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <!-- FILTERS: Status + Region dropdown -->
+  <div class="filters-bar">
+    <span class="filter-group-label">Status</span>
+    <span class="filter-pill fp-status active" data-val="all">All</span>
+    <span class="filter-pill fp-status" data-val="open">
+      <svg width="9" height="9" viewBox="0 0 9 9"><circle cx="4.5" cy="4.5" r="3.5" fill="#22c55e"/></svg>
+      Open
+    </span>
+    <span class="filter-pill fp-status" data-val="upcoming">
+      <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><circle cx="4.5" cy="4.5" r="3.5" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="2 1.5"/></svg>
+      Upcoming
+    </span>
+    <span class="filter-pill fp-status" data-val="past">
+      <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><rect x="1" y="1" width="7" height="7" rx="1.5" stroke="#94a3b8" stroke-width="1.5"/><line x1="3" y1="4.5" x2="6" y2="4.5" stroke="#94a3b8" stroke-width="1.5"/></svg>
+      Past
+    </span>
+
+    <div class="filter-sep-dot"></div>
+
+    <!-- REGION DROPDOWN -->
+    <span class="filter-group-label">Region</span>
+    <span class="filter-pill fp-region active" data-val="all">All</span>
+    <div class="china-dropdown-wrap" id="china-dropdown-wrap">
+      <span class="filter-pill fp-region" data-val="china" id="china-trigger" style="gap:6px">
+        <svg width="9" height="9" viewBox="0 0 9 9"><circle cx="4.5" cy="4.5" r="3.5" fill="#ef4444"/></svg>
+        China
+        <svg class="chevron" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polyline points="2,3.5 5,6.5 8,3.5"/></svg>
+      </span>
+      <div class="china-panel" id="china-panel">
+        <div class="rg-section-label" style="font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#bbb;margin-bottom:8px">Location</div>
+        <div class="rg-countries">
+          <span class="rg-pill china-city-pill" data-country="Beijing">Beijing</span>
+          <span class="rg-pill china-city-pill" data-country="Shenzhen">Shenzhen</span>
+          <span class="rg-pill china-city-pill" data-country="Shanghai">Shanghai</span>
+          <span class="rg-pill china-city-pill" data-country="Chengdu">Chengdu</span>
+          <span class="rg-pill china-city-pill" data-country="Hangzhou">Hangzhou</span>
+          <span class="rg-pill china-city-pill" data-country="Macau">Macau</span>
+          <span class="rg-pill china-city-pill" data-country="Hong Kong">Hong Kong</span>
+          <span class="rg-pill china-city-pill" data-country="Taiwan">Taiwan</span>
+        </div>
+      </div>
+    </div>
+    <div class="region-dropdown-wrap" id="latam-dropdown-wrap">
+      <span class="filter-pill fp-region" data-val="latam" id="latam-trigger" style="gap:6px">
+        <svg width="9" height="9" viewBox="0 0 9 9"><circle cx="4.5" cy="4.5" r="3.5" fill="#22c55e"/></svg>
+        LATAM
+        <svg class="chevron" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polyline points="2,3.5 5,6.5 8,3.5"/></svg>
+      </span>
+      <div class="region-panel" id="latam-panel">
+        <div class="rg-section">
+          <div class="rg-section-label">North America</div>
+          <div class="rg-countries">
+            <span class="rg-pill" data-country="Mexico">Mexico</span>
+          </div>
+        </div>
+        <div class="rg-section">
+          <div class="rg-section-label">Central America</div>
+          <div class="rg-countries">
+            <span class="rg-pill" data-country="Belize">Belize</span>
+            <span class="rg-pill" data-country="Costa Rica">Costa Rica</span>
+            <span class="rg-pill" data-country="El Salvador">El Salvador</span>
+            <span class="rg-pill" data-country="Guatemala">Guatemala</span>
+            <span class="rg-pill" data-country="Honduras">Honduras</span>
+            <span class="rg-pill" data-country="Nicaragua">Nicaragua</span>
+            <span class="rg-pill" data-country="Panama">Panama</span>
+          </div>
+        </div>
+        <div class="rg-section">
+          <div class="rg-section-label">Caribbean</div>
+          <div class="rg-countries">
+            <span class="rg-pill" data-country="Cuba">Cuba</span>
+            <span class="rg-pill" data-country="Dominican Republic">Dominican Republic</span>
+            <span class="rg-pill" data-country="Haiti">Haiti</span>
+            <span class="rg-pill" data-country="Puerto Rico">Puerto Rico</span>
+          </div>
+        </div>
+        <div class="rg-section">
+          <div class="rg-section-label">South America</div>
+          <div class="rg-countries">
+            <span class="rg-pill" data-country="Argentina">Argentina</span>
+            <span class="rg-pill" data-country="Bolivia">Bolivia</span>
+            <span class="rg-pill" data-country="Brazil">Brazil</span>
+            <span class="rg-pill" data-country="Chile">Chile</span>
+            <span class="rg-pill" data-country="Colombia">Colombia</span>
+            <span class="rg-pill" data-country="Ecuador">Ecuador</span>
+            <span class="rg-pill" data-country="Guyana">Guyana</span>
+            <span class="rg-pill" data-country="Paraguay">Paraguay</span>
+            <span class="rg-pill" data-country="Peru">Peru</span>
+            <span class="rg-pill" data-country="Suriname">Suriname</span>
+            <span class="rg-pill" data-country="Uruguay">Uruguay</span>
+            <span class="rg-pill" data-country="Venezuela">Venezuela</span>
+            <span class="rg-pill" data-country="French Guiana">French Guiana</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- INDUSTRY FILTER -->
+  <div class="filters-bar" style="padding-top:0">
+    <span class="filter-group-label">Industry</span>
+    <span class="industry-pill fp-industry active" data-val="all">All</span>
+    <span class="industry-pill fp-industry" data-val="AI"><svg class="isvg" width="11" height="11" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="2.2" stroke="currentColor" stroke-width="1.5"/><path d="M6.5 1.5V3M6.5 10V11.5M1.5 6.5H3M10 6.5H11.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>AI</span>
+    <span class="industry-pill fp-industry" data-val="Biotech"><svg class="isvg" width="11" height="11" viewBox="0 0 13 13" fill="none"><ellipse cx="5.5" cy="6.5" rx="2.2" ry="4.5" stroke="currentColor" stroke-width="1.4"/><ellipse cx="7.5" cy="6.5" rx="2.2" ry="4.5" stroke="currentColor" stroke-width="1.4"/></svg>Biotech</span>
+    <span class="industry-pill fp-industry" data-val="Deep Tech"><svg class="isvg" width="11" height="11" viewBox="0 0 13 13" fill="none"><polygon points="6.5,1.5 11.5,11 1.5,11" stroke="currentColor" stroke-width="1.6"/></svg>Deep Tech</span>
+    <span class="industry-pill fp-industry" data-val="Education"><svg class="isvg" width="11" height="11" viewBox="0 0 13 13" fill="none"><path d="M1.5 4.5L6.5 2l5 2.5-5 2.5-5-2.5z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M9 6.5v2.5c0 1-1.2 1.5-2.5 1.5S4 10 4 9V6.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Education</span>
+    <span class="industry-pill fp-industry" data-val="Energy &amp; Climate"><svg class="isvg" width="11" height="11" viewBox="0 0 13 13" fill="none"><path d="M6.5 1.5C6.5 1.5 3 5 3 7.5a3.5 3.5 0 007 0c0-2.5-3.5-6-3.5-6z" stroke="currentColor" stroke-width="1.6"/></svg>Energy &amp; Climate</span>
+    <span class="industry-pill fp-industry" data-val="Entertainment"><svg class="isvg" width="11" height="11" viewBox="0 0 13 13" fill="none"><path d="M2 2.5l9 4-9 4V2.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>Entertainment</span>
+    <span class="industry-pill fp-industry" data-val="Fintech"><svg class="isvg" width="11" height="11" viewBox="0 0 13 13" fill="none"><rect x="2" y="4" width="9" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M4.5 4V3a2 2 0 014 0v1" stroke="currentColor" stroke-width="1.5"/></svg>Fintech</span>
+    <span class="industry-pill fp-industry" data-val="Food &amp; Agritech"><svg class="isvg" width="11" height="11" viewBox="0 0 13 13" fill="none"><path d="M6.5 11.5V5M6.5 5C6.5 5 4 3 2 4c1.5 1.8 3 3.5 4.5 1zM6.5 5c0 0 2.5-2 4.5-1-1.5 1.8-3 3.5-4.5 1z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Food &amp; Agritech</span>
+    <span class="industry-pill fp-industry" data-val="Healthtech"><svg class="isvg" width="11" height="11" viewBox="0 0 13 13" fill="none"><path d="M6.5 11.5C6.5 11.5 2 8.5 2 5.5a2.8 2.8 0 015.5 0 2.8 2.8 0 015.5 0c0 3-6.5 6-6.5 6z" stroke="currentColor" stroke-width="1.5"/></svg>Healthtech</span>
+    <span class="industry-pill fp-industry" data-val="Manufacturing"><svg class="isvg" width="11" height="11" viewBox="0 0 13 13" fill="none"><path d="M1.5 11L4.5 6.5l3 3L11 4l2 7H1.5z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>Manufacturing</span>
+    <span class="industry-pill fp-industry" data-val="Media"><svg class="isvg" width="11" height="11" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.4"/><circle cx="6.5" cy="6.5" r="2" stroke="currentColor" stroke-width="1.4"/><line x1="6.5" y1="1.5" x2="6.5" y2="4.5" stroke="currentColor" stroke-width="1.2"/></svg>Media</span>
+    <span class="industry-pill fp-industry" data-val="Mobility"><svg class="isvg" width="11" height="11" viewBox="0 0 13 13" fill="none"><rect x="1" y="4" width="8" height="5" rx="1" stroke="currentColor" stroke-width="1.4"/><path d="M9 5.5h1.5l1.5 2v1H9V5.5z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><circle cx="3.5" cy="10" r="1.1" stroke="currentColor" stroke-width="1.2"/><circle cx="9.5" cy="10" r="1.1" stroke="currentColor" stroke-width="1.2"/></svg>Mobility</span>
+    <span class="industry-pill fp-industry" data-val="Proptech"><svg class="isvg" width="11" height="11" viewBox="0 0 13 13" fill="none"><path d="M2 11V5.5L6.5 2l4.5 3.5V11H8V8H5v3H2z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>Proptech</span>
+    <span class="industry-pill fp-industry" data-val="Robotics"><svg class="isvg" width="11" height="11" viewBox="0 0 13 13" fill="none"><rect x="3" y="4.5" width="7" height="6" rx="1.5" stroke="currentColor" stroke-width="1.4"/><circle cx="6.5" cy="2.5" r="1.2" stroke="currentColor" stroke-width="1.3"/><line x1="6.5" y1="3.7" x2="6.5" y2="4.5" stroke="currentColor" stroke-width="1.2"/><line x1="4.5" y1="7" x2="4.5" y2="8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><line x1="8.5" y1="7" x2="8.5" y2="8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>Robotics</span>
+    <span class="industry-pill fp-industry" data-val="Security"><svg class="isvg" width="11" height="11" viewBox="0 0 13 13" fill="none"><path d="M6.5 1.5L2 3.5v3.5c0 2.5 2 4.5 4.5 5 2.5-.5 4.5-2.5 4.5-5V3.5L6.5 1.5z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>Security</span>
+    <span class="industry-pill fp-industry" data-val="Other"><svg class="isvg" width="11" height="11" viewBox="0 0 13 13" fill="none"><circle cx="3" cy="6.5" r="1" stroke="currentColor" stroke-width="1.4"/><circle cx="6.5" cy="6.5" r="1" stroke="currentColor" stroke-width="1.4"/><circle cx="10" cy="6.5" r="1" stroke="currentColor" stroke-width="1.4"/></svg>Other</span>
+  </div>
+
+  <!-- TAB BAR -->
+  <div class="tab-bar">
+    <div class="tab-group">
+      <div class="tab active" data-tab="trade">Trade Fairs &amp; Expos <span class="tab-count" id="count-trade">12</span></div>
+      <div class="tab" data-tab="summit">Conferences &amp; Summits <span class="tab-count" id="count-summit">9</span></div>
+    </div>
+    <div class="tab-sort">
+      <select class="sort-select">
+        <option>Sort: Date (nearest)</option>
+        <option>Sort: Region</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- ══════════ TRADE FAIRS ══════════ -->
+  <div class="tab-panel active" id="panel-trade">
+
+    <div class="month-sep" data-ms="jan26-t"><div class="month-sep-label">January 2026</div><div class="month-sep-line"></div></div>
+    <div class="comp-grid" data-grid="jan26-t">
+      <div class="ccard" data-type="trade" data-status="upcoming" data-region="latam" data-country="Mexico" data-industry="Food &amp; Agritech">
+        <div class="ccard-img">
+          <div class="ccard-img-photo" style="background-image:url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&q=80')"></div>
+          <div class="ccard-img-photo2" style="background-image:url('https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600&q=80')"></div>
+          <div class="ccard-img-grid"></div>
+          <span class="ccard-badge badge-upcoming">Upcoming</span>
+          <div class="ccard-date-badge">Jan 28–29</div>
+          <div class="ccard-img-wm">AGR</div>
+        </div>
+        <div class="ccard-body">
+          <div class="ccard-cat">Trade Fair &amp; Expo</div>
+          <div class="ccard-name">LATAM AgroTech Trade Mission</div>
+          <div class="ccard-desc">Chinese agritech buyers meet LATAM producers and food-supply startups. Deal rooms and co-packing demos.</div>
+        </div>
+        <div class="ccard-footer">
+          <div class="ccard-location"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Mexico City</div>
+        </div>
+      </div>
+      <div class="ccard" data-type="trade" data-status="open" data-region="latam" data-country="Argentina" data-industry="Manufacturing">
+        <div class="ccard-img">
+          <div class="ccard-img-photo" style="background-image:url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&q=80')"></div>
+          <div class="ccard-img-photo2" style="background-image:url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=600&q=80')"></div>
+          <div class="ccard-img-grid"></div>
+          <span class="ccard-badge badge-open">Open</span>
+          <div class="ccard-date-badge">Jan 15–17</div>
+          <div class="ccard-img-wm">MIN</div>
+        </div>
+        <div class="ccard-body">
+          <div class="ccard-cat">Trade Fair &amp; Expo</div>
+          <div class="ccard-name">Argentina–China Mining &amp; Resources Forum</div>
+          <div class="ccard-desc">Lithium, copper, and rare-earth producers with Chinese industrial buyers and sovereign wealth-backed investors.</div>
+        </div>
+        <div class="ccard-footer">
+          <div class="ccard-location"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Buenos Aires</div>
+          <a href="#" class="ccard-apply">Join</a>
+        </div>
+      </div>
+      <div class="ccard" data-type="trade" data-status="open" data-region="china" data-country="China" data-industry="Manufacturing">
+        <div class="ccard-img">
+          <div class="ccard-img-photo" style="background-image:url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=80')"></div>
+          <div class="ccard-img-photo2" style="background-image:url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80')"></div>
+          <div class="ccard-img-grid"></div>
+          <span class="ccard-badge badge-open">Open</span>
+          <div class="ccard-date-badge">Jan 22–24</div>
+          <div class="ccard-img-wm">SRC</div>
+        </div>
+        <div class="ccard-body">
+          <div class="ccard-cat">Trade Fair &amp; Expo</div>
+          <div class="ccard-name">China Sourcing Expo – LATAM Buyers Edition</div>
+          <div class="ccard-desc">Curated factory tours and sourcing sessions for LATAM importers diversifying supply chains from Guangdong.</div>
+        </div>
+        <div class="ccard-footer">
+          <div class="ccard-location"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Shenzhen</div>
+          <a href="#" class="ccard-apply">Join</a>
+        </div>
+      </div>
+      <div class="ccard" data-type="trade" data-status="open" data-region="latam" data-country="Colombia" data-industry="Energy &amp; Climate">
+        <div class="ccard-img">
+          <div class="ccard-img-photo" style="background-image:url('https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&q=80')"></div>
+          <div class="ccard-img-photo2" style="background-image:url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&q=80')"></div>
+          <div class="ccard-img-grid"></div>
+          <span class="ccard-badge badge-open">Open</span>
+          <div class="ccard-date-badge">Jan 30–31</div>
+          <div class="ccard-img-wm">GRN</div>
+        </div>
+        <div class="ccard-body">
+          <div class="ccard-cat">Trade Fair &amp; Expo</div>
+          <div class="ccard-name">Colombia Green Trade Fair</div>
+          <div class="ccard-desc">Chinese EV and solar manufacturers alongside Colombian energy companies. Joint project matchmaking sessions.</div>
+        </div>
+        <div class="ccard-footer">
+          <div class="ccard-location"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Bogotá</div>
+          <a href="#" class="ccard-apply">Join</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="month-sep" data-ms="feb26-t"><div class="month-sep-label">February 2026</div><div class="month-sep-line"></div></div>
+    <div class="comp-grid" data-grid="feb26-t">
+      <div class="ccard" data-type="trade" data-status="open" data-region="latam" data-country="Brazil" data-industry="Fintech">
+        <div class="ccard-img">
+          <div class="ccard-img-photo" style="background-image:url('https://images.unsplash.com/photo-1556761175-4b46a572b786?w=600&q=80')"></div>
+          <div class="ccard-img-photo2" style="background-image:url('https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&q=80')"></div>
+          <div class="ccard-img-grid"></div>
+          <span class="ccard-badge badge-open">Open</span>
+          <div class="ccard-date-badge">Feb 5–7</div>
+          <div class="ccard-img-wm">COM</div>
+        </div>
+        <div class="ccard-body">
+          <div class="ccard-cat">Trade Fair &amp; Expo</div>
+          <div class="ccard-name">Brazil–China Cross-Border Commerce Expo</div>
+          <div class="ccard-desc">Marketplaces, logistics, and payment platforms. Live demos on cross-border compliance and fulfilment from both corridors.</div>
+        </div>
+        <div class="ccard-footer">
+          <div class="ccard-location"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>São Paulo</div>
+          <a href="#" class="ccard-apply">Join</a>
+        </div>
+      </div>
+      <div class="ccard" data-type="trade" data-status="open" data-region="latam" data-country="Colombia">
+        <div class="ccard-img">
+          <div class="ccard-img-photo" style="background-image:url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=80')"></div>
+          <div class="ccard-img-grid"></div>
+          <span class="ccard-badge badge-open">Open</span>
+          <div class="ccard-date-badge">Feb 18–20</div>
+          <div class="ccard-img-wm">INF</div>
+        </div>
+        <div class="ccard-body">
+          <div class="ccard-cat">Trade Fair &amp; Expo</div>
+          <div class="ccard-name">Andean Infrastructure &amp; Construction Expo</div>
+          <div class="ccard-desc">Chinese construction technology and materials meeting Andean public and private infrastructure project leads.</div>
+        </div>
+        <div class="ccard-footer">
+          <div class="ccard-location"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Medellín</div>
+          <a href="#" class="ccard-apply">Join</a>
+        </div>
+      </div>
+      <div class="ccard" data-type="trade" data-status="upcoming" data-region="china" data-country="China">
+        <div class="ccard-img">
+          <div class="ccard-img-photo" style="background-image:url('https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=600&q=80')"></div>
+          <div class="ccard-img-grid"></div>
+          <span class="ccard-badge badge-upcoming">Upcoming</span>
+          <div class="ccard-date-badge">Feb 25–27</div>
+          <div class="ccard-img-wm">CSG</div>
+        </div>
+        <div class="ccard-body">
+          <div class="ccard-cat">Trade Fair &amp; Expo</div>
+          <div class="ccard-name">China–LATAM Consumer Goods Sourcing Fair</div>
+          <div class="ccard-desc">Guangzhou manufacturers meet LATAM retail buyers. Home goods, electronics accessories, packaging, and food ingredients.</div>
+        </div>
+        <div class="ccard-footer">
+          <div class="ccard-location"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Guangzhou</div>
+        </div>
+      </div>
+      <div class="ccard" data-type="trade" data-status="upcoming" data-region="latam" data-country="Peru">
+        <div class="ccard-img">
+          <div class="ccard-img-photo" style="background-image:url('https://images.unsplash.com/photo-1464746133101-a2c3f88e0dd9?w=600&q=80')"></div>
+          <div class="ccard-img-grid"></div>
+          <span class="ccard-badge badge-upcoming">Upcoming</span>
+          <div class="ccard-date-badge">Feb 28</div>
+          <div class="ccard-img-wm">FMT</div>
+        </div>
+        <div class="ccard-body">
+          <div class="ccard-cat">Trade Fair &amp; Expo</div>
+          <div class="ccard-name">Peru–China Food &amp; Fisheries Trade Mission</div>
+          <div class="ccard-desc">Peruvian seafood, quinoa, and cacao exporters in bilateral matchmaking sessions with Chinese food distributors.</div>
+        </div>
+        <div class="ccard-footer">
+          <div class="ccard-location"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Lima</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="month-sep" data-ms="mar26-t"><div class="month-sep-label">March 2026</div><div class="month-sep-line"></div></div>
+    <div class="comp-grid" data-grid="mar26-t">
+      <div class="ccard" data-type="trade" data-status="open" data-region="latam" data-country="Brazil">
+        <div class="ccard-img">
+          <div class="ccard-img-photo" style="background-image:url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80')"></div>
+          <div class="ccard-img-grid"></div>
+          <span class="ccard-badge badge-open">Open</span>
+          <div class="ccard-date-badge">Mar 10–12</div>
+          <div class="ccard-img-wm">AGX</div>
+        </div>
+        <div class="ccard-body">
+          <div class="ccard-cat">Trade Fair &amp; Expo · Flagship</div>
+          <div class="ccard-name">China–LATAM Industrial &amp; Tech Expo 2026</div>
+          <div class="ccard-desc">320+ exhibitors, 4,800+ attendees. Deal rooms, bilateral meetings, and live demos. Flagship bilateral trade floor.</div>
+        </div>
+        <div class="ccard-footer">
+          <div class="ccard-location"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>São Paulo</div>
+          <div class="ccard-footer-btns"><a href="#" class="ccard-booth">Book a Booth</a><a href="#" class="ccard-apply">Join</a></div>
+        </div>
+      </div>
+      <div class="ccard" data-type="trade" data-status="open" data-region="latam" data-country="Chile">
+        <div class="ccard-img">
+          <div class="ccard-img-photo" style="background-image:url('https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&q=80')"></div>
+          <div class="ccard-img-grid"></div>
+          <span class="ccard-badge badge-open">Open</span>
+          <div class="ccard-date-badge">Mar 19–20</div>
+          <div class="ccard-img-wm">LIT</div>
+        </div>
+        <div class="ccard-body">
+          <div class="ccard-cat">Trade Fair &amp; Expo</div>
+          <div class="ccard-name">Chile Lithium &amp; Clean Energy Expo</div>
+          <div class="ccard-desc">Chile's leading battery material suppliers alongside Chinese EV and battery manufacturers for offtake and JV discussions.</div>
+        </div>
+        <div class="ccard-footer">
+          <div class="ccard-location"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Santiago</div>
+          <a href="#" class="ccard-apply">Join</a>
+        </div>
+      </div>
+      <div class="ccard" data-type="trade" data-status="upcoming" data-region="latam" data-country="Brazil">
+        <div class="ccard-img">
+          <div class="ccard-img-photo" style="background-image:url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&q=80')"></div>
+          <div class="ccard-img-grid"></div>
+          <span class="ccard-badge badge-upcoming">Upcoming</span>
+          <div class="ccard-date-badge">Mar 26–27</div>
+          <div class="ccard-img-wm">AGE</div>
+        </div>
+        <div class="ccard-body">
+          <div class="ccard-cat">Trade Fair &amp; Expo</div>
+          <div class="ccard-name">Brazil Agro-Export Mission to China</div>
+          <div class="ccard-desc">MAPA-endorsed export mission connecting Brazilian soy, cotton, and protein exporters with Chinese food processors.</div>
+        </div>
+        <div class="ccard-footer">
+          <div class="ccard-location"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Brasília + Shanghai</div>
+        </div>
+      </div>
+      <div class="ccard" data-type="trade" data-status="upcoming" data-region="latam" data-country="Ecuador">
+        <div class="ccard-img">
+          <div class="ccard-img-photo" style="background-image:url('https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=600&q=80')"></div>
+          <div class="ccard-img-grid"></div>
+          <span class="ccard-badge badge-upcoming">Upcoming</span>
+          <div class="ccard-date-badge">Mar 30</div>
+          <div class="ccard-img-wm">ECU</div>
+        </div>
+        <div class="ccard-body">
+          <div class="ccard-cat">Trade Fair &amp; Expo</div>
+          <div class="ccard-name">Ecuador–China Shrimp &amp; Aquaculture Fair</div>
+          <div class="ccard-desc">Ecuador's aquaculture exporters meet Chinese seafood importers. Focus on certifications, logistics, and price corridors.</div>
+        </div>
+        <div class="ccard-footer">
+          <div class="ccard-location"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Guayaquil</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- hidden rows (loaded via More Events) -->
+    <div id="trade-more" style="display:none">
+      <div class="month-sep" data-ms="apr26-t"><div class="month-sep-label">April 2026</div><div class="month-sep-line"></div></div>
+      <div class="comp-grid" data-grid="apr26-t">
+        <div class="ccard" data-type="trade" data-status="open" data-region="china" data-country="China">
+          <div class="ccard-img">
+            <div class="ccard-img-photo" style="background-image:url('https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=600&q=80')"></div>
+            <div class="ccard-img-grid"></div>
+            <span class="ccard-badge badge-open">Open</span>
+            <div class="ccard-date-badge">Apr 8–10</div>
+            <div class="ccard-img-wm">CNT</div>
+          </div>
+          <div class="ccard-body">
+            <div class="ccard-cat">Trade Fair &amp; Expo</div>
+            <div class="ccard-name">LATAM Buyer Mission — Canton Fair Pre-Event</div>
+            <div class="ccard-desc">Curated pre-Canton Fair sourcing days for LATAM importers. Exclusive showroom access and interpreter services.</div>
+          </div>
+          <div class="ccard-footer">
+            <div class="ccard-location"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Guangzhou</div>
+            <div class="ccard-footer-btns"><a href="#" class="ccard-booth">Book a Booth</a><a href="#" class="ccard-apply">Join</a></div>
+          </div>
+        </div>
+        <div class="ccard" data-type="trade" data-status="open" data-region="latam" data-country="Venezuela">
+          <div class="ccard-img">
+            <div class="ccard-img-photo" style="background-image:url('https://images.unsplash.com/photo-1464746133101-a2c3f88e0dd9?w=600&q=80')"></div>
+            <div class="ccard-img-grid"></div>
+            <span class="ccard-badge badge-open">Open</span>
+            <div class="ccard-date-badge">Apr 22–23</div>
+            <div class="ccard-img-wm">OIL</div>
+          </div>
+          <div class="ccard-body">
+            <div class="ccard-cat">Trade Fair &amp; Expo</div>
+            <div class="ccard-name">Venezuela–China Energy &amp; Oil Sector Forum</div>
+            <div class="ccard-desc">Connecting Venezuelan oil infrastructure operators with Chinese EPC contractors and energy equipment suppliers.</div>
+          </div>
+          <div class="ccard-footer">
+            <div class="ccard-location"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Caracas</div>
+            <a href="#" class="ccard-apply">Join</a>
+          </div>
+        </div>
+        <div class="ccard-placeholder"><div class="ccard-placeholder-label">More Q2 2026</div></div>
+        <div class="ccard-placeholder" style="cursor:pointer;border-color:rgba(0,0,0,.12)"><div style="display:flex;flex-direction:column;align-items:center;gap:10px"><div class="ccard-placeholder-label" style="color:#aaa">List Your Event</div><a href="#" style="display:inline-flex;align-items:center;gap:6px;background:#f1f5f9;border:1.5px solid #e2e8f0;border-radius:99px;color:#64748b;font-size:11px;font-weight:600;padding:7px 18px;text-decoration:none;transition:background .15s" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">Submit your event →</a></div></div>
+      </div>
+    </div>
+
+    <div class="more-events-wrap" id="trade-more-btn-wrap">
+      <button class="more-events-btn" id="trade-more-btn">More Events</button>
+    </div>
+
+  </div><!-- /panel-trade -->
+
+  <!-- ══════════ CONFERENCES & SUMMITS ══════════ -->
+  <div class="tab-panel" id="panel-summit">
+
+    <div class="month-sep" data-ms="jan26-s"><div class="month-sep-label">January 2026</div><div class="month-sep-line"></div></div>
+    <div class="comp-grid" data-grid="jan26-s">
+      <div class="ccard" data-type="summit" data-status="open" data-region="china" data-country="China">
+        <div class="ccard-img">
+          <div class="ccard-img-photo" style="background-image:url('https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=600&q=80')"></div>
+          <div class="ccard-img-grid"></div>
+          <span class="ccard-badge badge-open">Open</span>
+          <div class="ccard-date-badge">Jan 20–21</div>
+          <div class="ccard-img-wm">POL</div>
+        </div>
+        <div class="ccard-body">
+          <div class="ccard-cat">Summit &amp; Conference</div>
+          <div class="ccard-name">LATAM Market Entry Policy Forum</div>
+          <div class="ccard-desc">Regulatory experts from both sides on cross-border investment, IP, and customs changes in 2026.</div>
+        </div>
+        <div class="ccard-footer">
+          <div class="ccard-location"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Beijing</div>
+          <a href="#" class="ccard-apply">Join</a>
+        </div>
+      </div>
+      <div class="ccard" data-type="summit" data-status="open" data-region="latam" data-country="Brazil">
+        <div class="ccard-img">
+          <div class="ccard-img-photo" style="background-image:url('https://images.unsplash.com/photo-1560439514-4e9645039924?w=600&q=80')"></div>
+          <div class="ccard-img-grid"></div>
+          <span class="ccard-badge badge-open">Open</span>
+          <div class="ccard-date-badge">Jan 29–30</div>
+          <div class="ccard-img-wm">DIG</div>
+        </div>
+        <div class="ccard-body">
+          <div class="ccard-cat">Summit &amp; Conference</div>
+          <div class="ccard-name">Brazil–China Digital Economy Roundtable</div>
+          <div class="ccard-desc">Fintech regulation, digital payments, and e-commerce infrastructure between corridors. Closed-door format.</div>
+        </div>
+        <div class="ccard-footer">
+          <div class="ccard-location"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>São Paulo</div>
+          <a href="#" class="ccard-apply">Join</a>
+        </div>
+      </div>
+      <div class="ccard" data-type="summit" data-status="upcoming" data-region="latam" data-country="Colombia">
+        <div class="ccard-img">
+          <div class="ccard-img-photo" style="background-image:url('https://images.unsplash.com/photo-1543269865-cbf427effbad?w=600&q=80')"></div>
+          <div class="ccard-img-grid"></div>
+          <span class="ccard-badge badge-upcoming">Upcoming</span>
+          <div class="ccard-date-badge">Jan 31</div>
+          <div class="ccard-img-wm">AND</div>
+        </div>
+        <div class="ccard-body">
+          <div class="ccard-cat">Summit &amp; Conference</div>
+          <div class="ccard-name">Andean Innovation &amp; China Tech Summit</div>
+          <div class="ccard-desc">Colombia, Peru, and Ecuador founders meet Chinese deep-tech investors. Agritech, mobility, climate, and health.</div>
+        </div>
+        <div class="ccard-footer">
+          <div class="ccard-location"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Bogotá</div>
+        </div>
+      </div>
+      <div class="ccard" data-type="summit" data-status="upcoming" data-region="latam" data-country="Brazil">
+        <div class="ccard-img">
+          <div class="ccard-img-photo" style="background-image:url('https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=600&q=80')"></div>
+          <div class="ccard-img-grid"></div>
+          <span class="ccard-badge badge-upcoming">Upcoming</span>
+          <div class="ccard-date-badge">Jan 28</div>
+          <div class="ccard-img-wm">LCT</div>
+        </div>
+        <div class="ccard-body">
+          <div class="ccard-cat">LATAM CHINA TECH Event</div>
+          <div class="ccard-name">LCT São Paulo Investor Breakfast</div>
+          <div class="ccard-desc">Intimate breakfast with LPs and VCs active in the China–Brazil corridor. Curated attendance, 40 seats maximum.</div>
+        </div>
+        <div class="ccard-footer">
+          <div class="ccard-location"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>São Paulo</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="month-sep" data-ms="feb26-s"><div class="month-sep-label">February 2026</div><div class="month-sep-line"></div></div>
+    <div class="comp-grid" data-grid="feb26-s">
+      <div class="ccard" data-type="summit" data-status="open" data-region="latam" data-country="Brazil">
+        <div class="ccard-img">
+          <div class="ccard-img-photo" style="background-image:url('https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=600&q=80')"></div>
+          <div class="ccard-img-grid"></div>
+          <span class="ccard-badge badge-open">Open</span>
+          <div class="ccard-date-badge">Feb 12–13</div>
+          <div class="ccard-img-wm">CAP</div>
+        </div>
+        <div class="ccard-body">
+          <div class="ccard-cat">Summit &amp; Conference</div>
+          <div class="ccard-name">Brazil–China Capital Corridors Summit</div>
+          <div class="ccard-desc">VCs, family offices, and sovereign wealth funds from both corridors. Sessions on deal structuring across emerging markets.</div>
+        </div>
+        <div class="ccard-footer">
+          <div class="ccard-location"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>São Paulo</div>
+          <a href="#" class="ccard-apply">Join</a>
+        </div>
+      </div>
+      <div class="ccard" data-type="summit" data-status="open" data-region="latam" data-country="Brazil">
+        <div class="ccard-img">
+          <div class="ccard-img-photo" style="background-image:url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&q=80')"></div>
+          <div class="ccard-img-grid"></div>
+          <span class="ccard-badge badge-open">Open</span>
+          <div class="ccard-date-badge">Feb 19–20</div>
+          <div class="ccard-img-wm">STA</div>
+        </div>
+        <div class="ccard-body">
+          <div class="ccard-cat">Summit &amp; Conference</div>
+          <div class="ccard-name">China–LATAM Startup Ecosystem Summit 2026</div>
+          <div class="ccard-desc">Cross-border accelerator programmes, fund announcements, and bilateral startup pitch sessions. Annual early-year edition.</div>
+        </div>
+        <div class="ccard-footer">
+          <div class="ccard-location"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Rio de Janeiro</div>
+          <a href="#" class="ccard-apply">Join</a>
+        </div>
+      </div>
+      <div class="ccard" data-type="summit" data-status="upcoming" data-region="latam" data-country="Peru">
+        <div class="ccard-img">
+          <div class="ccard-img-photo" style="background-image:url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80')"></div>
+          <div class="ccard-img-grid"></div>
+          <span class="ccard-badge badge-upcoming">Upcoming</span>
+          <div class="ccard-date-badge">Feb 26</div>
+          <div class="ccard-img-wm">SUP</div>
+        </div>
+        <div class="ccard-body">
+          <div class="ccard-cat">Summit &amp; Conference</div>
+          <div class="ccard-name">Pacific Alliance Supply Chain Conference</div>
+          <div class="ccard-desc">Port operators, freight forwarders, and customs brokers. Sessions on nearshoring and Pacific Rim resilience.</div>
+        </div>
+        <div class="ccard-footer">
+          <div class="ccard-location"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Lima</div>
+        </div>
+      </div>
+      <div class="ccard" data-type="summit" data-status="upcoming" data-region="china" data-country="China">
+        <div class="ccard-img">
+          <div class="ccard-img-photo" style="background-image:url('https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&q=80')"></div>
+          <div class="ccard-img-grid"></div>
+          <span class="ccard-badge badge-upcoming">Upcoming</span>
+          <div class="ccard-date-badge">Feb 28</div>
+          <div class="ccard-img-wm">LCT</div>
+        </div>
+        <div class="ccard-body">
+          <div class="ccard-cat">LATAM CHINA TECH Event</div>
+          <div class="ccard-name">LCT Shanghai Founders Dinner</div>
+          <div class="ccard-desc">Private dinner for LATAM founders based in or visiting Shanghai. Hosted by LCT with 2 keynote guests from the VC ecosystem.</div>
+        </div>
+        <div class="ccard-footer">
+          <div class="ccard-location"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Shanghai</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- hidden (More Events) -->
+    <div id="summit-more" style="display:none">
+      <div class="month-sep" data-ms="mar26-s"><div class="month-sep-label">March 2026</div><div class="month-sep-line"></div></div>
+      <div class="comp-grid" data-grid="mar26-s">
+        <div class="ccard" data-type="summit" data-status="open" data-region="latam" data-country="Mexico">
+          <div class="ccard-img">
+            <div class="ccard-img-photo" style="background-image:url('https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=600&q=80')"></div>
+            <div class="ccard-img-grid"></div>
+            <span class="ccard-badge badge-open">Open</span>
+            <div class="ccard-date-badge">Mar 5–6</div>
+            <div class="ccard-img-wm">MFG</div>
+          </div>
+          <div class="ccard-body">
+            <div class="ccard-cat">Summit &amp; Conference</div>
+            <div class="ccard-name">Mexico–China Nearshoring &amp; Manufacturing Forum</div>
+            <div class="ccard-desc">Chinese manufacturers meet Mexican industrial parks, logistics operators, and government development agencies.</div>
+          </div>
+          <div class="ccard-footer">
+            <div class="ccard-location"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Monterrey</div>
+            <a href="#" class="ccard-apply">Join</a>
+          </div>
+        </div>
+        <div class="ccard" data-type="summit" data-status="open" data-region="china" data-country="China">
+          <div class="ccard-img">
+            <div class="ccard-img-photo" style="background-image:url('https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=600&q=80')"></div>
+            <div class="ccard-img-grid"></div>
+            <span class="ccard-badge badge-open">Open</span>
+            <div class="ccard-date-badge">Mar 18–19</div>
+            <div class="ccard-img-wm">SMT</div>
+          </div>
+          <div class="ccard-body">
+            <div class="ccard-cat">Summit &amp; Conference · Flagship</div>
+            <div class="ccard-name">China–LATAM Tech &amp; Innovation Summit 2026</div>
+            <div class="ccard-desc">48 speakers, 1,200+ attendees. Tactical, market-specific panels. Annual flagship edition.</div>
+          </div>
+          <div class="ccard-footer">
+            <div class="ccard-location"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Shanghai</div>
+            <a href="#" class="ccard-apply">Join</a>
+          </div>
+        </div>
+        <div class="ccard-placeholder"><div class="ccard-placeholder-label">More Q2 2026</div></div>
+        <div class="ccard-placeholder"><div class="ccard-placeholder-label">Submit Your Event</div></div>
+      </div>
+    </div>
+
+    <div class="more-events-wrap" id="summit-more-btn-wrap">
+      <button class="more-events-btn" id="summit-more-btn">More Events</button>
+    </div>
+
+  </div><!-- /panel-summit -->
+
+</div><!-- /wrap -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-stripe"></div>
+  <div class="ft-hero-bar">
+    <div class="wrap" style="padding:0 88px">
+      <div class="ft-hero-inner">
+        <div class="ft-hero-left">
+          <div class="ft-hero-eyebrow">Fuel your growth</div>
+          <h2 class="ft-hero-h">Get funded, connected,<br>and scale with <span style="white-space:nowrap">LATAM CHINA TECH</span></h2>
+        </div>
+        <div class="ft-hero-right">
+          <a href="#" class="btn btn-red" style="font-size:15px;padding:16px 36px">View Programs</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ft-divider"></div>
+  <div class="ft-body">
+    <div class="wrap">
+      <div class="ft-grid">
+        <div class="ft-nav-row" style="align-items:flex-start">
+          <div class="ft-nav-group"><div class="ft-nav-group-h">Advisory</div><div class="ft-nav-group-links"><a href="#">Investment</a><a href="#">Tech Transfer</a></div></div>
+          <div class="ft-nav-group"><div class="ft-nav-group-h">Competitions</div><div class="ft-nav-group-links"><a href="#">Startup Competitions</a><a href="#">Corporate Challenges</a></div></div>
+          <div class="ft-nav-group"><div class="ft-nav-group-h">Events</div><div class="ft-nav-group-links"><a href="#">Trade Fairs &amp; Expos</a><a href="#">Summits</a></div></div>
+          <div class="ft-nav-group"><div class="ft-nav-group-h">Programs</div><div class="ft-nav-group-links"><a href="#">Market Entry</a><a href="#">Business Mission</a></div></div>
+          <div class="ft-nav-group" style="margin-left:auto;display:flex;flex-direction:column;gap:10px;align-items:flex-start;flex-shrink:0">
+            <div class="ft-nav-group-h">Newsletter</div>
+            <div style="display:flex;gap:8px;align-items:center"><input class="ft-email-i" type="email" placeholder="Your email" style="width:150px"><button class="ft-nl-btn">Subscribe on Substack</button></div>
+            <div style="display:flex;align-items:center;gap:8px;margin-top:4px">
+              <div class="ft-socials">
+                <div class="ft-soc-wc"><div class="ft-soc" title="WeChat"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M8.5 2C4.36 2 1 5.03 1 8.78c0 1.99.98 3.77 2.53 4.97L2.5 16l2.7-1.35C6.1 14.87 7.27 15 8.5 15c.28 0 .56-.01.83-.04A5.54 5.54 0 0 1 9 13.22C9 10.33 11.91 8 15.5 8c.28 0 .56.01.83.03C15.62 4.6 12.4 2 8.5 2zm-2 4.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm4 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm5 3.5c-3.04 0-5.5 2.01-5.5 4.5S12.46 19 15.5 19c.7 0 1.37-.12 1.98-.33L20 20l-1.12-2.34C19.56 16.73 21 15.19 21 13.5 21 11.01 18.54 9 15.5 9zm-1.5 2.75a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5zm3 0a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5z"/></svg></div><div class="wc-qr-popup"><div class="wc-qr-inner"><div class="wc-qr-title">Scan on WeChat</div><div class="wc-qr-box"><svg width="80" height="80" viewBox="0 0 96 96" fill="none"><rect width="96" height="96" fill="white"/><rect x="8" y="8" width="32" height="32" rx="2" fill="#111"/><rect x="12" y="12" width="24" height="24" rx="1" fill="white"/><rect x="16" y="16" width="16" height="16" rx="1" fill="#111"/><rect x="56" y="8" width="32" height="32" rx="2" fill="#111"/><rect x="60" y="12" width="24" height="24" rx="1" fill="white"/><rect x="64" y="16" width="16" height="16" rx="1" fill="#111"/><rect x="8" y="56" width="32" height="32" rx="2" fill="#111"/><rect x="12" y="60" width="24" height="24" rx="1" fill="white"/><rect x="16" y="64" width="16" height="16" rx="1" fill="#111"/><rect x="48" y="48" width="8" height="8" fill="#111"/><rect x="60" y="48" width="8" height="8" fill="#111"/><rect x="72" y="48" width="8" height="8" fill="#111"/><rect x="48" y="60" width="8" height="8" fill="#111"/><rect x="72" y="60" width="8" height="8" fill="#111"/><rect x="48" y="72" width="8" height="8" fill="#111"/><rect x="60" y="72" width="8" height="8" fill="#111"/><rect x="72" y="72" width="8" height="8" fill="#111"/></svg></div></div></div></div>
+                <a href="https://instagram.com/" target="_blank" class="ft-soc" title="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                <a href="https://linkedin.com/" target="_blank" class="ft-soc" title="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+                <a href="https://wa.me/" target="_blank" class="ft-soc" title="WhatsApp"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+              </div>
+            </div>
+          </div>
+          <div style="align-self:flex-start;padding-top:42px;margin-left:24px;flex-shrink:0">
+            <div class="ft-lang-switcher">
+              <button class="ft-lang-btn" aria-label="Select Language"><span class="lang-icon-wrap" style="display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span></button>
+              <div class="ft-lang-dropdown"><span class="ft-lang-opt active">EN</span><span class="ft-lang-opt">中文</span><span class="ft-lang-opt">BR</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bottom-stripe"></div>
+</footer>
+
+<script>
+// Tabs
+document.querySelectorAll('.tab').forEach(tab=>{
+  tab.addEventListener('click',function(){
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    this.classList.add('active');
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    document.getElementById('panel-'+this.dataset.tab).classList.add('active');
+  });
+});
+
+// More Events
+document.getElementById('trade-more-btn').addEventListener('click',function(){
+  document.getElementById('trade-more').style.display='';
+  document.getElementById('trade-more-btn-wrap').style.display='none';
+});
+document.getElementById('summit-more-btn').addEventListener('click',function(){
+  document.getElementById('summit-more').style.display='';
+  document.getElementById('summit-more-btn-wrap').style.display='none';
+});
+
+// Filter state
+let aStatus='all', aRegion='all';
+let latamSel=new Set(), chinaSel=new Set();
+
+// Dropdowns
+const latamWrap=document.getElementById('latam-dropdown-wrap');
+const latamTrigger=document.getElementById('latam-trigger');
+const chinaWrap=document.getElementById('china-dropdown-wrap');
+const chinaTrigger=document.getElementById('china-trigger');
+
+latamTrigger.addEventListener('click',function(e){e.stopPropagation();latamWrap.classList.toggle('open');chinaWrap.classList.remove('open');});
+chinaTrigger.addEventListener('click',function(e){e.stopPropagation();chinaWrap.classList.toggle('open');latamWrap.classList.remove('open');});
+document.addEventListener('click',function(e){
+  if(!latamWrap.contains(e.target)) latamWrap.classList.remove('open');
+  if(!chinaWrap.contains(e.target)) chinaWrap.classList.remove('open');
+});
+
+// Region: All pill
+document.querySelector('.fp-region[data-val="all"]').addEventListener('click',function(){
+  document.querySelectorAll('.fp-region').forEach(x=>x.classList.remove('active'));
+  this.classList.add('active');
+  latamSel.clear(); chinaSel.clear();
+  document.querySelectorAll('.rg-pill').forEach(x=>x.classList.remove('active'));
+  aRegion='all'; applyFilters();
+});
+
+// LATAM country pills — multi-select
+document.querySelectorAll('.rg-pill:not(.china-city-pill)').forEach(p=>p.addEventListener('click',function(e){
+  e.stopPropagation();
+  const c=this.dataset.country;
+  if(latamSel.has(c)){latamSel.delete(c);this.classList.remove('active');}
+  else{latamSel.add(c);this.classList.add('active');}
+  chinaSel.clear();
+  document.querySelectorAll('.china-city-pill').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.fp-region').forEach(x=>x.classList.remove('active'));
+  if(latamSel.size>0){latamTrigger.classList.add('active');aRegion='latam';}
+  else{document.querySelector('.fp-region[data-val="all"]').classList.add('active');aRegion='all';}
+  applyFilters();
+}));
+
+// China city pills — multi-select
+document.querySelectorAll('.china-city-pill').forEach(p=>p.addEventListener('click',function(e){
+  e.stopPropagation();
+  const c=this.dataset.country;
+  if(chinaSel.has(c)){chinaSel.delete(c);this.classList.remove('active');}
+  else{chinaSel.add(c);this.classList.add('active');}
+  latamSel.clear();
+  document.querySelectorAll('.rg-pill:not(.china-city-pill)').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.fp-region').forEach(x=>x.classList.remove('active'));
+  if(chinaSel.size>0){chinaTrigger.classList.add('active');aRegion='china';}
+  else{document.querySelector('.fp-region[data-val="all"]').classList.add('active');aRegion='all';}
+  applyFilters();
+}));
+
+// Status
+document.querySelectorAll('.fp-status').forEach(p=>p.addEventListener('click',function(){
+  document.querySelectorAll('.fp-status').forEach(x=>x.classList.remove('active'));
+  this.classList.add('active'); aStatus=this.dataset.val; applyFilters();
+}));
+
+// Industry — multi-select
+let industrySel=new Set();
+document.querySelectorAll('.fp-industry').forEach(p=>p.addEventListener('click',function(){
+  const v=this.dataset.val;
+  if(v==='all'){
+    industrySel.clear();
+    document.querySelectorAll('.fp-industry').forEach(x=>x.classList.remove('active'));
+    this.classList.add('active');
+  } else {
+    document.querySelector('.fp-industry[data-val="all"]').classList.remove('active');
+    if(industrySel.has(v)){industrySel.delete(v);this.classList.remove('active');}
+    else{industrySel.add(v);this.classList.add('active');}
+    if(industrySel.size===0) document.querySelector('.fp-industry[data-val="all"]').classList.add('active');
+  }
+  applyFilters();
+}));
+
+function applyFilters(){
+  document.querySelectorAll('.ccard').forEach(c=>{
+    const s=c.dataset.status||'', r=c.dataset.region||'', co=c.dataset.country||'', ind=c.dataset.industry||'';
+    const mS=(aStatus==='all'||aStatus===s);
+    let mR=false;
+    if(aRegion==='all') mR=true;
+    else if(aRegion==='latam') mR=(r==='latam'&&(latamSel.size===0||latamSel.has(co)));
+    else if(aRegion==='china') mR=(r==='china'&&(chinaSel.size===0||chinaSel.has(co)));
+    const mI=(industrySel.size===0||industrySel.has(ind));
+    c.style.display=(mS&&mR&&mI)?'':'none';
+  });
+  document.querySelectorAll('[data-grid]').forEach(grid=>{
+    const id=grid.dataset.grid;
+    const sep=document.querySelector('[data-ms="'+id+'"]');
+    const any=[...grid.querySelectorAll('.ccard')].some(c=>c.style.display!=='none');
+    grid.style.display=any?'':'none';
+    if(sep) sep.style.display=any?'':'none';
+  });
+}
+</script>
+</body>
+</html>

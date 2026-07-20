@@ -1,6 +1,7 @@
 ---
 import InteriorFooter from "../site/InteriorFooter.astro";
 import InteriorHeader from "../site/InteriorHeader.astro";
+import Icon from "../site/Icon.astro";
 
 import type { HomepageLocaleCode, SiteSettings } from "../../lib/homepage/types";
 import type { CompetitionFormRouteLocale } from "../../lib/competitions/types";
@@ -642,7 +643,7 @@ const aiTextareaFields = [
                   <label class="benefit-item">
                     <input type="checkbox" name="benefits" value={benefit.value} />
                     <span class:list={["benefit-icon", `benefit-icon--${benefit.tone}`]}>
-                      {benefit.short}
+                      <Icon name={benefit.icon} size={16} />
                     </span>
                     <span data-i18n={`page.benefits.${benefitIndex}.label`}>{benefit.label}</span>
                   </label>
@@ -724,13 +725,15 @@ const aiTextareaFields = [
 
           <section class="submit-section">
             <p class="submit-note" data-i18n-html="page.submitNoteHtml" set:html={page.submitNoteHtml}></p>
-            <p class="form-status" data-prereg-status role="status" aria-live="polite"></p>
-            <div class="submit-actions">
-              <button type="button" class="site-btn site-btn--secondary" data-save-draft data-i18n="page.saveDraftLabel">{page.saveDraftLabel}</button>
-              <button type="submit" class="site-btn site-btn--primary site-btn--submit" data-prereg-submit data-i18n="page.submitLabel">{page.submitLabel}</button>
+            <div class="submit-side">
+              <p class="form-status" data-prereg-status role="status" aria-live="polite"></p>
+              <div class="submit-actions">
+                <button type="button" class="site-btn site-btn--secondary" data-save-draft data-i18n="page.saveDraftLabel">{page.saveDraftLabel}</button>
+                <button type="submit" class="site-btn site-btn--primary site-btn--submit" data-prereg-submit data-i18n="page.submitLabel">{page.submitLabel}</button>
+              </div>
+              <p class="save-draft-hint" data-save-draft-hint data-i18n="page.saveDraft.hint">{page.saveDraft.hint}</p>
+              <p class="save-draft-confirmation" data-save-draft-confirmation hidden></p>
             </div>
-            <p class="save-draft-hint" data-save-draft-hint data-i18n="page.saveDraft.hint">{page.saveDraft.hint}</p>
-            <p class="save-draft-confirmation" data-save-draft-confirmation hidden></p>
           </section>
         </form>
         <div class="prereg-success-panel" data-prereg-success hidden>

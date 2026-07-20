@@ -1,0 +1,41 @@
+---
+/**
+ * Inline SVG icon.
+ *
+ * Icon paths live in `./icons.ts` — the single source of truth shared with
+ * the Keystatic CMS select in `src/lib/homepage/schema.ts`, so the two lists
+ * can't drift out of sync. To add an icon, edit `icons.ts`.
+ */
+import { ICON_PATHS } from "./icons";
+
+interface Props {
+  name: string;
+  class?: string;
+  size?: number;
+}
+
+const { name, class: className, size = 24 } = Astro.props;
+
+const paths = ICON_PATHS[name];
+
+if (!paths) {
+  throw new Error(
+    `Icon.astro: unknown icon "${name}". Known icons: ${Object.keys(ICON_PATHS).join(", ")}.`,
+  );
+}
+---
+
+<svg
+  viewBox="0 0 24 24"
+  width={size}
+  height={size}
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.5"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class={className}
+  aria-hidden="true"
+  focusable="false"
+  set:html={paths}
+/>

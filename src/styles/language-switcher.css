@@ -1,0 +1,209 @@
+/*
+ * Shared language switcher (src/components/site/LanguageSwitcher.astro).
+ *
+ * One control serves both surfaces:
+ *   - the dark homepage (`tone="dark"` -> .site-lang--dark)
+ *   - the light interior pages (`tone="light"` -> .site-lang--light, the base)
+ *
+ * The globe SVG, its viewBox, the button box size, and the stroke width are
+ * IDENTICAL across both tones. Only colours change between tones.
+ *
+ * The button and menu use a FIXED width so switching EN / CN / BR never
+ * reflows the control. The selected option keeps its `is-active` class (the
+ * localization JS and a11y rely on it) but carries NO highlight styling; only
+ * hover gives visual feedback.
+ */
+
+/* -- Header control (base = light interior tone) ------------------------- */
+
+.site-lang {
+  position: relative;
+  flex: 0 0 200px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.site-lang-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: rgba(0, 0, 0, 0.55);
+  cursor: pointer;
+  transition: color 0.16s ease, transform 0.16s ease;
+}
+
+.site-lang-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.site-lang.is-open .site-lang-btn,
+.site-lang:hover .site-lang-btn,
+.site-lang:focus-within .site-lang-btn {
+  color: var(--site-ink);
+  transform: scale(1.06);
+}
+
+/* Menu width is fixed (not min-width) and sized to the widest option
+   ("EN  Português") so the control never reflows when the language changes. */
+.site-lang-menu {
+  position: absolute;
+  top: calc(100% + 2px);
+  right: 0;
+  display: grid;
+  gap: 0;
+  width: 160px;
+  padding: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+  background: rgba(8, 8, 8, 0.94);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
+}
+
+.site-lang--left .site-lang-menu {
+  right: auto;
+  left: 0;
+}
+
+.site-lang.is-open .site-lang-menu,
+.site-lang:hover .site-lang-menu,
+.site-lang:focus-within .site-lang-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.site-lang-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  text-align: left;
+}
+
+.site-lang-option small {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* Hover is the only affordance; the selected (is-active) option is NOT
+   highlighted. */
+.site-lang-option:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--site-red);
+}
+
+/* -- Footer control (base = light interior tone) ------------------------- */
+
+.site-lang--footer .site-lang-btn {
+  width: 36px;
+  height: 36px;
+  color: rgba(0, 0, 0, 0.35);
+}
+
+.site-lang--footer .site-lang-btn:hover {
+  color: #111;
+}
+
+.site-lang--footer .site-lang-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.site-lang--footer .site-lang-menu {
+  right: auto;
+  left: 50%;
+  top: auto;
+  bottom: calc(100% + 8px);
+  width: 96px;
+  padding: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12px);
+  transform: translateX(-50%) translateY(6px);
+}
+
+.site-lang--footer.is-open .site-lang-menu,
+.site-lang--footer:hover .site-lang-menu,
+.site-lang--footer:focus-within .site-lang-menu {
+  transform: translateX(-50%) translateY(0);
+}
+
+.site-lang--footer .site-lang-option {
+  justify-content: center;
+  padding: 6px 12px;
+  border-radius: 4px;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.site-lang--footer .site-lang-option small {
+  display: none;
+}
+
+.site-lang--footer .site-lang-option:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--site-red);
+}
+
+/* -- Dark tone (homepage) ------------------------------------------------ */
+
+/* Define the accent/ink vars locally so the shared rules resolve on the
+   homepage, which has no `.interior-page` var scope. Values match the
+   interior palette (--site-red === --desk-red === #ff3b00). */
+.site-lang--dark {
+  --site-red: #ff3b00;
+  --site-ink: #ffffff;
+}
+
+.site-lang--dark .site-lang-btn {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* Header dark hover/open already resolves to #fff via --site-ink above. */
+
+.site-lang--footer.site-lang--dark .site-lang-btn {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.site-lang--footer.site-lang--dark .site-lang-btn:hover {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.site-lang--footer.site-lang--dark .site-lang-menu {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(8, 8, 8, 0.92);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.site-lang--footer.site-lang--dark .site-lang-option {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.site-lang--footer.site-lang--dark .site-lang-option:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--site-red);
+}

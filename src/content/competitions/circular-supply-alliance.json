@@ -37,7 +37,7 @@
     "supportHtml": "<ul><li>Access to corporate and ecosystem conversations around circular manufacturing.</li><li>Feedback on procurement, traceability, and operator messaging.</li><li>Guidance packaging submissions and follow-up materials.</li></ul>",
     "processTitle": "Opportunity roadmap",
     "processHtml": "<ol><li>Prepare through the shared application process for the next cycle.</li><li>Submit materials describing the supply challenge, operating model, and traction.</li><li>Work with the team to refine the final submission package.</li></ol>",
-    "applicationLabel": "Apply to this challenge"
+    "applicationLabel": "Register Now"
   },
   "br": {
     "category": "Sustentabilidade · Manufatura",
@@ -60,7 +60,7 @@
     "supportHtml": "<ul><li>Acesso a conversas com corporates e ecossistema sobre manufatura circular.</li><li>Feedback sobre procurement, rastreabilidade e narrativa para operadores.</li><li>Orientacao para empacotar submissao e materiais de follow-up.</li></ul>",
     "processTitle": "Roteiro da oportunidade",
     "processHtml": "<ol><li>Prepare-se pelo processo compartilhado para o proximo ciclo.</li><li>Envie materiais descrevendo o desafio de supply, modelo operacional e tracao.</li><li>Trabalhe com a equipe no refinamento da submissao final.</li></ol>",
-    "applicationLabel": "Aplicar para este desafio"
+    "applicationLabel": "Registrar Agora"
   },
   "cn": {
     "category": "可持续发展 · 制造业",
@@ -83,6 +83,6 @@
     "supportHtml": "<ul><li>参与围绕循环制造的企业与生态交流。</li><li>获得关于采购、追溯和运营方叙事的反馈。</li><li>帮助整理提交材料和后续跟进内容。</li></ul>",
     "processTitle": "机会说明",
     "processHtml": "<ol><li>为下一轮开放提前通过统一流程准备。</li><li>提交说明供应挑战、运营模型和牵引力的材料。</li><li>与团队一起完善最终提交包。</li></ol>",
-    "applicationLabel": "申请该竞赛"
+    "applicationLabel": "立即报名"
   }
 }

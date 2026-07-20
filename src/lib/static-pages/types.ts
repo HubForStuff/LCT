@@ -20,7 +20,7 @@ export type StaticPageSection = {
 export type StaticPageLocaleContent = {
   eyebrow: string;
   title: string;
-  summary: string;
+  summary?: string;
   imageAlt: string;
   metaTitle: string;
   metaDescription: string;
@@ -31,6 +31,8 @@ export type StaticPageLocaleContent = {
 export type StaticPageCollectionEntry = {
   slug: string;
   order: number;
+  /** Defaults to true when absent. `false` keeps the content but skips the route. */
+  published?: boolean;
   hideHero?: boolean;
   primaryImage: string;
   en: StaticPageLocaleContent;

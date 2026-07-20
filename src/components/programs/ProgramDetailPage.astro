@@ -50,19 +50,6 @@ const { page, detail } = locale;
           >
             {page.detailSubtitle}
           </p>
-
-          <div class="program-detail-meta">
-            <div class="program-detail-meta-item">
-              <span
-                class:list={["program-detail-status-dot", `program-detail-status-dot--${page.statusTone}`]}
-              ></span>
-              <span data-i18n="page.statusLabel">{page.statusLabel}</span>
-            </div>
-            <div class="program-detail-meta-item">
-              <span data-i18n="page.deadlinePrefix">{page.deadlinePrefix}</span>{" "}
-              <strong data-i18n="page.deadlineValue">{page.deadlineValue}</strong>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -79,6 +66,38 @@ const { page, detail } = locale;
     )}
 
     <section class="interior-wrap program-detail-shell">
+      <div class="competition-meta-grid program-meta-grid">
+        <article class="competition-meta-card">
+          <div class="competition-meta-label" data-i18n="detail.timelineLabel">
+            {detail.timelineLabel}
+          </div>
+          <div class="competition-meta-value">
+            <span data-i18n="page.deadlinePrefix">{page.deadlinePrefix}</span>{" "}
+            <strong data-i18n="page.deadlineValue">{page.deadlineValue}</strong>
+          </div>
+        </article>
+
+        <article class="competition-meta-card">
+          <div class="competition-meta-label" data-i18n="detail.focusLabel">
+            {detail.focusLabel}
+          </div>
+          <div class="competition-focus-tags">
+            {page.focusTags.map((tag) => (
+              <span class="competition-focus-tag">{tag}</span>
+            ))}
+          </div>
+        </article>
+
+        <article class="competition-meta-card">
+          <div class="competition-meta-label" data-i18n="detail.statusLabel">
+            {detail.statusLabel}
+          </div>
+          <div class:list={["competition-meta-value", `competition-meta-value--${page.statusTone}`]}>
+            <span data-i18n="page.statusLabel">{page.statusLabel}</span>
+          </div>
+        </article>
+      </div>
+
       <article
         class="static-page-body static-page-body--plain"
         data-i18n-html="page.bodyHtml"
@@ -86,7 +105,14 @@ const { page, detail } = locale;
       ></article>
     </section>
 
-    <div class="interior-wrap program-detail-actions" style="padding-bottom: 48px;">
+    <div class="interior-wrap competition-detail-actions competition-detail-actions--center">
+      <a
+        href={page.applicationHref}
+        class="site-btn site-btn--primary"
+        data-i18n="page.applicationLabel"
+      >
+        {page.applicationLabel}
+      </a>
       <a href={page.listingHref} class="site-btn site-btn--secondary" data-i18n="detail.viewAllLabel">
         {detail.viewAllLabel}
       </a>

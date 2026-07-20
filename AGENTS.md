@@ -44,7 +44,8 @@ The `mockup/` folder is the authoritative design reference. Know its limits:
 | `2 - LATAMCHINATECH_mobille.htm` | Mobile homepage |
 | `3 - Challenges___Competitions_v7.htm` | Competitions listing |
 | `4 - PRE registration_v13.html` | Pre-registration form |
-| _(none)_ | News listing, News article, Competition detail |
+| `5 - events_v11.htm` | Events listing |
+| _(none)_ | News listing, News article, Competition detail, Event detail, Event application |
 
 **No mockup = use design judgment.** Match the site's established visual language (colors, spacing, typography, shell components). Do not invent new patterns.
 

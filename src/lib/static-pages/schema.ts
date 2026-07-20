@@ -41,7 +41,7 @@ const localizedStaticPageFields = (label: string) =>
     {
       eyebrow: requiredText("Eyebrow"),
       title: requiredText("Title", true),
-      summary: requiredText("Summary", true),
+      summary: optionalText("Summary", true),
       imageAlt: requiredText("Image alt text"),
       metaTitle: requiredText("Meta title"),
       metaDescription: requiredText("Meta description", true),
@@ -71,6 +71,12 @@ export const staticPageCollectionSchema = {
   order: fields.integer({
     label: "Display order",
     validation: { isRequired: true, min: 1 },
+  }),
+  published: fields.checkbox({
+    label: "Published",
+    description:
+      "When disabled, the page is kept in the repo but its /[slug]/ route is not built. Use to temporarily unpublish a page without deleting its content.",
+    defaultValue: true,
   }),
   hideHero: fields.checkbox({
     label: "Hide hero image and description card",

@@ -32,8 +32,10 @@ const detailCopyByCode = {
     deadlineLabel: "Timeline",
     trackLabel: "Track",
     focusLabel: "Focus",
+    totalAwardLabel: "Total Award",
     registrationLabel: "Registration",
     applyLabel: "Apply now",
+    viewAllLabel: "View All",
   },
   BR: {
     backLabel: "Voltar para competicoes",
@@ -41,8 +43,10 @@ const detailCopyByCode = {
     deadlineLabel: "Prazo",
     trackLabel: "Trilha",
     focusLabel: "Foco",
+    totalAwardLabel: "Premiação Total",
     registrationLabel: "Inscricao",
     applyLabel: "Aplicar agora",
+    viewAllLabel: "Ver Todos",
   },
   CN: {
     backLabel: "返回竞赛列表",
@@ -50,8 +54,10 @@ const detailCopyByCode = {
     deadlineLabel: "时间",
     trackLabel: "赛道",
     focusLabel: "方向",
+    totalAwardLabel: "总奖金",
     registrationLabel: "报名",
     applyLabel: "立即申请",
+    viewAllLabel: "查看全部",
   },
 } as const satisfies Record<HomepageLocaleCode, CompetitionDetailPageCopy>;
 

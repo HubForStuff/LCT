@@ -39,7 +39,7 @@
     "supportHtml": "<ul><li>Market-entry advisory tailored to SME constraints and strengths.</li><li>Partner discovery support and application packaging.</li><li>Practical review on timing, sequencing, and channel priorities.</li></ul>",
     "processTitle": "Opportunity roadmap",
     "processHtml": "<ol><li>Apply with the standard competition form.</li><li>Highlight current traction, export readiness, and objectives.</li><li>Use the follow-up process to refine the final submission package.</li></ol>",
-    "applicationLabel": "Apply to this challenge"
+    "applicationLabel": "Register Now"
   },
   "br": {
     "category": "SME · Scale-Up",
@@ -62,7 +62,7 @@
     "supportHtml": "<ul><li>Assessoria de entrada em mercado adaptada a SMEs.</li><li>Apoio para mapear parceiros e empacotar a candidatura.</li><li>Revisao pratica sobre timing, sequenciamento e prioridades de canal.</li></ul>",
     "processTitle": "Roteiro da oportunidade",
     "processHtml": "<ol><li>Aplique pelo formulario padrao.</li><li>Destaque tracao atual, prontidao de exportacao e objetivos.</li><li>Use o follow-up para refinar a submissao final.</li></ol>",
-    "applicationLabel": "Aplicar para este desafio"
+    "applicationLabel": "Registrar Agora"
   },
   "cn": {
     "category": "中小企业 · 增长",
@@ -85,6 +85,6 @@
     "supportHtml": "<ul><li>适合中小企业节奏的市场进入咨询。</li><li>伙伴发现与申请材料整理支持。</li><li>关于时机、顺序和渠道优先级的实操建议。</li></ul>",
     "processTitle": "机会说明",
     "processHtml": "<ol><li>通过统一申请表提交。</li><li>突出当前牵引力、出口准备度和目标。</li><li>在跟进过程中完善最终提交材料。</li></ol>",
-    "applicationLabel": "申请该竞赛"
+    "applicationLabel": "立即报名"
   }
 }
