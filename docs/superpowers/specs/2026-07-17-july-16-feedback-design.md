@@ -194,6 +194,8 @@ Events does not exist in code today. `/events/` is a plain static page (`src/con
 
 **Content collection** — 21 events across two categories, following the established data-driven pattern (`src/content/competitions/*.json` + `src/lib/competitions/reader.ts`):
 
+> **Correction, 2026-07-23:** the "21" above was read off the mockup's hardcoded, stale tab-count badges — the mockup markup itself actually holds 24 event cards. **The mockup is UI/UX guidance only; its event cards are demo fixtures, not a content source.** The shipped collection is a 25-entry seed set (14 trade fairs + 11 summits — one more "past"-status summit than the mockup has, added so the Past filter has something to match), entered through Keystatic and replaced wholesale by Andre's real calendar before production. Do not re-derive an event count from the mockup file; treat `src/content/events/*.json` (or `npm run keystatic` / the CMS) as the only source of truth for counts.
+
 - Category: `trade-fair` (12) or `summit` (9); plus a `LATAM CHINA TECH Event` type
 - `status`: `open` | `upcoming` | `past`
 - Date range, 3-letter code badge (AGR, MIN, SRC…), title, description, city
@@ -254,6 +256,6 @@ Update `CHECKLIST.md` to reflect actual state when done.
 
 - **Andre's landing copy** has not arrived. A ships with interim text in the final content shape; the swap is content-only.
 - **"Same colors as the Challenges list"** (F): the challenges list uses only two accents (`cool`, `warm`), while the benefit icons use four tones. Read as "keep them colorful in the site palette"; keeping the existing four tones is the interpretation here.
-- **"Book a Booth"** (H): appears on two flagship events (AGX, CNT) in the mockup with an `href="#"` placeholder. The feedback does not mention it. Default: point it at the contact modal, same as "List Your Event". Confirm with Andre.
-- **"Submit your event" / "List Your Event"** (H): in the mockup, absent from the feedback, no destination defined. Rendered as a panel pointing at the contact modal; no organizer submission form is built. Confirm with Andre.
-- **Event application entry point** (H): the feedback says the Join button opens the *detail* page, so the application form is reached from the detail page rather than from the list. Confirm the customer expects that second hop.
+- **"Book a Booth"** (H) — **resolved 2026-07-23:** appears on two flagship events (AGX, CNT) in the mockup with an `href="#"` placeholder; the feedback does not mention it. Confirmed by the user: it points at the existing contact modal, same as "List Your Event". Andre may still override.
+- **"Submit your event" / "List Your Event"** (H) — **resolved 2026-07-23:** in the mockup, absent from the feedback, no destination defined. Confirmed by the user: rendered as a panel pointing at the contact modal; no organizer submission form is built. Andre may still override.
+- **Event application entry point** (H) — **resolved 2026-07-23:** the feedback says the Join button opens the *detail* page, so the application form is reached from the detail page rather than from the list (list → detail → apply). Confirmed by the user that the customer expects that second hop. Andre may still override.

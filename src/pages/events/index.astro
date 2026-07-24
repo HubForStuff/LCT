@@ -1,0 +1,25 @@
+---
+import EventsPage from "../../components/events/EventsPage.astro";
+import LocalizationClient from "../../components/i18n/LocalizationClient.astro";
+import Layout from "../../layouts/Layout.astro";
+import { getEventsListingPageData } from "../../lib/events/reader";
+import "../../styles/interior-pages.css";
+import "../../styles/events.css";
+
+const { defaultLanguage, defaultLocale, localizedContent, siteSettings } =
+  await getEventsListingPageData();
+---
+
+<Layout
+  title={defaultLocale.meta.title}
+  description={defaultLocale.meta.description}
+  htmlLang={defaultLocale.meta.htmlLang}
+  bodyClass="interior-body"
+>
+  <EventsPage
+    locale={defaultLocale}
+    siteSettings={siteSettings}
+    currentLanguage={defaultLanguage}
+  />
+  <LocalizationClient defaultLanguage={defaultLanguage} localizedContent={localizedContent} />
+</Layout>

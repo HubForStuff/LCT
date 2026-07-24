@@ -1,0 +1,274 @@
+---
+import InteriorFooter from "../site/InteriorFooter.astro";
+import InteriorHeader from "../site/InteriorHeader.astro";
+
+import type { HomepageLocaleCode, SiteSettings } from "../../lib/homepage/types";
+import type { EventApplicationRouteLocale } from "../../lib/event-application/reader";
+import { PREREG_ENDPOINT } from "../../lib/pre-registration/config";
+
+interface Props {
+  locale: EventApplicationRouteLocale;
+  siteSettings: SiteSettings;
+  currentLanguage: HomepageLocaleCode;
+}
+
+const { locale, siteSettings, currentLanguage } = Astro.props;
+const page = locale.page;
+const eventOptions = locale.eventOptions;
+---
+
+<div class="interior-page">
+  <InteriorHeader
+    navItems={locale.navItems}
+    activeHref="/events/"
+    siteSettings={siteSettings}
+    currentLanguage={currentLanguage}
+    languageLabel={locale.ui.chooseLanguage}
+    homeLabel={locale.ui.homeLabel}
+    menuLabel={locale.ui.menu}
+    desktopMenuSections={locale.desktopMenuSections}
+    navExploreLabel={locale.navExploreLabel}
+  />
+
+  <main>
+    <section class="page-header">
+      <div class="interior-wrap page-header-inner page-header-inner--split">
+        <div>
+          <div class="page-eyebrow">
+            <span class="dot page-status-dot"></span>
+            <span data-i18n="page.eyebrow">{page.eyebrow}</span>
+          </div>
+          <h1 class="page-title" data-i18n="page.title">{page.title}</h1>
+          <p class="selected-competition-context" data-selected-event-context hidden>
+            <span data-i18n="page.selectedEventLabel">{page.selectedEventLabel}</span>
+            <strong data-selected-event-name></strong>
+          </p>
+        </div>
+        <p class="page-subtitle" data-i18n="page.subtitle">{page.subtitle}</p>
+      </div>
+    </section>
+
+    <section class="interior-wrap pre-registration-shell">
+      <div class="form-wrap">
+        <form class="pre-reg-form" method="post" data-event-application-form data-endpoint={PREREG_ENDPOINT}>
+          <input type="checkbox" class="prereg-honeypot" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
+          <section class="form-section" id="section-1">
+            <div class="form-section-header">
+              <div class="form-section-number">1</div>
+              <div>
+                <h2 class="form-section-title" data-i18n="page.sectionTitle">{page.sectionTitle}</h2>
+                <p class="form-section-subtitle" data-i18n="page.sectionSubtitle">{page.sectionSubtitle}</p>
+              </div>
+            </div>
+
+            <div class="form-row" data-event-select-row>
+              <label for="event">
+                <span data-i18n="page.fields.event">{page.fields.event}</span>{" "}
+                <span class="req">*</span>
+              </label>
+              <select id="event" name="event" data-event-select>
+                <option value="" disabled selected data-i18n="page.fields.eventPlaceholder">
+                  {page.fields.eventPlaceholder}
+                </option>
+                {eventOptions.map((option, optionIndex) => (
+                  <option value={option.slug} data-i18n={`eventOptions.${optionIndex}.label`}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+              <input type="hidden" name="eventSlug" data-event-hidden />
+            </div>
+
+            <div class="form-row">
+              <label for="name">
+                <span data-i18n="page.fields.name">{page.fields.name}</span> <span class="req">*</span>
+              </label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                placeholder={page.fields.namePlaceholder}
+                data-i18n-placeholder="page.fields.namePlaceholder"
+              />
+            </div>
+
+            <div class="form-row">
+              <label for="email">
+                <span data-i18n="page.fields.email">{page.fields.email}</span> <span class="req">*</span>
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder={page.fields.emailPlaceholder}
+                data-i18n-placeholder="page.fields.emailPlaceholder"
+              />
+            </div>
+
+            <div class="form-row">
+              <label for="company">
+                <span data-i18n="page.fields.company">{page.fields.company}</span> <span class="req">*</span>
+              </label>
+              <input
+                id="company"
+                name="company"
+                type="text"
+                placeholder={page.fields.companyPlaceholder}
+                data-i18n-placeholder="page.fields.companyPlaceholder"
+              />
+            </div>
+
+            <div class="form-row">
+              <label for="message">
+                <span data-i18n="page.fields.message">{page.fields.message}</span>
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                placeholder={page.fields.messagePlaceholder}
+                data-i18n-placeholder="page.fields.messagePlaceholder"
+              ></textarea>
+            </div>
+          </section>
+
+          <section class="submit-section">
+            <div class="submit-side">
+              <p class="form-status" data-event-application-status role="status" aria-live="polite"></p>
+              <div class="submit-actions">
+                <button type="submit" class="site-btn site-btn--primary site-btn--submit" data-event-application-submit data-i18n="page.submitLabel">
+                  {page.submitLabel}
+                </button>
+              </div>
+            </div>
+          </section>
+        </form>
+        <div class="prereg-success-panel" data-event-application-success hidden>
+          <h2 data-i18n="page.submission.successMessage">{page.submission.successMessage}</h2>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <InteriorFooter footer={locale.footer} ui={locale.ui} siteSettings={siteSettings} currentLanguage={currentLanguage} />
+</div>
+
+<script>
+  // ---- Event pre-fill from ?event=<slug> ----
+  const eventSelect = document.querySelector("[data-event-select]");
+  const eventHiddenInput = document.querySelector("[data-event-hidden]");
+  const eventSelectRow = document.querySelector("[data-event-select-row]");
+  const eventContext = document.querySelector("[data-selected-event-context]");
+  const eventName = document.querySelector("[data-selected-event-name]");
+
+  function syncEventSelection() {
+    if (!(eventSelect instanceof HTMLSelectElement) || !(eventHiddenInput instanceof HTMLInputElement)) {
+      return;
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const eventSlug = params.get("event");
+
+    if (eventSlug) {
+      const matchingOption = Array.from(eventSelect.options).find(
+        (option) => option.value === eventSlug,
+      );
+      if (matchingOption) eventSelect.value = eventSlug;
+    }
+
+    eventHiddenInput.value = eventSelect.value;
+
+    const locked = Boolean(eventSlug && eventSelect.value);
+    eventSelect.disabled = locked;
+    if (eventSelectRow instanceof HTMLElement) eventSelectRow.hidden = locked;
+
+    if (eventContext instanceof HTMLElement && eventName instanceof HTMLElement) {
+      const selectedOption = eventSelect.selectedOptions[0];
+      const hasSelection = Boolean(eventSelect.value && selectedOption);
+      eventContext.hidden = !hasSelection;
+      eventName.textContent = hasSelection ? (selectedOption?.textContent?.trim() || "") : "";
+    }
+  }
+
+  if (eventSelect instanceof HTMLSelectElement) {
+    syncEventSelection();
+    eventSelect.addEventListener("change", syncEventSelection);
+    window.addEventListener("pageshow", syncEventSelection);
+    const eventObserver = new MutationObserver(syncEventSelection);
+    eventObserver.observe(eventSelect, { childList: true, subtree: true, characterData: true });
+  }
+
+  // ---- Event application submission wiring ----
+  import { submitEventApplication } from "../../lib/event-application/submit.mjs";
+
+  const eventApplicationForm = document.querySelector("[data-event-application-form]");
+  if (eventApplicationForm instanceof HTMLFormElement) {
+    const endpoint = eventApplicationForm.dataset.endpoint || "";
+    const statusEl = document.querySelector("[data-event-application-status]");
+    const submitBtn = eventApplicationForm.querySelector("[data-event-application-submit]");
+    const successPanel = document.querySelector("[data-event-application-success]");
+
+    const island = document.getElementById("localized-content");
+    const content = island ? JSON.parse(island.textContent || "{}") : {};
+    const lang = () => {
+      const code = window.localStorage.getItem("preferredLanguage") || "EN";
+      return content[code] ? code : (content.EN ? "EN" : Object.keys(content)[0]);
+    };
+    const copy = () => (content[lang()] && content[lang()].page) || {};
+    const submissionCopy = () => copy().submission || {};
+
+    const setStatus = (type, message) => {
+      if (!(statusEl instanceof HTMLElement)) return;
+      statusEl.textContent = message || "";
+      statusEl.className = `form-status${type ? ` form-status--${type}` : ""}`;
+    };
+
+    const fieldValue = (name) => {
+      const el = eventApplicationForm.elements[name];
+      if (!el) return "";
+      return ((el.value || "") + "").trim();
+    };
+
+    const validate = () =>
+      Boolean(fieldValue("event") && fieldValue("name") && fieldValue("email") && fieldValue("company"));
+
+    eventApplicationForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const sc = submissionCopy();
+      if (eventApplicationForm.querySelector('[name="botcheck"]')?.checked) return;
+      if (!validate()) {
+        setStatus("error", sc.validationMessage || "Please complete the required fields.");
+        return;
+      }
+
+      if (submitBtn instanceof HTMLButtonElement) submitBtn.disabled = true;
+      setStatus("pending", sc.submittingMessage || "Submitting...");
+
+      const selectEl = eventApplicationForm.querySelector("[data-event-select]");
+      const selectedOption = selectEl instanceof HTMLSelectElement ? selectEl.selectedOptions[0] : null;
+
+      const fd = new FormData();
+      const append = (k, v) => fd.append(k, v == null ? "" : String(v));
+      append("formType", "event-application");
+      append("submissionId", `event-application-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`);
+      append("language", lang());
+      append("eventSlug", fieldValue("event"));
+      append("eventName", selectedOption ? (selectedOption.textContent || "").trim() : "");
+      append("name", fieldValue("name"));
+      append("email", fieldValue("email"));
+      append("company", fieldValue("company"));
+      append("message", fieldValue("message"));
+
+      const result = await submitEventApplication(endpoint, fd);
+      if (submitBtn instanceof HTMLButtonElement) submitBtn.disabled = false;
+
+      if (result.ok) {
+        eventApplicationForm.hidden = true;
+        if (successPanel instanceof HTMLElement) successPanel.hidden = false;
+        setStatus("", "");
+      } else {
+        setStatus("error", sc.errorMessage || "We could not submit the form. Please try again.");
+      }
+    });
+  }
+</script>

@@ -1,0 +1,167 @@
+---
+import InteriorFooter from "../site/InteriorFooter.astro";
+import InteriorHeader from "../site/InteriorHeader.astro";
+
+import type { HomepageLocaleCode, SiteSettings } from "../../lib/homepage/types";
+import type { EventDetailRouteLocale } from "../../lib/events/types";
+
+interface Props {
+  locale: EventDetailRouteLocale;
+  siteSettings: SiteSettings;
+  currentLanguage: HomepageLocaleCode;
+}
+
+const { locale, siteSettings, currentLanguage } = Astro.props;
+const { page, detail } = locale;
+---
+
+<div class="interior-page">
+  <InteriorHeader
+    navItems={locale.navItems}
+    activeHref={page.listingHref}
+    siteSettings={siteSettings}
+    currentLanguage={currentLanguage}
+    languageLabel={locale.ui.chooseLanguage}
+    homeLabel={locale.ui.homeLabel}
+    menuLabel={locale.ui.menu}
+    desktopMenuSections={locale.desktopMenuSections}
+    navExploreLabel={locale.navExploreLabel}
+  />
+
+  <main>
+    <section class="page-header competition-detail-header">
+      <div class="interior-wrap competition-detail-header-inner">
+        <a href={page.listingHref} class="news-back-link news-back-link--muted">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
+          <span data-i18n="detail.backLabel">{detail.backLabel}</span>
+        </a>
+
+        <div class="competition-hero-grid competition-hero-grid--single">
+          <div>
+            <div class="page-eyebrow">
+              <span class="dot"></span>
+              <span data-i18n="page.categoryLabel">{page.categoryLabel}</span>
+            </div>
+            <h1 class="page-title competition-detail-title" data-i18n="page.name">{page.name}</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {page.detailImage ? (
+      <div class="interior-wrap">
+        <div
+          class="event-detail-hero-image"
+          role="img"
+          aria-label={page.name}
+          style={`background-image:url('${page.detailImage}')`}
+        ></div>
+      </div>
+    ) : (
+      <div class="interior-wrap">
+        <div class="competition-hero-image-placeholder" role="img" aria-label="Event hero image"></div>
+      </div>
+    )}
+
+    <section class="interior-wrap competition-detail-shell">
+      <div class:list={["competition-meta-grid", "event-detail-meta-grid"]}>
+        <article class="competition-meta-card">
+          <div class="competition-meta-label" data-i18n="detail.statusLabel">
+            {detail.statusLabel}
+          </div>
+          <div
+            class:list={["competition-meta-value", `competition-meta-value--${page.status}`]}
+            data-i18n="page.statusLabel"
+          >
+            {page.statusLabel}
+          </div>
+        </article>
+
+        <article class="competition-meta-card">
+          <div class="competition-meta-label" data-i18n="detail.datesLabel">
+            {detail.datesLabel}
+          </div>
+          <div class="competition-meta-value" data-i18n="page.dateLabel">{page.dateLabel}</div>
+        </article>
+
+        <article class="competition-meta-card">
+          <div class="competition-meta-label" data-i18n="detail.locationLabel">
+            {detail.locationLabel}
+          </div>
+          <div class="competition-meta-value" data-i18n="page.location">{page.location}</div>
+        </article>
+
+        <article class="competition-meta-card">
+          <div class="competition-meta-label" data-i18n="detail.industryLabel">
+            {detail.industryLabel}
+          </div>
+          <div class="competition-meta-value" data-i18n="page.industryLabel">
+            {page.industryLabel}
+          </div>
+        </article>
+      </div>
+
+      <article class="competition-rich-card">
+        <div
+          class="competition-rich-body"
+          data-i18n-html="page.overviewHtml"
+          set:html={page.overviewHtml}
+        ></div>
+      </article>
+
+      <div class="competition-detail-grid">
+        <article class="competition-rich-card">
+          <h2 data-i18n="page.whoShouldAttendTitle">{page.whoShouldAttendTitle}</h2>
+          <div
+            class="competition-rich-body"
+            data-i18n-html="page.whoShouldAttendHtml"
+            set:html={page.whoShouldAttendHtml}
+          ></div>
+        </article>
+
+        <article class="competition-rich-card">
+          <h2 data-i18n="page.formatTitle">{page.formatTitle}</h2>
+          <div
+            class="competition-rich-body"
+            data-i18n-html="page.formatHtml"
+            set:html={page.formatHtml}
+          ></div>
+        </article>
+      </div>
+    </section>
+
+    <div class="interior-wrap competition-detail-actions competition-detail-actions--center">
+      {page.status !== "past" && (
+        <a
+          href={page.applicationHref}
+          class="site-btn site-btn--primary"
+          data-i18n="detail.applyLabel"
+        >
+          {detail.applyLabel}
+        </a>
+      )}
+      {page.booth && page.status !== "past" && (
+        <a
+          href="#contact"
+          class="site-btn site-btn--secondary"
+          data-contact-trigger
+          data-i18n="detail.boothLabel"
+        >
+          {detail.boothLabel}
+        </a>
+      )}
+      <a href={page.listingHref} class="site-btn site-btn--secondary" data-i18n="detail.viewAllLabel">
+        {detail.viewAllLabel}
+      </a>
+    </div>
+  </main>
+
+  <InteriorFooter
+    footer={locale.footer}
+    ui={locale.ui}
+    siteSettings={siteSettings}
+    currentLanguage={currentLanguage}
+  />
+</div>

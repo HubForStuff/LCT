@@ -1,0 +1,562 @@
+/*
+ * Events listing chrome.
+ *
+ * This file carries ONLY what `interior-pages.css` lacks. Anything already defined there
+ * (`.ccard`, `.comp-grid`, `.filter-pill`, `.tab`, `.tab-count`, `.sort-select`,
+ * `.filters-bar`, `.page-header`, `.ccard-badge`, `.ccard-apply`, `.ccard-placeholder`)
+ * is reused as-is and must not be redefined here.
+ *
+ * Layout and behaviour are sourced from `mockup/5 - events_v11.htm`; class-state naming is
+ * translated to this codebase's `.is-active` / `.is-open` convention.
+ */
+
+.events-shell {
+  padding-bottom: 96px;
+}
+
+/* Scroll anchor for the mega-menu card link `/events/#calendar`. */
+.anchor-target {
+  position: relative;
+  top: -96px;
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+
+/* ---------------------------------------------------------------- filters */
+
+.filter-sep-dot {
+  flex-shrink: 0;
+  width: 4px;
+  height: 4px;
+  margin: 0 4px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.filters-bar--industry {
+  padding-top: 0;
+}
+
+.region-dropdown-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.region-dropdown-wrap .filter-pill svg.chevron {
+  opacity: 0.4;
+  transition: transform 0.18s;
+}
+
+.region-dropdown-wrap.is-open .filter-pill svg.chevron {
+  transform: rotate(180deg);
+}
+
+.region-panel,
+.china-panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 600;
+  padding: 16px 20px 20px;
+  border: 1.5px solid rgba(0, 0, 0, 0.12);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.18s, visibility 0.18s, transform 0.18s;
+}
+
+.region-panel {
+  min-width: 300px;
+  max-width: 420px;
+}
+
+.china-panel {
+  z-index: 500;
+  min-width: 220px;
+}
+
+.region-dropdown-wrap.is-open .region-panel,
+.region-dropdown-wrap.is-open .china-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.rg-section {
+  margin-bottom: 14px;
+}
+
+.rg-section:last-child {
+  margin-bottom: 0;
+}
+
+.rg-section-label {
+  margin-bottom: 6px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #999;
+}
+
+.rg-countries {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.rg-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 11px;
+  border: 1.5px solid rgba(0, 0, 0, 0.14);
+  border-radius: 999px;
+  background: #fff;
+  color: #555;
+  font-size: 12px;
+  font-weight: 400;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: border-color 0.14s, color 0.14s;
+}
+
+.rg-pill:hover {
+  border-color: #111;
+  color: #111;
+}
+
+.rg-pill.is-active {
+  border-color: var(--site-red);
+  color: #111;
+  font-weight: 600;
+}
+
+.industry-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 14px;
+  border: 1.5px solid rgba(0, 0, 0, 0.13);
+  border-radius: 999px;
+  background: #fff;
+  color: #333;
+  font-size: 13px;
+  font-weight: 400;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.industry-pill .isvg {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  opacity: 0.25;
+  transition: opacity 0.2s;
+}
+
+.industry-pill .isvg svg {
+  width: 12px;
+  height: 12px;
+}
+
+.industry-pill:hover {
+  border-color: rgba(0, 0, 0, 0.35);
+  color: #111;
+}
+
+.industry-pill:hover .isvg {
+  opacity: 0.6;
+}
+
+.industry-pill.is-active {
+  border-color: rgba(0, 0, 0, 0.55);
+  color: #111;
+  font-weight: 600;
+}
+
+.industry-pill.is-active .isvg {
+  opacity: 1;
+}
+
+/* ------------------------------------------------------- month separators */
+
+.month-sep {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 32px 0 8px;
+  margin-top: 8px;
+}
+
+.month-sep:first-child {
+  padding-top: 20px;
+  margin-top: 0;
+}
+
+.month-sep-label {
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #999;
+  white-space: nowrap;
+}
+
+.month-sep-line {
+  flex: 1;
+  height: 1px;
+  background: var(--site-rule);
+}
+
+/* ------------------------------------------------------------ event cards */
+
+/*
+ * Events cards run larger than the mockup's compact grid — customer feedback, July 16 2026.
+ * Everything below is scoped to `.ccard--event`, `.comp-grid:has(.ccard--event)` or a class
+ * name that only the events listing uses, so `/competitions/` is visually untouched.
+ */
+.comp-grid:has(.ccard--event) {
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 20px;
+  margin-bottom: 8px;
+}
+
+.ccard--event {
+  border: 1.5px solid rgba(0, 0, 0, 0.12);
+  border-radius: 18px;
+  background: #fff;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.ccard--event:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.11);
+}
+
+.ccard--event.ccard--flagship {
+  border-color: transparent;
+  background: linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(155deg, var(--site-red), #ff8c00) border-box;
+  border-width: 2px;
+}
+
+.ccard-link {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  color: inherit;
+  text-decoration: none;
+}
+
+.ccard--event .ccard-img {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 280px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #000 0%, #2a2a2a 100%);
+}
+
+.ccard-img-grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.ccard-img-wm {
+  position: relative;
+  z-index: 1;
+  font-size: 56px;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.12);
+  user-select: none;
+}
+
+.ccard-date-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: #000;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+/* `--open` already ships in interior-pages.css; events add the two extra tones. */
+.ccard-badge--upcoming {
+  background: rgba(0, 21, 255, 0.85);
+}
+
+.ccard-badge--past {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.ccard-badge--upcoming::before,
+.ccard-badge--past::before {
+  content: "";
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.ccard-badge--past::before {
+  opacity: 0.6;
+}
+
+.ccard--event .ccard-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 20px 12px;
+}
+
+.ccard-cat {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #888;
+}
+
+.ccard-cat-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
+}
+
+.ccard-cat-icon svg {
+  width: 12px;
+  height: 12px;
+  opacity: 0.85;
+}
+
+.ccard--event .ccard-name {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.18;
+  color: #000;
+}
+
+.ccard--event .ccard-desc {
+  display: -webkit-box;
+  flex: 1;
+  margin: 0;
+  overflow: hidden;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #666;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.ccard--event .ccard-footer {
+  gap: 10px;
+  padding: 12px 20px;
+}
+
+.ccard-location {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+  overflow: hidden;
+  color: #888;
+  font-size: 13px;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ccard-location svg {
+  flex-shrink: 0;
+  opacity: 0.45;
+}
+
+.ccard-footer-btns {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 6px;
+}
+
+.ccard-booth,
+.ccard-booth:link,
+.ccard-booth:visited {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 13px;
+  border: 1.5px solid var(--site-red);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--site-red);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+}
+
+.ccard-booth:hover {
+  background: var(--site-red);
+  color: #fff;
+}
+
+/* ------------------------------------------------------- list-your-event */
+
+/*
+ * Standalone panel rendered once per tab panel, after every `.comp-grid` — never inside one,
+ * so filtering a month group down to zero cards never hides this CTA. See task-4 review
+ * Finding 1.
+ */
+.list-your-event-panel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 4px;
+  padding: 20px 24px;
+  border: 1.5px dashed rgba(0, 0, 0, 0.18);
+  border-radius: 18px;
+  background: #f8fafc;
+}
+
+.list-your-event-label {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #333;
+}
+
+.ccard-list,
+.ccard-list:link,
+.ccard-list:visited {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 16px;
+  border: 1.5px solid rgba(0, 0, 0, 0.18);
+  border-radius: 999px;
+  background: #f8fafc;
+  color: #555;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: background 0.18s, border-color 0.18s, color 0.18s;
+}
+
+.ccard-list:hover {
+  border-color: #94a3b8;
+  background: #e2e8f0;
+  color: #1e293b;
+}
+
+/* ------------------------------------------------------------ responsive */
+
+@media (max-width: 1024px) {
+  .comp-grid:has(.ccard--event) {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+
+  .region-panel {
+    max-width: min(90vw, 360px);
+  }
+}
+
+@media (max-width: 720px) {
+  .comp-grid:has(.ccard--event) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .region-panel,
+  .china-panel {
+    left: auto;
+    right: 0;
+    min-width: 0;
+    width: min(88vw, 320px);
+  }
+
+  .ccard--event .ccard-img {
+    height: 190px;
+  }
+
+  .list-your-event-panel {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* --------------------------------------------------------------- detail */
+
+/*
+ * Reuses `.competition-meta-grid` / `.competition-meta-card` / `.competition-rich-card` /
+ * `.competition-detail-actions--center` etc. from interior-pages.css as-is (see
+ * CompetitionDetailPage.astro) so the two detail pages read as one family. Events have no
+ * award, so the default 4-column `.competition-meta-grid` (Status / Dates / Location /
+ * Industry) needs no column-count override, unlike programs' 3-card `.program-meta-grid`.
+ * `.event-detail-meta-grid` is a bare hook: it lets tests and any future per-page tweaks target
+ * the events meta grid without touching the shared competitions selector.
+ */
+
+/* Status tones for event statuses that have no competitions equivalent — "open" already reuses
+   `.competition-meta-value--open` from interior-pages.css unmodified. */
+.event-detail-meta-grid .competition-meta-value--upcoming {
+  color: #0015ff;
+}
+
+.event-detail-meta-grid .competition-meta-value--past {
+  color: #64748b;
+}
+
+/* Full-width hero image shown when an event has a `detailImage`; the dashed
+   `.competition-hero-image-placeholder` (interior-pages.css, unmodified) covers the empty case. */
+.event-detail-hero-image {
+  min-height: 320px;
+  margin-bottom: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 24px;
+  background-color: #dbeafe;
+  background-position: center;
+  background-size: cover;
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.06);
+}
+
+@media (max-width: 720px) {
+  .event-detail-hero-image {
+    min-height: 200px;
+    border-radius: 18px;
+  }
+}

@@ -765,9 +765,10 @@ test("static pages build from Keystatic content and reuse the shared localizatio
   try {
     const expectedPages = [
       ["advisory", /Advisory Services/i, /Investment matchmaking/i],
-      ["events", /Events\s*&amp;\s*Calendar|Events\s*&\s*Calendar/i, /Trade fairs and expos/i],
       ["programs", /Programs/i, /Market entry/i],
       // "network" is temporarily unpublished (published: false) and builds no route.
+      // "events" is unpublished too: /events/ is now the data-driven listing built from the
+      // events collection (src/pages/events/index.astro, tests/events-list.test.mjs).
     ];
 
     for (const [slug, titlePattern, bodyPattern] of expectedPages) {

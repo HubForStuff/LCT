@@ -1,0 +1,36 @@
+---
+import LocalizationClient from "../../components/i18n/LocalizationClient.astro";
+import EventDetailPage from "../../components/events/EventDetailPage.astro";
+import Layout from "../../layouts/Layout.astro";
+import { getAllEventSlugs, getEventDetailPageData } from "../../lib/events/reader";
+import "../../styles/interior-pages.css";
+import "../../styles/events.css";
+
+export async function getStaticPaths() {
+  const slugs = await getAllEventSlugs();
+  return slugs.map((slug) => ({ params: { slug } }));
+}
+
+const slug = Astro.params.slug;
+
+if (!slug) {
+  throw new Error("Missing event slug.");
+}
+
+const { defaultLanguage, defaultLocale, localizedContent, siteSettings } =
+  await getEventDetailPageData(slug);
+---
+
+<Layout
+  title={defaultLocale.meta.title}
+  description={defaultLocale.meta.description}
+  htmlLang={defaultLocale.meta.htmlLang}
+  bodyClass="interior-body"
+>
+  <EventDetailPage
+    locale={defaultLocale}
+    siteSettings={siteSettings}
+    currentLanguage={defaultLanguage}
+  />
+  <LocalizationClient defaultLanguage={defaultLanguage} localizedContent={localizedContent} />
+</Layout>

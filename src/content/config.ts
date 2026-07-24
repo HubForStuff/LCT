@@ -50,6 +50,11 @@ const network = defineCollection({
   schema: z.any(),
 });
 
+const events = defineCollection({
+  type: "data",
+  schema: z.any(),
+});
+
 export const collections = {
   homepage,
   "interior-pages": interiorPages,
@@ -61,4 +66,5 @@ export const collections = {
   "city-partnerships": cityPartnerships,
   speakers,
   network,
+  events,
 };

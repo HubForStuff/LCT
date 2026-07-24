@@ -34,15 +34,15 @@ Refinements (Tasks 1–8) are implemented, each reviewed clean. Events (area H) 
 | Programs | List: remove description and right-side text | ✅ Done | `summary` cleared, all 3 locales. |
 | Programs | Detail: competition style; no Award card; Check Eligibility → simplified form | ✅ Done | Links to `/eligibility/?program=<slug>`. |
 | Eligibility | New lightweight form (program qualification) | ✅ Done (code) | Code-complete but NOT live — `Code.gs` undeployed, `PUBLIC_PREREG_SCRIPT_URL` unset. |
-| Events | List (larger cards, filters, no highlighted event), detail, application form | ⬜ Not started | Separate plan; reuses the competitions list machinery per `mockup/5 - events_v11.htm`. |
+| Events | List (larger cards, filters, no highlighted event), detail, application form | ✅ Done | Delivered via `docs/superpowers/plans/2026-07-23-events.md`: `/events/` lists two tabs (Trade Fairs / Summits) with counts derived from the CMS, Status + Region (China-by-location / LATAM-by-country) + Industry filters, month-grouped cards, no featured/highlighted block, and a "List Your Event" panel pointing at the contact modal. `/events/[slug]` detail pages match the competition-detail visual family (meta grid, no award card). `/event-application` is its own minimal form routed to a future "Event Applications" sheet in `Code.gs` (`formType=event-application`). **The collection ships seed content (25 entries: 14 trade fairs + 11 summits) pending Andre's real calendar** — see `src/content/events/README.md` for the editor constraints Keystatic replacement must respect. |
 
 Open questions carried to the user:
 - Andre's final landing copy (interim text shipped in the final shape).
 - Mobile language bottom-sheet still shows a selected-language checkmark — likely not what "remove the fixed highlight" meant (that was desktop-framed), left as-is pending confirmation.
 - Selected benefit card is now signalled by border + bolder label only (no fill) — a literal reading of "hover changes only the border"; a stronger selected treatment is possible if wanted.
-- Events open items: "Book a Booth" and "Submit your event" destinations (mockup placeholders, absent from feedback); whether the event application sits behind a detail-page hop.
+- Events open items — resolved 2026-07-23: "Book a Booth" and "List Your Event" both point at the existing contact modal; the event application sits behind the detail-page hop (list → detail → apply). Confirmed by the user; Andre may still override either.
 
-Deploy dependency (pre-existing, blocks the eligibility form going live): deploy `scripts/apps-script/Code.gs` and set `PUBLIC_PREREG_SCRIPT_URL`.
+Deploy dependency (pre-existing, blocks the pre-registration, eligibility, AND event-application forms going live): deploy `scripts/apps-script/Code.gs` and set `PUBLIC_PREREG_SCRIPT_URL`. One deploy now covers all three `formType` routes (`pre-registration` → Submissions, `eligibility` → Eligibility, `event-application` → Event Applications).
 
 ## LANDING PAGE
 

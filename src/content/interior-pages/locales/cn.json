@@ -320,6 +320,121 @@
       }
     ]
   },
+  "eventsPage": {
+    "meta": {
+      "htmlLang": "zh-CN",
+      "title": "活动 | LATAM China Tech",
+      "description": "连接拉丁美洲与中国的展会、博览会、会议与峰会。"
+    },
+    "eyebrow": "活动日历",
+    "titleHtml": "活动",
+    "statusLabel": "状态",
+    "regionLabel": "区域",
+    "industryLabel": "行业",
+    "locationPanelLabel": "城市",
+    "sortLabel": "活动排序",
+    "filtersAriaLabel": "活动筛选器",
+    "tabsAriaLabel": "活动类型",
+    "statusFilters": [
+      { "value": "all", "label": "全部" },
+      { "value": "open", "label": "开放中" },
+      { "value": "upcoming", "label": "即将举行" },
+      { "value": "past", "label": "已结束" }
+    ],
+    "regionFilters": [
+      { "value": "all", "label": "全部" },
+      { "value": "china", "label": "中国" },
+      { "value": "latam", "label": "拉美" }
+    ],
+    "industryFilters": [
+      { "value": "all", "label": "全部" },
+      { "value": "ai", "label": "AI" },
+      { "value": "biotech", "label": "生物科技" },
+      { "value": "deep-tech", "label": "深科技" },
+      { "value": "education", "label": "教育" },
+      { "value": "energy-and-climate", "label": "能源与气候" },
+      { "value": "entertainment", "label": "娱乐" },
+      { "value": "fintech", "label": "金融科技" },
+      { "value": "food-and-agritech", "label": "食品与农业科技" },
+      { "value": "healthtech", "label": "健康科技" },
+      { "value": "manufacturing", "label": "制造业" },
+      { "value": "media-and-community", "label": "媒体" },
+      { "value": "mobility", "label": "出行" },
+      { "value": "proptech", "label": "地产科技" },
+      { "value": "robotics", "label": "机器人" },
+      { "value": "security", "label": "安全" },
+      { "value": "other", "label": "其他" }
+    ],
+    "chinaLocations": [
+      { "value": "Beijing", "label": "北京" },
+      { "value": "Shanghai", "label": "上海" },
+      { "value": "Shenzhen", "label": "深圳" },
+      { "value": "Guangzhou", "label": "广州" },
+      { "value": "Chengdu", "label": "成都" },
+      { "value": "Hangzhou", "label": "杭州" },
+      { "value": "Macau", "label": "澳门" },
+      { "value": "Hong Kong", "label": "香港" },
+      { "value": "Taiwan", "label": "台湾" }
+    ],
+    "latamGroups": [
+      {
+        "label": "北美洲",
+        "countries": [
+          { "value": "Mexico", "label": "墨西哥" }
+        ]
+      },
+      {
+        "label": "中美洲",
+        "countries": [
+          { "value": "Belize", "label": "伯利兹" },
+          { "value": "Costa Rica", "label": "哥斯达黎加" },
+          { "value": "El Salvador", "label": "萨尔瓦多" },
+          { "value": "Guatemala", "label": "危地马拉" },
+          { "value": "Honduras", "label": "洪都拉斯" },
+          { "value": "Nicaragua", "label": "尼加拉瓜" },
+          { "value": "Panama", "label": "巴拿马" }
+        ]
+      },
+      {
+        "label": "加勒比地区",
+        "countries": [
+          { "value": "Cuba", "label": "古巴" },
+          { "value": "Dominican Republic", "label": "多米尼加共和国" },
+          { "value": "Haiti", "label": "海地" },
+          { "value": "Puerto Rico", "label": "波多黎各" }
+        ]
+      },
+      {
+        "label": "南美洲",
+        "countries": [
+          { "value": "Argentina", "label": "阿根廷" },
+          { "value": "Bolivia", "label": "玻利维亚" },
+          { "value": "Brazil", "label": "巴西" },
+          { "value": "Chile", "label": "智利" },
+          { "value": "Colombia", "label": "哥伦比亚" },
+          { "value": "Ecuador", "label": "厄瓜多尔" },
+          { "value": "Guyana", "label": "圭亚那" },
+          { "value": "Paraguay", "label": "巴拉圭" },
+          { "value": "Peru", "label": "秘鲁" },
+          { "value": "Suriname", "label": "苏里南" },
+          { "value": "Uruguay", "label": "乌拉圭" },
+          { "value": "Venezuela", "label": "委内瑞拉" },
+          { "value": "French Guiana", "label": "法属圭亚那" }
+        ]
+      }
+    ],
+    "sortOptions": [
+      "按日期排序（最近优先）",
+      "按区域排序"
+    ],
+    "placeholderLabel": "2026年第二季度更多活动",
+    "listYourEventLabel": "发布您的活动",
+    "listYourEventCtaLabel": "提交活动 →",
+    "tabs": [
+      { "id": "trade-fair", "label": "展会与博览" },
+      { "id": "summit", "label": "会议与峰会" }
+    ]
+  },
   "preRegistrationPage": {
     "meta": {
       "htmlLang": "zh-CN",

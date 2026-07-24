@@ -1,0 +1,80 @@
+---
+import { getCardFocusIcon } from "../../lib/shared/filter-icons";
+
+import type { EventListCard } from "../../lib/events/types";
+
+interface Props {
+  card: EventListCard;
+  tabIndex: number;
+  monthIndex: number;
+  cardIndex: number;
+}
+
+const { card, tabIndex, monthIndex, cardIndex } = Astro.props;
+const i18nBase = `page.tabs.${tabIndex}.months.${monthIndex}.cards.${cardIndex}`;
+const industryIcon = getCardFocusIcon([card.industry]);
+---
+
+<article
+  class:list={["ccard", "ccard--event", card.flagship && "ccard--flagship"]}
+  data-event-card
+  data-status={card.status}
+  data-region={card.region}
+  data-country={card.country}
+  data-location={card.location}
+  data-industry={card.industry}
+  data-start-date={card.startDate}
+  data-order={card.order}
+>
+  <a class="ccard-link" href={card.href} aria-labelledby={`event-${card.slug}`}>
+    <div class="ccard-img">
+      <div class="ccard-img-grid"></div>
+      <span class:list={["ccard-badge", `ccard-badge--${card.status}`]}>
+        <span data-i18n={`${i18nBase}.statusLabel`}>{card.statusLabel}</span>
+      </span>
+      <div class="ccard-date-badge" data-i18n={`${i18nBase}.dateLabel`}>{card.dateLabel}</div>
+      <div class="ccard-img-wm">{card.code}</div>
+    </div>
+
+    <div class="ccard-body">
+      <div class="ccard-cat">
+        {industryIcon && (
+          <span class="ccard-cat-icon" aria-hidden="true" set:html={industryIcon}></span>
+        )}
+        <span data-i18n={`${i18nBase}.categoryLabel`}>{card.categoryLabel}</span>
+      </div>
+      <h3 class="ccard-name" id={`event-${card.slug}`} data-i18n={`${i18nBase}.name`}>{card.name}</h3>
+      <p class="ccard-desc" data-i18n={`${i18nBase}.description`}>{card.description}</p>
+    </div>
+  </a>
+
+  <div class="ccard-footer">
+    <div class="ccard-location">
+      <svg
+        width="10"
+        height="10"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        aria-hidden="true"
+      >
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"></path>
+        <circle cx="12" cy="9" r="2.5"></circle>
+      </svg>
+      <span data-i18n={`${i18nBase}.location`}>{card.location}</span>
+    </div>
+
+    <div class="ccard-footer-btns">
+      {card.booth && (
+        <a class="ccard-booth" href={card.boothHref} data-contact-trigger>
+          <span data-i18n={`${i18nBase}.boothCtaLabel`}>{card.boothCtaLabel}</span>
+        </a>
+      )}
+      <a class="ccard-apply" href={card.href}>
+        <span data-i18n={`${i18nBase}.ctaLabel`}>{card.ctaLabel}</span>
+      </a>
+    </div>
+  </div>
+</article>

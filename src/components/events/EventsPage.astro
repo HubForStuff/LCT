@@ -1,0 +1,495 @@
+---
+import EventCard from "./EventCard.astro";
+import InteriorFooter from "../site/InteriorFooter.astro";
+import InteriorHeader from "../site/InteriorHeader.astro";
+
+import { getFilterIconMarkup } from "../../lib/shared/filter-icons";
+
+import type { EventListingRouteLocale } from "../../lib/events/types";
+import type { HomepageLocaleCode, SiteSettings } from "../../lib/homepage/types";
+
+interface Props {
+  locale: EventListingRouteLocale;
+  siteSettings: SiteSettings;
+  currentLanguage: HomepageLocaleCode;
+}
+
+const { locale, siteSettings, currentLanguage } = Astro.props;
+const page = locale.page;
+---
+
+<div class="interior-page">
+  <InteriorHeader
+    navItems={locale.navItems}
+    activeHref="/events/"
+    siteSettings={siteSettings}
+    currentLanguage={currentLanguage}
+    languageLabel={locale.ui.chooseLanguage}
+    homeLabel={locale.ui.homeLabel}
+    menuLabel={locale.ui.menu}
+    desktopMenuSections={locale.desktopMenuSections}
+    navExploreLabel={locale.navExploreLabel}
+  />
+
+  <main>
+    <section class="page-header">
+      <div class="interior-wrap page-header-inner">
+        <div>
+          <div class="page-eyebrow">
+            <span class="dot"></span>
+            <span data-i18n="page.eyebrow">{page.eyebrow}</span>
+          </div>
+          <h1 class="page-title" data-i18n-html="page.titleHtml" set:html={page.titleHtml}></h1>
+        </div>
+      </div>
+    </section>
+
+    <section class="interior-wrap events-shell">
+      {/* Anchor target for the mega-menu card link /events/#calendar (homepage/links.ts). */}
+      <div id="calendar" class="anchor-target" aria-hidden="true"></div>
+
+      <div
+        class="filters-bar"
+        role="group"
+        aria-label={page.filtersAriaLabel}
+        data-i18n-aria-label="page.filtersAriaLabel"
+      >
+        <span class="filter-group-label" data-i18n="page.statusLabel">{page.statusLabel}</span>
+        {page.statusFilters.map((filter, filterIndex) => {
+          const iconMarkup = filter.value === "all" ? "" : getFilterIconMarkup("status", filter.value);
+
+          return (
+            <button
+              type="button"
+              class:list={["filter-pill", filter.value === "all" && "is-active"]}
+              data-status-filter={filter.value}
+            >
+              {iconMarkup && (
+                <span class="filter-pill-icon" aria-hidden="true" set:html={iconMarkup}></span>
+              )}
+              <span data-i18n={`page.statusFilters.${filterIndex}.label`}>{filter.label}</span>
+            </button>
+          );
+        })}
+
+        <span class="filter-sep-dot" aria-hidden="true"></span>
+
+        <span class="filter-group-label" data-i18n="page.regionLabel">{page.regionLabel}</span>
+        <button type="button" class="filter-pill is-active" data-region-filter="all">
+          <span data-i18n="page.regionFilters.0.label">{page.regionFilters[0].label}</span>
+        </button>
+
+        <div class="region-dropdown-wrap" data-region-wrap="china">
+          <button
+            type="button"
+            class="filter-pill"
+            data-region-filter="china"
+            data-region-trigger="china"
+          >
+            <span data-i18n="page.regionFilters.1.label">{page.regionFilters[1].label}</span>
+            <svg class="chevron" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><polyline points="2,3.5 5,6.5 8,3.5"></polyline></svg>
+          </button>
+          <div class="china-panel" data-region-panel="china">
+            <div class="rg-section-label" data-i18n="page.locationPanelLabel">{page.locationPanelLabel}</div>
+            <div class="rg-countries">
+              {page.chinaLocations.map((location, locationIndex) => (
+                <button
+                  type="button"
+                  class="rg-pill"
+                  data-china-location={location.value}
+                  data-i18n={`page.chinaLocations.${locationIndex}.label`}
+                >
+                  {location.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div class="region-dropdown-wrap" data-region-wrap="latam">
+          <button
+            type="button"
+            class="filter-pill"
+            data-region-filter="latam"
+            data-region-trigger="latam"
+          >
+            <span data-i18n="page.regionFilters.2.label">{page.regionFilters[2].label}</span>
+            <svg class="chevron" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><polyline points="2,3.5 5,6.5 8,3.5"></polyline></svg>
+          </button>
+          <div class="region-panel" data-region-panel="latam">
+            {page.latamGroups.map((group, groupIndex) => (
+              <div class="rg-section">
+                <div class="rg-section-label" data-i18n={`page.latamGroups.${groupIndex}.label`}>{group.label}</div>
+                <div class="rg-countries">
+                  {group.countries.map((country, countryIndex) => (
+                    <button
+                      type="button"
+                      class="rg-pill"
+                      data-latam-country={country.value}
+                      data-i18n={`page.latamGroups.${groupIndex}.countries.${countryIndex}.label`}
+                    >
+                      {country.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div class="filters-bar filters-bar--industry">
+        <span class="filter-group-label" data-i18n="page.industryLabel">{page.industryLabel}</span>
+        {page.industryFilters.map((filter, filterIndex) => (
+          <button
+            type="button"
+            class:list={["industry-pill", filter.value === "all" && "is-active"]}
+            data-industry-filter={filter.value}
+            data-val={filter.value}
+          >
+            {filter.value !== "all" && (
+              <span class="isvg" aria-hidden="true" set:html={getFilterIconMarkup("focus", filter.value)}></span>
+            )}
+            <span data-i18n={`page.industryFilters.${filterIndex}.label`}>{filter.label}</span>
+          </button>
+        ))}
+      </div>
+
+      <div class="tab-bar">
+        <div
+          class="tab-group"
+          role="tablist"
+          aria-label={page.tabsAriaLabel}
+          data-i18n-aria-label="page.tabsAriaLabel"
+        >
+          {page.tabs.map((tab, tabIndex) => (
+            <button
+              type="button"
+              class:list={["tab", tabIndex === 0 && "is-active"]}
+              role="tab"
+              aria-selected={tabIndex === 0 ? "true" : "false"}
+              aria-controls={tab.anchorId}
+              id={`tab-${tab.id}`}
+              data-tab-trigger={tab.id}
+            >
+              <span data-i18n={`page.tabs.${tabIndex}.label`}>{tab.label}</span>
+              <span class="tab-count">{tab.count}</span>
+            </button>
+          ))}
+        </div>
+
+        <div class="tab-sort">
+          <label class="sr-only" for="eventSort" data-i18n="page.sortLabel">{page.sortLabel}</label>
+          <select id="eventSort" class="sort-select">
+            {page.sortOptions.map((option, optionIndex) => (
+              <option data-i18n={`page.sortOptions.${optionIndex}`}>{option}</option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      {page.tabs.map((tab, tabIndex) => (
+        <section
+          class:list={["tab-panel", tabIndex === 0 && "is-active"]}
+          id={tab.anchorId}
+          role="tabpanel"
+          aria-labelledby={`tab-${tab.id}`}
+          data-tab-panel={tab.id}
+          hidden={tabIndex !== 0}
+        >
+          {tab.months.map((group, monthIndex) => (
+            <>
+              <div class="month-sep" data-month-group={group.key}>
+                <div class="month-sep-label" data-i18n={`page.tabs.${tabIndex}.months.${monthIndex}.label`}>{group.label}</div>
+                <div class="month-sep-line"></div>
+              </div>
+              <div class="comp-grid" data-month-grid={group.key}>
+                {group.cards.map((card, cardIndex) => (
+                  <EventCard card={card} tabIndex={tabIndex} monthIndex={monthIndex} cardIndex={cardIndex} />
+                ))}
+
+                {monthIndex === tab.months.length - 1 && (
+                  <div class="ccard-placeholder">
+                    <div class="ccard-placeholder-label" data-i18n="page.placeholderLabel">{page.placeholderLabel}</div>
+                  </div>
+                )}
+              </div>
+            </>
+          ))}
+
+          {/*
+            Rendered once per tab panel, outside every `.comp-grid`, so it is never subject to
+            the filter script's per-grid hiding (`grid.hidden = !anyVisible` in the script below)
+            — this is the page's primary CTA and must survive any filter combination, including
+            ones that empty every month group. See task-4 review Finding 1.
+          */}
+          <div class="list-your-event-panel">
+            <div class="list-your-event-label" data-i18n="page.listYourEventLabel">{page.listYourEventLabel}</div>
+            <a href="#contact" class="ccard-list" data-contact-trigger>
+              <span data-i18n="page.listYourEventCtaLabel">{page.listYourEventCtaLabel}</span>
+            </a>
+          </div>
+        </section>
+      ))}
+    </section>
+  </main>
+
+  <InteriorFooter
+    footer={locale.footer}
+    ui={locale.ui}
+    siteSettings={siteSettings}
+    currentLanguage={currentLanguage}
+  />
+</div>
+
+<script>
+  // The predicate and the sorters are imported, never re-implemented: a second copy in the
+  // browser is how this page and tests/events-filters.test.mjs would silently drift apart.
+  import { matchesFilters, sortByDate, sortByRegion } from "../../lib/events/filters.mjs";
+
+  const tabTriggers = Array.from(document.querySelectorAll("[data-tab-trigger]"));
+  const tabPanels = Array.from(document.querySelectorAll("[data-tab-panel]"));
+  const statusButtons = Array.from(document.querySelectorAll("[data-status-filter]"));
+  const regionButtons = Array.from(document.querySelectorAll("[data-region-filter]"));
+  const industryButtons = Array.from(document.querySelectorAll("[data-industry-filter]"));
+  const chinaButtons = Array.from(document.querySelectorAll("[data-china-location]"));
+  const latamButtons = Array.from(document.querySelectorAll("[data-latam-country]"));
+  const sortSelect = document.getElementById("eventSort");
+
+  const state = {
+    status: "all",
+    region: "all",
+    latamCountries: [],
+    chinaLocations: [],
+    industries: [],
+  };
+
+  function cardModel(node) {
+    return {
+      status: node.dataset.status,
+      region: node.dataset.region,
+      country: node.dataset.country,
+      location: node.dataset.location,
+      industry: node.dataset.industry,
+      startDate: node.dataset.startDate,
+      order: Number(node.dataset.order) || 0,
+      node,
+    };
+  }
+
+  function applyFilters() {
+    document.querySelectorAll("[data-event-card]").forEach((node) => {
+      node.hidden = !matchesFilters(cardModel(node), state);
+    });
+
+    // A month heading with every card beneath it filtered out reads as a rendering bug.
+    // Month keys repeat across the two panels, so the lookup is scoped to the owning panel.
+    tabPanels.forEach((panel) => {
+      panel.querySelectorAll("[data-month-grid]").forEach((grid) => {
+        const key = grid.dataset.monthGrid;
+        const separator = panel.querySelector(`[data-month-group="${key}"]`);
+        const anyVisible = Array.from(grid.querySelectorAll("[data-event-card]")).some(
+          (card) => !card.hidden,
+        );
+        grid.hidden = !anyVisible;
+        if (separator) {
+          separator.hidden = !anyVisible;
+        }
+      });
+    });
+
+    // Tab counts always derive from what is visible — never hardcoded.
+    tabTriggers.forEach((trigger) => {
+      const panel = document.querySelector(`[data-tab-panel="${trigger.dataset.tabTrigger}"]`);
+      const countNode = trigger.querySelector(".tab-count");
+      if (!panel || !countNode) {
+        return;
+      }
+
+      countNode.textContent = String(
+        Array.from(panel.querySelectorAll("[data-event-card]")).filter((card) => !card.hidden)
+          .length,
+      );
+    });
+  }
+
+  function toggleInArray(list, value) {
+    const index = list.indexOf(value);
+    if (index === -1) {
+      list.push(value);
+    } else {
+      list.splice(index, 1);
+    }
+  }
+
+  function syncPressed(buttons, isActive) {
+    buttons.forEach((button) => button.classList.toggle("is-active", isActive(button)));
+  }
+
+  function activateTab(tabId) {
+    tabTriggers.forEach((trigger) => {
+      const isActive = trigger.dataset.tabTrigger === tabId;
+      trigger.classList.toggle("is-active", isActive);
+      trigger.setAttribute("aria-selected", isActive ? "true" : "false");
+    });
+
+    tabPanels.forEach((panel) => {
+      const isActive = panel.dataset.tabPanel === tabId;
+      panel.classList.toggle("is-active", isActive);
+      panel.hidden = !isActive;
+    });
+  }
+
+  function sortCards() {
+    const useRegion = sortSelect instanceof HTMLSelectElement && sortSelect.selectedIndex === 1;
+
+    document.querySelectorAll("[data-month-grid]").forEach((grid) => {
+      const cards = Array.from(grid.querySelectorAll("[data-event-card]")).map(cardModel);
+      const sorted = useRegion ? sortByRegion(cards) : sortByDate(cards);
+      const extras = Array.from(grid.children).filter(
+        (child) => !child.hasAttribute("data-event-card"),
+      );
+
+      grid.replaceChildren(...sorted.map((card) => card.node), ...extras);
+    });
+  }
+
+  statusButtons.forEach((button) =>
+    button.addEventListener("click", () => {
+      state.status = button.dataset.statusFilter;
+      syncPressed(statusButtons, (other) => other.dataset.statusFilter === state.status);
+      applyFilters();
+    }),
+  );
+
+  regionButtons.forEach((button) =>
+    button.addEventListener("click", () => {
+      const value = button.dataset.regionFilter;
+      if (value === "all") {
+        state.region = "all";
+        state.latamCountries.length = 0;
+        state.chinaLocations.length = 0;
+        syncPressed(chinaButtons, () => false);
+        syncPressed(latamButtons, () => false);
+      } else {
+        state.region = value;
+      }
+      syncPressed(regionButtons, (other) => other.dataset.regionFilter === state.region);
+      applyFilters();
+    }),
+  );
+
+  chinaButtons.forEach((button) =>
+    button.addEventListener("click", (event) => {
+      event.stopPropagation();
+      toggleInArray(state.chinaLocations, button.dataset.chinaLocation);
+      state.latamCountries.length = 0;
+      syncPressed(latamButtons, () => false);
+      state.region = state.chinaLocations.length > 0 ? "china" : state.region;
+      syncPressed(chinaButtons, (other) =>
+        state.chinaLocations.includes(other.dataset.chinaLocation),
+      );
+      syncPressed(regionButtons, (other) => other.dataset.regionFilter === state.region);
+      applyFilters();
+    }),
+  );
+
+  latamButtons.forEach((button) =>
+    button.addEventListener("click", (event) => {
+      event.stopPropagation();
+      toggleInArray(state.latamCountries, button.dataset.latamCountry);
+      state.chinaLocations.length = 0;
+      syncPressed(chinaButtons, () => false);
+      state.region = state.latamCountries.length > 0 ? "latam" : state.region;
+      syncPressed(latamButtons, (other) =>
+        state.latamCountries.includes(other.dataset.latamCountry),
+      );
+      syncPressed(regionButtons, (other) => other.dataset.regionFilter === state.region);
+      applyFilters();
+    }),
+  );
+
+  industryButtons.forEach((button) =>
+    button.addEventListener("click", () => {
+      const value = button.dataset.industryFilter;
+      if (value === "all") {
+        state.industries.length = 0;
+      } else {
+        toggleInArray(state.industries, value);
+      }
+
+      syncPressed(industryButtons, (other) =>
+        other.dataset.industryFilter === "all"
+          ? state.industries.length === 0
+          : state.industries.includes(other.dataset.industryFilter),
+      );
+      applyFilters();
+    }),
+  );
+
+  document.querySelectorAll("[data-region-trigger]").forEach((trigger) =>
+    trigger.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const name = trigger.dataset.regionTrigger;
+      document.querySelectorAll("[data-region-wrap]").forEach((wrap) => {
+        wrap.classList.toggle(
+          "is-open",
+          wrap.dataset.regionWrap === name && !wrap.classList.contains("is-open"),
+        );
+      });
+    }),
+  );
+
+  document.addEventListener("click", (event) => {
+    document.querySelectorAll("[data-region-wrap]").forEach((wrap) => {
+      if (!wrap.contains(event.target)) {
+        wrap.classList.remove("is-open");
+      }
+    });
+  });
+
+  tabTriggers.forEach((trigger) =>
+    trigger.addEventListener("click", () => {
+      activateTab(trigger.dataset.tabTrigger);
+      sortCards();
+    }),
+  );
+
+  if (sortSelect instanceof HTMLSelectElement) {
+    sortSelect.addEventListener("change", sortCards);
+  }
+
+  applyFilters();
+  sortCards();
+
+  // Deep links: ?tab=summit, plus the mega-menu hashes /events/#trade-fairs-expos and #summits.
+  function activateTabFromHash() {
+    const hash = window.location.hash.replace("#", "");
+    const hashTab = tabPanels.find((panel) => panel.id === hash);
+    return hashTab ? hashTab.dataset.tabPanel : "";
+  }
+
+  function activateDeepLinkTarget(target) {
+    if (!target || !tabTriggers.some((trigger) => trigger.dataset.tabTrigger === target)) {
+      return;
+    }
+
+    activateTab(target);
+    applyFilters();
+    sortCards();
+  }
+
+  activateDeepLinkTarget(
+    new URLSearchParams(window.location.search).get("tab") || activateTabFromHash(),
+  );
+
+  // Clicking a mega-menu Events link while already on /events/ is a same-document hash
+  // navigation: the module never re-runs, so the tab has to be switched here.
+  window.addEventListener("hashchange", () => {
+    const target = activateTabFromHash();
+    activateDeepLinkTarget(target);
+    if (target) {
+      document.getElementById(window.location.hash.replace("#", ""))?.scrollIntoView();
+    }
+  });
+</script>

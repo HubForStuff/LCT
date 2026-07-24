@@ -4,9 +4,11 @@
 // Execute as: Me, Who has access: Anyone. Paste the /exec URL into PUBLIC_PREREG_SCRIPT_URL.
 // SHEET_COLUMNS MUST stay in sync with src/lib/pre-registration/sheet-columns.ts.
 // ELIGIBILITY_SHEET_COLUMNS MUST stay in sync with src/lib/eligibility/sheet-columns.ts.
+// EVENT_APPLICATION_SHEET_COLUMNS MUST stay in sync with src/lib/event-application/sheet-columns.ts.
 
 var SHEET_NAME = "Submissions";
 var ELIGIBILITY_SHEET_NAME = "Eligibility";
+var EVENT_APPLICATION_SHEET_NAME = "Event Applications";
 var DRIVE_FOLDER_NAME = "Pre-Registration Uploads";
 
 var SHEET_COLUMNS = [
@@ -33,12 +35,27 @@ var ELIGIBILITY_SHEET_COLUMNS = [
   "Message"
 ];
 
+var EVENT_APPLICATION_SHEET_COLUMNS = [
+  "Submitted At",
+  "Submission ID",
+  "Language",
+  "Event Slug",
+  "Event Name",
+  "Name",
+  "Email",
+  "Company",
+  "Message"
+];
+
 // Route a submission to the correct sheet + column order based on its formType.
 // Absent / unknown formType falls back to the pre-registration Submissions sheet,
 // so existing pre-registration behaviour is preserved unchanged.
 function routeForFormType(formType) {
   if (formType === "eligibility") {
     return { sheetName: ELIGIBILITY_SHEET_NAME, columns: ELIGIBILITY_SHEET_COLUMNS };
+  }
+  if (formType === "event-application") {
+    return { sheetName: EVENT_APPLICATION_SHEET_NAME, columns: EVENT_APPLICATION_SHEET_COLUMNS };
   }
   return { sheetName: SHEET_NAME, columns: SHEET_COLUMNS };
 }
@@ -54,6 +71,16 @@ function doPost(e) {
         p.name || "", p.email || "", p.company || "", p.message || ""
       ];
       appendRow_(routeForFormType(p.formType), eligibilityRow);
+      return json_({ ok: true });
+    }
+
+    if (p.formType === "event-application") {
+      var eventRow = [
+        new Date(),
+        p.submissionId || "", p.language || "", p.eventSlug || "", p.eventName || "",
+        p.name || "", p.email || "", p.company || "", p.message || ""
+      ];
+      appendRow_(routeForFormType(p.formType), eventRow);
       return json_({ ok: true });
     }
 

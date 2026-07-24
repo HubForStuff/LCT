@@ -320,6 +320,121 @@
       }
     ]
   },
+  "eventsPage": {
+    "meta": {
+      "htmlLang": "pt-BR",
+      "title": "Eventos | LATAM China Tech",
+      "description": "Feiras, exposicoes, conferencias e summits conectando a America Latina e a China."
+    },
+    "eyebrow": "Calendario",
+    "titleHtml": "Eventos",
+    "statusLabel": "Status",
+    "regionLabel": "Regiao",
+    "industryLabel": "Setor",
+    "locationPanelLabel": "Local",
+    "sortLabel": "Ordenar eventos",
+    "filtersAriaLabel": "Filtros de eventos",
+    "tabsAriaLabel": "Categorias de eventos",
+    "statusFilters": [
+      { "value": "all", "label": "Todos" },
+      { "value": "open", "label": "Abertos" },
+      { "value": "upcoming", "label": "Em breve" },
+      { "value": "past", "label": "Encerrados" }
+    ],
+    "regionFilters": [
+      { "value": "all", "label": "Todas" },
+      { "value": "china", "label": "China" },
+      { "value": "latam", "label": "LATAM" }
+    ],
+    "industryFilters": [
+      { "value": "all", "label": "Todos" },
+      { "value": "ai", "label": "AI" },
+      { "value": "biotech", "label": "Biotech" },
+      { "value": "deep-tech", "label": "Deep Tech" },
+      { "value": "education", "label": "Educacao" },
+      { "value": "energy-and-climate", "label": "Energia e Clima" },
+      { "value": "entertainment", "label": "Entretenimento" },
+      { "value": "fintech", "label": "Fintech" },
+      { "value": "food-and-agritech", "label": "Food & AgriTech" },
+      { "value": "healthtech", "label": "Healthtech" },
+      { "value": "manufacturing", "label": "Manufatura" },
+      { "value": "media-and-community", "label": "Midia" },
+      { "value": "mobility", "label": "Mobilidade" },
+      { "value": "proptech", "label": "Proptech" },
+      { "value": "robotics", "label": "Robotica" },
+      { "value": "security", "label": "Seguranca" },
+      { "value": "other", "label": "Outros" }
+    ],
+    "chinaLocations": [
+      { "value": "Beijing", "label": "Pequim" },
+      { "value": "Shanghai", "label": "Xangai" },
+      { "value": "Shenzhen", "label": "Shenzhen" },
+      { "value": "Guangzhou", "label": "Guangzhou" },
+      { "value": "Chengdu", "label": "Chengdu" },
+      { "value": "Hangzhou", "label": "Hangzhou" },
+      { "value": "Macau", "label": "Macau" },
+      { "value": "Hong Kong", "label": "Hong Kong" },
+      { "value": "Taiwan", "label": "Taiwan" }
+    ],
+    "latamGroups": [
+      {
+        "label": "America do Norte",
+        "countries": [
+          { "value": "Mexico", "label": "Mexico" }
+        ]
+      },
+      {
+        "label": "America Central",
+        "countries": [
+          { "value": "Belize", "label": "Belize" },
+          { "value": "Costa Rica", "label": "Costa Rica" },
+          { "value": "El Salvador", "label": "El Salvador" },
+          { "value": "Guatemala", "label": "Guatemala" },
+          { "value": "Honduras", "label": "Honduras" },
+          { "value": "Nicaragua", "label": "Nicaragua" },
+          { "value": "Panama", "label": "Panama" }
+        ]
+      },
+      {
+        "label": "Caribe",
+        "countries": [
+          { "value": "Cuba", "label": "Cuba" },
+          { "value": "Dominican Republic", "label": "Republica Dominicana" },
+          { "value": "Haiti", "label": "Haiti" },
+          { "value": "Puerto Rico", "label": "Porto Rico" }
+        ]
+      },
+      {
+        "label": "America do Sul",
+        "countries": [
+          { "value": "Argentina", "label": "Argentina" },
+          { "value": "Bolivia", "label": "Bolivia" },
+          { "value": "Brazil", "label": "Brasil" },
+          { "value": "Chile", "label": "Chile" },
+          { "value": "Colombia", "label": "Colombia" },
+          { "value": "Ecuador", "label": "Equador" },
+          { "value": "Guyana", "label": "Guiana" },
+          { "value": "Paraguay", "label": "Paraguai" },
+          { "value": "Peru", "label": "Peru" },
+          { "value": "Suriname", "label": "Suriname" },
+          { "value": "Uruguay", "label": "Uruguai" },
+          { "value": "Venezuela", "label": "Venezuela" },
+          { "value": "French Guiana", "label": "Guiana Francesa" }
+        ]
+      }
+    ],
+    "sortOptions": [
+      "Ordenar: data (mais proxima)",
+      "Ordenar: regiao"
+    ],
+    "placeholderLabel": "Mais no T2 2026",
+    "listYourEventLabel": "Divulgue seu evento",
+    "listYourEventCtaLabel": "Envie seu evento →",
+    "tabs": [
+      { "id": "trade-fair", "label": "Feiras & Exposicoes" },
+      { "id": "summit", "label": "Conferencias & Summits" }
+    ]
+  },
   "preRegistrationPage": {
     "meta": {
       "htmlLang": "pt-BR",

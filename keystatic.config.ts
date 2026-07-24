@@ -2,6 +2,7 @@ import { collection, config, singleton } from "@keystatic/core";
 
 import { advisoryCollectionSchema } from "./src/lib/advisory/schema.ts";
 import { competitionCollectionSchema } from "./src/lib/competitions/schema.ts";
+import { eventCollectionSchema } from "./src/lib/events/schema.ts";
 import { homepageLocaleSchema, siteSettingsSchema } from "./src/lib/homepage/schema.ts";
 import { newsCollectionSchema } from "./src/lib/news/schema.ts";
 import { programCollectionSchema } from "./src/lib/programs/schema.ts";
@@ -64,6 +65,13 @@ export default config({
       format: "json",
       columns: ["order"],
       schema: networkListingCollectionSchema,
+    }),
+    events: collection({
+      label: "Events",
+      path: "src/content/events/*",
+      format: "json",
+      columns: ["category", "status", "startDate"],
+      schema: eventCollectionSchema,
     }),
   },
   singletons: {
